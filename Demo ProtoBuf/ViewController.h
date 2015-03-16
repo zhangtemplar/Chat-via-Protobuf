@@ -29,3 +29,4 @@
 -(void)onReceiveLoginMessageResponse:(NSData *)data;
 @end
 
+#define Message_header -1

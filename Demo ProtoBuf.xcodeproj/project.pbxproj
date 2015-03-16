@@ -16,6 +16,7 @@
 		BEE05EA91AB2ADAA00D92B7D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEE05EA71AB2ADAA00D92B7D /* LaunchScreen.xib */; };
 		BEE05EB51AB2ADAA00D92B7D /* Demo_ProtoBufTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE05EB41AB2ADAA00D92B7D /* Demo_ProtoBufTests.m */; };
 		BEE05EC01AB2B21500D92B7D /* App.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE05EBF1AB2B21500D92B7D /* App.pb.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BEFAB99C1AB6529E009F6D03 /* AppUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BEFAB99B1AB6529E009F6D03 /* AppUtility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 		BEE05EB41AB2ADAA00D92B7D /* Demo_ProtoBufTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo_ProtoBufTests.m; sourceTree = "<group>"; };
 		BEE05EBE1AB2B21500D92B7D /* App.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.pb.h; sourceTree = "<group>"; };
 		BEE05EBF1AB2B21500D92B7D /* App.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = App.pb.m; sourceTree = "<group>"; };
+		BEFAB99B1AB6529E009F6D03 /* AppUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtility.m; sourceTree = "<group>"; };
+		BEFAB99D1AB652B0009F6D03 /* AppUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppUtility.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,8 @@
 				BEE05EA51AB2ADAA00D92B7D /* Images.xcassets */,
 				BEE05EA71AB2ADAA00D92B7D /* LaunchScreen.xib */,
 				BEE05E981AB2ADAA00D92B7D /* Supporting Files */,
+				BEFAB99B1AB6529E009F6D03 /* AppUtility.m */,
+				BEFAB99D1AB652B0009F6D03 /* AppUtility.h */,
 			);
 			path = "Demo ProtoBuf";
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 			files = (
 				BEE05EC01AB2B21500D92B7D /* App.pb.m in Sources */,
 				BEE05EA11AB2ADAA00D92B7D /* ViewController.m in Sources */,
+				BEFAB99C1AB6529E009F6D03 /* AppUtility.m in Sources */,
 				BEE05E9E1AB2ADAA00D92B7D /* AppDelegate.m in Sources */,
 				BEE05E9B1AB2ADAA00D92B7D /* main.m in Sources */,
 			);

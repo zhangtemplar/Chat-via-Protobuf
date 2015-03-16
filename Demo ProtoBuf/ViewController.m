@@ -8,6 +8,7 @@
 #import "GCDAsyncSocket.h"
 #import "ViewController.h"
 #import "App.pb.h"
+#import "AppUtility.h"
 
 @interface ViewController ()
 
@@ -28,6 +29,9 @@
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Unable to connect to the server" message:@"Unable to connect the server, please check your network" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
+    
+    // start listening for imcoming data
+    [socket readDataWithTimeout:-1 tag:Message_MessageTypeLoginResp];
 }
 
 // view disappear, disconnect the socket
@@ -70,11 +74,9 @@
     [msg_tmp_build setType:Message_MessageTypeLoginReq];
     [msg_tmp_build setLoginRequest:msg_tmp_login_build.build];
     
-    // send the message to the socket
-    [socket writeData:[[msg_tmp_build build] data] withTimeout:-1 tag:Message_MessageTypeLoginReq];
-    
-    // wait for the response from the server
-    [socket readDataWithTimeout:-1 tag:Message_MessageTypeLoginResp];
+    // send the message to the socket: we need to code the stream first
+    NSData *msg_data=packMessage([msg_tmp_build build]);
+    [socket writeData:msg_data withTimeout:-1 tag:1];
 }
 
 -(IBAction)onRegister:(id)sender
@@ -91,34 +93,18 @@
 // callback for writting data to socket
 -(void)socket:(GCDAsyncSocket*)sender didWriteDataWithTag:(long)tag
 {
-    switch (tag) {
-        case Message_MessageTypeLoginReq:
-            NSLog(@"Login request message is sent.");
-            break;
-            
-        default:
-            break;
-    }
+    NSLog(@"Message is sent at %@\n", [NSDate date]);
 }
 
 // callback for getting data from socket
 -(void)socket:(GCDAsyncSocket *)sender didReadData:(NSData *)data withTag:(long)tag
 {
-    switch (tag) {
-        case Message_MessageTypeLoginResp:
-            [self onReceiveLoginMessageResponse:data];
-            NSLog(@"Login response message is received.");
-            break;
-            
-        default:
-            break;
-    }
+    NSLog(@"Message is received at %@\n", [NSDate date]);
 }
 
 -(void)onReceiveLoginMessageResponse:(NSData *)data
 {
-    Message *msg_tmp=[Message alloc];
-    msg_tmp=[Message parseFromData:data];
+    Message *msg_tmp=unPackMessage(data);
     
     // check the response
     if ([msg_tmp type]==Message_MessageTypeLoginResp && [[msg_tmp loginResponse] hasStatus])
