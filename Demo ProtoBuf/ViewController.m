@@ -29,9 +29,7 @@
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Unable to connect to the server" message:@"Unable to connect the server, please check your network" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
-    
-    // start listening for imcoming data
-    [socket readDataWithTimeout:-1 tag:Message_MessageTypeLoginResp];
+    buffer_index=0;
 }
 
 // view disappear, disconnect the socket
@@ -59,7 +57,16 @@
 
 -(IBAction)onForget:(id)sender
 {
+    Message_ForgetPasswordMessageRequest_Builder *msg_tmp_forget_build=[Message_ForgetPasswordMessageRequest builder];
+    [msg_tmp_forget_build setPhoneNumber:input_phone.text];
+    [msg_tmp_forget_build setEmail:input_email.text];
     
+    Message_Builder *msg_tmp_build=[Message builder];
+    [msg_tmp_build setType:Message_MessageTypeForgetPwdReq];
+    [msg_tmp_build setForgetPwdRequest:[msg_tmp_forget_build build]];
+    
+    NSData *msg_data=packMessage([msg_tmp_build build]);
+    [socket writeData:msg_data withTimeout:-1 tag:1];
 }
 
 -(IBAction)onLogin:(id)sender
@@ -81,30 +88,97 @@
 
 -(IBAction)onRegister:(id)sender
 {
-    // test the socket here
+    Message_SubMessageRequest_Builder *msg_tmp_register_build=[Message_SubMessageRequest builder];
+    [msg_tmp_register_build setPhoneNumber:input_phone.text];
+    [msg_tmp_register_build setEmail:input_email.text];
+    [msg_tmp_register_build setPassword:input_password.text];
+    [msg_tmp_register_build setSex:0];
+    
+    Message_Builder *msg_tmp_build=[Message builder];
+    [msg_tmp_build setType:Message_MessageTypeLoginReq];
+    [msg_tmp_build setSubRequest:msg_tmp_register_build.build];
+    
+    // send the message to the socket: we need to code the stream first
+    NSData *msg_data=packMessage([msg_tmp_build build]);
+    [socket writeData:msg_data withTimeout:-1 tag:1];
 }
 
 // callback function for socket connection
 -(void)socket:(GCDAsyncSocket *)sender didConnectToHost:(NSString *)host port:(uint16_t)port
 {
     NSLog([[NSString alloc] initWithFormat:@"Connected to %@:%u.\n", host, port]);
+    
+    // start listening for imcoming data
+    [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
+    NSLog(@"Start reading data from socket");
 }
 
 // callback for writting data to socket
 -(void)socket:(GCDAsyncSocket*)sender didWriteDataWithTag:(long)tag
 {
     NSLog(@"Message is sent at %@\n", [NSDate date]);
+    
+    // start listening for imcoming data
+    [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
+    NSLog(@"Start reading data from socket");
 }
 
 // callback for getting data from socket
 -(void)socket:(GCDAsyncSocket *)sender didReadData:(NSData *)data withTag:(long)tag
 {
     NSLog(@"Message is received at %@\n", [NSDate date]);
+    // [self onReceiveLoginMessageResponse:data];
+    
+    if (tag!=MESSAGE_BODY)
+    {
+        // read the available byte
+        buffer[buffer_index]=((char *)data.bytes)[0];
+        // the header can take 5 bytes at most and the last byte must be nonegative
+        if (buffer[buffer_index]>=0)
+        {
+            // the header is finished, parse the message header to obtain the length of the buffer
+            int length=[[PBCodedInputStream streamWithData:[NSMutableData dataWithBytes:buffer length:buffer_index+1]] readRawVarint32];
+            if (length<0)
+            {
+                // some error here
+                NSLog(@"Parse message header error in length: %d\n", length);
+                buffer_index=0;
+            }
+            else
+            {
+                // read the message body
+                NSLog(@"Message header with %d bytes parsed: %d\n", buffer_index, length);
+                buffer_index=0;
+                [socket readDataToLength:length withTimeout:-1 tag:MESSAGE_BODY];
+            }
+        }
+        else
+        {
+            buffer_index++;
+            if (buffer_index<5)
+            {
+                // the head is not finished yet, read one more byte
+                NSLog(@"Message header is not complete and read one more byte: %d\n", buffer_index);
+                [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
+            }
+            else
+            {
+                NSLog(@"Parse message header error with %d bytes\n", buffer_index);
+                buffer_index=0;
+            }
+        }
+    }
+    else
+    {
+        // it is a message body
+        NSLog(@"Message body with %lu byte is read\n", (unsigned long)[data length]);
+        [self onReceiveLoginMessageResponse:data];
+    }
 }
 
 -(void)onReceiveLoginMessageResponse:(NSData *)data
 {
-    Message *msg_tmp=unPackMessage(data);
+    Message *msg_tmp=[Message parseFromCodedInputStream:[PBCodedInputStream streamWithData:[NSMutableData dataWithData:data]]];
     
     // check the response
     if ([msg_tmp type]==Message_MessageTypeLoginResp && [[msg_tmp loginResponse] hasStatus])

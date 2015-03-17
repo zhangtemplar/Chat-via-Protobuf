@@ -18,6 +18,10 @@
     
     // socket
     GCDAsyncSocket *socket;
+    
+    // buffer for the message header
+    char buffer[5];
+    int buffer_index;
 }
 
 -(IBAction)onCancel:(id)sender;
@@ -29,4 +33,5 @@
 -(void)onReceiveLoginMessageResponse:(NSData *)data;
 @end
 
-#define Message_header -1
+#define MESSAGE_HEAD 0
+#define MESSAGE_BODY 1
