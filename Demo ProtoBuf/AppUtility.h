@@ -12,4 +12,9 @@
 NSData* packMessage(PBGeneratedMessage *msg);
 
 PBGeneratedMessage* unPackMessage(NSData *data);
+
+/*
+ * this function computes the number of bytes required to code the data x
+ */
+int getRawVariant32Length(int x);
 #endif

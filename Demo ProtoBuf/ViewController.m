@@ -95,7 +95,7 @@
     [msg_tmp_register_build setSex:0];
     
     Message_Builder *msg_tmp_build=[Message builder];
-    [msg_tmp_build setType:Message_MessageTypeLoginReq];
+    [msg_tmp_build setType:Message_MessageTypeSubscribeReq];
     [msg_tmp_build setSubRequest:msg_tmp_register_build.build];
     
     // send the message to the socket: we need to code the stream first
@@ -109,8 +109,8 @@
     NSLog([[NSString alloc] initWithFormat:@"Connected to %@:%u.\n", host, port]);
     
     // start listening for imcoming data
-    [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
-    NSLog(@"Start reading data from socket");
+//    [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
+//    NSLog(@"Start reading data from socket");
 }
 
 // callback for writting data to socket
@@ -143,6 +143,7 @@
                 // some error here
                 NSLog(@"Parse message header error in length: %d\n", length);
                 buffer_index=0;
+//                [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
             }
             else
             {
@@ -165,6 +166,7 @@
             {
                 NSLog(@"Parse message header error with %d bytes\n", buffer_index);
                 buffer_index=0;
+//                [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
             }
         }
     }
@@ -173,6 +175,7 @@
         // it is a message body
         NSLog(@"Message body with %lu byte is read\n", (unsigned long)[data length]);
         [self onReceiveLoginMessageResponse:data];
+//        [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
     }
 }
 

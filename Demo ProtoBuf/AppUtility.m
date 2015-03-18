@@ -13,7 +13,7 @@
 NSData* packMessage(Message *msg)
 {
     int msg_length=(int)[[msg data] length];
-    int msg_header_length=sizeof(int32_t);
+    int msg_header_length=getRawVariant32Length(msg_length);
     
     NSMutableData *data=[NSMutableData dataWithLength:msg_length+msg_header_length];
     PBCodedOutputStream *output_stream=[PBCodedOutputStream streamWithData:data];
@@ -60,4 +60,18 @@ Message* unPackMessage(NSData *data)
         }
     }
     return nil;
+}
+
+int getRawVariant32Length(int x)
+{
+    int num_byte=1;
+    while (true)
+    {
+        if ((x & ~0x7f)==0)
+        {
+            return num_byte;
+        }
+        x=logicalRightShift32(x, 7);
+        num_byte++;
+    }
 }
