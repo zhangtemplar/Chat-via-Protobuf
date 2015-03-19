@@ -127,66 +127,99 @@
 -(void)socket:(GCDAsyncSocket *)sender didReadData:(NSData *)data withTag:(long)tag
 {
     NSLog(@"Message is received at %@\n", [NSDate date]);
-    // [self onReceiveLoginMessageResponse:data];
     
-    if (tag!=MESSAGE_BODY)
+    // first assume we have all the data available
+    while (buffer_index<5)
     {
-        // read the available byte
-        buffer[buffer_index]=((char *)data.bytes)[0];
-        // the header can take 5 bytes at most and the last byte must be nonegative
+        buffer[buffer_index]=((char *)data.bytes)[buffer_index];
         if (buffer[buffer_index]>=0)
         {
-            // the header is finished, parse the message header to obtain the length of the buffer
             int length=[[PBCodedInputStream streamWithData:[NSMutableData dataWithBytes:buffer length:buffer_index+1]] readRawVarint32];
             if (length<0)
             {
-                // some error here
+                // some error here, reject the whole package
                 NSLog(@"Parse message header error in length: %d\n", length);
                 buffer_index=0;
-//                [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
             }
             else
             {
-                // read the message body
+                // we get the message header ready and read the message body
                 NSLog(@"Message header with %d bytes parsed: %d\n", buffer_index, length);
+                NSData *msg_body=[data subdataWithRange:NSMakeRange(buffer_index+1, length)];
                 buffer_index=0;
-                [socket readDataToLength:length withTimeout:-1 tag:MESSAGE_BODY];
+                [self onReceiveLoginMessageResponse:msg_body];
             }
+            return;
         }
         else
         {
             buffer_index++;
-            if (buffer_index<5)
-            {
-                // the head is not finished yet, read one more byte
-                NSLog(@"Message header is not complete and read one more byte: %d\n", buffer_index);
-                [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
-            }
-            else
-            {
-                NSLog(@"Parse message header error with %d bytes\n", buffer_index);
-                buffer_index=0;
-//                [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
-            }
         }
     }
-    else
-    {
-        // it is a message body
-        NSLog(@"Message body with %lu byte is read\n", (unsigned long)[data length]);
-        [self onReceiveLoginMessageResponse:data];
-//        [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
-    }
+    // something is wrong here
+    buffer_index=0;
+    
+//    if (tag!=MESSAGE_BODY)
+//    {
+//        // read the available byte
+//        buffer[buffer_index]=((char *)data.bytes)[0];
+//        // the header can take 5 bytes at most and the last byte must be nonegative
+//        if (buffer[buffer_index]>=0)
+//        {
+//            // the header is finished, parse the message header to obtain the length of the buffer
+//            int length=[[PBCodedInputStream streamWithData:[NSMutableData dataWithBytes:buffer length:buffer_index+1]] readRawVarint32];
+//            if (length<0)
+//            {
+//                // some error here
+//                NSLog(@"Parse message header error in length: %d\n", length);
+//                buffer_index=0;
+////                [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
+//            }
+//            else
+//            {
+//                // read the message body
+//                NSLog(@"Message header with %d bytes parsed: %d\n", buffer_index, length);
+//                buffer_index=0;
+//                [socket readDataToLength:length withTimeout:-1 tag:MESSAGE_BODY];
+//            }
+//        }
+//        else
+//        {
+//            buffer_index++;
+//            if (buffer_index<5)
+//            {
+//                // the head is not finished yet, read one more byte
+//                NSLog(@"Message header is not complete and read one more byte: %d\n", buffer_index);
+//                [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
+//            }
+//            else
+//            {
+//                NSLog(@"Parse message header error with %d bytes\n", buffer_index);
+//                buffer_index=0;
+////                [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
+//            }
+//        }
+//    }
+//    else
+//    {
+//        // it is a message body
+//        NSLog(@"Message body with %lu byte is read\n", (unsigned long)[data length]);
+//        [self onReceiveLoginMessageResponse:data];
+////        [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
+//    }
 }
 
 -(void)onReceiveLoginMessageResponse:(NSData *)data
 {
+//    Message_Builder *msg_tmp_builder=[Message builder];
+//    [msg_tmp_builder mergeFromCodedInputStream:[PBCodedInputStream streamWithData:[NSMutableData dataWithData:data]]];
+//    Message *msg_tmp=[msg_tmp_builder build];
     Message *msg_tmp=[Message parseFromCodedInputStream:[PBCodedInputStream streamWithData:[NSMutableData dataWithData:data]]];
     
     // check the response
+    UIAlertView *alert=[UIAlertView alloc];
     if ([msg_tmp type]==Message_MessageTypeLoginResp && [[msg_tmp loginResponse] hasStatus])
     {
-        UIAlertView *alert=[UIAlertView alloc];
         switch ([[msg_tmp loginResponse] status]) {
             case 0:
                 // login succeed
@@ -195,14 +228,46 @@
             case 1:
                 // login failed, as user doesn't exist
                 [alert initWithTitle:@"Username doesn't exist" message:@"Sorry but your username doesn't exists, register it?" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                break;
             case 2:
                 // login succeed, as password is wrong
                 [alert initWithTitle:@"Password is wrong" message:@"You input a wrong password, please check." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                break;
             default:
                 [alert initWithTitle:@"Login fails with unknown error" message:@"Sorry your login fails due to some unknown error" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 break;
         }
-        [alert show];
     }
+    else if([msg_tmp type]==Message_MessageTypeSubscribeResp && [[msg_tmp subResponse] hasStatus])
+    {
+        switch ([[msg_tmp subResponse] status]) {
+            case 0:
+                // login succeed
+                [alert initWithTitle:@"Register succeeds" message:@"You are now register" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                break;
+            default:
+                // login failed, as user doesn't exist
+                [alert initWithTitle:@"Register failed" message:@"Sorry but your username (email/phone) was already registerred, try to reset the password?" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                break;
+        }
+    }
+    else if ([msg_tmp type]==Message_MessageTypeForgetPwdResp && [[msg_tmp forgetPwdResponse] hasStatus])
+    {
+        switch ([[msg_tmp subResponse] status]) {
+            case 0:
+                // login succeed
+                [alert initWithTitle:@"Forget password request is approved." message:@"Please check your email or sms to find out the new password" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                break;
+            default:
+                // login failed, as user doesn't exist
+                [alert initWithTitle:@"Forget password request is declined" message:@"Sorry but your username doesn't exists, register it?" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                break;
+        }
+    }
+    else
+    {
+        [alert initWithTitle:@"System error" message:@"Sorry there is some error but it is not fault." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    }
+    [alert show];
 }
 @end
