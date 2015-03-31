@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class AppDelegate;
 
 @interface ViewController : UIViewController
 {
@@ -16,12 +17,8 @@
     IBOutlet UITextField *input_password;
     IBOutlet UITextField *input_password2;
     
-    // socket
-    GCDAsyncSocket *socket;
+    AppDelegate* app_delegate;
     
-    // buffer for the message header
-    char buffer[5];
-    int buffer_index;
 }
 
 -(IBAction)onCancel:(id)sender;
@@ -29,8 +26,6 @@
 -(IBAction)onRegister:(id)sender;
 -(IBAction)onForget:(id)sender;
 
-// on receiving the message
--(void)onReceiveLoginMessageResponse:(NSData *)data;
 @end
 
 #define MESSAGE_HEAD 0

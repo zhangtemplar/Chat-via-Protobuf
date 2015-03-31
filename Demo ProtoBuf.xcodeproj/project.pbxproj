@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		695834BDD481863CF5B94CF1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BC0DEDCAB9BBCAF029B385 /* libPods.a */; };
+		BEB6FEE11AC8D1E90066348C /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB6FEE01AC8D1E90066348C /* ChatViewController.m */; };
+		BEB6FEE41AC8D4B60066348C /* ChatModelData.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB6FEE31AC8D4B60066348C /* ChatModelData.m */; };
 		BEE05E9B1AB2ADAA00D92B7D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE05E9A1AB2ADAA00D92B7D /* main.m */; };
 		BEE05E9E1AB2ADAA00D92B7D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE05E9D1AB2ADAA00D92B7D /* AppDelegate.m */; };
 		BEE05EA11AB2ADAA00D92B7D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE05EA01AB2ADAA00D92B7D /* ViewController.m */; };
@@ -33,6 +35,10 @@
 		02BD932E2D4E439BD1D747AD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		55948B729A4805925AB274D1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		62BC0DEDCAB9BBCAF029B385 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEB6FEDF1AC8D1E90066348C /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		BEB6FEE01AC8D1E90066348C /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		BEB6FEE21AC8D4B60066348C /* ChatModelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatModelData.h; sourceTree = "<group>"; };
+		BEB6FEE31AC8D4B60066348C /* ChatModelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatModelData.m; sourceTree = "<group>"; };
 		BEE05E951AB2ADAA00D92B7D /* Demo ProtoBuf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo ProtoBuf.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEE05E991AB2ADAA00D92B7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEE05E9A1AB2ADAA00D92B7D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -115,6 +121,10 @@
 				BEE05E981AB2ADAA00D92B7D /* Supporting Files */,
 				BEFAB99B1AB6529E009F6D03 /* AppUtility.m */,
 				BEFAB99D1AB652B0009F6D03 /* AppUtility.h */,
+				BEB6FEDF1AC8D1E90066348C /* ChatViewController.h */,
+				BEB6FEE01AC8D1E90066348C /* ChatViewController.m */,
+				BEB6FEE21AC8D4B60066348C /* ChatModelData.h */,
+				BEB6FEE31AC8D4B60066348C /* ChatModelData.m */,
 			);
 			path = "Demo ProtoBuf";
 			sourceTree = "<group>";
@@ -290,8 +300,10 @@
 			files = (
 				BEE05EC01AB2B21500D92B7D /* App.pb.m in Sources */,
 				BEE05EA11AB2ADAA00D92B7D /* ViewController.m in Sources */,
+				BEB6FEE11AC8D1E90066348C /* ChatViewController.m in Sources */,
 				BEFAB99C1AB6529E009F6D03 /* AppUtility.m in Sources */,
 				BEE05E9E1AB2ADAA00D92B7D /* AppDelegate.m in Sources */,
+				BEB6FEE41AC8D4B60066348C /* ChatModelData.m in Sources */,
 				BEE05E9B1AB2ADAA00D92B7D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

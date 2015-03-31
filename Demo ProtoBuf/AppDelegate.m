@@ -5,8 +5,12 @@
 //  Created by Qiang Zhang on 3/12/15.
 //  Copyright (c) 2015 Qiang Zhang. All rights reserved.
 //
-
 #import "AppDelegate.h"
+#import "GCDAsyncSocket.h"
+#import "App.pb.h"
+#import "AppUtility.h"
+#import "JSQMessages.h"
+#import "ChatViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +21,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // creates the tcp connection
+    socket=[[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    NSError *err=nil;
+    if (![socket connectToHost:@"52.11.221.183" onPort:8080 error:&err])
+    {
+        NSLog(@"The connection failes.\n");
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Unable to connect to the server" message:@"Unable to connect the server, please check your network" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    buffer_index=0;
     return YES;
 }
 
@@ -41,5 +56,161 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+// callback function for socket connection
+-(void)socket:(GCDAsyncSocket *)sender didConnectToHost:(NSString *)host port:(uint16_t)port
+{
+    NSLog([[NSString alloc] initWithFormat:@"Connected to %@:%u.\n", host, port]);
+    
+    // start listening for imcoming data
+    //    [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
+    //    NSLog(@"Start reading data from socket");
+}
 
+// callback for writting data to socket
+-(void)socket:(GCDAsyncSocket*)sender didWriteDataWithTag:(long)tag
+{
+    NSLog(@"Message is sent at %@\n", [NSDate date]);
+    
+    // start listening for imcoming data
+    [socket readDataWithTimeout:-1 tag:0];
+    NSLog(@"Start reading data from socket");
+}
+
+// callback for getting data from socket
+-(void)socket:(GCDAsyncSocket *)sender didReadData:(NSData *)data withTag:(long)tag
+{
+    NSLog(@"Message is received at %@\n", [NSDate date]);
+    
+    // first assume we have all the data available
+    while (buffer_index<5)
+    {
+        buffer[buffer_index]=((char *)data.bytes)[buffer_index];
+        if (buffer[buffer_index]>=0)
+        {
+            int length=[[PBCodedInputStream streamWithData:[NSMutableData dataWithBytes:buffer length:buffer_index+1]] readRawVarint32];
+            if (length<0)
+            {
+                // some error here, reject the whole package
+                NSLog(@"Parse message header error in length: %d\n", length);
+                buffer_index=0;
+            }
+            else
+            {
+                // we get the message header ready and read the message body
+                NSLog(@"Message header with %d bytes parsed: %d\n", buffer_index, length);
+                NSData *msg_body=[data subdataWithRange:NSMakeRange(buffer_index+1, length)];
+                buffer_index=0;
+                [self onReceiveLoginMessageResponse:msg_body];
+            }
+            return;
+        }
+        else
+        {
+            buffer_index++;
+        }
+    }
+    // something is wrong here
+    buffer_index=0;
+}
+
+-(void)onReceiveLoginMessageResponse:(NSData *)data
+{
+    //    Message_Builder *msg_tmp_builder=[Message builder];
+    //    [msg_tmp_builder mergeFromCodedInputStream:[PBCodedInputStream streamWithData:[NSMutableData dataWithData:data]]];
+    //    Message *msg_tmp=[msg_tmp_builder build];
+    Message *msg_tmp=[Message parseFromCodedInputStream:[PBCodedInputStream streamWithData:[NSMutableData dataWithData:data]]];
+    
+    // check the response
+    UIAlertView *alert=[UIAlertView alloc];
+    if ([msg_tmp type]==Message_MessageTypeLoginResp && [[msg_tmp loginResponse] hasStatus])
+    {
+        switch ([[msg_tmp loginResponse] status]) {
+            case 0:
+            {
+                // login succeed
+                [alert initWithTitle:@"Login succeeds" message:@"You are now loggied in" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                
+                // on login succeed, we will create a chat window
+                ChatViewController *chat_view;
+                if (chat_list[[[msg_tmp loginResponse] userId]]==nil)
+                {
+                    chat_view=[ChatViewController messageViewController];
+                    chat_view.delegateModal=self;
+                    [chat_view setUser:msg_tmp];
+                }
+                else
+                {
+                    chat_view=(ChatViewController *)(chat_list[[[msg_tmp loginResponse] userId]]);
+                }
+                UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
+                [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
+                break;
+            }
+            case 1:
+            {
+                // login failed, as user doesn't exist
+                [alert initWithTitle:@"Username doesn't exist" message:@"Sorry but your username doesn't exists, register it?" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                break;
+            }
+            case 2:
+            {
+                // login succeed, as password is wrong
+                [alert initWithTitle:@"Password is wrong" message:@"You input a wrong password, please check." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                break;
+            }
+            default:
+            {
+                [alert initWithTitle:@"Login fails with unknown error" message:@"Sorry your login fails due to some unknown error" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                break;
+            }
+        }
+    }
+    else if([msg_tmp type]==Message_MessageTypeSubscribeResp && [[msg_tmp subResponse] hasStatus])
+    {
+        switch ([[msg_tmp subResponse] status]) {
+            case 0:
+            {
+                // login succeed
+                [alert initWithTitle:@"Register succeeds" message:@"You are now register" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                break;
+            }
+            default:
+            {
+                // login failed, as user doesn't exist
+                [alert initWithTitle:@"Register failed" message:@"Sorry but your username (email/phone) was already registerred, try to reset the password?" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                break;
+            }
+        }
+    }
+    else if ([msg_tmp type]==Message_MessageTypeForgetPwdResp && [[msg_tmp forgetPwdResponse] hasStatus])
+    {
+        switch ([[msg_tmp subResponse] status]) {
+            case 0:
+            {
+                // login succeed
+                [alert initWithTitle:@"Forget password request is approved." message:@"Please check your email or sms to find out the new password" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                break;
+            }
+            default:
+            {
+                // login failed, as user doesn't exist
+                [alert initWithTitle:@"Forget password request is declined" message:@"Sorry but your username doesn't exists, register it?" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                break;
+            }
+        }
+    }
+    // for other message type put here
+    //
+    else
+    {
+        [alert initWithTitle:@"System error" message:@"Sorry there is some error but it is not fault." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    }
+    [alert show];
+}
+
+-(void) sendMessage:(Message *)msg
+{
+    NSData *msg_data=packMessage(msg);
+    [socket writeData:msg_data withTimeout:-1 tag:1];
+}
 @end
