@@ -129,21 +129,6 @@
             {
                 // login succeed
                 [alert initWithTitle:@"Login succeeds" message:@"You are now loggied in" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                
-                // on login succeed, we will create a chat window
-                ChatViewController *chat_view;
-                if (chat_list[[[msg_tmp loginResponse] userId]]==nil)
-                {
-                    chat_view=[ChatViewController messageViewController];
-                    chat_view.delegateModal=self;
-                    [chat_view setUser:msg_tmp];
-                }
-                else
-                {
-                    chat_view=(ChatViewController *)(chat_list[[[msg_tmp loginResponse] userId]]);
-                }
-                UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
-                [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
                 break;
             }
             case 1:
@@ -199,8 +184,32 @@
             }
         }
     }
+    // send message response
+    else if ([msg_tmp type]==Message_MessageTypeTextResp && [[msg_tmp textChatMessageResponse] hasStatus])
+    {
+        NSLog(@"Message sent confirmed with status: %d\n", [[msg_tmp textChatMessageResponse] status]);
+    }
+    // receving a new chat message
+    else if ([msg_tmp type]==Message_MessageTypeTextFromServerReq)
+    {
+        // on get a new message, we create a new chat view
+        ChatViewController *chat_view=chat_list[[[msg_tmp textFromServerRequest] toUserId]];
+        if (chat_view==nil)
+        {
+            // if we don't have a chat view for it, create a new one
+            chat_view=[ChatViewController messageViewController];
+            chat_view.delegateModal=self;
+            [chat_view setUser:msg_tmp];
+        }
+        [chat_view onReceiveMessage:msg_tmp];
+        // if current view is not present, show it
+        if ([[self window] rootViewController]==chat_view)
+        {
+            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
+            [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
+        }
+    }
     // for other message type put here
-    //
     else
     {
         [alert initWithTitle:@"System error" message:@"Sorry there is some error but it is not fault." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];

@@ -22,6 +22,8 @@
     Message *login_user;
     // app delegate for socket operation and many more
     AppDelegate *app_delegate;
+    // guest
+    NSMutableArray *guest_id;
 }
 @property (weak, nonatomic) id<JSQChatViewControllerDelegate> delegateModal;
 

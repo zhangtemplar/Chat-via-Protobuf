@@ -23,13 +23,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    // set up the sender, which is the logged in user
-    self.senderId=[[login_user loginResponse] userId];
-    self.senderDisplayName=[[login_user loginResponse] userName];
-    
-    // add the current user as the first user or sender
-    [self.chatData addUsers:self.senderId name:self.senderDisplayName avator:nil];
-    
     /**
      *  You can set custom avatar sizes
      */
@@ -42,6 +35,7 @@
     // the ... button or typing indicator
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage jsq_defaultTypingIndicatorImage] style:UIBarButtonItemStyleBordered target:self action:@selector(receiveMessagePressed:)];
     
+    app_delegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 
 // dynamically add a close button to the top left of the view
@@ -81,6 +75,19 @@
 -(void) onReceiveMessage:(Message *)msg
 {
     // check the msg then add it
+    NSDate *msg_date=[NSDate dateWithTimeIntervalSince1970:[[msg textFromServerRequest] date]];
+    
+    [[self chatData] addTextMessage:[[msg textFromServerRequest] fromUserId] name:[[msg textFromServerRequest] fromUserId] date:msg_date text:[[msg textFromServerRequest] text]];
+    
+    /**
+     *  Upon receiving a message, you should:
+     *
+     *  1. Play sound (optional)
+     *  2. Add new id<JSQMessageData> object to your data source
+     *  3. Call `finishReceivingMessage`
+     */
+    [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
+    [self finishReceivingMessageAnimated:YES];
 }
 
 #pragma mark - Actions
@@ -88,6 +95,7 @@
 // clicking the user is typing--mimicking receving a new message
 - (void)receiveMessagePressed:(UIBarButtonItem *)sender
 {
+    NSLog(@"receiveMessagePressed is deprecated\n");
 }
 
 // close current view
@@ -125,9 +133,19 @@
     // animation
     [self finishSendingMessageAnimated:YES];
     
-    // todo
     // send the message via sockets
-    // app_delegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
+    Message_TextChatMessageRequest_Builder *txt_msg_builder=[Message_TextChatMessageRequest builder];
+    [txt_msg_builder setUserId:senderId];
+    [txt_msg_builder setText:text];
+    [txt_msg_builder setToUserId:[guest_id lastObject]];
+    [txt_msg_builder setDate:[[NSDate date] timeIntervalSince1970]];
+    [txt_msg_builder setMessageHash:nil];
+    
+    Message_Builder *msg_build=[Message builder];
+    [msg_build setType:Message_MessageTypeTextReq];
+    [msg_build setTextChatMessageRequest:[txt_msg_builder build]];
+    
+    [app_delegate sendMessage:[msg_build build]];
 }
 
 // add media message
@@ -434,6 +452,33 @@
 -(void)setUser:(Message *)user
 {
     login_user=user;
+    // receive a message
+    if ([login_user type]==Message_MessageTypeTextReq)
+    {
+        // receive: current user
+        [[self chatData] addUsers:[[login_user textFromServerRequest] toUserId] name:[[login_user textFromServerRequest] toUserId] avator:nil];
+        // sender: remote user
+        [[self chatData] addUsers:[[login_user textFromServerRequest] fromUserId] name:[[login_user textFromServerRequest] fromUserId] avator:nil];
+        
+        // set up the sender, which is the logged in user
+        self.senderId=[[login_user textFromServerRequest] toUserId];
+        self.senderDisplayName=[[login_user textFromServerRequest] toUserId];
+       
+        if (guest_id==nil)
+        {
+            guest_id=[NSMutableArray alloc];
+        }
+        [guest_id addObject:[[login_user textFromServerRequest] fromUserId]];
+    }
+    // current user want to start a chat
+    else if ([login_user type]==Message_MessageTypeLoginResp)
+    {
+        NSLog(@"Not yet implemented");
+    }
+    else
+    {
+        NSLog(@"Invalid message type");
+    }
 }
 
 @end
