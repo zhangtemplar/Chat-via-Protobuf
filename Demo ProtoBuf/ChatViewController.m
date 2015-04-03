@@ -6,15 +6,10 @@
 //  Copyright (c) 2015 Qiang Zhang. All rights reserved.
 //
 
-#import "App.pb.h"
 #import "ChatModelData.h"
-#import "JSQMessages.h"
 #import "ChatViewController.h"
 #import "AppDelegate.h"
-
-@interface ChatViewController ()
-
-@end
+#import "App.pb.h"
 
 @implementation ChatViewController
 #pragma mark - View lifecycle
@@ -72,20 +67,13 @@
 }
 
 // on receive the new message
--(void) onReceiveMessage:(Message *)msg
+-(void) onReceiveMessage:(Message_TextFromServerRequest *)msg
 {
     // check the msg then add it
-    NSDate *msg_date=[NSDate dateWithTimeIntervalSince1970:[[msg textFromServerRequest] date]];
+    NSDate *msg_date=[NSDate dateWithTimeIntervalSince1970:[msg date]];
     
-    [[self chatData] addTextMessage:[[msg textFromServerRequest] fromUserId] name:[[msg textFromServerRequest] fromUserId] date:msg_date text:[[msg textFromServerRequest] text]];
+    [[self chatData] addTextMessage:[msg fromUserId] name:[msg fromUserId] date:msg_date text:[msg text]];
     
-    /**
-     *  Upon receiving a message, you should:
-     *
-     *  1. Play sound (optional)
-     *  2. Add new id<JSQMessageData> object to your data source
-     *  3. Call `finishReceivingMessage`
-     */
     [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
     [self finishReceivingMessageAnimated:YES];
 }
@@ -137,7 +125,7 @@
     Message_TextChatMessageRequest_Builder *txt_msg_builder=[Message_TextChatMessageRequest builder];
     [txt_msg_builder setUserId:senderId];
     [txt_msg_builder setText:text];
-    [txt_msg_builder setToUserId:[guest_id lastObject]];
+    [txt_msg_builder setToUserId:[guest_list lastObject]];
     [txt_msg_builder setDate:[[NSDate date] timeIntervalSince1970]];
     [txt_msg_builder setMessageHash:nil];
     
@@ -177,7 +165,6 @@
         case 1:
         {
             __weak UICollectionView *weakView = self.collectionView;
-            
 //            [self.chatData addLocationMediaMessageCompletion:^{[weakView reloadData];}];
         }
             break;
@@ -449,35 +436,28 @@
 }
 */
 
--(void)setUser:(Message *)user
+-(void)setUser:(NSString *)user_id user_name:(NSString *)user_name client_id:(NSString *)client_id guest_name:(NSString *)guest_name
 {
-    login_user=user;
-    // receive a message
-    if ([login_user type]==Message_MessageTypeTextReq)
+    self.senderId=user_id;
+    if (user_id!=nil)
     {
-        // receive: current user
-        [[self chatData] addUsers:[[login_user textFromServerRequest] toUserId] name:[[login_user textFromServerRequest] toUserId] avator:nil];
-        // sender: remote user
-        [[self chatData] addUsers:[[login_user textFromServerRequest] fromUserId] name:[[login_user textFromServerRequest] fromUserId] avator:nil];
-        
-        // set up the sender, which is the logged in user
-        self.senderId=[[login_user textFromServerRequest] toUserId];
-        self.senderDisplayName=[[login_user textFromServerRequest] toUserId];
-       
-        if (guest_id==nil)
-        {
-            guest_id=[NSMutableArray alloc];
-        }
-        [guest_id addObject:[[login_user textFromServerRequest] fromUserId]];
-    }
-    // current user want to start a chat
-    else if ([login_user type]==Message_MessageTypeLoginResp)
-    {
-        NSLog(@"Not yet implemented");
+        self.senderDisplayName=user_name;
+        [[self chatData] addUsers:user_id name:user_name avator:nil];
     }
     else
     {
-        NSLog(@"Invalid message type");
+        self.senderDisplayName=user_id;
+        [[self chatData] addUsers:user_id name:user_id avator:nil];
+    }
+    
+    [guest_list addObject:client_id];
+    if (guest_name!=nil)
+    {
+        [[self chatData] addUsers:client_id name:guest_name avator:nil];
+    }
+    else
+    {
+        [[self chatData] addUsers:client_id name:client_id avator:nil];
     }
 }
 

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		695834BDD481863CF5B94CF1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BC0DEDCAB9BBCAF029B385 /* libPods.a */; };
-		BEB22A771ACD096E008A03AA /* App.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB22A761ACD096E008A03AA /* App.pb.m */; };
+		BEB22A771ACD096E008A03AA /* App.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB22A761ACD096E008A03AA /* App.pb.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BEB22A7A1ACD1FBD008A03AA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB22A791ACD1FBD008A03AA /* MainViewController.m */; };
 		BEB6FEE11AC8D1E90066348C /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB6FEE01AC8D1E90066348C /* ChatViewController.m */; };
 		BEB6FEE41AC8D4B60066348C /* ChatModelData.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB6FEE31AC8D4B60066348C /* ChatModelData.m */; };

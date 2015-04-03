@@ -7,10 +7,10 @@
 //
 #import "AppDelegate.h"
 #import "GCDAsyncSocket.h"
-#import "App.pb.h"
 #import "AppUtility.h"
-#import "JSQMessages.h"
 #import "ChatViewController.h"
+#import "MainViewController.h"
+#import "App.pb.h"
 
 @interface AppDelegate ()
 
@@ -129,6 +129,11 @@
             {
                 // login succeed
                 [alert initWithTitle:@"Login succeeds" message:@"You are now loggied in" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                // show the friend list
+                UIStoryboard* story_board=[self getStoryBoard];
+                MainViewController* main_view_controller=[story_board instantiateViewControllerWithIdentifier:@"mainViewController"];
+                UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:main_view_controller];
+                [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
                 break;
             }
             case 1:
@@ -193,15 +198,16 @@
     else if ([msg_tmp type]==Message_MessageTypeTextFromServerReq)
     {
         // on get a new message, we create a new chat view
-        ChatViewController *chat_view=chat_list[[[msg_tmp textFromServerRequest] toUserId]];
+        ChatViewController *chat_view=[chat_list objectForKey:[[msg_tmp textFromServerRequest] toUserId]];
         if (chat_view==nil)
         {
             // if we don't have a chat view for it, create a new one
-            chat_view=[ChatViewController messageViewController];
+            chat_view=[ChatViewController messagesViewController];
             chat_view.delegateModal=self;
-            [chat_view setUser:msg_tmp];
+            [chat_view setUser:[[msg_tmp textFromServerRequest]toUserId] user_name:nil client_id: [[msg_tmp textFromServerRequest] fromUserId] guest_name:nil];
+            [chat_list setObject:[[msg_tmp textFromServerRequest] toUserId] forKey:chat_view];
         }
-        [chat_view onReceiveMessage:msg_tmp];
+        [chat_view onReceiveMessage:[msg_tmp textFromServerRequest]];
         // if current view is not present, show it
         if ([[self window] rootViewController]==chat_view)
         {
@@ -222,4 +228,15 @@
     NSData *msg_data=packMessage(msg);
     [socket writeData:msg_data withTimeout:-1 tag:1];
 }
+
+-(NSMutableDictionary *)getChatList
+{
+    return chat_list;
+}
+
+-(UIStoryboard *)getStoryBoard
+{
+    return [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+}
+
 @end

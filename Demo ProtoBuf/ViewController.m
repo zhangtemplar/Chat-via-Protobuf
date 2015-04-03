@@ -6,9 +6,8 @@
 //  Copyright (c) 2015 Qiang Zhang. All rights reserved.
 //
 #import "ViewController.h"
-#import "App.pb.h"
-#import "AppUtility.h"
 #import "AppDelegate.h"
+#import "App.pb.h"
 
 @interface ViewController ()
 

@@ -29,5 +29,11 @@
 
 // send messsage
 -(void)sendMessage:(Message *)msg;
+
+// get chat list
+-(NSMutableDictionary *)getChatList;
+
+// get story board
+-(UIStoryboard *)getStoryBoard;
 @end
 

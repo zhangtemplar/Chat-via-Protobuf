@@ -5,12 +5,14 @@
 //  Created by Qiang Zhang on 3/29/15.
 //  Copyright (c) 2015 Qiang Zhang. All rights reserved.
 //
+#import "JSQMessages.h"
+#import "AppDelegate.h"
 @class ChatModelData;
 @class JSQMessagesViewController;
 @class ChatViewController;
-@class Message;
+@class Message_TextFromServerRequest;
 @class AppDelegate;
-
+@class ChatViewController;
 @protocol JSQChatViewControllerDelegate <NSObject>
 
 - (void)didDismissJSQChatViewController:(ChatViewController *)vc;
@@ -19,11 +21,10 @@
 
 @interface ChatViewController : JSQMessagesViewController <UIActionSheetDelegate>
 {
-    Message *login_user;
     // app delegate for socket operation and many more
     AppDelegate *app_delegate;
     // guest
-    NSMutableArray *guest_id;
+    NSMutableArray *guest_list;
 }
 @property (weak, nonatomic) id<JSQChatViewControllerDelegate> delegateModal;
 
@@ -34,7 +35,7 @@
 
 - (void)closePressed:(UIBarButtonItem *)sender;
 
--(void) setUser:(Message *)user;
+-(void) setUser:(NSString *)user_id user_name:(NSString *)user_name client_id:(NSString *)client_id guest_name:(NSString *)guest_name;
 
--(void) onReceiveMessage:(Message *)msg;
+-(void) onReceiveMessage:(Message_TextFromServerRequest *)msg;
 @end

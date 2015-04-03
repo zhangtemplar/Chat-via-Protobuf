@@ -7,15 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-@class Message;
+@class Message_LoginMessageResponse;
+@class AppDelegate;
 
 @interface MainViewController : UIViewController
 {
     IBOutlet UITextField* input_friend_id;
     
-    Message* login_user;
+    Message_LoginMessageResponse* login_user;
+    
+    // app delegate for socket operation and many more
+    AppDelegate *app_delegate;
 }
 
 -(IBAction)onChat:(id)sender;
--(void) SetUser:(Message *)user;
+-(void) SetUser:(Message_LoginMessageResponse *)user;
 @end

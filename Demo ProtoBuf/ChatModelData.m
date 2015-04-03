@@ -35,19 +35,19 @@
 }
 
 // add new user
--(void)addUsers:(NSString *)id name:(NSString *)name avator:(JSQMessagesAvatarImage *)avator
+-(void)addUsers:(NSString *)user_id name:(NSString *)name avator:(JSQMessagesAvatarImage *)avator
 {
-    self.users[id]=name;
-    self.avatars[id]=avator;
+    [self.users setObject:user_id forKey:name];
+    [self.avatars setObject:user_id forKey:avator];
 }
 
--(void)addTextMessage:(NSString *)id name:(NSString *)name date:(NSDate *)date text:(NSString *)text
+-(void)addTextMessage:(NSString *)user_id name:(NSString *)name date:(NSDate *)date text:(NSString *)text
 {
     if (name==nil)
     {
-        name=[self users][id];
+        name=user_id;
     }
-    JSQMessage *msg=[[JSQMessage alloc]initWithSenderId:id senderDisplayName:name date:date text:text];
+    JSQMessage *msg=[[JSQMessage alloc]initWithSenderId:user_id senderDisplayName:name date:date text:text];
     [self addMessages:msg];
 }
 
@@ -56,37 +56,37 @@
     [self.messages addObject:msg];
 }
 
--(void)addPhotoMediaMessage:(NSString *)id name:(NSString *)name date:(NSDate *)date image:(UIImage *)image
+-(void)addPhotoMediaMessage:(NSString *)user_id name:(NSString *)name date:(NSDate *)date image:(UIImage *)image
 {
     if (name==nil)
     {
-        name=[self users][id];
+        name=user_id;
     }
     JSQPhotoMediaItem *photo=[[JSQPhotoMediaItem alloc] initWithImage:image];
-    JSQMessage *msg=[[JSQMessage alloc] initWithSenderId:id senderDisplayName:name date:date media:photo];
+    JSQMessage *msg=[[JSQMessage alloc] initWithSenderId:user_id senderDisplayName:name date:date media:photo];
     [self addMessages:msg];
 }
 
--(void)addLocationMediaMessageCompletion:(NSString *)id name:(NSString *)name date:(NSDate *)date location:(CLLocation *)location
+-(void)addLocationMediaMessageCompletion:(NSString *)user_id name:(NSString *)name date:(NSDate *)date location:(CLLocation *)location
 {
     JSQLocationMediaItem* loc=[[JSQLocationMediaItem alloc] init];
     [loc setLocation:location];
     if (name==nil)
     {
-        name=[self users][id];
+        name=user_id;
     }
-    JSQMessage *msg=[[JSQMessage alloc] initWithSenderId:id senderDisplayName:name date:date media:loc];
+    JSQMessage *msg=[[JSQMessage alloc] initWithSenderId:user_id senderDisplayName:name date:date media:loc];
     [self addMessages:msg];
 }
 
--(void)addVideoMediaMessage:(NSString *)id name:(NSString *)name date:(NSDate *)date video:(NSURL *)video ready:(BOOL)ready
+-(void)addVideoMediaMessage:(NSString *)user_id name:(NSString *)name date:(NSDate *)date video:(NSURL *)video ready:(BOOL)ready
 {
     JSQVideoMediaItem *clip=[[JSQVideoMediaItem alloc] initWithFileURL:video isReadyToPlay:ready];
     if (name==nil)
     {
-        name=[self users][id];
+        name=user_id;
     }
-    JSQMessage *msg=[[JSQMessage alloc] initWithSenderId:id senderDisplayName:name date:date media:clip];
+    JSQMessage *msg=[[JSQMessage alloc] initWithSenderId:user_id senderDisplayName:name date:date media:clip];
     [self addMessages:msg];
     
 }

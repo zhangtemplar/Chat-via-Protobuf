@@ -8,7 +8,7 @@
 
 #ifndef Demo_ProtoBuf_AppUtility_h
 #define Demo_ProtoBuf_AppUtility_h
-
+@class PBGeneratedMessage;
 NSData* packMessage(PBGeneratedMessage *msg);
 
 PBGeneratedMessage* unPackMessage(NSData *data);

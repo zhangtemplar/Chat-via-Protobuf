@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "App.pb.h"
 #import "AppUtility.h"
+#import "App.pb.h"
 
 NSData* packMessage(Message *msg)
 {
