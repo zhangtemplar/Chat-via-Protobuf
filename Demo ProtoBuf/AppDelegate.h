@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 @class Message;
 @class GCDAsyncSocket;
+@class MainViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
-    // socket
+    // socket for log in etc
     GCDAsyncSocket *socket;
+    // socket for chat
+    GCDAsyncSocket *socket_chat;
     
     // buffer for the message header
     char buffer[5];
@@ -21,6 +24,10 @@
     
     // hash table for chat view
     NSMutableDictionary* chat_list;
+    
+    MainViewController *main_view;
+    
+    UIStoryboard *story_board;
 }
 @property (strong, nonatomic) UIWindow *window;
 
@@ -35,5 +42,9 @@
 
 // get story board
 -(UIStoryboard *)getStoryBoard;
+
+// get main view chontroler
+-(MainViewController *)getMainView;
+
 @end
 

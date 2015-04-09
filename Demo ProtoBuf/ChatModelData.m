@@ -37,8 +37,13 @@
 // add new user
 -(void)addUsers:(NSString *)user_id name:(NSString *)name avator:(JSQMessagesAvatarImage *)avator
 {
-    [self.users setObject:user_id forKey:name];
-    [self.avatars setObject:user_id forKey:avator];
+    [self.users setObject:name forKey:user_id];
+    if (avator==nil)
+    {
+        // use the default avator
+        avator=[JSQMessagesAvatarImageFactory avatarImageWithImage:[UIImage imageNamed:@"demo_avatar_cook"] diameter:kJSQMessagesCollectionViewAvatarSizeDefault];
+    }
+    [self.avatars setObject:avator forKey:user_id];
 }
 
 -(void)addTextMessage:(NSString *)user_id name:(NSString *)name date:(NSDate *)date text:(NSString *)text

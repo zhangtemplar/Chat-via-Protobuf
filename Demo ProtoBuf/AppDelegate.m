@@ -25,13 +25,26 @@
     // creates the tcp connection
     socket=[[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
     NSError *err=nil;
-    if (![socket connectToHost:@"52.11.221.183" onPort:8080 error:&err])
+    if (![socket connectToHost:@"54.69.29.250" onPort:8080 error:&err])
     {
         NSLog(@"The connection failes.\n");
         UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Unable to connect to the server" message:@"Unable to connect the server, please check your network" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
     buffer_index=0;
+
+    // connect server for chat
+    socket_chat=[[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
+    err=nil;
+    if (![socket_chat connectToHost:@"54.69.29.250" onPort:8992 error:&err])
+    {
+        NSLog(@"The connection failes.\n");
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Unable to connect to the server" message:@"Unable to connect the server, please check your network" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    chat_list=[[NSMutableDictionary alloc] init];
+
     return YES;
 }
 
@@ -59,11 +72,7 @@
 // callback function for socket connection
 -(void)socket:(GCDAsyncSocket *)sender didConnectToHost:(NSString *)host port:(uint16_t)port
 {
-    NSLog([[NSString alloc] initWithFormat:@"Connected to %@:%u.\n", host, port]);
-    
-    // start listening for imcoming data
-    //    [socket readDataWithTimeout:-1 tag:MESSAGE_HEAD];
-    //    NSLog(@"Start reading data from socket");
+    NSLog(@"Connected to %@:%u.\n", host, port);
 }
 
 // callback for writting data to socket
@@ -72,7 +81,7 @@
     NSLog(@"Message is sent at %@\n", [NSDate date]);
     
     // start listening for imcoming data
-    [socket readDataWithTimeout:-1 tag:0];
+    [sender readDataWithTimeout:-1 tag:0];
     NSLog(@"Start reading data from socket");
 }
 
@@ -130,10 +139,9 @@
                 // login succeed
                 [alert initWithTitle:@"Login succeeds" message:@"You are now loggied in" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 // show the friend list
-                UIStoryboard* story_board=[self getStoryBoard];
-                MainViewController* main_view_controller=[story_board instantiateViewControllerWithIdentifier:@"mainViewController"];
-                UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:main_view_controller];
-                [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
+                MainViewController* main_view_controller=[self getMainView];
+                [main_view_controller SetUser:[msg_tmp loginResponse]]; 
+                [[[self window] rootViewController] presentViewController:main_view_controller animated:YES completion:nil];
                 break;
             }
             case 1:
@@ -205,7 +213,7 @@
             chat_view=[ChatViewController messagesViewController];
             chat_view.delegateModal=self;
             [chat_view setUser:[[msg_tmp textFromServerRequest]toUserId] user_name:nil client_id: [[msg_tmp textFromServerRequest] fromUserId] guest_name:nil];
-            [chat_list setObject:[[msg_tmp textFromServerRequest] toUserId] forKey:chat_view];
+            [chat_list setObject:chat_view forKey:[[msg_tmp textFromServerRequest] toUserId]];
         }
         [chat_view onReceiveMessage:[msg_tmp textFromServerRequest]];
         // if current view is not present, show it
@@ -215,18 +223,35 @@
             [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
         }
     }
+    else if ([msg_tmp type]==Message_MessageTypeWhoAmIResp)
+    {
+        // on get response for who am i, we set the user id
+        MainViewController *main_view=[self getMainView];
+        [main_view SetWhoAmI:[msg_tmp whoAmIresponse]];
+    }
     // for other message type put here
     else
     {
         [alert initWithTitle:@"System error" message:@"Sorry there is some error but it is not fault." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     }
+    // request new message
+    [socket_chat readDataWithTimeout:-1 tag:0];
+    
     [alert show];
 }
 
 -(void) sendMessage:(Message *)msg
 {
     NSData *msg_data=packMessage(msg);
-    [socket writeData:msg_data withTimeout:-1 tag:1];
+    // if it is a chat message, we will send it via chat socket
+    if ([msg type]>=Message_MessageTypeWhoAmIReq)
+    {
+        [socket_chat writeData:msg_data withTimeout:-1 tag:1];
+    }
+    else
+    {
+        [socket writeData:msg_data withTimeout:-1 tag:1];
+    }
 }
 
 -(NSMutableDictionary *)getChatList
@@ -236,7 +261,20 @@
 
 -(UIStoryboard *)getStoryBoard
 {
-    return [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    if (story_board==nil)
+    {
+        story_board=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    }
+    return story_board;
 }
 
+-(MainViewController *)getMainView
+{
+    if (main_view==nil)
+    {
+        story_board=[self getStoryBoard];
+        main_view=[story_board instantiateViewControllerWithIdentifier:@"mainViewController"];
+    }
+    return main_view;
+}
 @end

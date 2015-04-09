@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 @class Message_LoginMessageResponse;
 @class AppDelegate;
+@class Message_WhoAmIResponse;
 
 @interface MainViewController : UIViewController
 {
     IBOutlet UITextField* input_friend_id;
+    IBOutlet UITextField* input_who_am_i;
     
     Message_LoginMessageResponse* login_user;
     
@@ -22,4 +24,5 @@
 
 -(IBAction)onChat:(id)sender;
 -(void) SetUser:(Message_LoginMessageResponse *)user;
+-(void) SetWhoAmI:(Message_WhoAmIResponse *)user;
 @end

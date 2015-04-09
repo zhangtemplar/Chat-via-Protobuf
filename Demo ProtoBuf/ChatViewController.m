@@ -10,6 +10,8 @@
 #import "ChatViewController.h"
 #import "AppDelegate.h"
 #import "App.pb.h"
+#import "NSString+NSHash.h"
+#import "NSData+NSHash.h"
 
 @implementation ChatViewController
 #pragma mark - View lifecycle
@@ -89,7 +91,8 @@
 // close current view
 - (void)closePressed:(UIBarButtonItem *)sender
 {
-    [self.delegateModal didDismissJSQChatViewController:self];
+    [self dismissModalViewControllerAnimated:YES];
+    //[self.delegateModal didDismissJSQChatViewController:self];
 }
 
 #pragma mark - JSQMessagesViewController method overrides
@@ -127,7 +130,7 @@
     [txt_msg_builder setText:text];
     [txt_msg_builder setToUserId:[guest_list lastObject]];
     [txt_msg_builder setDate:[[NSDate date] timeIntervalSince1970]];
-    [txt_msg_builder setMessageHash:nil];
+    [txt_msg_builder setMessageHash:[text MD5]];
     
     Message_Builder *msg_build=[Message builder];
     [msg_build setType:Message_MessageTypeTextReq];
@@ -144,7 +147,7 @@
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
                                          destructiveButtonTitle:nil
-                                              otherButtonTitles:@"Send photo", @"Send location", @"Send video", nil];
+                                              otherButtonTitles:@"Send photo (from camera)", @"Send photo (from library)", @"Send voice", @"Send video", nil];
     
     [sheet showFromToolbar:self.inputToolbar];
 }
@@ -157,21 +160,46 @@
     }
     
     switch (buttonIndex) {
-            // photo
         case 0:
-//            [self.chatData addPhotoMediaMessage];
+        {
+            // capture a new image
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+            {
+                // make sure the camera is available, which shouldn't be a problem for a physic device
+                UIImagePickerController *picker=[[UIImagePickerController alloc] init];
+                picker.delegate=self;
+                picker.allowsEditing=YES;
+                picker.sourceType=UIImagePickerControllerSourceTypeCamera;
+                [self presentViewController:picker animated:YES completion:nil];
+            }
+            else
+            {
+                // camera is not available, create an alert
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Camera is not available" message:@"Sorry but the camera is not available and perhaps you are running a simulator" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            }
             break;
-            // location
+        }
         case 1:
         {
-            __weak UICollectionView *weakView = self.collectionView;
-//            [self.chatData addLocationMediaMessageCompletion:^{[weakView reloadData];}];
+            // select photo from library
+            UIImagePickerController *picker=[[UIImagePickerController alloc] init];
+            picker.delegate=self;
+            picker.allowsEditing=YES;
+            picker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:picker animated:YES completion:nil];
+            break;
         }
-            break;
-            // video
         case 2:
-//            [self.chatData addVideoMediaMessage];
+        {
+            // voice
             break;
+        }
+        case 3:
+        {
+            // video
+            break;
+        }
     }
     
     UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Function not yet supported" message:@"Sorry but only text message is supported" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -439,7 +467,13 @@
 -(void)setUser:(NSString *)user_id user_name:(NSString *)user_name client_id:(NSString *)client_id guest_name:(NSString *)guest_name
 {
     self.senderId=user_id;
-    if (user_id!=nil)
+    
+    if(self.chatData==nil)
+    {
+        self.chatData=[[ChatModelData alloc] init];
+    }
+    
+    if (user_name!=nil)
     {
         self.senderDisplayName=user_name;
         [[self chatData] addUsers:user_id name:user_name avator:nil];
@@ -450,7 +484,12 @@
         [[self chatData] addUsers:user_id name:user_id avator:nil];
     }
     
+    if (guest_list==nil)
+    {
+        guest_list=[[NSMutableArray alloc] init];
+    }
     [guest_list addObject:client_id];
+    self.title=client_id;
     if (guest_name!=nil)
     {
         [[self chatData] addUsers:client_id name:guest_name avator:nil];
@@ -461,4 +500,17 @@
     }
 }
 
+// delegate to pick an image
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    // add this image to the message
+    [[self chatData] addPhotoMediaMessage:self.senderId name:self.senderDisplayName date:[NSDate date] image:chosenImage];
+    
+    // uploading this message to the server and create message
+    // @todo
+    
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
 @end
