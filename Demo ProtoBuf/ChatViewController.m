@@ -12,6 +12,7 @@
 #import "App.pb.h"
 #import "NSString+NSHash.h"
 #import "NSData+NSHash.h"
+#import "SCRecorder.h"
 
 @implementation ChatViewController
 #pragma mark - View lifecycle
@@ -192,18 +193,126 @@
         }
         case 2:
         {
-            // voice
+            // voice, we will use screcord
+            SCRecorder *recorder=[SCRecorder recorder];
+            recorder.delegate=self;
+            // set the audio capture session
+            SCAudioConfiguration *audio=recorder.audioConfiguration;
+            // sample rate 64kbps, single channel, AMR format
+            audio.enabled=YES;
+            audio.bitrate=64000;
+            audio.channelsCount=1;
+            audio.sampleRate=0;
+            audio.format=kAudioFormatMPEG4AAC;
+            // disable video
+            SCVideoConfiguration *video=recorder.videoConfiguration;
+            video.enabled=NO;
+            // disable image
+            SCPhotoConfiguration *photo=recorder.photoConfiguration;
+            photo.enabled=NO;
+            // check it is available;
+            if (![recorder startRunning])
+            {
+                NSLog(@"Start voice recording failed.\n");
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Audio recorder failed" message:@"Sorry but the audio recorder failed and please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+                break;
+            }
+            // create a new session
+            recorder.session=[SCRecordSession recordSession];
+            // begin recording;
+            [recorder record];
+            // save the record
+            [recorder.session mergeSegmentsUsingPreset:AVAssetExportPresetAppleM4A completionHandler:^(NSURL *url, NSError *error)
+            {
+                if (error==nil)
+                {
+                    // add this audio the message
+                    [[self chatData] addVideoMediaMessage:self.senderId name:self.senderDisplayName date:[NSDate date] video:url ready:YES];
+                    
+                    // uploading this message to the server and create message
+                    Message_VoiceChatMessageRequest_Builder *voice_msg_build=[Message_VoiceChatMessageRequest builder];
+                    [voice_msg_build setUserId:self.senderId];
+                    [voice_msg_build setToUserId: guest_list.firstObject];
+                    [voice_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+                    [voice_msg_build setDesc:@""];
+                    [voice_msg_build setMessageHash:[@"" MD5]];
+                    [voice_msg_build setVoiceUuid:@""];
+                    
+                    Message_Builder *msg_builder=[Message builder];
+                    [msg_builder setType:Message_MessageTypeVoiceReq];
+                    [msg_builder setVoiceChatMessageRequest:[voice_msg_build build]];
+                    [app_delegate sendMessage:[msg_builder build]];
+                    
+                    // to do: unpload the image with the uuid
+                }
+                else
+                {
+                    NSLog(@"Start voice recording failed.\n");
+                    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Audio recorder failed" message:@"Sorry but the audio record can't be saved and please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                }
+            }];
             break;
         }
         case 3:
         {
-            // video
+            // video, we will use screcord
+            SCRecorder *recorder=[SCRecorder recorder];
+            // preset for wifi
+            recorder.captureSessionPreset=AVCaptureSessionPresetMedium;
+            // allow user to select the camera by themselves
+            recorder.device=AVCaptureDevicePositionUnspecified;
+            // max length 10 seconds
+            recorder.maxRecordDuration=CMTimeMake(10, 1);
+            recorder.delegate=self;
+            // check it is available;
+            if (![recorder startRunning])
+            {
+                NSLog(@"Start video recording failed.\n");
+                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"video recorder failed" message:@"Sorry but the video recorder failed and please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+                break;
+            }
+            // create a new session
+            recorder.session=[SCRecordSession recordSession];
+            // begin recording;
+            [recorder record];
+            // save the record
+            [recorder.session mergeSegmentsUsingPreset:AVAssetExportPresetMediumQuality completionHandler:^(NSURL *url, NSError *error)
+             {
+                 if (error==nil)
+                 {
+                     // add this audio the message
+                     [[self chatData] addVideoMediaMessage:self.senderId name:self.senderDisplayName date:[NSDate date] video:url ready:YES];
+                     
+                     // uploading this message to the server and create message
+                     Message_VideoChatMessageRequest_Builder *video_msg_build=[Message_VideoChatMessageRequest builder];
+                     [video_msg_build setUserId:self.senderId];
+                     [video_msg_build setToUserId: guest_list.firstObject];
+                     [video_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+                     [video_msg_build setDesc:@""];
+                     [video_msg_build setMessageHash:[@"" MD5]];
+                     [video_msg_build setVideoUuid:@""];
+                     
+                     Message_Builder *msg_builder=[Message builder];
+                     [msg_builder setType:Message_MessageTypeVideoReq];
+                     [msg_builder setVideoChatMessageRequest:[video_msg_build build]];
+                     [app_delegate sendMessage:[msg_builder build]];
+                     
+                     // to do: unpload the image with the uuid
+                 }
+                 else
+                 {
+                     NSLog(@"Start voice recording failed.\n");
+                     UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Audio recorder failed" message:@"Sorry but the audio record can't be saved and please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                     [alert show];
+                 }
+             }];
+            break;
             break;
         }
     }
-    
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Function not yet supported" message:@"Sorry but only text message is supported" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
     
     [JSQSystemSoundPlayer jsq_playMessageSentSound];
     
@@ -508,7 +617,20 @@
     [[self chatData] addPhotoMediaMessage:self.senderId name:self.senderDisplayName date:[NSDate date] image:chosenImage];
     
     // uploading this message to the server and create message
-    // @todo
+    Message_PictureChatMessageRequest_Builder *photo_msg_build=[Message_PictureChatMessageRequest builder];
+    [photo_msg_build setUserId:self.senderId];
+    [photo_msg_build setToUserId: guest_list.firstObject];
+    [photo_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+    [photo_msg_build setDesc:@""];
+    [photo_msg_build setMessageHash:[@"" MD5]];
+    [photo_msg_build setPictureUuid:@""];
+    
+    Message_Builder *msg_builder=[Message builder];
+    [msg_builder setType:Message_MessageTypePictureReq];
+    [msg_builder setPictureChatMessageRequest:[photo_msg_build build]];
+    [app_delegate sendMessage:[msg_builder build]];
+    
+    // to do: unpload the image with the uuid
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
