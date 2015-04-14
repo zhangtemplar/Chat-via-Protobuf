@@ -200,24 +200,57 @@
     // send message response
     else if ([msg_tmp type]==Message_MessageTypeTextResp && [[msg_tmp textChatMessageResponse] hasStatus])
     {
-        NSLog(@"Message sent confirmed with status: %d\n", [[msg_tmp textChatMessageResponse] status]);
+        NSLog(@"Text message sent confirmed with status: %d\n", [[msg_tmp textChatMessageResponse] status]);
+    }
+    else if([msg_tmp type]==Message_MessageTypePictureResp &&[[msg_tmp pictureChatMessageResponse] hasStatus])
+    {
+        NSLog(@"Picture message sent confirmed with status: %d\n", [[msg_tmp textChatMessageResponse] status]);
+    }
+    else if([msg_tmp type]==Message_MessageTypeVideoResp &&[[msg_tmp videoChatMessageResponse] hasStatus])
+    {
+        NSLog(@"Video message sent confirmed with status: %d\n", [[msg_tmp videoChatMessageResponse] status]);
+    }
+    else if([msg_tmp type]==Message_MessageTypeVoiceResp &&[[msg_tmp voiceChatMessageResponse] hasStatus])
+    {
+        NSLog(@"Voice message sent confirmed with status: %d\n", [[msg_tmp voiceChatMessageResponse] status]);
     }
     // receving a new chat message
     else if ([msg_tmp type]==Message_MessageTypeTextFromServerReq)
     {
         // on get a new message, we create a new chat view
-        ChatViewController *chat_view=[chat_list objectForKey:[[msg_tmp textFromServerRequest] toUserId]];
+        ChatViewController *chat_view=[chat_list objectForKey:[[msg_tmp textFromServerRequest] fromUserId]];
         if (chat_view==nil)
         {
             // if we don't have a chat view for it, create a new one
             chat_view=[ChatViewController messagesViewController];
             chat_view.delegateModal=self;
-            [chat_view setUser:[[msg_tmp textFromServerRequest]toUserId] user_name:nil client_id: [[msg_tmp textFromServerRequest] fromUserId] guest_name:nil];
-            [chat_list setObject:chat_view forKey:[[msg_tmp textFromServerRequest] toUserId]];
+            [chat_view initWithUser:[[msg_tmp textFromServerRequest]toUserId] user_name:nil guest_id: [[msg_tmp textFromServerRequest] fromUserId] guest_name:nil];
+            [chat_list setObject:chat_view forKey:[[msg_tmp textFromServerRequest] fromUserId]];
         }
-        [chat_view onReceiveMessage:[msg_tmp textFromServerRequest]];
+        [chat_view onReceiveTextMessage:[msg_tmp textFromServerRequest]];
         // if current view is not present, show it
-        if ([[self window] rootViewController]==chat_view)
+        if ([[self window] rootViewController]!=chat_view)
+        {
+            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
+            [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
+        }
+    }
+    else if([msg_tmp type]==Message_MessageTypePictureFromServerReq)
+    {
+        // get a new picture message
+        NSLog(@"Picture message from the server");
+        ChatViewController *chat_view=[chat_list objectForKey:[[msg_tmp pictureFromServerRequest] fromUserId]];
+        if (chat_view==nil)
+        {
+            // if we don't have a chat view for it, create a new one
+            chat_view=[ChatViewController messagesViewController];
+            chat_view.delegateModal=self;
+            [chat_view initWithUser:[[msg_tmp pictureFromServerRequest]toUserId] user_name:nil guest_id: [[msg_tmp pictureFromServerRequest] fromUserId] guest_name:nil];
+            [chat_list setObject:chat_view forKey:[[msg_tmp pictureFromServerRequest] fromUserId]];
+        }
+        [chat_view onReceivePhotoMessage:[msg_tmp pictureFromServerRequest]];
+        // if current view is not present, show it
+        if ([[self window] rootViewController]!=chat_view)
         {
             UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
             [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];

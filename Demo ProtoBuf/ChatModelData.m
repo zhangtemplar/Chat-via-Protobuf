@@ -72,7 +72,7 @@
     [self addMessages:msg];
 }
 
--(void)addLocationMediaMessageCompletion:(NSString *)user_id name:(NSString *)name date:(NSDate *)date location:(CLLocation *)location
+-(void)addLocationMediaMessage:(NSString *)user_id name:(NSString *)name date:(NSDate *)date location:(CLLocation *)location
 {
     JSQLocationMediaItem* loc=[[JSQLocationMediaItem alloc] init];
     [loc setLocation:location];

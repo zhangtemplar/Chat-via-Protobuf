@@ -13,6 +13,7 @@
 #import "NSString+NSHash.h"
 #import "NSData+NSHash.h"
 #import "SCRecorder.h"
+#import "AFNetworking.h"
 
 @implementation ChatViewController
 #pragma mark - View lifecycle
@@ -70,7 +71,7 @@
 }
 
 // on receive the new message
--(void) onReceiveMessage:(Message_TextFromServerRequest *)msg
+-(void) onReceiveTextMessage:(Message_TextFromServerRequest *)msg
 {
     // check the msg then add it
     NSDate *msg_date=[NSDate dateWithTimeIntervalSince1970:[msg date]];
@@ -81,6 +82,38 @@
     [self finishReceivingMessageAnimated:YES];
 }
 
+// video message
+-(void) onReceiveVideoMessage:(Message_VideoChatMessageRequest *)msg
+{
+}
+
+// photo message
+-(void) onReceivePhotoMessage:(Message_PictureFromServerRequest *)msg
+{
+    JSQPhotoMediaItem *photo=[[JSQPhotoMediaItem alloc] initWithImage:nil];
+    JSQMessage *photo_msg=[[JSQMessage alloc] initWithSenderId:[msg fromUserId] senderDisplayName:[msg fromUserId] date:[NSDate date] media:photo];
+
+//    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://54.69.29.250:8081/pictures/%@.jpg", [msg pictureUuid]]];
+    NSURL *URL=[NSURL URLWithString:@"http://54.69.29.250:8081/pictures/9fb7741a-82a6-4035-b29c-c6633187c375_cc46451103e82dd1cb84a9f85d6be88f.jpg"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    // after downloaded, change the fileurl of the photo
+    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
+    [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Image received: %@", responseObject);
+        photo.image = responseObject;
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Image error: %@", error);
+    }];
+    [requestOperation start];
+}
+
+// voice
+-(void) onReceiveVoiceMessage:(Message_VoiceChatMessageRequest *)msg
+{
+    
+}
 #pragma mark - Actions
 
 // clicking the user is typing--mimicking receving a new message
@@ -573,7 +606,7 @@
 }
 */
 
--(void)setUser:(NSString *)user_id user_name:(NSString *)user_name client_id:(NSString *)client_id guest_name:(NSString *)guest_name
+-(void)initWithUser:(NSString *)user_id user_name:(NSString *)user_name guest_id:(NSString *)client_id guest_name:(NSString *)guest_name
 {
     self.senderId=user_id;
     
@@ -616,21 +649,42 @@
     // add this image to the message
     [[self chatData] addPhotoMediaMessage:self.senderId name:self.senderDisplayName date:[NSDate date] image:chosenImage];
     
+    // save image to disk
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSData *fileData=UIImageJPEGRepresentation(chosenImage, 0.9);
+    NSString *fileUUID=[[NSString stringWithFormat:@"%@", [fileData MD5]] MD5];
+    NSString *filePath=[NSString stringWithFormat:@"%@.jpg", fileUUID];
+//    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpeg", fileUUID]];
+    
     // uploading this message to the server and create message
     Message_PictureChatMessageRequest_Builder *photo_msg_build=[Message_PictureChatMessageRequest builder];
-    [photo_msg_build setUserId:self.senderId];
+    [photo_msg_build setUserId:[self senderId]];
     [photo_msg_build setToUserId: guest_list.firstObject];
     [photo_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
-    [photo_msg_build setDesc:@""];
-    [photo_msg_build setMessageHash:[@"" MD5]];
-    [photo_msg_build setPictureUuid:@""];
+    [photo_msg_build setDesc:fileUUID];
+    [photo_msg_build setMessageHash:fileUUID];
+    [photo_msg_build setPictureUuid:fileUUID];
     
     Message_Builder *msg_builder=[Message builder];
     [msg_builder setType:Message_MessageTypePictureReq];
     [msg_builder setPictureChatMessageRequest:[photo_msg_build build]];
-    [app_delegate sendMessage:[msg_builder build]];
     
     // to do: unpload the image with the uuid
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer=[AFHTTPResponseSerializer serializer];
+    NSDictionary *parameters = @{@"myfile": filePath, @"type":@"picture", @"format":@"JPEG", @"userId":[self senderId], @"desc":fileUUID};
+    AFHTTPRequestOperation *op = [manager POST:@"http://54.69.29.250:8081/pictures" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:fileData name:filePath fileName:filePath mimeType:@"image/jpeg"];} success:^(AFHTTPRequestOperation *operation, id responseObject)
+    {
+        [app_delegate sendMessage:[msg_builder build]];
+        [[self collectionView] reloadData];
+        NSLog(@"Image upload success: %@\n", responseObject);
+    }
+                                       failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
+        NSLog(@"Image upload error: %@\n", error);
+    }];
+    [op start];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
     

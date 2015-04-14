@@ -28,7 +28,7 @@
 // add a photo message
 - (void)addPhotoMediaMessage:(NSString *)user_id name:(NSString *)name date:(NSDate *)date image:(UIImage*)image;
 // the add location
-- (void)addLocationMediaMessageCompletion:(NSString *)user_id name:(NSString *)name date:(NSDate *)date location:(CLLocation*)location;
+- (void)addLocationMediaMessage:(NSString *)user_id name:(NSString *)name date:(NSDate *)date location:(CLLocation*)location;
 // add video
 - (void)addVideoMediaMessage:(NSString *)user_id name:(NSString *)name date:(NSDate *)date video:(NSURL *)video ready:(BOOL)ready;
 // add text message

@@ -60,8 +60,8 @@
         // if we don't have a chat view for it, create a new one
         chat_view=[ChatViewController messagesViewController];
         chat_view.delegateModal=self;
-        [chat_view setUser:[login_user userId] user_name:[login_user userName] client_id: guest_id guest_name:nil];
-        [chat_list setObject:chat_view forKey:[login_user userId]];
+        [chat_view initWithUser:[login_user userId] user_name:[login_user userName] guest_id: guest_id guest_name:nil];
+        [chat_list setObject:chat_view forKey:guest_id];
     }
     // if current view is not present, show it
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];

@@ -13,6 +13,9 @@
 @class Message_TextFromServerRequest;
 @class AppDelegate;
 @class ChatViewController;
+@class Message_VideoChatMessageRequest;
+@class Message_VoiceChatMessageRequest;
+@class Message_PictureFromServerRequest;
 @protocol JSQChatViewControllerDelegate <NSObject>
 
 - (void)didDismissJSQChatViewController:(ChatViewController *)vc;
@@ -31,11 +34,24 @@
 // the message queue
 @property (strong, nonatomic) ChatModelData *chatData;
 
+// mimicking receiving a new message
 - (void)receiveMessagePressed:(UIBarButtonItem *)sender;
 
+// close current chat
 - (void)closePressed:(UIBarButtonItem *)sender;
 
--(void) setUser:(NSString *)user_id user_name:(NSString *)user_name client_id:(NSString *)client_id guest_name:(NSString *)guest_name;
+// initialize the chat with user and guest
+-(void) initWithUser:(NSString *)user_id user_name:(NSString *)user_name guest_id:(NSString *)client_id guest_name:(NSString *)guest_name;
 
--(void) onReceiveMessage:(Message_TextFromServerRequest *)msg;
+// receive a text message
+-(void) onReceiveTextMessage:(Message_TextFromServerRequest *)msg;
+
+// video message
+-(void) onReceiveVideoMessage:(Message_VideoChatMessageRequest *)msg;
+
+// photo message
+-(void) onReceivePhotoMessage:(Message_PictureFromServerRequest *)msg;
+
+// voice
+-(void) onReceiveVoiceMessage:(Message_VoiceChatMessageRequest *)msg;
 @end
