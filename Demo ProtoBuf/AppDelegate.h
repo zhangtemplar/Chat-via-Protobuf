@@ -10,6 +10,7 @@
 @class Message;
 @class GCDAsyncSocket;
 @class MainViewController;
+@class ChatViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
@@ -38,7 +39,10 @@
 -(void)sendMessage:(Message *)msg;
 
 // get chat list
--(NSMutableDictionary *)getChatList;
+-(ChatViewController *)getChatView:(NSString *)title;
+
+// set chat list
+-(void)setChatView:(NSString *)title view:(ChatViewController *)view;
 
 // get story board
 -(UIStoryboard *)getStoryBoard;

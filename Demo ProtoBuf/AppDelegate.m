@@ -229,7 +229,7 @@
         }
         [chat_view onReceiveTextMessage:[msg_tmp textFromServerRequest]];
         // if current view is not present, show it
-        if ([[self window] rootViewController]!=chat_view)
+        if (!(chat_view.isViewLoaded && chat_view.view.window))
         {
             UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
             [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
@@ -250,7 +250,7 @@
         }
         [chat_view onReceivePhotoMessage:[msg_tmp pictureFromServerRequest]];
         // if current view is not present, show it
-        if ([[self window] rootViewController]!=chat_view)
+        if ((chat_view.isViewLoaded && chat_view.view.window))
         {
             UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
             [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
@@ -287,9 +287,24 @@
     }
 }
 
--(NSMutableDictionary *)getChatList
+// get chat list
+-(ChatViewController *)getChatView:(NSString *)title
 {
-    return chat_list;
+    if (title==nil)
+    {
+        return nil;
+    }
+    return [chat_list objectForKey:title];
+}
+
+// set chat list
+-(void)setChatView:(NSString *)title view:(ChatViewController *)view
+{
+    if (title==nil || view==nil)
+    {
+        return;
+    }
+    [chat_list setObject:view forKey:title];
 }
 
 -(UIStoryboard *)getStoryBoard

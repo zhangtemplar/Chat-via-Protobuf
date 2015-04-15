@@ -53,15 +53,14 @@
 -(IBAction)onChat:(id)sender
 {
     NSString *guest_id=input_friend_id.text;
-    NSMutableDictionary *chat_list=[app_delegate getChatList];
-    ChatViewController *chat_view=[chat_list objectForKey: [login_user userId]];
+    ChatViewController *chat_view=[app_delegate getChatView: guest_id];
     if (chat_view==nil)
     {
         // if we don't have a chat view for it, create a new one
         chat_view=[ChatViewController messagesViewController];
         chat_view.delegateModal=self;
         [chat_view initWithUser:[login_user userId] user_name:[login_user userName] guest_id: guest_id guest_name:nil];
-        [chat_list setObject:chat_view forKey:guest_id];
+        [app_delegate setChatView:guest_id view:chat_view];
     }
     // if current view is not present, show it
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];

@@ -80,6 +80,19 @@
     
     [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
     [self finishReceivingMessageAnimated:YES];
+    
+    // reply the server that, we have got the mssage
+    Message_TextFromServerResponse_Builder *text_msg_build=[Message_TextFromServerResponse builder];
+    [text_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+    [text_msg_build setStatus:0];
+    [text_msg_build setMessageHash:@""];
+    [text_msg_build setDesc:[msg text]];
+    
+    Message_Builder *msg_build=[Message builder];
+    [msg_build setType:Message_MessageTypeTextFromServerResp];
+    [msg_build setTextChatMessageResponse: [text_msg_build build]];
+    
+    [app_delegate sendMessage:[msg_build build]];
 }
 
 // video message
@@ -90,19 +103,31 @@
 // photo message
 -(void) onReceivePhotoMessage:(Message_PictureFromServerRequest *)msg
 {
-    JSQPhotoMediaItem *photo=[[JSQPhotoMediaItem alloc] initWithImage:nil];
-    JSQMessage *photo_msg=[[JSQMessage alloc] initWithSenderId:[msg fromUserId] senderDisplayName:[msg fromUserId] date:[NSDate date] media:photo];
-
-//    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://54.69.29.250:8081/pictures/%@.jpg", [msg pictureUuid]]];
-    NSURL *URL=[NSURL URLWithString:@"http://54.69.29.250:8081/pictures/9fb7741a-82a6-4035-b29c-c6633187c375_cc46451103e82dd1cb84a9f85d6be88f.jpg"];
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://54.69.29.250:8081/pictures/%@", [msg pictureUuid]]];
+//    NSURL *URL=[NSURL URLWithString:@"http://54.69.29.250:8081/pictures/9fb7741a-82a6-4035-b29c-c6633187c375_cc46451103e82dd1cb84a9f85d6be88f.jpg"];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     // after downloaded, change the fileurl of the photo
     AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
     [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"Image received: %@", responseObject);
-        photo.image = responseObject;
+        JSQPhotoMediaItem *photo=[[JSQPhotoMediaItem alloc] initWithImage:responseObject];
+        JSQMessage *photo_msg=[[JSQMessage alloc] initWithSenderId:[msg fromUserId] senderDisplayName:[msg fromUserId] date:[NSDate date] media:photo];
+        [self.chatData addMessages:photo_msg];
+        [[self collectionView] reloadData];
         
+        // reply the server that, we have got the mssage
+        Message_PictureFromServerResponse_Builder *photo_msg_build=[Message_PictureFromServerResponse builder];
+        [photo_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+        [photo_msg_build setStatus:0];
+        [photo_msg_build setMessageHash:@""];
+        [photo_msg_build setDesc:[msg pictureUuid]];
+        
+        Message_Builder *msg_build=[Message builder];
+        [msg_build setType:Message_MessageTypeTextFromServerResp];
+        [msg_build setPictureChatMessageResponse: [photo_msg_build build]];
+        
+        [app_delegate sendMessage:[msg_build build]];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Image error: %@", error);
     }];
@@ -199,12 +224,38 @@
             // capture a new image
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
             {
-                // make sure the camera is available, which shouldn't be a problem for a physic device
-                UIImagePickerController *picker=[[UIImagePickerController alloc] init];
-                picker.delegate=self;
-                picker.allowsEditing=YES;
-                picker.sourceType=UIImagePickerControllerSourceTypeCamera;
-                [self presentViewController:picker animated:YES completion:nil];
+                // request the permisison of the accessing camera
+                if ([AVCaptureDevice respondsToSelector:@selector(requestAccessForMediaType: completionHandler:)])
+                {
+                    [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+                        // Will get here on both iOS 7 & 8 even though camera permissions weren't required
+                        // until iOS 8. So for iOS 7 permission will always be granted.
+                        if (granted) {
+                            // Permission has been granted. Use dispatch_async for any UI updating
+                            // code because this block may be executed in a thread.
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                // make sure the camera is available, which shouldn't be a problem for a physic device
+                                UIImagePickerController *picker=[[UIImagePickerController alloc] init];
+                                picker.delegate=self;
+                                picker.allowsEditing=YES;
+                                picker.sourceType=UIImagePickerControllerSourceTypeCamera;
+                                [self presentViewController:picker animated:YES completion:nil];
+                            });
+                        } else {
+                            // Permission has been denied.
+                            NSLog(@"Camera permission denied.\n");
+                        }
+                    }];
+                }
+                else
+                {
+                    // make sure the camera is available, which shouldn't be a problem for a physic device
+                    UIImagePickerController *picker=[[UIImagePickerController alloc] init];
+                    picker.delegate=self;
+                    picker.allowsEditing=YES;
+                    picker.sourceType=UIImagePickerControllerSourceTypeCamera;
+                    [self presentViewController:picker animated:YES completion:nil];
+                }
             }
             else
             {
@@ -654,20 +705,6 @@
     NSData *fileData=UIImageJPEGRepresentation(chosenImage, 0.9);
     NSString *fileUUID=[[NSString stringWithFormat:@"%@", [fileData MD5]] MD5];
     NSString *filePath=[NSString stringWithFormat:@"%@.jpg", fileUUID];
-//    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpeg", fileUUID]];
-    
-    // uploading this message to the server and create message
-    Message_PictureChatMessageRequest_Builder *photo_msg_build=[Message_PictureChatMessageRequest builder];
-    [photo_msg_build setUserId:[self senderId]];
-    [photo_msg_build setToUserId: guest_list.firstObject];
-    [photo_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
-    [photo_msg_build setDesc:fileUUID];
-    [photo_msg_build setMessageHash:fileUUID];
-    [photo_msg_build setPictureUuid:fileUUID];
-    
-    Message_Builder *msg_builder=[Message builder];
-    [msg_builder setType:Message_MessageTypePictureReq];
-    [msg_builder setPictureChatMessageRequest:[photo_msg_build build]];
     
     // to do: unpload the image with the uuid
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -676,6 +713,20 @@
     AFHTTPRequestOperation *op = [manager POST:@"http://54.69.29.250:8081/pictures" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileData:fileData name:filePath fileName:filePath mimeType:@"image/jpeg"];} success:^(AFHTTPRequestOperation *operation, id responseObject)
     {
+        NSString *fileName=[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        // uploading this message to the server and create message
+        Message_PictureChatMessageRequest_Builder *photo_msg_build=[Message_PictureChatMessageRequest builder];
+        [photo_msg_build setUserId:[self senderId]];
+        [photo_msg_build setToUserId: guest_list.firstObject];
+        [photo_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+        [photo_msg_build setDesc:fileName];
+        [photo_msg_build setMessageHash:[fileName MD5]];
+        [photo_msg_build setPictureUuid:fileName];
+        
+        Message_Builder *msg_builder=[Message builder];
+        [msg_builder setType:Message_MessageTypePictureReq];
+        [msg_builder setPictureChatMessageRequest:[photo_msg_build build]];
+        
         [app_delegate sendMessage:[msg_builder build]];
         [[self collectionView] reloadData];
         NSLog(@"Image upload success: %@\n", responseObject);
