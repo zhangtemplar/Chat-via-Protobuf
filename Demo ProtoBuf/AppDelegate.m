@@ -137,6 +137,7 @@
             case 0:
             {
                 // login succeed
+                NSLog(@"Login succeeds\n");
                 [alert initWithTitle:@"Login succeeds" message:@"You are now loggied in" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 // show the friend list
                 MainViewController* main_view_controller=[self getMainView];
@@ -147,17 +148,20 @@
             case 1:
             {
                 // login failed, as user doesn't exist
+                NSLog(@"Username doesn't exist\n");
                 [alert initWithTitle:@"Username doesn't exist" message:@"Sorry but your username doesn't exists, register it?" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 break;
             }
             case 2:
             {
                 // login succeed, as password is wrong
+                NSLog(@"Password is wrong\n");
                 [alert initWithTitle:@"Password is wrong" message:@"You input a wrong password, please check." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 break;
             }
             default:
             {
+                NSLog(@"Login fails with unknown error\n");
                 [alert initWithTitle:@"Login fails with unknown error" message:@"Sorry your login fails due to some unknown error" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 break;
             }
@@ -169,12 +173,14 @@
             case 0:
             {
                 // login succeed
+                NSLog(@"Register succeeds\n");
                 [alert initWithTitle:@"Register succeeds" message:@"You are now register" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 break;
             }
             default:
             {
                 // login failed, as user doesn't exist
+                NSLog(@"Register failed\n");
                 [alert initWithTitle:@"Register failed" message:@"Sorry but your username (email/phone) was already registerred, try to reset the password?" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 break;
             }
@@ -186,12 +192,14 @@
             case 0:
             {
                 // login succeed
+                NSLog(@"Forget password request is approved\n");
                 [alert initWithTitle:@"Forget password request is approved." message:@"Please check your email or sms to find out the new password" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 break;
             }
             default:
             {
                 // login failed, as user doesn't exist
+                NSLog(@"Forget password request is declined\n");
                 [alert initWithTitle:@"Forget password request is declined" message:@"Sorry but your username doesn't exists, register it?" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 break;
             }
@@ -218,6 +226,7 @@
     else if ([msg_tmp type]==Message_MessageTypeTextFromServerReq)
     {
         // on get a new message, we create a new chat view
+        NSLog(@"Text message received\n");
         ChatViewController *chat_view=[chat_list objectForKey:[[msg_tmp textFromServerRequest] fromUserId]];
         if (chat_view==nil)
         {
@@ -238,7 +247,7 @@
     else if([msg_tmp type]==Message_MessageTypePictureFromServerReq)
     {
         // get a new picture message
-        NSLog(@"Picture message from the server");
+        NSLog(@"Picture message from the server\n");
         ChatViewController *chat_view=[chat_list objectForKey:[[msg_tmp pictureFromServerRequest] fromUserId]];
         if (chat_view==nil)
         {
@@ -256,20 +265,62 @@
             [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
         }
     }
+    else if([msg_tmp type]==Message_MessageTypeVideoFromServerReq)
+    {
+        // get a new picture message
+        NSLog(@"Video message from the server\n");
+        ChatViewController *chat_view=[chat_list objectForKey:[[msg_tmp videoFromServerRequest] fromUserId]];
+        if (chat_view==nil)
+        {
+            // if we don't have a chat view for it, create a new one
+            chat_view=[ChatViewController messagesViewController];
+            chat_view.delegateModal=self;
+            [chat_view initWithUser:[[msg_tmp videoFromServerRequest]toUserId] user_name:nil guest_id: [[msg_tmp videoFromServerRequest] fromUserId] guest_name:nil];
+            [chat_list setObject:chat_view forKey:[[msg_tmp videoFromServerRequest] fromUserId]];
+        }
+        [chat_view onReceiveVideoMessage:[msg_tmp videoFromServerRequest]];
+        // if current view is not present, show it
+        if ((chat_view.isViewLoaded && chat_view.view.window))
+        {
+            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
+            [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
+        }
+    }
+    else if([msg_tmp type]==Message_MessageTypeVoiceFromServerReq)
+    {
+        // get a new picture message
+        NSLog(@"Picture message from the server\n");
+        ChatViewController *chat_view=[chat_list objectForKey:[[msg_tmp voiceFromServerRequest] fromUserId]];
+        if (chat_view==nil)
+        {
+            // if we don't have a chat view for it, create a new one
+            chat_view=[ChatViewController messagesViewController];
+            chat_view.delegateModal=self;
+            [chat_view initWithUser:[[msg_tmp voiceFromServerRequest]toUserId] user_name:nil guest_id: [[msg_tmp voiceFromServerRequest] fromUserId] guest_name:nil];
+            [chat_list setObject:chat_view forKey:[[msg_tmp voiceFromServerRequest] fromUserId]];
+        }
+        [chat_view onReceiveVoiceMessage:[msg_tmp voiceFromServerRequest]];
+        // if current view is not present, show it
+        if ((chat_view.isViewLoaded && chat_view.view.window))
+        {
+            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
+            [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
+        }
+    }
     else if ([msg_tmp type]==Message_MessageTypeWhoAmIResp)
     {
         // on get response for who am i, we set the user id
+        NSLog(@"Who am I message received\n");
         MainViewController *main_view=[self getMainView];
         [main_view SetWhoAmI:[msg_tmp whoAmIresponse]];
     }
     // for other message type put here
     else
     {
-        [alert initWithTitle:@"System error" message:@"Sorry there is some error but it is not fault." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        NSLog(@"Unknow message type received\n");
     }
     // request new message
     [socket_chat readDataWithTimeout:-1 tag:0];
-    
     [alert show];
 }
 

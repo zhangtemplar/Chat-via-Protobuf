@@ -96,21 +96,52 @@
 }
 
 // video message
--(void) onReceiveVideoMessage:(Message_VideoChatMessageRequest *)msg
+-(void) onReceiveVideoMessage:(Message_VideoFromServerRequest *)msg
 {
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://54.69.29.250:8081/%@", [msg videoUuid]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    // after downloaded, change the fileurl of the video
+    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *videoPath = [documentsDirectory stringByAppendingPathComponent:[msg videoUuid]];
+    requestOperation.outputStream=[NSOutputStream outputStreamToFileAtPath:videoPath append:NO];
+    [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Video received\n");
+        // add video to chat
+        JSQVideoMediaItem *video=[[JSQVideoMediaItem alloc] initWithFileURL:[NSURL URLWithString:videoPath] isReadyToPlay:YES];
+        JSQMessage *video_msg=[[JSQMessage alloc] initWithSenderId:[msg fromUserId] senderDisplayName:[msg fromUserId] date:[NSDate date] media:video];
+        [self.chatData addMessages:video_msg];
+        [[self collectionView] reloadData];
+        
+        // reply the server that, we have got the mssage
+        Message_VideoFromServerResponse_Builder *video_msg_build=[Message_VideoFromServerResponse builder];
+        [video_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+        [video_msg_build setStatus:0];
+        [video_msg_build setMessageHash:@""];
+        [video_msg_build setDesc:[msg videoUuid]];
+        
+        Message_Builder *msg_build=[Message builder];
+        [msg_build setType:Message_MessageTypeVideoFromServerResp];
+        [msg_build setVideoChatMessageResponse: [video_msg_build build]];
+        
+        [app_delegate sendMessage:[msg_build build]];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Video download error: %@", error);
+    }];
+    [requestOperation start];
 }
 
 // photo message
 -(void) onReceivePhotoMessage:(Message_PictureFromServerRequest *)msg
 {
-    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://54.69.29.250:8081/pictures/%@", [msg pictureUuid]]];
-//    NSURL *URL=[NSURL URLWithString:@"http://54.69.29.250:8081/pictures/9fb7741a-82a6-4035-b29c-c6633187c375_cc46451103e82dd1cb84a9f85d6be88f.jpg"];
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://54.69.29.250:8081/%@", [msg pictureUuid]]];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     // after downloaded, change the fileurl of the photo
     AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
     [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Image received: %@", responseObject);
+        NSLog(@"Image received\n");
         JSQPhotoMediaItem *photo=[[JSQPhotoMediaItem alloc] initWithImage:responseObject];
         JSQMessage *photo_msg=[[JSQMessage alloc] initWithSenderId:[msg fromUserId] senderDisplayName:[msg fromUserId] date:[NSDate date] media:photo];
         [self.chatData addMessages:photo_msg];
@@ -124,20 +155,51 @@
         [photo_msg_build setDesc:[msg pictureUuid]];
         
         Message_Builder *msg_build=[Message builder];
-        [msg_build setType:Message_MessageTypeTextFromServerResp];
+        [msg_build setType:Message_MessageTypePictureFromServerResp];
         [msg_build setPictureChatMessageResponse: [photo_msg_build build]];
         
         [app_delegate sendMessage:[msg_build build]];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Image error: %@", error);
+        NSLog(@"Image download error: %@", error);
     }];
     [requestOperation start];
 }
 
 // voice
--(void) onReceiveVoiceMessage:(Message_VoiceChatMessageRequest *)msg
+-(void) onReceiveVoiceMessage:(Message_VoiceFromServerRequest *)msg
 {
-    
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://54.69.29.250:8081/%@", [msg voiceUuid]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    // after downloaded, change the fileurl of the video
+    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *voicePath = [documentsDirectory stringByAppendingPathComponent:[msg voiceUuid]];
+    requestOperation.outputStream=[NSOutputStream outputStreamToFileAtPath:voicePath append:NO];
+    [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Video received\n");
+        // add video to chat
+        JSQVideoMediaItem *video=[[JSQVideoMediaItem alloc] initWithFileURL:[NSURL URLWithString:voicePath] isReadyToPlay:YES];
+        JSQMessage *video_msg=[[JSQMessage alloc] initWithSenderId:[msg fromUserId] senderDisplayName:[msg fromUserId] date:[NSDate date] media:video];
+        [self.chatData addMessages:video_msg];
+        [[self collectionView] reloadData];
+        
+        // reply the server that, we have got the mssage
+        Message_VoiceFromServerResponse_Builder *voice_msg_build=[Message_VoiceFromServerResponse builder];
+        [voice_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+        [voice_msg_build setStatus:0];
+        [voice_msg_build setMessageHash:@""];
+        [voice_msg_build setDesc:[msg voiceUuid]];
+        
+        Message_Builder *msg_build=[Message builder];
+        [msg_build setType:Message_MessageTypeVoiceFromServerResp];
+        [msg_build setVoiceChatMessageResponse: [voice_msg_build build]];
+        
+        [app_delegate sendMessage:[msg_build build]];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Video download error: %@", error);
+    }];
+    [requestOperation start];
 }
 #pragma mark - Actions
 
@@ -313,22 +375,41 @@
                 {
                     // add this audio the message
                     [[self chatData] addVideoMediaMessage:self.senderId name:self.senderDisplayName date:[NSDate date] video:url ready:YES];
+                    // create a file name
+                    NSString *fileUUID=[[NSString stringWithFormat:@"%@", url] MD5];
+                    NSData *fileData=[NSData dataWithContentsOfURL:url];
+                    NSString *filePath=[url absoluteString];
                     
-                    // uploading this message to the server and create message
-                    Message_VoiceChatMessageRequest_Builder *voice_msg_build=[Message_VoiceChatMessageRequest builder];
-                    [voice_msg_build setUserId:self.senderId];
-                    [voice_msg_build setToUserId: guest_list.firstObject];
-                    [voice_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
-                    [voice_msg_build setDesc:@""];
-                    [voice_msg_build setMessageHash:[@"" MD5]];
-                    [voice_msg_build setVoiceUuid:@""];
-                    
-                    Message_Builder *msg_builder=[Message builder];
-                    [msg_builder setType:Message_MessageTypeVoiceReq];
-                    [msg_builder setVoiceChatMessageRequest:[voice_msg_build build]];
-                    [app_delegate sendMessage:[msg_builder build]];
-                    
-                    // to do: unpload the image with the uuid
+                    // to do: unpload the video with the uuid
+                    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                    manager.responseSerializer=[AFHTTPResponseSerializer serializer];
+                    NSDictionary *parameters = @{@"myfile": filePath, @"type":@"audio", @"format":@"aac", @"userId":[self senderId], @"desc":fileUUID};
+                    AFHTTPRequestOperation *op = [manager POST:@"http://54.69.29.250:8081/voices" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                        [formData appendPartWithFileData:fileData name:filePath fileName:filePath mimeType:@"audio/aac"];} success:^(AFHTTPRequestOperation *operation, id responseObject)
+                                                  {
+                                                      NSString *fileName=[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                                                      // uploading this message to the server and create message
+                                                      Message_VoiceChatMessageRequest_Builder *voice_msg_build=[Message_VoiceChatMessageRequest builder];
+                                                      [voice_msg_build setUserId:[self senderId]];
+                                                      [voice_msg_build setToUserId: guest_list.firstObject];
+                                                      [voice_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+                                                      [voice_msg_build setDesc:fileName];
+                                                      [voice_msg_build setMessageHash:[fileName MD5]];
+                                                      [voice_msg_build setVoiceUuid:fileName];
+                                                      
+                                                      Message_Builder *msg_builder=[Message builder];
+                                                      [msg_builder setType:Message_MessageTypeVoiceReq];
+                                                      [msg_builder setVoiceChatMessageRequest:[voice_msg_build build]];
+                                                      
+                                                      [app_delegate sendMessage:[msg_builder build]];
+                                                      [[self collectionView] reloadData];
+                                                      NSLog(@"Voice upload success: %@\n", responseObject);
+                                                  }
+                                                       failure:^(AFHTTPRequestOperation *operation, NSError *error)
+                                                  {
+                                                      NSLog(@"Voice upload error: %@\n", error);
+                                                  }];
+                    [op start];
                 }
                 else
                 {
@@ -369,27 +450,46 @@
                  {
                      // add this audio the message
                      [[self chatData] addVideoMediaMessage:self.senderId name:self.senderDisplayName date:[NSDate date] video:url ready:YES];
+                     // create a file name
+                     NSString *fileUUID=[[NSString stringWithFormat:@"%@", url] MD5];
+                     NSData *fileData=[NSData dataWithContentsOfURL:url];
+                     NSString *filePath=[url absoluteString];
                      
-                     // uploading this message to the server and create message
-                     Message_VideoChatMessageRequest_Builder *video_msg_build=[Message_VideoChatMessageRequest builder];
-                     [video_msg_build setUserId:self.senderId];
-                     [video_msg_build setToUserId: guest_list.firstObject];
-                     [video_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
-                     [video_msg_build setDesc:@""];
-                     [video_msg_build setMessageHash:[@"" MD5]];
-                     [video_msg_build setVideoUuid:@""];
-                     
-                     Message_Builder *msg_builder=[Message builder];
-                     [msg_builder setType:Message_MessageTypeVideoReq];
-                     [msg_builder setVideoChatMessageRequest:[video_msg_build build]];
-                     [app_delegate sendMessage:[msg_builder build]];
-                     
-                     // to do: unpload the image with the uuid
+                     // to do: unpload the video with the uuid
+                     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+                     manager.responseSerializer=[AFHTTPResponseSerializer serializer];
+                     NSDictionary *parameters = @{@"myfile": filePath, @"type":@"video", @"format":@"mp4", @"userId":[self senderId], @"desc":fileUUID};
+                     AFHTTPRequestOperation *op = [manager POST:@"http://54.69.29.250:8081/videos" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                         [formData appendPartWithFileData:fileData name:filePath fileName:filePath mimeType:@"video/mp4"];} success:^(AFHTTPRequestOperation *operation, id responseObject)
+                                                   {
+                                                       NSString *fileName=[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                                                       // uploading this message to the server and create message
+                                                       Message_VideoChatMessageRequest_Builder *video_msg_build=[Message_VideoChatMessageRequest builder];
+                                                       [video_msg_build setUserId:[self senderId]];
+                                                       [video_msg_build setToUserId: guest_list.firstObject];
+                                                       [video_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+                                                       [video_msg_build setDesc:fileName];
+                                                       [video_msg_build setMessageHash:[fileName MD5]];
+                                                       [video_msg_build setVideoUuid:fileName];
+                                                       
+                                                       Message_Builder *msg_builder=[Message builder];
+                                                       [msg_builder setType:Message_MessageTypeVideoReq];
+                                                       [msg_builder setVideoChatMessageRequest:[video_msg_build build]];
+                                                       
+                                                       [app_delegate sendMessage:[msg_builder build]];
+                                                       [[self collectionView] reloadData];
+                                                       NSLog(@"Video upload success: %@\n", responseObject);
+                                                   }
+                                                        failure:^(AFHTTPRequestOperation *operation, NSError *error)
+                                                   {
+                                                       NSLog(@"Video upload error: %@\n", error);
+                                                   }];
+                     [op start];
                  }
                  else
                  {
-                     NSLog(@"Start voice recording failed.\n");
-                     UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Audio recorder failed" message:@"Sorry but the audio record can't be saved and please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                     NSLog(@"Start video recording failed %@\n", error);
+                     UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Video recorder failed" message:@"Sorry but the video record can't be saved and please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                      [alert show];
                  }
              }];

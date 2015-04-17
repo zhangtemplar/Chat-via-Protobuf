@@ -5,15 +5,15 @@
 @implementation AppRoot
 static PBExtensionRegistry* extensionRegistry = nil;
 + (PBExtensionRegistry*) extensionRegistry {
-  return extensionRegistry;
+    return extensionRegistry;
 }
 
 + (void) initialize {
-  if (self == [AppRoot class]) {
-    PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
-    [self registerAllExtensions:registry];
-    extensionRegistry = [registry retain];
-  }
+    if (self == [AppRoot class]) {
+        PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
+        [self registerAllExtensions:registry];
+        extensionRegistry = [registry retain];
+    }
 }
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry {
 }
@@ -43,558 +43,642 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property (retain) Message_TextFromServerResponse* textFromServerResponse;
 @property (retain) Message_PictureFromServerRequest* pictureFromServerRequest;
 @property (retain) Message_PictureFromServerResponse* pictureFromServerResponse;
+@property (retain) Message_VoiceFromServerRequest* voiceFromServerRequest;
+@property (retain) Message_VoiceFromServerResponse* voiceFromServerResponse;
+@property (retain) Message_VideoFromServerRequest* videoFromServerRequest;
+@property (retain) Message_VideoFromServerResponse* videoFromServerResponse;
 @end
 
 @implementation Message
 
 - (BOOL) hasType {
-  return !!hasType_;
+    return !!hasType_;
 }
 - (void) setHasType:(BOOL) value {
-  hasType_ = !!value;
+    hasType_ = !!value;
 }
 @synthesize type;
 - (BOOL) hasSubRequest {
-  return !!hasSubRequest_;
+    return !!hasSubRequest_;
 }
 - (void) setHasSubRequest:(BOOL) value {
-  hasSubRequest_ = !!value;
+    hasSubRequest_ = !!value;
 }
 @synthesize subRequest;
 - (BOOL) hasSubResponse {
-  return !!hasSubResponse_;
+    return !!hasSubResponse_;
 }
 - (void) setHasSubResponse:(BOOL) value {
-  hasSubResponse_ = !!value;
+    hasSubResponse_ = !!value;
 }
 @synthesize subResponse;
 - (BOOL) hasLoginRequest {
-  return !!hasLoginRequest_;
+    return !!hasLoginRequest_;
 }
 - (void) setHasLoginRequest:(BOOL) value {
-  hasLoginRequest_ = !!value;
+    hasLoginRequest_ = !!value;
 }
 @synthesize loginRequest;
 - (BOOL) hasLoginResponse {
-  return !!hasLoginResponse_;
+    return !!hasLoginResponse_;
 }
 - (void) setHasLoginResponse:(BOOL) value {
-  hasLoginResponse_ = !!value;
+    hasLoginResponse_ = !!value;
 }
 @synthesize loginResponse;
 - (BOOL) hasLogoutRequest {
-  return !!hasLogoutRequest_;
+    return !!hasLogoutRequest_;
 }
 - (void) setHasLogoutRequest:(BOOL) value {
-  hasLogoutRequest_ = !!value;
+    hasLogoutRequest_ = !!value;
 }
 @synthesize logoutRequest;
 - (BOOL) hasLogoutResponse {
-  return !!hasLogoutResponse_;
+    return !!hasLogoutResponse_;
 }
 - (void) setHasLogoutResponse:(BOOL) value {
-  hasLogoutResponse_ = !!value;
+    hasLogoutResponse_ = !!value;
 }
 @synthesize logoutResponse;
 - (BOOL) hasForgetPwdRequest {
-  return !!hasForgetPwdRequest_;
+    return !!hasForgetPwdRequest_;
 }
 - (void) setHasForgetPwdRequest:(BOOL) value {
-  hasForgetPwdRequest_ = !!value;
+    hasForgetPwdRequest_ = !!value;
 }
 @synthesize forgetPwdRequest;
 - (BOOL) hasForgetPwdResponse {
-  return !!hasForgetPwdResponse_;
+    return !!hasForgetPwdResponse_;
 }
 - (void) setHasForgetPwdResponse:(BOOL) value {
-  hasForgetPwdResponse_ = !!value;
+    hasForgetPwdResponse_ = !!value;
 }
 @synthesize forgetPwdResponse;
 - (BOOL) hasWhoAmIrequest {
-  return !!hasWhoAmIrequest_;
+    return !!hasWhoAmIrequest_;
 }
 - (void) setHasWhoAmIrequest:(BOOL) value {
-  hasWhoAmIrequest_ = !!value;
+    hasWhoAmIrequest_ = !!value;
 }
 @synthesize whoAmIrequest;
 - (BOOL) hasWhoAmIresponse {
-  return !!hasWhoAmIresponse_;
+    return !!hasWhoAmIresponse_;
 }
 - (void) setHasWhoAmIresponse:(BOOL) value {
-  hasWhoAmIresponse_ = !!value;
+    hasWhoAmIresponse_ = !!value;
 }
 @synthesize whoAmIresponse;
 - (BOOL) hasTextChatMessageRequest {
-  return !!hasTextChatMessageRequest_;
+    return !!hasTextChatMessageRequest_;
 }
 - (void) setHasTextChatMessageRequest:(BOOL) value {
-  hasTextChatMessageRequest_ = !!value;
+    hasTextChatMessageRequest_ = !!value;
 }
 @synthesize textChatMessageRequest;
 - (BOOL) hasTextChatMessageResponse {
-  return !!hasTextChatMessageResponse_;
+    return !!hasTextChatMessageResponse_;
 }
 - (void) setHasTextChatMessageResponse:(BOOL) value {
-  hasTextChatMessageResponse_ = !!value;
+    hasTextChatMessageResponse_ = !!value;
 }
 @synthesize textChatMessageResponse;
 - (BOOL) hasPictureChatMessageRequest {
-  return !!hasPictureChatMessageRequest_;
+    return !!hasPictureChatMessageRequest_;
 }
 - (void) setHasPictureChatMessageRequest:(BOOL) value {
-  hasPictureChatMessageRequest_ = !!value;
+    hasPictureChatMessageRequest_ = !!value;
 }
 @synthesize pictureChatMessageRequest;
 - (BOOL) hasPictureChatMessageResponse {
-  return !!hasPictureChatMessageResponse_;
+    return !!hasPictureChatMessageResponse_;
 }
 - (void) setHasPictureChatMessageResponse:(BOOL) value {
-  hasPictureChatMessageResponse_ = !!value;
+    hasPictureChatMessageResponse_ = !!value;
 }
 @synthesize pictureChatMessageResponse;
 - (BOOL) hasVoiceChatMessageRequest {
-  return !!hasVoiceChatMessageRequest_;
+    return !!hasVoiceChatMessageRequest_;
 }
 - (void) setHasVoiceChatMessageRequest:(BOOL) value {
-  hasVoiceChatMessageRequest_ = !!value;
+    hasVoiceChatMessageRequest_ = !!value;
 }
 @synthesize voiceChatMessageRequest;
 - (BOOL) hasVoiceChatMessageResponse {
-  return !!hasVoiceChatMessageResponse_;
+    return !!hasVoiceChatMessageResponse_;
 }
 - (void) setHasVoiceChatMessageResponse:(BOOL) value {
-  hasVoiceChatMessageResponse_ = !!value;
+    hasVoiceChatMessageResponse_ = !!value;
 }
 @synthesize voiceChatMessageResponse;
 - (BOOL) hasVideoChatMessageRequest {
-  return !!hasVideoChatMessageRequest_;
+    return !!hasVideoChatMessageRequest_;
 }
 - (void) setHasVideoChatMessageRequest:(BOOL) value {
-  hasVideoChatMessageRequest_ = !!value;
+    hasVideoChatMessageRequest_ = !!value;
 }
 @synthesize videoChatMessageRequest;
 - (BOOL) hasVideoChatMessageResponse {
-  return !!hasVideoChatMessageResponse_;
+    return !!hasVideoChatMessageResponse_;
 }
 - (void) setHasVideoChatMessageResponse:(BOOL) value {
-  hasVideoChatMessageResponse_ = !!value;
+    hasVideoChatMessageResponse_ = !!value;
 }
 @synthesize videoChatMessageResponse;
 - (BOOL) hasTextFromServerRequest {
-  return !!hasTextFromServerRequest_;
+    return !!hasTextFromServerRequest_;
 }
 - (void) setHasTextFromServerRequest:(BOOL) value {
-  hasTextFromServerRequest_ = !!value;
+    hasTextFromServerRequest_ = !!value;
 }
 @synthesize textFromServerRequest;
 - (BOOL) hasTextFromServerResponse {
-  return !!hasTextFromServerResponse_;
+    return !!hasTextFromServerResponse_;
 }
 - (void) setHasTextFromServerResponse:(BOOL) value {
-  hasTextFromServerResponse_ = !!value;
+    hasTextFromServerResponse_ = !!value;
 }
 @synthesize textFromServerResponse;
 - (BOOL) hasPictureFromServerRequest {
-  return !!hasPictureFromServerRequest_;
+    return !!hasPictureFromServerRequest_;
 }
 - (void) setHasPictureFromServerRequest:(BOOL) value {
-  hasPictureFromServerRequest_ = !!value;
+    hasPictureFromServerRequest_ = !!value;
 }
 @synthesize pictureFromServerRequest;
 - (BOOL) hasPictureFromServerResponse {
-  return !!hasPictureFromServerResponse_;
+    return !!hasPictureFromServerResponse_;
 }
 - (void) setHasPictureFromServerResponse:(BOOL) value {
-  hasPictureFromServerResponse_ = !!value;
+    hasPictureFromServerResponse_ = !!value;
 }
 @synthesize pictureFromServerResponse;
+- (BOOL) hasVoiceFromServerRequest {
+    return !!hasVoiceFromServerRequest_;
+}
+- (void) setHasVoiceFromServerRequest:(BOOL) value {
+    hasVoiceFromServerRequest_ = !!value;
+}
+@synthesize voiceFromServerRequest;
+- (BOOL) hasVoiceFromServerResponse {
+    return !!hasVoiceFromServerResponse_;
+}
+- (void) setHasVoiceFromServerResponse:(BOOL) value {
+    hasVoiceFromServerResponse_ = !!value;
+}
+@synthesize voiceFromServerResponse;
+- (BOOL) hasVideoFromServerRequest {
+    return !!hasVideoFromServerRequest_;
+}
+- (void) setHasVideoFromServerRequest:(BOOL) value {
+    hasVideoFromServerRequest_ = !!value;
+}
+@synthesize videoFromServerRequest;
+- (BOOL) hasVideoFromServerResponse {
+    return !!hasVideoFromServerResponse_;
+}
+- (void) setHasVideoFromServerResponse:(BOOL) value {
+    hasVideoFromServerResponse_ = !!value;
+}
+@synthesize videoFromServerResponse;
 - (void) dealloc {
-  self.subRequest = nil;
-  self.subResponse = nil;
-  self.loginRequest = nil;
-  self.loginResponse = nil;
-  self.logoutRequest = nil;
-  self.logoutResponse = nil;
-  self.forgetPwdRequest = nil;
-  self.forgetPwdResponse = nil;
-  self.whoAmIrequest = nil;
-  self.whoAmIresponse = nil;
-  self.textChatMessageRequest = nil;
-  self.textChatMessageResponse = nil;
-  self.pictureChatMessageRequest = nil;
-  self.pictureChatMessageResponse = nil;
-  self.voiceChatMessageRequest = nil;
-  self.voiceChatMessageResponse = nil;
-  self.videoChatMessageRequest = nil;
-  self.videoChatMessageResponse = nil;
-  self.textFromServerRequest = nil;
-  self.textFromServerResponse = nil;
-  self.pictureFromServerRequest = nil;
-  self.pictureFromServerResponse = nil;
-  [super dealloc];
+    self.subRequest = nil;
+    self.subResponse = nil;
+    self.loginRequest = nil;
+    self.loginResponse = nil;
+    self.logoutRequest = nil;
+    self.logoutResponse = nil;
+    self.forgetPwdRequest = nil;
+    self.forgetPwdResponse = nil;
+    self.whoAmIrequest = nil;
+    self.whoAmIresponse = nil;
+    self.textChatMessageRequest = nil;
+    self.textChatMessageResponse = nil;
+    self.pictureChatMessageRequest = nil;
+    self.pictureChatMessageResponse = nil;
+    self.voiceChatMessageRequest = nil;
+    self.voiceChatMessageResponse = nil;
+    self.videoChatMessageRequest = nil;
+    self.videoChatMessageResponse = nil;
+    self.textFromServerRequest = nil;
+    self.textFromServerResponse = nil;
+    self.pictureFromServerRequest = nil;
+    self.pictureFromServerResponse = nil;
+    self.voiceFromServerRequest = nil;
+    self.voiceFromServerResponse = nil;
+    self.videoFromServerRequest = nil;
+    self.videoFromServerResponse = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.type = Message_MessageTypeSubscribeReq;
-    self.subRequest = [Message_SubMessageRequest defaultInstance];
-    self.subResponse = [Message_SubMessageResponse defaultInstance];
-    self.loginRequest = [Message_LoginMessageRequest defaultInstance];
-    self.loginResponse = [Message_LoginMessageResponse defaultInstance];
-    self.logoutRequest = [Message_LogoutMessageRequest defaultInstance];
-    self.logoutResponse = [Message_LogoutMessageResponse defaultInstance];
-    self.forgetPwdRequest = [Message_ForgetPasswordMessageRequest defaultInstance];
-    self.forgetPwdResponse = [Message_ForgetPasswordMessageResponse defaultInstance];
-    self.whoAmIrequest = [Message_WhoAmIRequest defaultInstance];
-    self.whoAmIresponse = [Message_WhoAmIResponse defaultInstance];
-    self.textChatMessageRequest = [Message_TextChatMessageRequest defaultInstance];
-    self.textChatMessageResponse = [Message_TextChatMessageResponse defaultInstance];
-    self.pictureChatMessageRequest = [Message_PictureChatMessageRequest defaultInstance];
-    self.pictureChatMessageResponse = [Message_PictureChatMessageResponse defaultInstance];
-    self.voiceChatMessageRequest = [Message_VoiceChatMessageRequest defaultInstance];
-    self.voiceChatMessageResponse = [Message_VoiceChatMessageResponse defaultInstance];
-    self.videoChatMessageRequest = [Message_VideoChatMessageRequest defaultInstance];
-    self.videoChatMessageResponse = [Message_VideoChatMessageResponse defaultInstance];
-    self.textFromServerRequest = [Message_TextFromServerRequest defaultInstance];
-    self.textFromServerResponse = [Message_TextFromServerResponse defaultInstance];
-    self.pictureFromServerRequest = [Message_PictureFromServerRequest defaultInstance];
-    self.pictureFromServerResponse = [Message_PictureFromServerResponse defaultInstance];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.type = Message_MessageTypeSubscribeReq;
+        self.subRequest = [Message_SubMessageRequest defaultInstance];
+        self.subResponse = [Message_SubMessageResponse defaultInstance];
+        self.loginRequest = [Message_LoginMessageRequest defaultInstance];
+        self.loginResponse = [Message_LoginMessageResponse defaultInstance];
+        self.logoutRequest = [Message_LogoutMessageRequest defaultInstance];
+        self.logoutResponse = [Message_LogoutMessageResponse defaultInstance];
+        self.forgetPwdRequest = [Message_ForgetPasswordMessageRequest defaultInstance];
+        self.forgetPwdResponse = [Message_ForgetPasswordMessageResponse defaultInstance];
+        self.whoAmIrequest = [Message_WhoAmIRequest defaultInstance];
+        self.whoAmIresponse = [Message_WhoAmIResponse defaultInstance];
+        self.textChatMessageRequest = [Message_TextChatMessageRequest defaultInstance];
+        self.textChatMessageResponse = [Message_TextChatMessageResponse defaultInstance];
+        self.pictureChatMessageRequest = [Message_PictureChatMessageRequest defaultInstance];
+        self.pictureChatMessageResponse = [Message_PictureChatMessageResponse defaultInstance];
+        self.voiceChatMessageRequest = [Message_VoiceChatMessageRequest defaultInstance];
+        self.voiceChatMessageResponse = [Message_VoiceChatMessageResponse defaultInstance];
+        self.videoChatMessageRequest = [Message_VideoChatMessageRequest defaultInstance];
+        self.videoChatMessageResponse = [Message_VideoChatMessageResponse defaultInstance];
+        self.textFromServerRequest = [Message_TextFromServerRequest defaultInstance];
+        self.textFromServerResponse = [Message_TextFromServerResponse defaultInstance];
+        self.pictureFromServerRequest = [Message_PictureFromServerRequest defaultInstance];
+        self.pictureFromServerResponse = [Message_PictureFromServerResponse defaultInstance];
+        self.voiceFromServerRequest = [Message_VoiceFromServerRequest defaultInstance];
+        self.voiceFromServerResponse = [Message_VoiceFromServerResponse defaultInstance];
+        self.videoFromServerRequest = [Message_VideoFromServerRequest defaultInstance];
+        self.videoFromServerResponse = [Message_VideoFromServerResponse defaultInstance];
+    }
+    return self;
 }
 static Message* defaultMessageInstance = nil;
 + (void) initialize {
-  if (self == [Message class]) {
-    defaultMessageInstance = [[Message alloc] init];
-  }
+    if (self == [Message class]) {
+        defaultMessageInstance = [[Message alloc] init];
+    }
 }
 + (Message*) defaultInstance {
-  return defaultMessageInstance;
+    return defaultMessageInstance;
 }
 - (Message*) defaultInstance {
-  return defaultMessageInstance;
+    return defaultMessageInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasType) {
-    return NO;
-  }
-  if (self.hasSubRequest) {
-    if (!self.subRequest.isInitialized) {
-      return NO;
+    if (!self.hasType) {
+        return NO;
     }
-  }
-  if (self.hasSubResponse) {
-    if (!self.subResponse.isInitialized) {
-      return NO;
+    if (self.hasSubRequest) {
+        if (!self.subRequest.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasLoginRequest) {
-    if (!self.loginRequest.isInitialized) {
-      return NO;
+    if (self.hasSubResponse) {
+        if (!self.subResponse.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasLoginResponse) {
-    if (!self.loginResponse.isInitialized) {
-      return NO;
+    if (self.hasLoginRequest) {
+        if (!self.loginRequest.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasLogoutResponse) {
-    if (!self.logoutResponse.isInitialized) {
-      return NO;
+    if (self.hasLoginResponse) {
+        if (!self.loginResponse.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasForgetPwdResponse) {
-    if (!self.forgetPwdResponse.isInitialized) {
-      return NO;
+    if (self.hasLogoutResponse) {
+        if (!self.logoutResponse.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasWhoAmIrequest) {
-    if (!self.whoAmIrequest.isInitialized) {
-      return NO;
+    if (self.hasForgetPwdResponse) {
+        if (!self.forgetPwdResponse.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasWhoAmIresponse) {
-    if (!self.whoAmIresponse.isInitialized) {
-      return NO;
+    if (self.hasWhoAmIrequest) {
+        if (!self.whoAmIrequest.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasTextChatMessageRequest) {
-    if (!self.textChatMessageRequest.isInitialized) {
-      return NO;
+    if (self.hasWhoAmIresponse) {
+        if (!self.whoAmIresponse.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasTextChatMessageResponse) {
-    if (!self.textChatMessageResponse.isInitialized) {
-      return NO;
+    if (self.hasTextChatMessageRequest) {
+        if (!self.textChatMessageRequest.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasPictureChatMessageRequest) {
-    if (!self.pictureChatMessageRequest.isInitialized) {
-      return NO;
+    if (self.hasTextChatMessageResponse) {
+        if (!self.textChatMessageResponse.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasPictureChatMessageResponse) {
-    if (!self.pictureChatMessageResponse.isInitialized) {
-      return NO;
+    if (self.hasPictureChatMessageRequest) {
+        if (!self.pictureChatMessageRequest.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasVoiceChatMessageRequest) {
-    if (!self.voiceChatMessageRequest.isInitialized) {
-      return NO;
+    if (self.hasPictureChatMessageResponse) {
+        if (!self.pictureChatMessageResponse.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasVoiceChatMessageResponse) {
-    if (!self.voiceChatMessageResponse.isInitialized) {
-      return NO;
+    if (self.hasVoiceChatMessageRequest) {
+        if (!self.voiceChatMessageRequest.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasVideoChatMessageRequest) {
-    if (!self.videoChatMessageRequest.isInitialized) {
-      return NO;
+    if (self.hasVoiceChatMessageResponse) {
+        if (!self.voiceChatMessageResponse.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasVideoChatMessageResponse) {
-    if (!self.videoChatMessageResponse.isInitialized) {
-      return NO;
+    if (self.hasVideoChatMessageRequest) {
+        if (!self.videoChatMessageRequest.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasTextFromServerRequest) {
-    if (!self.textFromServerRequest.isInitialized) {
-      return NO;
+    if (self.hasVideoChatMessageResponse) {
+        if (!self.videoChatMessageResponse.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasTextFromServerResponse) {
-    if (!self.textFromServerResponse.isInitialized) {
-      return NO;
+    if (self.hasTextFromServerRequest) {
+        if (!self.textFromServerRequest.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasPictureFromServerRequest) {
-    if (!self.pictureFromServerRequest.isInitialized) {
-      return NO;
+    if (self.hasTextFromServerResponse) {
+        if (!self.textFromServerResponse.isInitialized) {
+            return NO;
+        }
     }
-  }
-  if (self.hasPictureFromServerResponse) {
-    if (!self.pictureFromServerResponse.isInitialized) {
-      return NO;
+    if (self.hasPictureFromServerRequest) {
+        if (!self.pictureFromServerRequest.isInitialized) {
+            return NO;
+        }
     }
-  }
-  return YES;
+    if (self.hasPictureFromServerResponse) {
+        if (!self.pictureFromServerResponse.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasVoiceFromServerRequest) {
+        if (!self.voiceFromServerRequest.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasVoiceFromServerResponse) {
+        if (!self.voiceFromServerResponse.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasVideoFromServerRequest) {
+        if (!self.videoFromServerRequest.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasVideoFromServerResponse) {
+        if (!self.videoFromServerResponse.isInitialized) {
+            return NO;
+        }
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasType) {
-    [output writeEnum:1 value:self.type];
-  }
-  if (self.hasSubRequest) {
-    [output writeMessage:2 value:self.subRequest];
-  }
-  if (self.hasSubResponse) {
-    [output writeMessage:3 value:self.subResponse];
-  }
-  if (self.hasLoginRequest) {
-    [output writeMessage:4 value:self.loginRequest];
-  }
-  if (self.hasLoginResponse) {
-    [output writeMessage:5 value:self.loginResponse];
-  }
-  if (self.hasLogoutRequest) {
-    [output writeMessage:6 value:self.logoutRequest];
-  }
-  if (self.hasLogoutResponse) {
-    [output writeMessage:7 value:self.logoutResponse];
-  }
-  if (self.hasForgetPwdRequest) {
-    [output writeMessage:8 value:self.forgetPwdRequest];
-  }
-  if (self.hasForgetPwdResponse) {
-    [output writeMessage:9 value:self.forgetPwdResponse];
-  }
-  if (self.hasWhoAmIrequest) {
-    [output writeMessage:10 value:self.whoAmIrequest];
-  }
-  if (self.hasWhoAmIresponse) {
-    [output writeMessage:11 value:self.whoAmIresponse];
-  }
-  if (self.hasTextChatMessageRequest) {
-    [output writeMessage:12 value:self.textChatMessageRequest];
-  }
-  if (self.hasTextChatMessageResponse) {
-    [output writeMessage:13 value:self.textChatMessageResponse];
-  }
-  if (self.hasPictureChatMessageRequest) {
-    [output writeMessage:14 value:self.pictureChatMessageRequest];
-  }
-  if (self.hasPictureChatMessageResponse) {
-    [output writeMessage:15 value:self.pictureChatMessageResponse];
-  }
-  if (self.hasVoiceChatMessageRequest) {
-    [output writeMessage:16 value:self.voiceChatMessageRequest];
-  }
-  if (self.hasVoiceChatMessageResponse) {
-    [output writeMessage:17 value:self.voiceChatMessageResponse];
-  }
-  if (self.hasVideoChatMessageRequest) {
-    [output writeMessage:18 value:self.videoChatMessageRequest];
-  }
-  if (self.hasVideoChatMessageResponse) {
-    [output writeMessage:19 value:self.videoChatMessageResponse];
-  }
-  if (self.hasTextFromServerRequest) {
-    [output writeMessage:20 value:self.textFromServerRequest];
-  }
-  if (self.hasTextFromServerResponse) {
-    [output writeMessage:21 value:self.textFromServerResponse];
-  }
-  if (self.hasPictureFromServerRequest) {
-    [output writeMessage:22 value:self.pictureFromServerRequest];
-  }
-  if (self.hasPictureFromServerResponse) {
-    [output writeMessage:23 value:self.pictureFromServerResponse];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasType) {
+        [output writeEnum:1 value:self.type];
+    }
+    if (self.hasSubRequest) {
+        [output writeMessage:2 value:self.subRequest];
+    }
+    if (self.hasSubResponse) {
+        [output writeMessage:3 value:self.subResponse];
+    }
+    if (self.hasLoginRequest) {
+        [output writeMessage:4 value:self.loginRequest];
+    }
+    if (self.hasLoginResponse) {
+        [output writeMessage:5 value:self.loginResponse];
+    }
+    if (self.hasLogoutRequest) {
+        [output writeMessage:6 value:self.logoutRequest];
+    }
+    if (self.hasLogoutResponse) {
+        [output writeMessage:7 value:self.logoutResponse];
+    }
+    if (self.hasForgetPwdRequest) {
+        [output writeMessage:8 value:self.forgetPwdRequest];
+    }
+    if (self.hasForgetPwdResponse) {
+        [output writeMessage:9 value:self.forgetPwdResponse];
+    }
+    if (self.hasWhoAmIrequest) {
+        [output writeMessage:10 value:self.whoAmIrequest];
+    }
+    if (self.hasWhoAmIresponse) {
+        [output writeMessage:11 value:self.whoAmIresponse];
+    }
+    if (self.hasTextChatMessageRequest) {
+        [output writeMessage:12 value:self.textChatMessageRequest];
+    }
+    if (self.hasTextChatMessageResponse) {
+        [output writeMessage:13 value:self.textChatMessageResponse];
+    }
+    if (self.hasPictureChatMessageRequest) {
+        [output writeMessage:14 value:self.pictureChatMessageRequest];
+    }
+    if (self.hasPictureChatMessageResponse) {
+        [output writeMessage:15 value:self.pictureChatMessageResponse];
+    }
+    if (self.hasVoiceChatMessageRequest) {
+        [output writeMessage:16 value:self.voiceChatMessageRequest];
+    }
+    if (self.hasVoiceChatMessageResponse) {
+        [output writeMessage:17 value:self.voiceChatMessageResponse];
+    }
+    if (self.hasVideoChatMessageRequest) {
+        [output writeMessage:18 value:self.videoChatMessageRequest];
+    }
+    if (self.hasVideoChatMessageResponse) {
+        [output writeMessage:19 value:self.videoChatMessageResponse];
+    }
+    if (self.hasTextFromServerRequest) {
+        [output writeMessage:20 value:self.textFromServerRequest];
+    }
+    if (self.hasTextFromServerResponse) {
+        [output writeMessage:21 value:self.textFromServerResponse];
+    }
+    if (self.hasPictureFromServerRequest) {
+        [output writeMessage:22 value:self.pictureFromServerRequest];
+    }
+    if (self.hasPictureFromServerResponse) {
+        [output writeMessage:23 value:self.pictureFromServerResponse];
+    }
+    if (self.hasVoiceFromServerRequest) {
+        [output writeMessage:24 value:self.voiceFromServerRequest];
+    }
+    if (self.hasVoiceFromServerResponse) {
+        [output writeMessage:25 value:self.voiceFromServerResponse];
+    }
+    if (self.hasVideoFromServerRequest) {
+        [output writeMessage:26 value:self.videoFromServerRequest];
+    }
+    if (self.hasVideoFromServerResponse) {
+        [output writeMessage:27 value:self.videoFromServerResponse];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasType) {
+        size += computeEnumSize(1, self.type);
+    }
+    if (self.hasSubRequest) {
+        size += computeMessageSize(2, self.subRequest);
+    }
+    if (self.hasSubResponse) {
+        size += computeMessageSize(3, self.subResponse);
+    }
+    if (self.hasLoginRequest) {
+        size += computeMessageSize(4, self.loginRequest);
+    }
+    if (self.hasLoginResponse) {
+        size += computeMessageSize(5, self.loginResponse);
+    }
+    if (self.hasLogoutRequest) {
+        size += computeMessageSize(6, self.logoutRequest);
+    }
+    if (self.hasLogoutResponse) {
+        size += computeMessageSize(7, self.logoutResponse);
+    }
+    if (self.hasForgetPwdRequest) {
+        size += computeMessageSize(8, self.forgetPwdRequest);
+    }
+    if (self.hasForgetPwdResponse) {
+        size += computeMessageSize(9, self.forgetPwdResponse);
+    }
+    if (self.hasWhoAmIrequest) {
+        size += computeMessageSize(10, self.whoAmIrequest);
+    }
+    if (self.hasWhoAmIresponse) {
+        size += computeMessageSize(11, self.whoAmIresponse);
+    }
+    if (self.hasTextChatMessageRequest) {
+        size += computeMessageSize(12, self.textChatMessageRequest);
+    }
+    if (self.hasTextChatMessageResponse) {
+        size += computeMessageSize(13, self.textChatMessageResponse);
+    }
+    if (self.hasPictureChatMessageRequest) {
+        size += computeMessageSize(14, self.pictureChatMessageRequest);
+    }
+    if (self.hasPictureChatMessageResponse) {
+        size += computeMessageSize(15, self.pictureChatMessageResponse);
+    }
+    if (self.hasVoiceChatMessageRequest) {
+        size += computeMessageSize(16, self.voiceChatMessageRequest);
+    }
+    if (self.hasVoiceChatMessageResponse) {
+        size += computeMessageSize(17, self.voiceChatMessageResponse);
+    }
+    if (self.hasVideoChatMessageRequest) {
+        size += computeMessageSize(18, self.videoChatMessageRequest);
+    }
+    if (self.hasVideoChatMessageResponse) {
+        size += computeMessageSize(19, self.videoChatMessageResponse);
+    }
+    if (self.hasTextFromServerRequest) {
+        size += computeMessageSize(20, self.textFromServerRequest);
+    }
+    if (self.hasTextFromServerResponse) {
+        size += computeMessageSize(21, self.textFromServerResponse);
+    }
+    if (self.hasPictureFromServerRequest) {
+        size += computeMessageSize(22, self.pictureFromServerRequest);
+    }
+    if (self.hasPictureFromServerResponse) {
+        size += computeMessageSize(23, self.pictureFromServerResponse);
+    }
+    if (self.hasVoiceFromServerRequest) {
+        size += computeMessageSize(24, self.voiceFromServerRequest);
+    }
+    if (self.hasVoiceFromServerResponse) {
+        size += computeMessageSize(25, self.voiceFromServerResponse);
+    }
+    if (self.hasVideoFromServerRequest) {
+        size += computeMessageSize(26, self.videoFromServerRequest);
+    }
+    if (self.hasVideoFromServerResponse) {
+        size += computeMessageSize(27, self.videoFromServerResponse);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasType) {
-    size += computeEnumSize(1, self.type);
-  }
-  if (self.hasSubRequest) {
-    size += computeMessageSize(2, self.subRequest);
-  }
-  if (self.hasSubResponse) {
-    size += computeMessageSize(3, self.subResponse);
-  }
-  if (self.hasLoginRequest) {
-    size += computeMessageSize(4, self.loginRequest);
-  }
-  if (self.hasLoginResponse) {
-    size += computeMessageSize(5, self.loginResponse);
-  }
-  if (self.hasLogoutRequest) {
-    size += computeMessageSize(6, self.logoutRequest);
-  }
-  if (self.hasLogoutResponse) {
-    size += computeMessageSize(7, self.logoutResponse);
-  }
-  if (self.hasForgetPwdRequest) {
-    size += computeMessageSize(8, self.forgetPwdRequest);
-  }
-  if (self.hasForgetPwdResponse) {
-    size += computeMessageSize(9, self.forgetPwdResponse);
-  }
-  if (self.hasWhoAmIrequest) {
-    size += computeMessageSize(10, self.whoAmIrequest);
-  }
-  if (self.hasWhoAmIresponse) {
-    size += computeMessageSize(11, self.whoAmIresponse);
-  }
-  if (self.hasTextChatMessageRequest) {
-    size += computeMessageSize(12, self.textChatMessageRequest);
-  }
-  if (self.hasTextChatMessageResponse) {
-    size += computeMessageSize(13, self.textChatMessageResponse);
-  }
-  if (self.hasPictureChatMessageRequest) {
-    size += computeMessageSize(14, self.pictureChatMessageRequest);
-  }
-  if (self.hasPictureChatMessageResponse) {
-    size += computeMessageSize(15, self.pictureChatMessageResponse);
-  }
-  if (self.hasVoiceChatMessageRequest) {
-    size += computeMessageSize(16, self.voiceChatMessageRequest);
-  }
-  if (self.hasVoiceChatMessageResponse) {
-    size += computeMessageSize(17, self.voiceChatMessageResponse);
-  }
-  if (self.hasVideoChatMessageRequest) {
-    size += computeMessageSize(18, self.videoChatMessageRequest);
-  }
-  if (self.hasVideoChatMessageResponse) {
-    size += computeMessageSize(19, self.videoChatMessageResponse);
-  }
-  if (self.hasTextFromServerRequest) {
-    size += computeMessageSize(20, self.textFromServerRequest);
-  }
-  if (self.hasTextFromServerResponse) {
-    size += computeMessageSize(21, self.textFromServerResponse);
-  }
-  if (self.hasPictureFromServerRequest) {
-    size += computeMessageSize(22, self.pictureFromServerRequest);
-  }
-  if (self.hasPictureFromServerResponse) {
-    size += computeMessageSize(23, self.pictureFromServerResponse);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message*) parseFromData:(NSData*) data {
-  return (Message*)[[[Message builder] mergeFromData:data] build];
+    return (Message*)[[[Message builder] mergeFromData:data] build];
 }
 + (Message*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message*)[[[Message builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message*)[[[Message builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message*) parseFromInputStream:(NSInputStream*) input {
-  return (Message*)[[[Message builder] mergeFromInputStream:input] build];
+    return (Message*)[[[Message builder] mergeFromInputStream:input] build];
 }
 + (Message*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message*)[[[Message builder] mergeDelimitedFromInputStream:input] build];
+    return (Message*)[[[Message builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message*)[[[Message builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message*)[[[Message builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message*)[[[Message builder] mergeFromCodedInputStream:input] build];
+    return (Message*)[[[Message builder] mergeFromCodedInputStream:input] build];
 }
 + (Message*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message*)[[[Message builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message*)[[[Message builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_Builder*) builder {
-  return [[[Message_Builder alloc] init] autorelease];
+    return [[[Message_Builder alloc] init] autorelease];
 }
 + (Message_Builder*) builderWithPrototype:(Message*) prototype {
-  return [[Message builder] mergeFrom:prototype];
+    return [[Message builder] mergeFrom:prototype];
 }
 - (Message_Builder*) builder {
-  return [Message builder];
+    return [Message builder];
 }
 @end
 
 BOOL Message_MessageTypeIsValidValue(Message_MessageType value) {
-  switch (value) {
-    case Message_MessageTypeSubscribeReq:
-    case Message_MessageTypeSubscribeResp:
-    case Message_MessageTypeLoginReq:
-    case Message_MessageTypeLoginResp:
-    case Message_MessageTypeLogoutReq:
-    case Message_MessageTypeLogoutResp:
-    case Message_MessageTypeForgetPwdReq:
-    case Message_MessageTypeForgetPwdResp:
-    case Message_MessageTypeWhoAmIReq:
-    case Message_MessageTypeWhoAmIResp:
-    case Message_MessageTypeTextReq:
-    case Message_MessageTypeTextResp:
-    case Message_MessageTypeTextFromServerReq:
-    case Message_MessageTypeTextFromServerResp:
-    case Message_MessageTypePictureReq:
-    case Message_MessageTypePictureResp:
-    case Message_MessageTypePictureFromServerReq:
-    case Message_MessageTypePictureFromServerResp:
-    case Message_MessageTypeVoiceReq:
-    case Message_MessageTypeVoiceResp:
-    case Message_MessageTypeVoiceFromServerReq:
-    case Message_MessageTypeVoiceFromServerResp:
-    case Message_MessageTypeVideoReq:
-    case Message_MessageTypeVideoResp:
-    case Message_MessageTypeVideoFromServerReq:
-    case Message_MessageTypeVideoFromServerResp:
-      return YES;
-    default:
-      return NO;
-  }
+    switch (value) {
+        case Message_MessageTypeSubscribeReq:
+        case Message_MessageTypeSubscribeResp:
+        case Message_MessageTypeLoginReq:
+        case Message_MessageTypeLoginResp:
+        case Message_MessageTypeLogoutReq:
+        case Message_MessageTypeLogoutResp:
+        case Message_MessageTypeForgetPwdReq:
+        case Message_MessageTypeForgetPwdResp:
+        case Message_MessageTypeWhoAmIReq:
+        case Message_MessageTypeWhoAmIResp:
+        case Message_MessageTypeTextReq:
+        case Message_MessageTypeTextResp:
+        case Message_MessageTypeTextFromServerReq:
+        case Message_MessageTypeTextFromServerResp:
+        case Message_MessageTypePictureReq:
+        case Message_MessageTypePictureResp:
+        case Message_MessageTypePictureFromServerReq:
+        case Message_MessageTypePictureFromServerResp:
+        case Message_MessageTypeVoiceReq:
+        case Message_MessageTypeVoiceResp:
+        case Message_MessageTypeVoiceFromServerReq:
+        case Message_MessageTypeVoiceFromServerResp:
+        case Message_MessageTypeVideoReq:
+        case Message_MessageTypeVideoResp:
+        case Message_MessageTypeVideoFromServerReq:
+        case Message_MessageTypeVideoFromServerResp:
+            return YES;
+        default:
+            return NO;
+    }
 }
 @interface Message_SubMessageRequest ()
 @property (retain) NSString* phoneNumber;
@@ -606,136 +690,136 @@ BOOL Message_MessageTypeIsValidValue(Message_MessageType value) {
 @implementation Message_SubMessageRequest
 
 - (BOOL) hasPhoneNumber {
-  return !!hasPhoneNumber_;
+    return !!hasPhoneNumber_;
 }
 - (void) setHasPhoneNumber:(BOOL) value {
-  hasPhoneNumber_ = !!value;
+    hasPhoneNumber_ = !!value;
 }
 @synthesize phoneNumber;
 - (BOOL) hasEmail {
-  return !!hasEmail_;
+    return !!hasEmail_;
 }
 - (void) setHasEmail:(BOOL) value {
-  hasEmail_ = !!value;
+    hasEmail_ = !!value;
 }
 @synthesize email;
 - (BOOL) hasPassword {
-  return !!hasPassword_;
+    return !!hasPassword_;
 }
 - (void) setHasPassword:(BOOL) value {
-  hasPassword_ = !!value;
+    hasPassword_ = !!value;
 }
 @synthesize password;
 - (BOOL) hasSex {
-  return !!hasSex_;
+    return !!hasSex_;
 }
 - (void) setHasSex:(BOOL) value {
-  hasSex_ = !!value;
+    hasSex_ = !!value;
 }
 @synthesize sex;
 - (void) dealloc {
-  self.phoneNumber = nil;
-  self.email = nil;
-  self.password = nil;
-  [super dealloc];
+    self.phoneNumber = nil;
+    self.email = nil;
+    self.password = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.phoneNumber = @"";
-    self.email = @"";
-    self.password = @"";
-    self.sex = 0;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.phoneNumber = @"";
+        self.email = @"";
+        self.password = @"";
+        self.sex = 0;
+    }
+    return self;
 }
 static Message_SubMessageRequest* defaultMessage_SubMessageRequestInstance = nil;
 + (void) initialize {
-  if (self == [Message_SubMessageRequest class]) {
-    defaultMessage_SubMessageRequestInstance = [[Message_SubMessageRequest alloc] init];
-  }
+    if (self == [Message_SubMessageRequest class]) {
+        defaultMessage_SubMessageRequestInstance = [[Message_SubMessageRequest alloc] init];
+    }
 }
 + (Message_SubMessageRequest*) defaultInstance {
-  return defaultMessage_SubMessageRequestInstance;
+    return defaultMessage_SubMessageRequestInstance;
 }
 - (Message_SubMessageRequest*) defaultInstance {
-  return defaultMessage_SubMessageRequestInstance;
+    return defaultMessage_SubMessageRequestInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasPassword) {
-    return NO;
-  }
-  if (!self.hasSex) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasPassword) {
+        return NO;
+    }
+    if (!self.hasSex) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasPhoneNumber) {
-    [output writeString:1 value:self.phoneNumber];
-  }
-  if (self.hasEmail) {
-    [output writeString:2 value:self.email];
-  }
-  if (self.hasPassword) {
-    [output writeString:3 value:self.password];
-  }
-  if (self.hasSex) {
-    [output writeInt32:4 value:self.sex];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasPhoneNumber) {
+        [output writeString:1 value:self.phoneNumber];
+    }
+    if (self.hasEmail) {
+        [output writeString:2 value:self.email];
+    }
+    if (self.hasPassword) {
+        [output writeString:3 value:self.password];
+    }
+    if (self.hasSex) {
+        [output writeInt32:4 value:self.sex];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasPhoneNumber) {
+        size += computeStringSize(1, self.phoneNumber);
+    }
+    if (self.hasEmail) {
+        size += computeStringSize(2, self.email);
+    }
+    if (self.hasPassword) {
+        size += computeStringSize(3, self.password);
+    }
+    if (self.hasSex) {
+        size += computeInt32Size(4, self.sex);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasPhoneNumber) {
-    size += computeStringSize(1, self.phoneNumber);
-  }
-  if (self.hasEmail) {
-    size += computeStringSize(2, self.email);
-  }
-  if (self.hasPassword) {
-    size += computeStringSize(3, self.password);
-  }
-  if (self.hasSex) {
-    size += computeInt32Size(4, self.sex);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_SubMessageRequest*) parseFromData:(NSData*) data {
-  return (Message_SubMessageRequest*)[[[Message_SubMessageRequest builder] mergeFromData:data] build];
+    return (Message_SubMessageRequest*)[[[Message_SubMessageRequest builder] mergeFromData:data] build];
 }
 + (Message_SubMessageRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_SubMessageRequest*)[[[Message_SubMessageRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_SubMessageRequest*)[[[Message_SubMessageRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_SubMessageRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_SubMessageRequest*)[[[Message_SubMessageRequest builder] mergeFromInputStream:input] build];
+    return (Message_SubMessageRequest*)[[[Message_SubMessageRequest builder] mergeFromInputStream:input] build];
 }
 + (Message_SubMessageRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_SubMessageRequest*)[[[Message_SubMessageRequest builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_SubMessageRequest*)[[[Message_SubMessageRequest builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_SubMessageRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_SubMessageRequest*)[[[Message_SubMessageRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_SubMessageRequest*)[[[Message_SubMessageRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_SubMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_SubMessageRequest*)[[[Message_SubMessageRequest builder] mergeFromCodedInputStream:input] build];
+    return (Message_SubMessageRequest*)[[[Message_SubMessageRequest builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_SubMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_SubMessageRequest*)[[[Message_SubMessageRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_SubMessageRequest*)[[[Message_SubMessageRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_SubMessageRequest_Builder*) builder {
-  return [[[Message_SubMessageRequest_Builder alloc] init] autorelease];
+    return [[[Message_SubMessageRequest_Builder alloc] init] autorelease];
 }
 + (Message_SubMessageRequest_Builder*) builderWithPrototype:(Message_SubMessageRequest*) prototype {
-  return [[Message_SubMessageRequest builder] mergeFrom:prototype];
+    return [[Message_SubMessageRequest builder] mergeFrom:prototype];
 }
 - (Message_SubMessageRequest_Builder*) builder {
-  return [Message_SubMessageRequest builder];
+    return [Message_SubMessageRequest builder];
 }
 @end
 
@@ -746,156 +830,156 @@ static Message_SubMessageRequest* defaultMessage_SubMessageRequestInstance = nil
 @implementation Message_SubMessageRequest_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_SubMessageRequest alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_SubMessageRequest alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_SubMessageRequest_Builder*) clear {
-  self.result = [[[Message_SubMessageRequest alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_SubMessageRequest alloc] init] autorelease];
+    return self;
 }
 - (Message_SubMessageRequest_Builder*) clone {
-  return [Message_SubMessageRequest builderWithPrototype:result];
+    return [Message_SubMessageRequest builderWithPrototype:result];
 }
 - (Message_SubMessageRequest*) defaultInstance {
-  return [Message_SubMessageRequest defaultInstance];
+    return [Message_SubMessageRequest defaultInstance];
 }
 - (Message_SubMessageRequest*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_SubMessageRequest*) buildPartial {
-  Message_SubMessageRequest* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_SubMessageRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_SubMessageRequest_Builder*) mergeFrom:(Message_SubMessageRequest*) other {
-  if (other == [Message_SubMessageRequest defaultInstance]) {
+    if (other == [Message_SubMessageRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasPhoneNumber) {
+        [self setPhoneNumber:other.phoneNumber];
+    }
+    if (other.hasEmail) {
+        [self setEmail:other.email];
+    }
+    if (other.hasPassword) {
+        [self setPassword:other.password];
+    }
+    if (other.hasSex) {
+        [self setSex:other.sex];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasPhoneNumber) {
-    [self setPhoneNumber:other.phoneNumber];
-  }
-  if (other.hasEmail) {
-    [self setEmail:other.email];
-  }
-  if (other.hasPassword) {
-    [self setPassword:other.password];
-  }
-  if (other.hasSex) {
-    [self setSex:other.sex];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_SubMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_SubMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setPhoneNumber:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setEmail:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setPassword:[input readString]];
+                break;
+            }
+            case 32: {
+                [self setSex:[input readInt32]];
+                break;
+            }
         }
-        break;
-      }
-      case 10: {
-        [self setPhoneNumber:[input readString]];
-        break;
-      }
-      case 18: {
-        [self setEmail:[input readString]];
-        break;
-      }
-      case 26: {
-        [self setPassword:[input readString]];
-        break;
-      }
-      case 32: {
-        [self setSex:[input readInt32]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasPhoneNumber {
-  return result.hasPhoneNumber;
+    return result.hasPhoneNumber;
 }
 - (NSString*) phoneNumber {
-  return result.phoneNumber;
+    return result.phoneNumber;
 }
 - (Message_SubMessageRequest_Builder*) setPhoneNumber:(NSString*) value {
-  result.hasPhoneNumber = YES;
-  result.phoneNumber = value;
-  return self;
+    result.hasPhoneNumber = YES;
+    result.phoneNumber = value;
+    return self;
 }
 - (Message_SubMessageRequest_Builder*) clearPhoneNumber {
-  result.hasPhoneNumber = NO;
-  result.phoneNumber = @"";
-  return self;
+    result.hasPhoneNumber = NO;
+    result.phoneNumber = @"";
+    return self;
 }
 - (BOOL) hasEmail {
-  return result.hasEmail;
+    return result.hasEmail;
 }
 - (NSString*) email {
-  return result.email;
+    return result.email;
 }
 - (Message_SubMessageRequest_Builder*) setEmail:(NSString*) value {
-  result.hasEmail = YES;
-  result.email = value;
-  return self;
+    result.hasEmail = YES;
+    result.email = value;
+    return self;
 }
 - (Message_SubMessageRequest_Builder*) clearEmail {
-  result.hasEmail = NO;
-  result.email = @"";
-  return self;
+    result.hasEmail = NO;
+    result.email = @"";
+    return self;
 }
 - (BOOL) hasPassword {
-  return result.hasPassword;
+    return result.hasPassword;
 }
 - (NSString*) password {
-  return result.password;
+    return result.password;
 }
 - (Message_SubMessageRequest_Builder*) setPassword:(NSString*) value {
-  result.hasPassword = YES;
-  result.password = value;
-  return self;
+    result.hasPassword = YES;
+    result.password = value;
+    return self;
 }
 - (Message_SubMessageRequest_Builder*) clearPassword {
-  result.hasPassword = NO;
-  result.password = @"";
-  return self;
+    result.hasPassword = NO;
+    result.password = @"";
+    return self;
 }
 - (BOOL) hasSex {
-  return result.hasSex;
+    return result.hasSex;
 }
 - (int32_t) sex {
-  return result.sex;
+    return result.sex;
 }
 - (Message_SubMessageRequest_Builder*) setSex:(int32_t) value {
-  result.hasSex = YES;
-  result.sex = value;
-  return self;
+    result.hasSex = YES;
+    result.sex = value;
+    return self;
 }
 - (Message_SubMessageRequest_Builder*) clearSex {
-  result.hasSex = NO;
-  result.sex = 0;
-  return self;
+    result.hasSex = NO;
+    result.sex = 0;
+    return self;
 }
 @end
 
@@ -915,248 +999,248 @@ static Message_SubMessageRequest* defaultMessage_SubMessageRequestInstance = nil
 @implementation Message_SubMessageResponse
 
 - (BOOL) hasStatus {
-  return !!hasStatus_;
+    return !!hasStatus_;
 }
 - (void) setHasStatus:(BOOL) value {
-  hasStatus_ = !!value;
+    hasStatus_ = !!value;
 }
 @synthesize status;
 - (BOOL) hasUserId {
-  return !!hasUserId_;
+    return !!hasUserId_;
 }
 - (void) setHasUserId:(BOOL) value {
-  hasUserId_ = !!value;
+    hasUserId_ = !!value;
 }
 @synthesize userId;
 - (BOOL) hasUserName {
-  return !!hasUserName_;
+    return !!hasUserName_;
 }
 - (void) setHasUserName:(BOOL) value {
-  hasUserName_ = !!value;
+    hasUserName_ = !!value;
 }
 @synthesize userName;
 - (BOOL) hasPassword {
-  return !!hasPassword_;
+    return !!hasPassword_;
 }
 - (void) setHasPassword:(BOOL) value {
-  hasPassword_ = !!value;
+    hasPassword_ = !!value;
 }
 @synthesize password;
 - (BOOL) hasNickName {
-  return !!hasNickName_;
+    return !!hasNickName_;
 }
 - (void) setHasNickName:(BOOL) value {
-  hasNickName_ = !!value;
+    hasNickName_ = !!value;
 }
 @synthesize nickName;
 - (BOOL) hasSex {
-  return !!hasSex_;
+    return !!hasSex_;
 }
 - (void) setHasSex:(BOOL) value {
-  hasSex_ = !!value;
+    hasSex_ = !!value;
 }
 @synthesize sex;
 - (BOOL) hasBirthday {
-  return !!hasBirthday_;
+    return !!hasBirthday_;
 }
 - (void) setHasBirthday:(BOOL) value {
-  hasBirthday_ = !!value;
+    hasBirthday_ = !!value;
 }
 @synthesize birthday;
 - (BOOL) hasAvatarUrl {
-  return !!hasAvatarUrl_;
+    return !!hasAvatarUrl_;
 }
 - (void) setHasAvatarUrl:(BOOL) value {
-  hasAvatarUrl_ = !!value;
+    hasAvatarUrl_ = !!value;
 }
 @synthesize avatarUrl;
 - (BOOL) hasAvatarId {
-  return !!hasAvatarId_;
+    return !!hasAvatarId_;
 }
 - (void) setHasAvatarId:(BOOL) value {
-  hasAvatarId_ = !!value;
+    hasAvatarId_ = !!value;
 }
 @synthesize avatarId;
 - (BOOL) hasAppId {
-  return !!hasAppId_;
+    return !!hasAppId_;
 }
 - (void) setHasAppId:(BOOL) value {
-  hasAppId_ = !!value;
+    hasAppId_ = !!value;
 }
 @synthesize appId;
 - (void) dealloc {
-  self.userId = nil;
-  self.userName = nil;
-  self.password = nil;
-  self.nickName = nil;
-  self.birthday = nil;
-  self.avatarUrl = nil;
-  self.appId = nil;
-  [super dealloc];
+    self.userId = nil;
+    self.userName = nil;
+    self.password = nil;
+    self.nickName = nil;
+    self.birthday = nil;
+    self.avatarUrl = nil;
+    self.appId = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.status = 0;
-    self.userId = @"";
-    self.userName = @"";
-    self.password = @"";
-    self.nickName = @"";
-    self.sex = 0;
-    self.birthday = @"";
-    self.avatarUrl = @"";
-    self.avatarId = 0;
-    self.appId = @"";
-  }
-  return self;
+    if ((self = [super init])) {
+        self.status = 0;
+        self.userId = @"";
+        self.userName = @"";
+        self.password = @"";
+        self.nickName = @"";
+        self.sex = 0;
+        self.birthday = @"";
+        self.avatarUrl = @"";
+        self.avatarId = 0;
+        self.appId = @"";
+    }
+    return self;
 }
 static Message_SubMessageResponse* defaultMessage_SubMessageResponseInstance = nil;
 + (void) initialize {
-  if (self == [Message_SubMessageResponse class]) {
-    defaultMessage_SubMessageResponseInstance = [[Message_SubMessageResponse alloc] init];
-  }
+    if (self == [Message_SubMessageResponse class]) {
+        defaultMessage_SubMessageResponseInstance = [[Message_SubMessageResponse alloc] init];
+    }
 }
 + (Message_SubMessageResponse*) defaultInstance {
-  return defaultMessage_SubMessageResponseInstance;
+    return defaultMessage_SubMessageResponseInstance;
 }
 - (Message_SubMessageResponse*) defaultInstance {
-  return defaultMessage_SubMessageResponseInstance;
+    return defaultMessage_SubMessageResponseInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasStatus) {
-    return NO;
-  }
-  if (!self.hasUserId) {
-    return NO;
-  }
-  if (!self.hasUserName) {
-    return NO;
-  }
-  if (!self.hasPassword) {
-    return NO;
-  }
-  if (!self.hasNickName) {
-    return NO;
-  }
-  if (!self.hasSex) {
-    return NO;
-  }
-  if (!self.hasBirthday) {
-    return NO;
-  }
-  if (!self.hasAvatarUrl) {
-    return NO;
-  }
-  if (!self.hasAvatarId) {
-    return NO;
-  }
-  if (!self.hasAppId) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasUserId) {
+        return NO;
+    }
+    if (!self.hasUserName) {
+        return NO;
+    }
+    if (!self.hasPassword) {
+        return NO;
+    }
+    if (!self.hasNickName) {
+        return NO;
+    }
+    if (!self.hasSex) {
+        return NO;
+    }
+    if (!self.hasBirthday) {
+        return NO;
+    }
+    if (!self.hasAvatarUrl) {
+        return NO;
+    }
+    if (!self.hasAvatarId) {
+        return NO;
+    }
+    if (!self.hasAppId) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasStatus) {
-    [output writeInt32:1 value:self.status];
-  }
-  if (self.hasUserId) {
-    [output writeString:2 value:self.userId];
-  }
-  if (self.hasUserName) {
-    [output writeString:3 value:self.userName];
-  }
-  if (self.hasPassword) {
-    [output writeString:4 value:self.password];
-  }
-  if (self.hasNickName) {
-    [output writeString:5 value:self.nickName];
-  }
-  if (self.hasSex) {
-    [output writeInt32:6 value:self.sex];
-  }
-  if (self.hasBirthday) {
-    [output writeString:7 value:self.birthday];
-  }
-  if (self.hasAvatarUrl) {
-    [output writeString:8 value:self.avatarUrl];
-  }
-  if (self.hasAvatarId) {
-    [output writeInt32:9 value:self.avatarId];
-  }
-  if (self.hasAppId) {
-    [output writeString:10 value:self.appId];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasStatus) {
+        [output writeInt32:1 value:self.status];
+    }
+    if (self.hasUserId) {
+        [output writeString:2 value:self.userId];
+    }
+    if (self.hasUserName) {
+        [output writeString:3 value:self.userName];
+    }
+    if (self.hasPassword) {
+        [output writeString:4 value:self.password];
+    }
+    if (self.hasNickName) {
+        [output writeString:5 value:self.nickName];
+    }
+    if (self.hasSex) {
+        [output writeInt32:6 value:self.sex];
+    }
+    if (self.hasBirthday) {
+        [output writeString:7 value:self.birthday];
+    }
+    if (self.hasAvatarUrl) {
+        [output writeString:8 value:self.avatarUrl];
+    }
+    if (self.hasAvatarId) {
+        [output writeInt32:9 value:self.avatarId];
+    }
+    if (self.hasAppId) {
+        [output writeString:10 value:self.appId];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasStatus) {
+        size += computeInt32Size(1, self.status);
+    }
+    if (self.hasUserId) {
+        size += computeStringSize(2, self.userId);
+    }
+    if (self.hasUserName) {
+        size += computeStringSize(3, self.userName);
+    }
+    if (self.hasPassword) {
+        size += computeStringSize(4, self.password);
+    }
+    if (self.hasNickName) {
+        size += computeStringSize(5, self.nickName);
+    }
+    if (self.hasSex) {
+        size += computeInt32Size(6, self.sex);
+    }
+    if (self.hasBirthday) {
+        size += computeStringSize(7, self.birthday);
+    }
+    if (self.hasAvatarUrl) {
+        size += computeStringSize(8, self.avatarUrl);
+    }
+    if (self.hasAvatarId) {
+        size += computeInt32Size(9, self.avatarId);
+    }
+    if (self.hasAppId) {
+        size += computeStringSize(10, self.appId);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasStatus) {
-    size += computeInt32Size(1, self.status);
-  }
-  if (self.hasUserId) {
-    size += computeStringSize(2, self.userId);
-  }
-  if (self.hasUserName) {
-    size += computeStringSize(3, self.userName);
-  }
-  if (self.hasPassword) {
-    size += computeStringSize(4, self.password);
-  }
-  if (self.hasNickName) {
-    size += computeStringSize(5, self.nickName);
-  }
-  if (self.hasSex) {
-    size += computeInt32Size(6, self.sex);
-  }
-  if (self.hasBirthday) {
-    size += computeStringSize(7, self.birthday);
-  }
-  if (self.hasAvatarUrl) {
-    size += computeStringSize(8, self.avatarUrl);
-  }
-  if (self.hasAvatarId) {
-    size += computeInt32Size(9, self.avatarId);
-  }
-  if (self.hasAppId) {
-    size += computeStringSize(10, self.appId);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_SubMessageResponse*) parseFromData:(NSData*) data {
-  return (Message_SubMessageResponse*)[[[Message_SubMessageResponse builder] mergeFromData:data] build];
+    return (Message_SubMessageResponse*)[[[Message_SubMessageResponse builder] mergeFromData:data] build];
 }
 + (Message_SubMessageResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_SubMessageResponse*)[[[Message_SubMessageResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_SubMessageResponse*)[[[Message_SubMessageResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_SubMessageResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_SubMessageResponse*)[[[Message_SubMessageResponse builder] mergeFromInputStream:input] build];
+    return (Message_SubMessageResponse*)[[[Message_SubMessageResponse builder] mergeFromInputStream:input] build];
 }
 + (Message_SubMessageResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_SubMessageResponse*)[[[Message_SubMessageResponse builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_SubMessageResponse*)[[[Message_SubMessageResponse builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_SubMessageResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_SubMessageResponse*)[[[Message_SubMessageResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_SubMessageResponse*)[[[Message_SubMessageResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_SubMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_SubMessageResponse*)[[[Message_SubMessageResponse builder] mergeFromCodedInputStream:input] build];
+    return (Message_SubMessageResponse*)[[[Message_SubMessageResponse builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_SubMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_SubMessageResponse*)[[[Message_SubMessageResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_SubMessageResponse*)[[[Message_SubMessageResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_SubMessageResponse_Builder*) builder {
-  return [[[Message_SubMessageResponse_Builder alloc] init] autorelease];
+    return [[[Message_SubMessageResponse_Builder alloc] init] autorelease];
 }
 + (Message_SubMessageResponse_Builder*) builderWithPrototype:(Message_SubMessageResponse*) prototype {
-  return [[Message_SubMessageResponse builder] mergeFrom:prototype];
+    return [[Message_SubMessageResponse builder] mergeFrom:prototype];
 }
 - (Message_SubMessageResponse_Builder*) builder {
-  return [Message_SubMessageResponse builder];
+    return [Message_SubMessageResponse builder];
 }
 @end
 
@@ -1167,294 +1251,294 @@ static Message_SubMessageResponse* defaultMessage_SubMessageResponseInstance = n
 @implementation Message_SubMessageResponse_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_SubMessageResponse alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_SubMessageResponse alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_SubMessageResponse_Builder*) clear {
-  self.result = [[[Message_SubMessageResponse alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_SubMessageResponse alloc] init] autorelease];
+    return self;
 }
 - (Message_SubMessageResponse_Builder*) clone {
-  return [Message_SubMessageResponse builderWithPrototype:result];
+    return [Message_SubMessageResponse builderWithPrototype:result];
 }
 - (Message_SubMessageResponse*) defaultInstance {
-  return [Message_SubMessageResponse defaultInstance];
+    return [Message_SubMessageResponse defaultInstance];
 }
 - (Message_SubMessageResponse*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_SubMessageResponse*) buildPartial {
-  Message_SubMessageResponse* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_SubMessageResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_SubMessageResponse_Builder*) mergeFrom:(Message_SubMessageResponse*) other {
-  if (other == [Message_SubMessageResponse defaultInstance]) {
+    if (other == [Message_SubMessageResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasUserId) {
+        [self setUserId:other.userId];
+    }
+    if (other.hasUserName) {
+        [self setUserName:other.userName];
+    }
+    if (other.hasPassword) {
+        [self setPassword:other.password];
+    }
+    if (other.hasNickName) {
+        [self setNickName:other.nickName];
+    }
+    if (other.hasSex) {
+        [self setSex:other.sex];
+    }
+    if (other.hasBirthday) {
+        [self setBirthday:other.birthday];
+    }
+    if (other.hasAvatarUrl) {
+        [self setAvatarUrl:other.avatarUrl];
+    }
+    if (other.hasAvatarId) {
+        [self setAvatarId:other.avatarId];
+    }
+    if (other.hasAppId) {
+        [self setAppId:other.appId];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasStatus) {
-    [self setStatus:other.status];
-  }
-  if (other.hasUserId) {
-    [self setUserId:other.userId];
-  }
-  if (other.hasUserName) {
-    [self setUserName:other.userName];
-  }
-  if (other.hasPassword) {
-    [self setPassword:other.password];
-  }
-  if (other.hasNickName) {
-    [self setNickName:other.nickName];
-  }
-  if (other.hasSex) {
-    [self setSex:other.sex];
-  }
-  if (other.hasBirthday) {
-    [self setBirthday:other.birthday];
-  }
-  if (other.hasAvatarUrl) {
-    [self setAvatarUrl:other.avatarUrl];
-  }
-  if (other.hasAvatarId) {
-    [self setAvatarId:other.avatarId];
-  }
-  if (other.hasAppId) {
-    [self setAppId:other.appId];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_SubMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_SubMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 18: {
+                [self setUserId:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setUserName:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setPassword:[input readString]];
+                break;
+            }
+            case 42: {
+                [self setNickName:[input readString]];
+                break;
+            }
+            case 48: {
+                [self setSex:[input readInt32]];
+                break;
+            }
+            case 58: {
+                [self setBirthday:[input readString]];
+                break;
+            }
+            case 66: {
+                [self setAvatarUrl:[input readString]];
+                break;
+            }
+            case 72: {
+                [self setAvatarId:[input readInt32]];
+                break;
+            }
+            case 82: {
+                [self setAppId:[input readString]];
+                break;
+            }
         }
-        break;
-      }
-      case 8: {
-        [self setStatus:[input readInt32]];
-        break;
-      }
-      case 18: {
-        [self setUserId:[input readString]];
-        break;
-      }
-      case 26: {
-        [self setUserName:[input readString]];
-        break;
-      }
-      case 34: {
-        [self setPassword:[input readString]];
-        break;
-      }
-      case 42: {
-        [self setNickName:[input readString]];
-        break;
-      }
-      case 48: {
-        [self setSex:[input readInt32]];
-        break;
-      }
-      case 58: {
-        [self setBirthday:[input readString]];
-        break;
-      }
-      case 66: {
-        [self setAvatarUrl:[input readString]];
-        break;
-      }
-      case 72: {
-        [self setAvatarId:[input readInt32]];
-        break;
-      }
-      case 82: {
-        [self setAppId:[input readString]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasStatus {
-  return result.hasStatus;
+    return result.hasStatus;
 }
 - (int32_t) status {
-  return result.status;
+    return result.status;
 }
 - (Message_SubMessageResponse_Builder*) setStatus:(int32_t) value {
-  result.hasStatus = YES;
-  result.status = value;
-  return self;
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
 }
 - (Message_SubMessageResponse_Builder*) clearStatus {
-  result.hasStatus = NO;
-  result.status = 0;
-  return self;
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+    return result.hasUserId;
 }
 - (NSString*) userId {
-  return result.userId;
+    return result.userId;
 }
 - (Message_SubMessageResponse_Builder*) setUserId:(NSString*) value {
-  result.hasUserId = YES;
-  result.userId = value;
-  return self;
+    result.hasUserId = YES;
+    result.userId = value;
+    return self;
 }
 - (Message_SubMessageResponse_Builder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = @"";
-  return self;
+    result.hasUserId = NO;
+    result.userId = @"";
+    return self;
 }
 - (BOOL) hasUserName {
-  return result.hasUserName;
+    return result.hasUserName;
 }
 - (NSString*) userName {
-  return result.userName;
+    return result.userName;
 }
 - (Message_SubMessageResponse_Builder*) setUserName:(NSString*) value {
-  result.hasUserName = YES;
-  result.userName = value;
-  return self;
+    result.hasUserName = YES;
+    result.userName = value;
+    return self;
 }
 - (Message_SubMessageResponse_Builder*) clearUserName {
-  result.hasUserName = NO;
-  result.userName = @"";
-  return self;
+    result.hasUserName = NO;
+    result.userName = @"";
+    return self;
 }
 - (BOOL) hasPassword {
-  return result.hasPassword;
+    return result.hasPassword;
 }
 - (NSString*) password {
-  return result.password;
+    return result.password;
 }
 - (Message_SubMessageResponse_Builder*) setPassword:(NSString*) value {
-  result.hasPassword = YES;
-  result.password = value;
-  return self;
+    result.hasPassword = YES;
+    result.password = value;
+    return self;
 }
 - (Message_SubMessageResponse_Builder*) clearPassword {
-  result.hasPassword = NO;
-  result.password = @"";
-  return self;
+    result.hasPassword = NO;
+    result.password = @"";
+    return self;
 }
 - (BOOL) hasNickName {
-  return result.hasNickName;
+    return result.hasNickName;
 }
 - (NSString*) nickName {
-  return result.nickName;
+    return result.nickName;
 }
 - (Message_SubMessageResponse_Builder*) setNickName:(NSString*) value {
-  result.hasNickName = YES;
-  result.nickName = value;
-  return self;
+    result.hasNickName = YES;
+    result.nickName = value;
+    return self;
 }
 - (Message_SubMessageResponse_Builder*) clearNickName {
-  result.hasNickName = NO;
-  result.nickName = @"";
-  return self;
+    result.hasNickName = NO;
+    result.nickName = @"";
+    return self;
 }
 - (BOOL) hasSex {
-  return result.hasSex;
+    return result.hasSex;
 }
 - (int32_t) sex {
-  return result.sex;
+    return result.sex;
 }
 - (Message_SubMessageResponse_Builder*) setSex:(int32_t) value {
-  result.hasSex = YES;
-  result.sex = value;
-  return self;
+    result.hasSex = YES;
+    result.sex = value;
+    return self;
 }
 - (Message_SubMessageResponse_Builder*) clearSex {
-  result.hasSex = NO;
-  result.sex = 0;
-  return self;
+    result.hasSex = NO;
+    result.sex = 0;
+    return self;
 }
 - (BOOL) hasBirthday {
-  return result.hasBirthday;
+    return result.hasBirthday;
 }
 - (NSString*) birthday {
-  return result.birthday;
+    return result.birthday;
 }
 - (Message_SubMessageResponse_Builder*) setBirthday:(NSString*) value {
-  result.hasBirthday = YES;
-  result.birthday = value;
-  return self;
+    result.hasBirthday = YES;
+    result.birthday = value;
+    return self;
 }
 - (Message_SubMessageResponse_Builder*) clearBirthday {
-  result.hasBirthday = NO;
-  result.birthday = @"";
-  return self;
+    result.hasBirthday = NO;
+    result.birthday = @"";
+    return self;
 }
 - (BOOL) hasAvatarUrl {
-  return result.hasAvatarUrl;
+    return result.hasAvatarUrl;
 }
 - (NSString*) avatarUrl {
-  return result.avatarUrl;
+    return result.avatarUrl;
 }
 - (Message_SubMessageResponse_Builder*) setAvatarUrl:(NSString*) value {
-  result.hasAvatarUrl = YES;
-  result.avatarUrl = value;
-  return self;
+    result.hasAvatarUrl = YES;
+    result.avatarUrl = value;
+    return self;
 }
 - (Message_SubMessageResponse_Builder*) clearAvatarUrl {
-  result.hasAvatarUrl = NO;
-  result.avatarUrl = @"";
-  return self;
+    result.hasAvatarUrl = NO;
+    result.avatarUrl = @"";
+    return self;
 }
 - (BOOL) hasAvatarId {
-  return result.hasAvatarId;
+    return result.hasAvatarId;
 }
 - (int32_t) avatarId {
-  return result.avatarId;
+    return result.avatarId;
 }
 - (Message_SubMessageResponse_Builder*) setAvatarId:(int32_t) value {
-  result.hasAvatarId = YES;
-  result.avatarId = value;
-  return self;
+    result.hasAvatarId = YES;
+    result.avatarId = value;
+    return self;
 }
 - (Message_SubMessageResponse_Builder*) clearAvatarId {
-  result.hasAvatarId = NO;
-  result.avatarId = 0;
-  return self;
+    result.hasAvatarId = NO;
+    result.avatarId = 0;
+    return self;
 }
 - (BOOL) hasAppId {
-  return result.hasAppId;
+    return result.hasAppId;
 }
 - (NSString*) appId {
-  return result.appId;
+    return result.appId;
 }
 - (Message_SubMessageResponse_Builder*) setAppId:(NSString*) value {
-  result.hasAppId = YES;
-  result.appId = value;
-  return self;
+    result.hasAppId = YES;
+    result.appId = value;
+    return self;
 }
 - (Message_SubMessageResponse_Builder*) clearAppId {
-  result.hasAppId = NO;
-  result.appId = @"";
-  return self;
+    result.hasAppId = NO;
+    result.appId = @"";
+    return self;
 }
 @end
 
@@ -1467,119 +1551,119 @@ static Message_SubMessageResponse* defaultMessage_SubMessageResponseInstance = n
 @implementation Message_LoginMessageRequest
 
 - (BOOL) hasPhoneNumber {
-  return !!hasPhoneNumber_;
+    return !!hasPhoneNumber_;
 }
 - (void) setHasPhoneNumber:(BOOL) value {
-  hasPhoneNumber_ = !!value;
+    hasPhoneNumber_ = !!value;
 }
 @synthesize phoneNumber;
 - (BOOL) hasEmail {
-  return !!hasEmail_;
+    return !!hasEmail_;
 }
 - (void) setHasEmail:(BOOL) value {
-  hasEmail_ = !!value;
+    hasEmail_ = !!value;
 }
 @synthesize email;
 - (BOOL) hasPassword {
-  return !!hasPassword_;
+    return !!hasPassword_;
 }
 - (void) setHasPassword:(BOOL) value {
-  hasPassword_ = !!value;
+    hasPassword_ = !!value;
 }
 @synthesize password;
 - (void) dealloc {
-  self.phoneNumber = nil;
-  self.email = nil;
-  self.password = nil;
-  [super dealloc];
+    self.phoneNumber = nil;
+    self.email = nil;
+    self.password = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.phoneNumber = @"";
-    self.email = @"";
-    self.password = @"";
-  }
-  return self;
+    if ((self = [super init])) {
+        self.phoneNumber = @"";
+        self.email = @"";
+        self.password = @"";
+    }
+    return self;
 }
 static Message_LoginMessageRequest* defaultMessage_LoginMessageRequestInstance = nil;
 + (void) initialize {
-  if (self == [Message_LoginMessageRequest class]) {
-    defaultMessage_LoginMessageRequestInstance = [[Message_LoginMessageRequest alloc] init];
-  }
+    if (self == [Message_LoginMessageRequest class]) {
+        defaultMessage_LoginMessageRequestInstance = [[Message_LoginMessageRequest alloc] init];
+    }
 }
 + (Message_LoginMessageRequest*) defaultInstance {
-  return defaultMessage_LoginMessageRequestInstance;
+    return defaultMessage_LoginMessageRequestInstance;
 }
 - (Message_LoginMessageRequest*) defaultInstance {
-  return defaultMessage_LoginMessageRequestInstance;
+    return defaultMessage_LoginMessageRequestInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasPassword) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasPassword) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasPhoneNumber) {
-    [output writeString:1 value:self.phoneNumber];
-  }
-  if (self.hasEmail) {
-    [output writeString:2 value:self.email];
-  }
-  if (self.hasPassword) {
-    [output writeString:3 value:self.password];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasPhoneNumber) {
+        [output writeString:1 value:self.phoneNumber];
+    }
+    if (self.hasEmail) {
+        [output writeString:2 value:self.email];
+    }
+    if (self.hasPassword) {
+        [output writeString:3 value:self.password];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasPhoneNumber) {
+        size += computeStringSize(1, self.phoneNumber);
+    }
+    if (self.hasEmail) {
+        size += computeStringSize(2, self.email);
+    }
+    if (self.hasPassword) {
+        size += computeStringSize(3, self.password);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasPhoneNumber) {
-    size += computeStringSize(1, self.phoneNumber);
-  }
-  if (self.hasEmail) {
-    size += computeStringSize(2, self.email);
-  }
-  if (self.hasPassword) {
-    size += computeStringSize(3, self.password);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_LoginMessageRequest*) parseFromData:(NSData*) data {
-  return (Message_LoginMessageRequest*)[[[Message_LoginMessageRequest builder] mergeFromData:data] build];
+    return (Message_LoginMessageRequest*)[[[Message_LoginMessageRequest builder] mergeFromData:data] build];
 }
 + (Message_LoginMessageRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_LoginMessageRequest*)[[[Message_LoginMessageRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_LoginMessageRequest*)[[[Message_LoginMessageRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_LoginMessageRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_LoginMessageRequest*)[[[Message_LoginMessageRequest builder] mergeFromInputStream:input] build];
+    return (Message_LoginMessageRequest*)[[[Message_LoginMessageRequest builder] mergeFromInputStream:input] build];
 }
 + (Message_LoginMessageRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_LoginMessageRequest*)[[[Message_LoginMessageRequest builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_LoginMessageRequest*)[[[Message_LoginMessageRequest builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_LoginMessageRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_LoginMessageRequest*)[[[Message_LoginMessageRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_LoginMessageRequest*)[[[Message_LoginMessageRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_LoginMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_LoginMessageRequest*)[[[Message_LoginMessageRequest builder] mergeFromCodedInputStream:input] build];
+    return (Message_LoginMessageRequest*)[[[Message_LoginMessageRequest builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_LoginMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_LoginMessageRequest*)[[[Message_LoginMessageRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_LoginMessageRequest*)[[[Message_LoginMessageRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_LoginMessageRequest_Builder*) builder {
-  return [[[Message_LoginMessageRequest_Builder alloc] init] autorelease];
+    return [[[Message_LoginMessageRequest_Builder alloc] init] autorelease];
 }
 + (Message_LoginMessageRequest_Builder*) builderWithPrototype:(Message_LoginMessageRequest*) prototype {
-  return [[Message_LoginMessageRequest builder] mergeFrom:prototype];
+    return [[Message_LoginMessageRequest builder] mergeFrom:prototype];
 }
 - (Message_LoginMessageRequest_Builder*) builder {
-  return [Message_LoginMessageRequest builder];
+    return [Message_LoginMessageRequest builder];
 }
 @end
 
@@ -1590,133 +1674,133 @@ static Message_LoginMessageRequest* defaultMessage_LoginMessageRequestInstance =
 @implementation Message_LoginMessageRequest_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_LoginMessageRequest alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_LoginMessageRequest alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_LoginMessageRequest_Builder*) clear {
-  self.result = [[[Message_LoginMessageRequest alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_LoginMessageRequest alloc] init] autorelease];
+    return self;
 }
 - (Message_LoginMessageRequest_Builder*) clone {
-  return [Message_LoginMessageRequest builderWithPrototype:result];
+    return [Message_LoginMessageRequest builderWithPrototype:result];
 }
 - (Message_LoginMessageRequest*) defaultInstance {
-  return [Message_LoginMessageRequest defaultInstance];
+    return [Message_LoginMessageRequest defaultInstance];
 }
 - (Message_LoginMessageRequest*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_LoginMessageRequest*) buildPartial {
-  Message_LoginMessageRequest* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_LoginMessageRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_LoginMessageRequest_Builder*) mergeFrom:(Message_LoginMessageRequest*) other {
-  if (other == [Message_LoginMessageRequest defaultInstance]) {
+    if (other == [Message_LoginMessageRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasPhoneNumber) {
+        [self setPhoneNumber:other.phoneNumber];
+    }
+    if (other.hasEmail) {
+        [self setEmail:other.email];
+    }
+    if (other.hasPassword) {
+        [self setPassword:other.password];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasPhoneNumber) {
-    [self setPhoneNumber:other.phoneNumber];
-  }
-  if (other.hasEmail) {
-    [self setEmail:other.email];
-  }
-  if (other.hasPassword) {
-    [self setPassword:other.password];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_LoginMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_LoginMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setPhoneNumber:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setEmail:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setPassword:[input readString]];
+                break;
+            }
         }
-        break;
-      }
-      case 10: {
-        [self setPhoneNumber:[input readString]];
-        break;
-      }
-      case 18: {
-        [self setEmail:[input readString]];
-        break;
-      }
-      case 26: {
-        [self setPassword:[input readString]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasPhoneNumber {
-  return result.hasPhoneNumber;
+    return result.hasPhoneNumber;
 }
 - (NSString*) phoneNumber {
-  return result.phoneNumber;
+    return result.phoneNumber;
 }
 - (Message_LoginMessageRequest_Builder*) setPhoneNumber:(NSString*) value {
-  result.hasPhoneNumber = YES;
-  result.phoneNumber = value;
-  return self;
+    result.hasPhoneNumber = YES;
+    result.phoneNumber = value;
+    return self;
 }
 - (Message_LoginMessageRequest_Builder*) clearPhoneNumber {
-  result.hasPhoneNumber = NO;
-  result.phoneNumber = @"";
-  return self;
+    result.hasPhoneNumber = NO;
+    result.phoneNumber = @"";
+    return self;
 }
 - (BOOL) hasEmail {
-  return result.hasEmail;
+    return result.hasEmail;
 }
 - (NSString*) email {
-  return result.email;
+    return result.email;
 }
 - (Message_LoginMessageRequest_Builder*) setEmail:(NSString*) value {
-  result.hasEmail = YES;
-  result.email = value;
-  return self;
+    result.hasEmail = YES;
+    result.email = value;
+    return self;
 }
 - (Message_LoginMessageRequest_Builder*) clearEmail {
-  result.hasEmail = NO;
-  result.email = @"";
-  return self;
+    result.hasEmail = NO;
+    result.email = @"";
+    return self;
 }
 - (BOOL) hasPassword {
-  return result.hasPassword;
+    return result.hasPassword;
 }
 - (NSString*) password {
-  return result.password;
+    return result.password;
 }
 - (Message_LoginMessageRequest_Builder*) setPassword:(NSString*) value {
-  result.hasPassword = YES;
-  result.password = value;
-  return self;
+    result.hasPassword = YES;
+    result.password = value;
+    return self;
 }
 - (Message_LoginMessageRequest_Builder*) clearPassword {
-  result.hasPassword = NO;
-  result.password = @"";
-  return self;
+    result.hasPassword = NO;
+    result.password = @"";
+    return self;
 }
 @end
 
@@ -1736,248 +1820,248 @@ static Message_LoginMessageRequest* defaultMessage_LoginMessageRequestInstance =
 @implementation Message_LoginMessageResponse
 
 - (BOOL) hasStatus {
-  return !!hasStatus_;
+    return !!hasStatus_;
 }
 - (void) setHasStatus:(BOOL) value {
-  hasStatus_ = !!value;
+    hasStatus_ = !!value;
 }
 @synthesize status;
 - (BOOL) hasUserId {
-  return !!hasUserId_;
+    return !!hasUserId_;
 }
 - (void) setHasUserId:(BOOL) value {
-  hasUserId_ = !!value;
+    hasUserId_ = !!value;
 }
 @synthesize userId;
 - (BOOL) hasUserName {
-  return !!hasUserName_;
+    return !!hasUserName_;
 }
 - (void) setHasUserName:(BOOL) value {
-  hasUserName_ = !!value;
+    hasUserName_ = !!value;
 }
 @synthesize userName;
 - (BOOL) hasPassword {
-  return !!hasPassword_;
+    return !!hasPassword_;
 }
 - (void) setHasPassword:(BOOL) value {
-  hasPassword_ = !!value;
+    hasPassword_ = !!value;
 }
 @synthesize password;
 - (BOOL) hasNickName {
-  return !!hasNickName_;
+    return !!hasNickName_;
 }
 - (void) setHasNickName:(BOOL) value {
-  hasNickName_ = !!value;
+    hasNickName_ = !!value;
 }
 @synthesize nickName;
 - (BOOL) hasSex {
-  return !!hasSex_;
+    return !!hasSex_;
 }
 - (void) setHasSex:(BOOL) value {
-  hasSex_ = !!value;
+    hasSex_ = !!value;
 }
 @synthesize sex;
 - (BOOL) hasBirthday {
-  return !!hasBirthday_;
+    return !!hasBirthday_;
 }
 - (void) setHasBirthday:(BOOL) value {
-  hasBirthday_ = !!value;
+    hasBirthday_ = !!value;
 }
 @synthesize birthday;
 - (BOOL) hasAvatarUrl {
-  return !!hasAvatarUrl_;
+    return !!hasAvatarUrl_;
 }
 - (void) setHasAvatarUrl:(BOOL) value {
-  hasAvatarUrl_ = !!value;
+    hasAvatarUrl_ = !!value;
 }
 @synthesize avatarUrl;
 - (BOOL) hasAvatarId {
-  return !!hasAvatarId_;
+    return !!hasAvatarId_;
 }
 - (void) setHasAvatarId:(BOOL) value {
-  hasAvatarId_ = !!value;
+    hasAvatarId_ = !!value;
 }
 @synthesize avatarId;
 - (BOOL) hasAppId {
-  return !!hasAppId_;
+    return !!hasAppId_;
 }
 - (void) setHasAppId:(BOOL) value {
-  hasAppId_ = !!value;
+    hasAppId_ = !!value;
 }
 @synthesize appId;
 - (void) dealloc {
-  self.userId = nil;
-  self.userName = nil;
-  self.password = nil;
-  self.nickName = nil;
-  self.birthday = nil;
-  self.avatarUrl = nil;
-  self.appId = nil;
-  [super dealloc];
+    self.userId = nil;
+    self.userName = nil;
+    self.password = nil;
+    self.nickName = nil;
+    self.birthday = nil;
+    self.avatarUrl = nil;
+    self.appId = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.status = 0;
-    self.userId = @"";
-    self.userName = @"";
-    self.password = @"";
-    self.nickName = @"";
-    self.sex = 0;
-    self.birthday = @"";
-    self.avatarUrl = @"";
-    self.avatarId = 0;
-    self.appId = @"";
-  }
-  return self;
+    if ((self = [super init])) {
+        self.status = 0;
+        self.userId = @"";
+        self.userName = @"";
+        self.password = @"";
+        self.nickName = @"";
+        self.sex = 0;
+        self.birthday = @"";
+        self.avatarUrl = @"";
+        self.avatarId = 0;
+        self.appId = @"";
+    }
+    return self;
 }
 static Message_LoginMessageResponse* defaultMessage_LoginMessageResponseInstance = nil;
 + (void) initialize {
-  if (self == [Message_LoginMessageResponse class]) {
-    defaultMessage_LoginMessageResponseInstance = [[Message_LoginMessageResponse alloc] init];
-  }
+    if (self == [Message_LoginMessageResponse class]) {
+        defaultMessage_LoginMessageResponseInstance = [[Message_LoginMessageResponse alloc] init];
+    }
 }
 + (Message_LoginMessageResponse*) defaultInstance {
-  return defaultMessage_LoginMessageResponseInstance;
+    return defaultMessage_LoginMessageResponseInstance;
 }
 - (Message_LoginMessageResponse*) defaultInstance {
-  return defaultMessage_LoginMessageResponseInstance;
+    return defaultMessage_LoginMessageResponseInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasStatus) {
-    return NO;
-  }
-  if (!self.hasUserId) {
-    return NO;
-  }
-  if (!self.hasUserName) {
-    return NO;
-  }
-  if (!self.hasPassword) {
-    return NO;
-  }
-  if (!self.hasNickName) {
-    return NO;
-  }
-  if (!self.hasSex) {
-    return NO;
-  }
-  if (!self.hasBirthday) {
-    return NO;
-  }
-  if (!self.hasAvatarUrl) {
-    return NO;
-  }
-  if (!self.hasAvatarId) {
-    return NO;
-  }
-  if (!self.hasAppId) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasUserId) {
+        return NO;
+    }
+    if (!self.hasUserName) {
+        return NO;
+    }
+    if (!self.hasPassword) {
+        return NO;
+    }
+    if (!self.hasNickName) {
+        return NO;
+    }
+    if (!self.hasSex) {
+        return NO;
+    }
+    if (!self.hasBirthday) {
+        return NO;
+    }
+    if (!self.hasAvatarUrl) {
+        return NO;
+    }
+    if (!self.hasAvatarId) {
+        return NO;
+    }
+    if (!self.hasAppId) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasStatus) {
-    [output writeInt32:1 value:self.status];
-  }
-  if (self.hasUserId) {
-    [output writeString:2 value:self.userId];
-  }
-  if (self.hasUserName) {
-    [output writeString:3 value:self.userName];
-  }
-  if (self.hasPassword) {
-    [output writeString:4 value:self.password];
-  }
-  if (self.hasNickName) {
-    [output writeString:5 value:self.nickName];
-  }
-  if (self.hasSex) {
-    [output writeInt32:6 value:self.sex];
-  }
-  if (self.hasBirthday) {
-    [output writeString:7 value:self.birthday];
-  }
-  if (self.hasAvatarUrl) {
-    [output writeString:8 value:self.avatarUrl];
-  }
-  if (self.hasAvatarId) {
-    [output writeInt32:9 value:self.avatarId];
-  }
-  if (self.hasAppId) {
-    [output writeString:10 value:self.appId];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasStatus) {
+        [output writeInt32:1 value:self.status];
+    }
+    if (self.hasUserId) {
+        [output writeString:2 value:self.userId];
+    }
+    if (self.hasUserName) {
+        [output writeString:3 value:self.userName];
+    }
+    if (self.hasPassword) {
+        [output writeString:4 value:self.password];
+    }
+    if (self.hasNickName) {
+        [output writeString:5 value:self.nickName];
+    }
+    if (self.hasSex) {
+        [output writeInt32:6 value:self.sex];
+    }
+    if (self.hasBirthday) {
+        [output writeString:7 value:self.birthday];
+    }
+    if (self.hasAvatarUrl) {
+        [output writeString:8 value:self.avatarUrl];
+    }
+    if (self.hasAvatarId) {
+        [output writeInt32:9 value:self.avatarId];
+    }
+    if (self.hasAppId) {
+        [output writeString:10 value:self.appId];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasStatus) {
+        size += computeInt32Size(1, self.status);
+    }
+    if (self.hasUserId) {
+        size += computeStringSize(2, self.userId);
+    }
+    if (self.hasUserName) {
+        size += computeStringSize(3, self.userName);
+    }
+    if (self.hasPassword) {
+        size += computeStringSize(4, self.password);
+    }
+    if (self.hasNickName) {
+        size += computeStringSize(5, self.nickName);
+    }
+    if (self.hasSex) {
+        size += computeInt32Size(6, self.sex);
+    }
+    if (self.hasBirthday) {
+        size += computeStringSize(7, self.birthday);
+    }
+    if (self.hasAvatarUrl) {
+        size += computeStringSize(8, self.avatarUrl);
+    }
+    if (self.hasAvatarId) {
+        size += computeInt32Size(9, self.avatarId);
+    }
+    if (self.hasAppId) {
+        size += computeStringSize(10, self.appId);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasStatus) {
-    size += computeInt32Size(1, self.status);
-  }
-  if (self.hasUserId) {
-    size += computeStringSize(2, self.userId);
-  }
-  if (self.hasUserName) {
-    size += computeStringSize(3, self.userName);
-  }
-  if (self.hasPassword) {
-    size += computeStringSize(4, self.password);
-  }
-  if (self.hasNickName) {
-    size += computeStringSize(5, self.nickName);
-  }
-  if (self.hasSex) {
-    size += computeInt32Size(6, self.sex);
-  }
-  if (self.hasBirthday) {
-    size += computeStringSize(7, self.birthday);
-  }
-  if (self.hasAvatarUrl) {
-    size += computeStringSize(8, self.avatarUrl);
-  }
-  if (self.hasAvatarId) {
-    size += computeInt32Size(9, self.avatarId);
-  }
-  if (self.hasAppId) {
-    size += computeStringSize(10, self.appId);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_LoginMessageResponse*) parseFromData:(NSData*) data {
-  return (Message_LoginMessageResponse*)[[[Message_LoginMessageResponse builder] mergeFromData:data] build];
+    return (Message_LoginMessageResponse*)[[[Message_LoginMessageResponse builder] mergeFromData:data] build];
 }
 + (Message_LoginMessageResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_LoginMessageResponse*)[[[Message_LoginMessageResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_LoginMessageResponse*)[[[Message_LoginMessageResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_LoginMessageResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_LoginMessageResponse*)[[[Message_LoginMessageResponse builder] mergeFromInputStream:input] build];
+    return (Message_LoginMessageResponse*)[[[Message_LoginMessageResponse builder] mergeFromInputStream:input] build];
 }
 + (Message_LoginMessageResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_LoginMessageResponse*)[[[Message_LoginMessageResponse builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_LoginMessageResponse*)[[[Message_LoginMessageResponse builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_LoginMessageResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_LoginMessageResponse*)[[[Message_LoginMessageResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_LoginMessageResponse*)[[[Message_LoginMessageResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_LoginMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_LoginMessageResponse*)[[[Message_LoginMessageResponse builder] mergeFromCodedInputStream:input] build];
+    return (Message_LoginMessageResponse*)[[[Message_LoginMessageResponse builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_LoginMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_LoginMessageResponse*)[[[Message_LoginMessageResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_LoginMessageResponse*)[[[Message_LoginMessageResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_LoginMessageResponse_Builder*) builder {
-  return [[[Message_LoginMessageResponse_Builder alloc] init] autorelease];
+    return [[[Message_LoginMessageResponse_Builder alloc] init] autorelease];
 }
 + (Message_LoginMessageResponse_Builder*) builderWithPrototype:(Message_LoginMessageResponse*) prototype {
-  return [[Message_LoginMessageResponse builder] mergeFrom:prototype];
+    return [[Message_LoginMessageResponse builder] mergeFrom:prototype];
 }
 - (Message_LoginMessageResponse_Builder*) builder {
-  return [Message_LoginMessageResponse builder];
+    return [Message_LoginMessageResponse builder];
 }
 @end
 
@@ -1988,294 +2072,294 @@ static Message_LoginMessageResponse* defaultMessage_LoginMessageResponseInstance
 @implementation Message_LoginMessageResponse_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_LoginMessageResponse alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_LoginMessageResponse alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_LoginMessageResponse_Builder*) clear {
-  self.result = [[[Message_LoginMessageResponse alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_LoginMessageResponse alloc] init] autorelease];
+    return self;
 }
 - (Message_LoginMessageResponse_Builder*) clone {
-  return [Message_LoginMessageResponse builderWithPrototype:result];
+    return [Message_LoginMessageResponse builderWithPrototype:result];
 }
 - (Message_LoginMessageResponse*) defaultInstance {
-  return [Message_LoginMessageResponse defaultInstance];
+    return [Message_LoginMessageResponse defaultInstance];
 }
 - (Message_LoginMessageResponse*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_LoginMessageResponse*) buildPartial {
-  Message_LoginMessageResponse* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_LoginMessageResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_LoginMessageResponse_Builder*) mergeFrom:(Message_LoginMessageResponse*) other {
-  if (other == [Message_LoginMessageResponse defaultInstance]) {
+    if (other == [Message_LoginMessageResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasUserId) {
+        [self setUserId:other.userId];
+    }
+    if (other.hasUserName) {
+        [self setUserName:other.userName];
+    }
+    if (other.hasPassword) {
+        [self setPassword:other.password];
+    }
+    if (other.hasNickName) {
+        [self setNickName:other.nickName];
+    }
+    if (other.hasSex) {
+        [self setSex:other.sex];
+    }
+    if (other.hasBirthday) {
+        [self setBirthday:other.birthday];
+    }
+    if (other.hasAvatarUrl) {
+        [self setAvatarUrl:other.avatarUrl];
+    }
+    if (other.hasAvatarId) {
+        [self setAvatarId:other.avatarId];
+    }
+    if (other.hasAppId) {
+        [self setAppId:other.appId];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasStatus) {
-    [self setStatus:other.status];
-  }
-  if (other.hasUserId) {
-    [self setUserId:other.userId];
-  }
-  if (other.hasUserName) {
-    [self setUserName:other.userName];
-  }
-  if (other.hasPassword) {
-    [self setPassword:other.password];
-  }
-  if (other.hasNickName) {
-    [self setNickName:other.nickName];
-  }
-  if (other.hasSex) {
-    [self setSex:other.sex];
-  }
-  if (other.hasBirthday) {
-    [self setBirthday:other.birthday];
-  }
-  if (other.hasAvatarUrl) {
-    [self setAvatarUrl:other.avatarUrl];
-  }
-  if (other.hasAvatarId) {
-    [self setAvatarId:other.avatarId];
-  }
-  if (other.hasAppId) {
-    [self setAppId:other.appId];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_LoginMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_LoginMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 18: {
+                [self setUserId:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setUserName:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setPassword:[input readString]];
+                break;
+            }
+            case 42: {
+                [self setNickName:[input readString]];
+                break;
+            }
+            case 48: {
+                [self setSex:[input readInt32]];
+                break;
+            }
+            case 58: {
+                [self setBirthday:[input readString]];
+                break;
+            }
+            case 66: {
+                [self setAvatarUrl:[input readString]];
+                break;
+            }
+            case 72: {
+                [self setAvatarId:[input readInt32]];
+                break;
+            }
+            case 82: {
+                [self setAppId:[input readString]];
+                break;
+            }
         }
-        break;
-      }
-      case 8: {
-        [self setStatus:[input readInt32]];
-        break;
-      }
-      case 18: {
-        [self setUserId:[input readString]];
-        break;
-      }
-      case 26: {
-        [self setUserName:[input readString]];
-        break;
-      }
-      case 34: {
-        [self setPassword:[input readString]];
-        break;
-      }
-      case 42: {
-        [self setNickName:[input readString]];
-        break;
-      }
-      case 48: {
-        [self setSex:[input readInt32]];
-        break;
-      }
-      case 58: {
-        [self setBirthday:[input readString]];
-        break;
-      }
-      case 66: {
-        [self setAvatarUrl:[input readString]];
-        break;
-      }
-      case 72: {
-        [self setAvatarId:[input readInt32]];
-        break;
-      }
-      case 82: {
-        [self setAppId:[input readString]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasStatus {
-  return result.hasStatus;
+    return result.hasStatus;
 }
 - (int32_t) status {
-  return result.status;
+    return result.status;
 }
 - (Message_LoginMessageResponse_Builder*) setStatus:(int32_t) value {
-  result.hasStatus = YES;
-  result.status = value;
-  return self;
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
 }
 - (Message_LoginMessageResponse_Builder*) clearStatus {
-  result.hasStatus = NO;
-  result.status = 0;
-  return self;
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+    return result.hasUserId;
 }
 - (NSString*) userId {
-  return result.userId;
+    return result.userId;
 }
 - (Message_LoginMessageResponse_Builder*) setUserId:(NSString*) value {
-  result.hasUserId = YES;
-  result.userId = value;
-  return self;
+    result.hasUserId = YES;
+    result.userId = value;
+    return self;
 }
 - (Message_LoginMessageResponse_Builder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = @"";
-  return self;
+    result.hasUserId = NO;
+    result.userId = @"";
+    return self;
 }
 - (BOOL) hasUserName {
-  return result.hasUserName;
+    return result.hasUserName;
 }
 - (NSString*) userName {
-  return result.userName;
+    return result.userName;
 }
 - (Message_LoginMessageResponse_Builder*) setUserName:(NSString*) value {
-  result.hasUserName = YES;
-  result.userName = value;
-  return self;
+    result.hasUserName = YES;
+    result.userName = value;
+    return self;
 }
 - (Message_LoginMessageResponse_Builder*) clearUserName {
-  result.hasUserName = NO;
-  result.userName = @"";
-  return self;
+    result.hasUserName = NO;
+    result.userName = @"";
+    return self;
 }
 - (BOOL) hasPassword {
-  return result.hasPassword;
+    return result.hasPassword;
 }
 - (NSString*) password {
-  return result.password;
+    return result.password;
 }
 - (Message_LoginMessageResponse_Builder*) setPassword:(NSString*) value {
-  result.hasPassword = YES;
-  result.password = value;
-  return self;
+    result.hasPassword = YES;
+    result.password = value;
+    return self;
 }
 - (Message_LoginMessageResponse_Builder*) clearPassword {
-  result.hasPassword = NO;
-  result.password = @"";
-  return self;
+    result.hasPassword = NO;
+    result.password = @"";
+    return self;
 }
 - (BOOL) hasNickName {
-  return result.hasNickName;
+    return result.hasNickName;
 }
 - (NSString*) nickName {
-  return result.nickName;
+    return result.nickName;
 }
 - (Message_LoginMessageResponse_Builder*) setNickName:(NSString*) value {
-  result.hasNickName = YES;
-  result.nickName = value;
-  return self;
+    result.hasNickName = YES;
+    result.nickName = value;
+    return self;
 }
 - (Message_LoginMessageResponse_Builder*) clearNickName {
-  result.hasNickName = NO;
-  result.nickName = @"";
-  return self;
+    result.hasNickName = NO;
+    result.nickName = @"";
+    return self;
 }
 - (BOOL) hasSex {
-  return result.hasSex;
+    return result.hasSex;
 }
 - (int32_t) sex {
-  return result.sex;
+    return result.sex;
 }
 - (Message_LoginMessageResponse_Builder*) setSex:(int32_t) value {
-  result.hasSex = YES;
-  result.sex = value;
-  return self;
+    result.hasSex = YES;
+    result.sex = value;
+    return self;
 }
 - (Message_LoginMessageResponse_Builder*) clearSex {
-  result.hasSex = NO;
-  result.sex = 0;
-  return self;
+    result.hasSex = NO;
+    result.sex = 0;
+    return self;
 }
 - (BOOL) hasBirthday {
-  return result.hasBirthday;
+    return result.hasBirthday;
 }
 - (NSString*) birthday {
-  return result.birthday;
+    return result.birthday;
 }
 - (Message_LoginMessageResponse_Builder*) setBirthday:(NSString*) value {
-  result.hasBirthday = YES;
-  result.birthday = value;
-  return self;
+    result.hasBirthday = YES;
+    result.birthday = value;
+    return self;
 }
 - (Message_LoginMessageResponse_Builder*) clearBirthday {
-  result.hasBirthday = NO;
-  result.birthday = @"";
-  return self;
+    result.hasBirthday = NO;
+    result.birthday = @"";
+    return self;
 }
 - (BOOL) hasAvatarUrl {
-  return result.hasAvatarUrl;
+    return result.hasAvatarUrl;
 }
 - (NSString*) avatarUrl {
-  return result.avatarUrl;
+    return result.avatarUrl;
 }
 - (Message_LoginMessageResponse_Builder*) setAvatarUrl:(NSString*) value {
-  result.hasAvatarUrl = YES;
-  result.avatarUrl = value;
-  return self;
+    result.hasAvatarUrl = YES;
+    result.avatarUrl = value;
+    return self;
 }
 - (Message_LoginMessageResponse_Builder*) clearAvatarUrl {
-  result.hasAvatarUrl = NO;
-  result.avatarUrl = @"";
-  return self;
+    result.hasAvatarUrl = NO;
+    result.avatarUrl = @"";
+    return self;
 }
 - (BOOL) hasAvatarId {
-  return result.hasAvatarId;
+    return result.hasAvatarId;
 }
 - (int32_t) avatarId {
-  return result.avatarId;
+    return result.avatarId;
 }
 - (Message_LoginMessageResponse_Builder*) setAvatarId:(int32_t) value {
-  result.hasAvatarId = YES;
-  result.avatarId = value;
-  return self;
+    result.hasAvatarId = YES;
+    result.avatarId = value;
+    return self;
 }
 - (Message_LoginMessageResponse_Builder*) clearAvatarId {
-  result.hasAvatarId = NO;
-  result.avatarId = 0;
-  return self;
+    result.hasAvatarId = NO;
+    result.avatarId = 0;
+    return self;
 }
 - (BOOL) hasAppId {
-  return result.hasAppId;
+    return result.hasAppId;
 }
 - (NSString*) appId {
-  return result.appId;
+    return result.appId;
 }
 - (Message_LoginMessageResponse_Builder*) setAppId:(NSString*) value {
-  result.hasAppId = YES;
-  result.appId = value;
-  return self;
+    result.hasAppId = YES;
+    result.appId = value;
+    return self;
 }
 - (Message_LoginMessageResponse_Builder*) clearAppId {
-  result.hasAppId = NO;
-  result.appId = @"";
-  return self;
+    result.hasAppId = NO;
+    result.appId = @"";
+    return self;
 }
 @end
 
@@ -2287,101 +2371,101 @@ static Message_LoginMessageResponse* defaultMessage_LoginMessageResponseInstance
 @implementation Message_LogoutMessageRequest
 
 - (BOOL) hasPhoneNumber {
-  return !!hasPhoneNumber_;
+    return !!hasPhoneNumber_;
 }
 - (void) setHasPhoneNumber:(BOOL) value {
-  hasPhoneNumber_ = !!value;
+    hasPhoneNumber_ = !!value;
 }
 @synthesize phoneNumber;
 - (BOOL) hasEmail {
-  return !!hasEmail_;
+    return !!hasEmail_;
 }
 - (void) setHasEmail:(BOOL) value {
-  hasEmail_ = !!value;
+    hasEmail_ = !!value;
 }
 @synthesize email;
 - (void) dealloc {
-  self.phoneNumber = nil;
-  self.email = nil;
-  [super dealloc];
+    self.phoneNumber = nil;
+    self.email = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.phoneNumber = @"";
-    self.email = @"";
-  }
-  return self;
+    if ((self = [super init])) {
+        self.phoneNumber = @"";
+        self.email = @"";
+    }
+    return self;
 }
 static Message_LogoutMessageRequest* defaultMessage_LogoutMessageRequestInstance = nil;
 + (void) initialize {
-  if (self == [Message_LogoutMessageRequest class]) {
-    defaultMessage_LogoutMessageRequestInstance = [[Message_LogoutMessageRequest alloc] init];
-  }
+    if (self == [Message_LogoutMessageRequest class]) {
+        defaultMessage_LogoutMessageRequestInstance = [[Message_LogoutMessageRequest alloc] init];
+    }
 }
 + (Message_LogoutMessageRequest*) defaultInstance {
-  return defaultMessage_LogoutMessageRequestInstance;
+    return defaultMessage_LogoutMessageRequestInstance;
 }
 - (Message_LogoutMessageRequest*) defaultInstance {
-  return defaultMessage_LogoutMessageRequestInstance;
+    return defaultMessage_LogoutMessageRequestInstance;
 }
 - (BOOL) isInitialized {
-  return YES;
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasPhoneNumber) {
-    [output writeString:1 value:self.phoneNumber];
-  }
-  if (self.hasEmail) {
-    [output writeString:2 value:self.email];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasPhoneNumber) {
+        [output writeString:1 value:self.phoneNumber];
+    }
+    if (self.hasEmail) {
+        [output writeString:2 value:self.email];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasPhoneNumber) {
+        size += computeStringSize(1, self.phoneNumber);
+    }
+    if (self.hasEmail) {
+        size += computeStringSize(2, self.email);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasPhoneNumber) {
-    size += computeStringSize(1, self.phoneNumber);
-  }
-  if (self.hasEmail) {
-    size += computeStringSize(2, self.email);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_LogoutMessageRequest*) parseFromData:(NSData*) data {
-  return (Message_LogoutMessageRequest*)[[[Message_LogoutMessageRequest builder] mergeFromData:data] build];
+    return (Message_LogoutMessageRequest*)[[[Message_LogoutMessageRequest builder] mergeFromData:data] build];
 }
 + (Message_LogoutMessageRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_LogoutMessageRequest*)[[[Message_LogoutMessageRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_LogoutMessageRequest*)[[[Message_LogoutMessageRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_LogoutMessageRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_LogoutMessageRequest*)[[[Message_LogoutMessageRequest builder] mergeFromInputStream:input] build];
+    return (Message_LogoutMessageRequest*)[[[Message_LogoutMessageRequest builder] mergeFromInputStream:input] build];
 }
 + (Message_LogoutMessageRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_LogoutMessageRequest*)[[[Message_LogoutMessageRequest builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_LogoutMessageRequest*)[[[Message_LogoutMessageRequest builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_LogoutMessageRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_LogoutMessageRequest*)[[[Message_LogoutMessageRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_LogoutMessageRequest*)[[[Message_LogoutMessageRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_LogoutMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_LogoutMessageRequest*)[[[Message_LogoutMessageRequest builder] mergeFromCodedInputStream:input] build];
+    return (Message_LogoutMessageRequest*)[[[Message_LogoutMessageRequest builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_LogoutMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_LogoutMessageRequest*)[[[Message_LogoutMessageRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_LogoutMessageRequest*)[[[Message_LogoutMessageRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_LogoutMessageRequest_Builder*) builder {
-  return [[[Message_LogoutMessageRequest_Builder alloc] init] autorelease];
+    return [[[Message_LogoutMessageRequest_Builder alloc] init] autorelease];
 }
 + (Message_LogoutMessageRequest_Builder*) builderWithPrototype:(Message_LogoutMessageRequest*) prototype {
-  return [[Message_LogoutMessageRequest builder] mergeFrom:prototype];
+    return [[Message_LogoutMessageRequest builder] mergeFrom:prototype];
 }
 - (Message_LogoutMessageRequest_Builder*) builder {
-  return [Message_LogoutMessageRequest builder];
+    return [Message_LogoutMessageRequest builder];
 }
 @end
 
@@ -2392,110 +2476,110 @@ static Message_LogoutMessageRequest* defaultMessage_LogoutMessageRequestInstance
 @implementation Message_LogoutMessageRequest_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_LogoutMessageRequest alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_LogoutMessageRequest alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_LogoutMessageRequest_Builder*) clear {
-  self.result = [[[Message_LogoutMessageRequest alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_LogoutMessageRequest alloc] init] autorelease];
+    return self;
 }
 - (Message_LogoutMessageRequest_Builder*) clone {
-  return [Message_LogoutMessageRequest builderWithPrototype:result];
+    return [Message_LogoutMessageRequest builderWithPrototype:result];
 }
 - (Message_LogoutMessageRequest*) defaultInstance {
-  return [Message_LogoutMessageRequest defaultInstance];
+    return [Message_LogoutMessageRequest defaultInstance];
 }
 - (Message_LogoutMessageRequest*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_LogoutMessageRequest*) buildPartial {
-  Message_LogoutMessageRequest* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_LogoutMessageRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_LogoutMessageRequest_Builder*) mergeFrom:(Message_LogoutMessageRequest*) other {
-  if (other == [Message_LogoutMessageRequest defaultInstance]) {
+    if (other == [Message_LogoutMessageRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasPhoneNumber) {
+        [self setPhoneNumber:other.phoneNumber];
+    }
+    if (other.hasEmail) {
+        [self setEmail:other.email];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasPhoneNumber) {
-    [self setPhoneNumber:other.phoneNumber];
-  }
-  if (other.hasEmail) {
-    [self setEmail:other.email];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_LogoutMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_LogoutMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setPhoneNumber:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setEmail:[input readString]];
+                break;
+            }
         }
-        break;
-      }
-      case 10: {
-        [self setPhoneNumber:[input readString]];
-        break;
-      }
-      case 18: {
-        [self setEmail:[input readString]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasPhoneNumber {
-  return result.hasPhoneNumber;
+    return result.hasPhoneNumber;
 }
 - (NSString*) phoneNumber {
-  return result.phoneNumber;
+    return result.phoneNumber;
 }
 - (Message_LogoutMessageRequest_Builder*) setPhoneNumber:(NSString*) value {
-  result.hasPhoneNumber = YES;
-  result.phoneNumber = value;
-  return self;
+    result.hasPhoneNumber = YES;
+    result.phoneNumber = value;
+    return self;
 }
 - (Message_LogoutMessageRequest_Builder*) clearPhoneNumber {
-  result.hasPhoneNumber = NO;
-  result.phoneNumber = @"";
-  return self;
+    result.hasPhoneNumber = NO;
+    result.phoneNumber = @"";
+    return self;
 }
 - (BOOL) hasEmail {
-  return result.hasEmail;
+    return result.hasEmail;
 }
 - (NSString*) email {
-  return result.email;
+    return result.email;
 }
 - (Message_LogoutMessageRequest_Builder*) setEmail:(NSString*) value {
-  result.hasEmail = YES;
-  result.email = value;
-  return self;
+    result.hasEmail = YES;
+    result.email = value;
+    return self;
 }
 - (Message_LogoutMessageRequest_Builder*) clearEmail {
-  result.hasEmail = NO;
-  result.email = @"";
-  return self;
+    result.hasEmail = NO;
+    result.email = @"";
+    return self;
 }
 @end
 
@@ -2506,88 +2590,88 @@ static Message_LogoutMessageRequest* defaultMessage_LogoutMessageRequestInstance
 @implementation Message_LogoutMessageResponse
 
 - (BOOL) hasStatus {
-  return !!hasStatus_;
+    return !!hasStatus_;
 }
 - (void) setHasStatus:(BOOL) value {
-  hasStatus_ = !!value;
+    hasStatus_ = !!value;
 }
 @synthesize status;
 - (void) dealloc {
-  [super dealloc];
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.status = 0;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.status = 0;
+    }
+    return self;
 }
 static Message_LogoutMessageResponse* defaultMessage_LogoutMessageResponseInstance = nil;
 + (void) initialize {
-  if (self == [Message_LogoutMessageResponse class]) {
-    defaultMessage_LogoutMessageResponseInstance = [[Message_LogoutMessageResponse alloc] init];
-  }
+    if (self == [Message_LogoutMessageResponse class]) {
+        defaultMessage_LogoutMessageResponseInstance = [[Message_LogoutMessageResponse alloc] init];
+    }
 }
 + (Message_LogoutMessageResponse*) defaultInstance {
-  return defaultMessage_LogoutMessageResponseInstance;
+    return defaultMessage_LogoutMessageResponseInstance;
 }
 - (Message_LogoutMessageResponse*) defaultInstance {
-  return defaultMessage_LogoutMessageResponseInstance;
+    return defaultMessage_LogoutMessageResponseInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasStatus) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasStatus) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasStatus) {
-    [output writeInt32:1 value:self.status];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasStatus) {
+        [output writeInt32:1 value:self.status];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasStatus) {
+        size += computeInt32Size(1, self.status);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasStatus) {
-    size += computeInt32Size(1, self.status);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_LogoutMessageResponse*) parseFromData:(NSData*) data {
-  return (Message_LogoutMessageResponse*)[[[Message_LogoutMessageResponse builder] mergeFromData:data] build];
+    return (Message_LogoutMessageResponse*)[[[Message_LogoutMessageResponse builder] mergeFromData:data] build];
 }
 + (Message_LogoutMessageResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_LogoutMessageResponse*)[[[Message_LogoutMessageResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_LogoutMessageResponse*)[[[Message_LogoutMessageResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_LogoutMessageResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_LogoutMessageResponse*)[[[Message_LogoutMessageResponse builder] mergeFromInputStream:input] build];
+    return (Message_LogoutMessageResponse*)[[[Message_LogoutMessageResponse builder] mergeFromInputStream:input] build];
 }
 + (Message_LogoutMessageResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_LogoutMessageResponse*)[[[Message_LogoutMessageResponse builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_LogoutMessageResponse*)[[[Message_LogoutMessageResponse builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_LogoutMessageResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_LogoutMessageResponse*)[[[Message_LogoutMessageResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_LogoutMessageResponse*)[[[Message_LogoutMessageResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_LogoutMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_LogoutMessageResponse*)[[[Message_LogoutMessageResponse builder] mergeFromCodedInputStream:input] build];
+    return (Message_LogoutMessageResponse*)[[[Message_LogoutMessageResponse builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_LogoutMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_LogoutMessageResponse*)[[[Message_LogoutMessageResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_LogoutMessageResponse*)[[[Message_LogoutMessageResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_LogoutMessageResponse_Builder*) builder {
-  return [[[Message_LogoutMessageResponse_Builder alloc] init] autorelease];
+    return [[[Message_LogoutMessageResponse_Builder alloc] init] autorelease];
 }
 + (Message_LogoutMessageResponse_Builder*) builderWithPrototype:(Message_LogoutMessageResponse*) prototype {
-  return [[Message_LogoutMessageResponse builder] mergeFrom:prototype];
+    return [[Message_LogoutMessageResponse builder] mergeFrom:prototype];
 }
 - (Message_LogoutMessageResponse_Builder*) builder {
-  return [Message_LogoutMessageResponse builder];
+    return [Message_LogoutMessageResponse builder];
 }
 @end
 
@@ -2598,87 +2682,87 @@ static Message_LogoutMessageResponse* defaultMessage_LogoutMessageResponseInstan
 @implementation Message_LogoutMessageResponse_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_LogoutMessageResponse alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_LogoutMessageResponse alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_LogoutMessageResponse_Builder*) clear {
-  self.result = [[[Message_LogoutMessageResponse alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_LogoutMessageResponse alloc] init] autorelease];
+    return self;
 }
 - (Message_LogoutMessageResponse_Builder*) clone {
-  return [Message_LogoutMessageResponse builderWithPrototype:result];
+    return [Message_LogoutMessageResponse builderWithPrototype:result];
 }
 - (Message_LogoutMessageResponse*) defaultInstance {
-  return [Message_LogoutMessageResponse defaultInstance];
+    return [Message_LogoutMessageResponse defaultInstance];
 }
 - (Message_LogoutMessageResponse*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_LogoutMessageResponse*) buildPartial {
-  Message_LogoutMessageResponse* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_LogoutMessageResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_LogoutMessageResponse_Builder*) mergeFrom:(Message_LogoutMessageResponse*) other {
-  if (other == [Message_LogoutMessageResponse defaultInstance]) {
+    if (other == [Message_LogoutMessageResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasStatus) {
-    [self setStatus:other.status];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_LogoutMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_LogoutMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
         }
-        break;
-      }
-      case 8: {
-        [self setStatus:[input readInt32]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasStatus {
-  return result.hasStatus;
+    return result.hasStatus;
 }
 - (int32_t) status {
-  return result.status;
+    return result.status;
 }
 - (Message_LogoutMessageResponse_Builder*) setStatus:(int32_t) value {
-  result.hasStatus = YES;
-  result.status = value;
-  return self;
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
 }
 - (Message_LogoutMessageResponse_Builder*) clearStatus {
-  result.hasStatus = NO;
-  result.status = 0;
-  return self;
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
 }
 @end
 
@@ -2690,101 +2774,101 @@ static Message_LogoutMessageResponse* defaultMessage_LogoutMessageResponseInstan
 @implementation Message_ForgetPasswordMessageRequest
 
 - (BOOL) hasPhoneNumber {
-  return !!hasPhoneNumber_;
+    return !!hasPhoneNumber_;
 }
 - (void) setHasPhoneNumber:(BOOL) value {
-  hasPhoneNumber_ = !!value;
+    hasPhoneNumber_ = !!value;
 }
 @synthesize phoneNumber;
 - (BOOL) hasEmail {
-  return !!hasEmail_;
+    return !!hasEmail_;
 }
 - (void) setHasEmail:(BOOL) value {
-  hasEmail_ = !!value;
+    hasEmail_ = !!value;
 }
 @synthesize email;
 - (void) dealloc {
-  self.phoneNumber = nil;
-  self.email = nil;
-  [super dealloc];
+    self.phoneNumber = nil;
+    self.email = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.phoneNumber = @"";
-    self.email = @"";
-  }
-  return self;
+    if ((self = [super init])) {
+        self.phoneNumber = @"";
+        self.email = @"";
+    }
+    return self;
 }
 static Message_ForgetPasswordMessageRequest* defaultMessage_ForgetPasswordMessageRequestInstance = nil;
 + (void) initialize {
-  if (self == [Message_ForgetPasswordMessageRequest class]) {
-    defaultMessage_ForgetPasswordMessageRequestInstance = [[Message_ForgetPasswordMessageRequest alloc] init];
-  }
+    if (self == [Message_ForgetPasswordMessageRequest class]) {
+        defaultMessage_ForgetPasswordMessageRequestInstance = [[Message_ForgetPasswordMessageRequest alloc] init];
+    }
 }
 + (Message_ForgetPasswordMessageRequest*) defaultInstance {
-  return defaultMessage_ForgetPasswordMessageRequestInstance;
+    return defaultMessage_ForgetPasswordMessageRequestInstance;
 }
 - (Message_ForgetPasswordMessageRequest*) defaultInstance {
-  return defaultMessage_ForgetPasswordMessageRequestInstance;
+    return defaultMessage_ForgetPasswordMessageRequestInstance;
 }
 - (BOOL) isInitialized {
-  return YES;
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasPhoneNumber) {
-    [output writeString:1 value:self.phoneNumber];
-  }
-  if (self.hasEmail) {
-    [output writeString:2 value:self.email];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasPhoneNumber) {
+        [output writeString:1 value:self.phoneNumber];
+    }
+    if (self.hasEmail) {
+        [output writeString:2 value:self.email];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasPhoneNumber) {
+        size += computeStringSize(1, self.phoneNumber);
+    }
+    if (self.hasEmail) {
+        size += computeStringSize(2, self.email);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasPhoneNumber) {
-    size += computeStringSize(1, self.phoneNumber);
-  }
-  if (self.hasEmail) {
-    size += computeStringSize(2, self.email);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_ForgetPasswordMessageRequest*) parseFromData:(NSData*) data {
-  return (Message_ForgetPasswordMessageRequest*)[[[Message_ForgetPasswordMessageRequest builder] mergeFromData:data] build];
+    return (Message_ForgetPasswordMessageRequest*)[[[Message_ForgetPasswordMessageRequest builder] mergeFromData:data] build];
 }
 + (Message_ForgetPasswordMessageRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_ForgetPasswordMessageRequest*)[[[Message_ForgetPasswordMessageRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_ForgetPasswordMessageRequest*)[[[Message_ForgetPasswordMessageRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_ForgetPasswordMessageRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_ForgetPasswordMessageRequest*)[[[Message_ForgetPasswordMessageRequest builder] mergeFromInputStream:input] build];
+    return (Message_ForgetPasswordMessageRequest*)[[[Message_ForgetPasswordMessageRequest builder] mergeFromInputStream:input] build];
 }
 + (Message_ForgetPasswordMessageRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_ForgetPasswordMessageRequest*)[[[Message_ForgetPasswordMessageRequest builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_ForgetPasswordMessageRequest*)[[[Message_ForgetPasswordMessageRequest builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_ForgetPasswordMessageRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_ForgetPasswordMessageRequest*)[[[Message_ForgetPasswordMessageRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_ForgetPasswordMessageRequest*)[[[Message_ForgetPasswordMessageRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_ForgetPasswordMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_ForgetPasswordMessageRequest*)[[[Message_ForgetPasswordMessageRequest builder] mergeFromCodedInputStream:input] build];
+    return (Message_ForgetPasswordMessageRequest*)[[[Message_ForgetPasswordMessageRequest builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_ForgetPasswordMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_ForgetPasswordMessageRequest*)[[[Message_ForgetPasswordMessageRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_ForgetPasswordMessageRequest*)[[[Message_ForgetPasswordMessageRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_ForgetPasswordMessageRequest_Builder*) builder {
-  return [[[Message_ForgetPasswordMessageRequest_Builder alloc] init] autorelease];
+    return [[[Message_ForgetPasswordMessageRequest_Builder alloc] init] autorelease];
 }
 + (Message_ForgetPasswordMessageRequest_Builder*) builderWithPrototype:(Message_ForgetPasswordMessageRequest*) prototype {
-  return [[Message_ForgetPasswordMessageRequest builder] mergeFrom:prototype];
+    return [[Message_ForgetPasswordMessageRequest builder] mergeFrom:prototype];
 }
 - (Message_ForgetPasswordMessageRequest_Builder*) builder {
-  return [Message_ForgetPasswordMessageRequest builder];
+    return [Message_ForgetPasswordMessageRequest builder];
 }
 @end
 
@@ -2795,110 +2879,110 @@ static Message_ForgetPasswordMessageRequest* defaultMessage_ForgetPasswordMessag
 @implementation Message_ForgetPasswordMessageRequest_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_ForgetPasswordMessageRequest alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_ForgetPasswordMessageRequest alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_ForgetPasswordMessageRequest_Builder*) clear {
-  self.result = [[[Message_ForgetPasswordMessageRequest alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_ForgetPasswordMessageRequest alloc] init] autorelease];
+    return self;
 }
 - (Message_ForgetPasswordMessageRequest_Builder*) clone {
-  return [Message_ForgetPasswordMessageRequest builderWithPrototype:result];
+    return [Message_ForgetPasswordMessageRequest builderWithPrototype:result];
 }
 - (Message_ForgetPasswordMessageRequest*) defaultInstance {
-  return [Message_ForgetPasswordMessageRequest defaultInstance];
+    return [Message_ForgetPasswordMessageRequest defaultInstance];
 }
 - (Message_ForgetPasswordMessageRequest*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_ForgetPasswordMessageRequest*) buildPartial {
-  Message_ForgetPasswordMessageRequest* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_ForgetPasswordMessageRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_ForgetPasswordMessageRequest_Builder*) mergeFrom:(Message_ForgetPasswordMessageRequest*) other {
-  if (other == [Message_ForgetPasswordMessageRequest defaultInstance]) {
+    if (other == [Message_ForgetPasswordMessageRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasPhoneNumber) {
+        [self setPhoneNumber:other.phoneNumber];
+    }
+    if (other.hasEmail) {
+        [self setEmail:other.email];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasPhoneNumber) {
-    [self setPhoneNumber:other.phoneNumber];
-  }
-  if (other.hasEmail) {
-    [self setEmail:other.email];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_ForgetPasswordMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_ForgetPasswordMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setPhoneNumber:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setEmail:[input readString]];
+                break;
+            }
         }
-        break;
-      }
-      case 10: {
-        [self setPhoneNumber:[input readString]];
-        break;
-      }
-      case 18: {
-        [self setEmail:[input readString]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasPhoneNumber {
-  return result.hasPhoneNumber;
+    return result.hasPhoneNumber;
 }
 - (NSString*) phoneNumber {
-  return result.phoneNumber;
+    return result.phoneNumber;
 }
 - (Message_ForgetPasswordMessageRequest_Builder*) setPhoneNumber:(NSString*) value {
-  result.hasPhoneNumber = YES;
-  result.phoneNumber = value;
-  return self;
+    result.hasPhoneNumber = YES;
+    result.phoneNumber = value;
+    return self;
 }
 - (Message_ForgetPasswordMessageRequest_Builder*) clearPhoneNumber {
-  result.hasPhoneNumber = NO;
-  result.phoneNumber = @"";
-  return self;
+    result.hasPhoneNumber = NO;
+    result.phoneNumber = @"";
+    return self;
 }
 - (BOOL) hasEmail {
-  return result.hasEmail;
+    return result.hasEmail;
 }
 - (NSString*) email {
-  return result.email;
+    return result.email;
 }
 - (Message_ForgetPasswordMessageRequest_Builder*) setEmail:(NSString*) value {
-  result.hasEmail = YES;
-  result.email = value;
-  return self;
+    result.hasEmail = YES;
+    result.email = value;
+    return self;
 }
 - (Message_ForgetPasswordMessageRequest_Builder*) clearEmail {
-  result.hasEmail = NO;
-  result.email = @"";
-  return self;
+    result.hasEmail = NO;
+    result.email = @"";
+    return self;
 }
 @end
 
@@ -2909,88 +2993,88 @@ static Message_ForgetPasswordMessageRequest* defaultMessage_ForgetPasswordMessag
 @implementation Message_ForgetPasswordMessageResponse
 
 - (BOOL) hasStatus {
-  return !!hasStatus_;
+    return !!hasStatus_;
 }
 - (void) setHasStatus:(BOOL) value {
-  hasStatus_ = !!value;
+    hasStatus_ = !!value;
 }
 @synthesize status;
 - (void) dealloc {
-  [super dealloc];
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.status = 0;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.status = 0;
+    }
+    return self;
 }
 static Message_ForgetPasswordMessageResponse* defaultMessage_ForgetPasswordMessageResponseInstance = nil;
 + (void) initialize {
-  if (self == [Message_ForgetPasswordMessageResponse class]) {
-    defaultMessage_ForgetPasswordMessageResponseInstance = [[Message_ForgetPasswordMessageResponse alloc] init];
-  }
+    if (self == [Message_ForgetPasswordMessageResponse class]) {
+        defaultMessage_ForgetPasswordMessageResponseInstance = [[Message_ForgetPasswordMessageResponse alloc] init];
+    }
 }
 + (Message_ForgetPasswordMessageResponse*) defaultInstance {
-  return defaultMessage_ForgetPasswordMessageResponseInstance;
+    return defaultMessage_ForgetPasswordMessageResponseInstance;
 }
 - (Message_ForgetPasswordMessageResponse*) defaultInstance {
-  return defaultMessage_ForgetPasswordMessageResponseInstance;
+    return defaultMessage_ForgetPasswordMessageResponseInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasStatus) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasStatus) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasStatus) {
-    [output writeInt32:1 value:self.status];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasStatus) {
+        [output writeInt32:1 value:self.status];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasStatus) {
+        size += computeInt32Size(1, self.status);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasStatus) {
-    size += computeInt32Size(1, self.status);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_ForgetPasswordMessageResponse*) parseFromData:(NSData*) data {
-  return (Message_ForgetPasswordMessageResponse*)[[[Message_ForgetPasswordMessageResponse builder] mergeFromData:data] build];
+    return (Message_ForgetPasswordMessageResponse*)[[[Message_ForgetPasswordMessageResponse builder] mergeFromData:data] build];
 }
 + (Message_ForgetPasswordMessageResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_ForgetPasswordMessageResponse*)[[[Message_ForgetPasswordMessageResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_ForgetPasswordMessageResponse*)[[[Message_ForgetPasswordMessageResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_ForgetPasswordMessageResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_ForgetPasswordMessageResponse*)[[[Message_ForgetPasswordMessageResponse builder] mergeFromInputStream:input] build];
+    return (Message_ForgetPasswordMessageResponse*)[[[Message_ForgetPasswordMessageResponse builder] mergeFromInputStream:input] build];
 }
 + (Message_ForgetPasswordMessageResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_ForgetPasswordMessageResponse*)[[[Message_ForgetPasswordMessageResponse builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_ForgetPasswordMessageResponse*)[[[Message_ForgetPasswordMessageResponse builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_ForgetPasswordMessageResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_ForgetPasswordMessageResponse*)[[[Message_ForgetPasswordMessageResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_ForgetPasswordMessageResponse*)[[[Message_ForgetPasswordMessageResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_ForgetPasswordMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_ForgetPasswordMessageResponse*)[[[Message_ForgetPasswordMessageResponse builder] mergeFromCodedInputStream:input] build];
+    return (Message_ForgetPasswordMessageResponse*)[[[Message_ForgetPasswordMessageResponse builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_ForgetPasswordMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_ForgetPasswordMessageResponse*)[[[Message_ForgetPasswordMessageResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_ForgetPasswordMessageResponse*)[[[Message_ForgetPasswordMessageResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_ForgetPasswordMessageResponse_Builder*) builder {
-  return [[[Message_ForgetPasswordMessageResponse_Builder alloc] init] autorelease];
+    return [[[Message_ForgetPasswordMessageResponse_Builder alloc] init] autorelease];
 }
 + (Message_ForgetPasswordMessageResponse_Builder*) builderWithPrototype:(Message_ForgetPasswordMessageResponse*) prototype {
-  return [[Message_ForgetPasswordMessageResponse builder] mergeFrom:prototype];
+    return [[Message_ForgetPasswordMessageResponse builder] mergeFrom:prototype];
 }
 - (Message_ForgetPasswordMessageResponse_Builder*) builder {
-  return [Message_ForgetPasswordMessageResponse builder];
+    return [Message_ForgetPasswordMessageResponse builder];
 }
 @end
 
@@ -3001,87 +3085,87 @@ static Message_ForgetPasswordMessageResponse* defaultMessage_ForgetPasswordMessa
 @implementation Message_ForgetPasswordMessageResponse_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_ForgetPasswordMessageResponse alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_ForgetPasswordMessageResponse alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_ForgetPasswordMessageResponse_Builder*) clear {
-  self.result = [[[Message_ForgetPasswordMessageResponse alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_ForgetPasswordMessageResponse alloc] init] autorelease];
+    return self;
 }
 - (Message_ForgetPasswordMessageResponse_Builder*) clone {
-  return [Message_ForgetPasswordMessageResponse builderWithPrototype:result];
+    return [Message_ForgetPasswordMessageResponse builderWithPrototype:result];
 }
 - (Message_ForgetPasswordMessageResponse*) defaultInstance {
-  return [Message_ForgetPasswordMessageResponse defaultInstance];
+    return [Message_ForgetPasswordMessageResponse defaultInstance];
 }
 - (Message_ForgetPasswordMessageResponse*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_ForgetPasswordMessageResponse*) buildPartial {
-  Message_ForgetPasswordMessageResponse* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_ForgetPasswordMessageResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_ForgetPasswordMessageResponse_Builder*) mergeFrom:(Message_ForgetPasswordMessageResponse*) other {
-  if (other == [Message_ForgetPasswordMessageResponse defaultInstance]) {
+    if (other == [Message_ForgetPasswordMessageResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasStatus) {
-    [self setStatus:other.status];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_ForgetPasswordMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_ForgetPasswordMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
         }
-        break;
-      }
-      case 8: {
-        [self setStatus:[input readInt32]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasStatus {
-  return result.hasStatus;
+    return result.hasStatus;
 }
 - (int32_t) status {
-  return result.status;
+    return result.status;
 }
 - (Message_ForgetPasswordMessageResponse_Builder*) setStatus:(int32_t) value {
-  result.hasStatus = YES;
-  result.status = value;
-  return self;
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
 }
 - (Message_ForgetPasswordMessageResponse_Builder*) clearStatus {
-  result.hasStatus = NO;
-  result.status = 0;
-  return self;
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
 }
 @end
 
@@ -3095,142 +3179,142 @@ static Message_ForgetPasswordMessageResponse* defaultMessage_ForgetPasswordMessa
 @implementation Message_WhoAmIRequest
 
 - (BOOL) hasUserId {
-  return !!hasUserId_;
+    return !!hasUserId_;
 }
 - (void) setHasUserId:(BOOL) value {
-  hasUserId_ = !!value;
+    hasUserId_ = !!value;
 }
 @synthesize userId;
 - (BOOL) hasLocation {
-  return !!hasLocation_;
+    return !!hasLocation_;
 }
 - (void) setHasLocation:(BOOL) value {
-  hasLocation_ = !!value;
+    hasLocation_ = !!value;
 }
 @synthesize location;
 - (BOOL) hasMessageHash {
-  return !!hasMessageHash_;
+    return !!hasMessageHash_;
 }
 - (void) setHasMessageHash:(BOOL) value {
-  hasMessageHash_ = !!value;
+    hasMessageHash_ = !!value;
 }
 @synthesize messageHash;
 - (BOOL) hasDate {
-  return !!hasDate_;
+    return !!hasDate_;
 }
 - (void) setHasDate:(BOOL) value {
-  hasDate_ = !!value;
+    hasDate_ = !!value;
 }
 @synthesize date;
 - (void) dealloc {
-  self.userId = nil;
-  self.location = nil;
-  self.messageHash = nil;
-  [super dealloc];
+    self.userId = nil;
+    self.location = nil;
+    self.messageHash = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.userId = @"";
-    self.location = @"";
-    self.messageHash = @"";
-    self.date = 0L;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.userId = @"";
+        self.location = @"";
+        self.messageHash = @"";
+        self.date = 0L;
+    }
+    return self;
 }
 static Message_WhoAmIRequest* defaultMessage_WhoAmIRequestInstance = nil;
 + (void) initialize {
-  if (self == [Message_WhoAmIRequest class]) {
-    defaultMessage_WhoAmIRequestInstance = [[Message_WhoAmIRequest alloc] init];
-  }
+    if (self == [Message_WhoAmIRequest class]) {
+        defaultMessage_WhoAmIRequestInstance = [[Message_WhoAmIRequest alloc] init];
+    }
 }
 + (Message_WhoAmIRequest*) defaultInstance {
-  return defaultMessage_WhoAmIRequestInstance;
+    return defaultMessage_WhoAmIRequestInstance;
 }
 - (Message_WhoAmIRequest*) defaultInstance {
-  return defaultMessage_WhoAmIRequestInstance;
+    return defaultMessage_WhoAmIRequestInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasUserId) {
-    return NO;
-  }
-  if (!self.hasLocation) {
-    return NO;
-  }
-  if (!self.hasMessageHash) {
-    return NO;
-  }
-  if (!self.hasDate) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasUserId) {
+        return NO;
+    }
+    if (!self.hasLocation) {
+        return NO;
+    }
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasUserId) {
-    [output writeString:1 value:self.userId];
-  }
-  if (self.hasLocation) {
-    [output writeString:2 value:self.location];
-  }
-  if (self.hasMessageHash) {
-    [output writeString:3 value:self.messageHash];
-  }
-  if (self.hasDate) {
-    [output writeInt64:4 value:self.date];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasUserId) {
+        [output writeString:1 value:self.userId];
+    }
+    if (self.hasLocation) {
+        [output writeString:2 value:self.location];
+    }
+    if (self.hasMessageHash) {
+        [output writeString:3 value:self.messageHash];
+    }
+    if (self.hasDate) {
+        [output writeInt64:4 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasUserId) {
+        size += computeStringSize(1, self.userId);
+    }
+    if (self.hasLocation) {
+        size += computeStringSize(2, self.location);
+    }
+    if (self.hasMessageHash) {
+        size += computeStringSize(3, self.messageHash);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(4, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasUserId) {
-    size += computeStringSize(1, self.userId);
-  }
-  if (self.hasLocation) {
-    size += computeStringSize(2, self.location);
-  }
-  if (self.hasMessageHash) {
-    size += computeStringSize(3, self.messageHash);
-  }
-  if (self.hasDate) {
-    size += computeInt64Size(4, self.date);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_WhoAmIRequest*) parseFromData:(NSData*) data {
-  return (Message_WhoAmIRequest*)[[[Message_WhoAmIRequest builder] mergeFromData:data] build];
+    return (Message_WhoAmIRequest*)[[[Message_WhoAmIRequest builder] mergeFromData:data] build];
 }
 + (Message_WhoAmIRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_WhoAmIRequest*)[[[Message_WhoAmIRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_WhoAmIRequest*)[[[Message_WhoAmIRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_WhoAmIRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_WhoAmIRequest*)[[[Message_WhoAmIRequest builder] mergeFromInputStream:input] build];
+    return (Message_WhoAmIRequest*)[[[Message_WhoAmIRequest builder] mergeFromInputStream:input] build];
 }
 + (Message_WhoAmIRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_WhoAmIRequest*)[[[Message_WhoAmIRequest builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_WhoAmIRequest*)[[[Message_WhoAmIRequest builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_WhoAmIRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_WhoAmIRequest*)[[[Message_WhoAmIRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_WhoAmIRequest*)[[[Message_WhoAmIRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_WhoAmIRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_WhoAmIRequest*)[[[Message_WhoAmIRequest builder] mergeFromCodedInputStream:input] build];
+    return (Message_WhoAmIRequest*)[[[Message_WhoAmIRequest builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_WhoAmIRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_WhoAmIRequest*)[[[Message_WhoAmIRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_WhoAmIRequest*)[[[Message_WhoAmIRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_WhoAmIRequest_Builder*) builder {
-  return [[[Message_WhoAmIRequest_Builder alloc] init] autorelease];
+    return [[[Message_WhoAmIRequest_Builder alloc] init] autorelease];
 }
 + (Message_WhoAmIRequest_Builder*) builderWithPrototype:(Message_WhoAmIRequest*) prototype {
-  return [[Message_WhoAmIRequest builder] mergeFrom:prototype];
+    return [[Message_WhoAmIRequest builder] mergeFrom:prototype];
 }
 - (Message_WhoAmIRequest_Builder*) builder {
-  return [Message_WhoAmIRequest builder];
+    return [Message_WhoAmIRequest builder];
 }
 @end
 
@@ -3241,156 +3325,156 @@ static Message_WhoAmIRequest* defaultMessage_WhoAmIRequestInstance = nil;
 @implementation Message_WhoAmIRequest_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_WhoAmIRequest alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_WhoAmIRequest alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_WhoAmIRequest_Builder*) clear {
-  self.result = [[[Message_WhoAmIRequest alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_WhoAmIRequest alloc] init] autorelease];
+    return self;
 }
 - (Message_WhoAmIRequest_Builder*) clone {
-  return [Message_WhoAmIRequest builderWithPrototype:result];
+    return [Message_WhoAmIRequest builderWithPrototype:result];
 }
 - (Message_WhoAmIRequest*) defaultInstance {
-  return [Message_WhoAmIRequest defaultInstance];
+    return [Message_WhoAmIRequest defaultInstance];
 }
 - (Message_WhoAmIRequest*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_WhoAmIRequest*) buildPartial {
-  Message_WhoAmIRequest* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_WhoAmIRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_WhoAmIRequest_Builder*) mergeFrom:(Message_WhoAmIRequest*) other {
-  if (other == [Message_WhoAmIRequest defaultInstance]) {
+    if (other == [Message_WhoAmIRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasUserId) {
+        [self setUserId:other.userId];
+    }
+    if (other.hasLocation) {
+        [self setLocation:other.location];
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasUserId) {
-    [self setUserId:other.userId];
-  }
-  if (other.hasLocation) {
-    [self setLocation:other.location];
-  }
-  if (other.hasMessageHash) {
-    [self setMessageHash:other.messageHash];
-  }
-  if (other.hasDate) {
-    [self setDate:other.date];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_WhoAmIRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_WhoAmIRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setUserId:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setLocation:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 32: {
+                [self setDate:[input readInt64]];
+                break;
+            }
         }
-        break;
-      }
-      case 10: {
-        [self setUserId:[input readString]];
-        break;
-      }
-      case 18: {
-        [self setLocation:[input readString]];
-        break;
-      }
-      case 26: {
-        [self setMessageHash:[input readString]];
-        break;
-      }
-      case 32: {
-        [self setDate:[input readInt64]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+    return result.hasUserId;
 }
 - (NSString*) userId {
-  return result.userId;
+    return result.userId;
 }
 - (Message_WhoAmIRequest_Builder*) setUserId:(NSString*) value {
-  result.hasUserId = YES;
-  result.userId = value;
-  return self;
+    result.hasUserId = YES;
+    result.userId = value;
+    return self;
 }
 - (Message_WhoAmIRequest_Builder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = @"";
-  return self;
+    result.hasUserId = NO;
+    result.userId = @"";
+    return self;
 }
 - (BOOL) hasLocation {
-  return result.hasLocation;
+    return result.hasLocation;
 }
 - (NSString*) location {
-  return result.location;
+    return result.location;
 }
 - (Message_WhoAmIRequest_Builder*) setLocation:(NSString*) value {
-  result.hasLocation = YES;
-  result.location = value;
-  return self;
+    result.hasLocation = YES;
+    result.location = value;
+    return self;
 }
 - (Message_WhoAmIRequest_Builder*) clearLocation {
-  result.hasLocation = NO;
-  result.location = @"";
-  return self;
+    result.hasLocation = NO;
+    result.location = @"";
+    return self;
 }
 - (BOOL) hasMessageHash {
-  return result.hasMessageHash;
+    return result.hasMessageHash;
 }
 - (NSString*) messageHash {
-  return result.messageHash;
+    return result.messageHash;
 }
 - (Message_WhoAmIRequest_Builder*) setMessageHash:(NSString*) value {
-  result.hasMessageHash = YES;
-  result.messageHash = value;
-  return self;
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
 }
 - (Message_WhoAmIRequest_Builder*) clearMessageHash {
-  result.hasMessageHash = NO;
-  result.messageHash = @"";
-  return self;
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
 }
 - (BOOL) hasDate {
-  return result.hasDate;
+    return result.hasDate;
 }
 - (int64_t) date {
-  return result.date;
+    return result.date;
 }
 - (Message_WhoAmIRequest_Builder*) setDate:(int64_t) value {
-  result.hasDate = YES;
-  result.date = value;
-  return self;
+    result.hasDate = YES;
+    result.date = value;
+    return self;
 }
 - (Message_WhoAmIRequest_Builder*) clearDate {
-  result.hasDate = NO;
-  result.date = 0L;
-  return self;
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
 }
 @end
 
@@ -3404,141 +3488,141 @@ static Message_WhoAmIRequest* defaultMessage_WhoAmIRequestInstance = nil;
 @implementation Message_WhoAmIResponse
 
 - (BOOL) hasStatus {
-  return !!hasStatus_;
+    return !!hasStatus_;
 }
 - (void) setHasStatus:(BOOL) value {
-  hasStatus_ = !!value;
+    hasStatus_ = !!value;
 }
 @synthesize status;
 - (BOOL) hasDesc {
-  return !!hasDesc_;
+    return !!hasDesc_;
 }
 - (void) setHasDesc:(BOOL) value {
-  hasDesc_ = !!value;
+    hasDesc_ = !!value;
 }
 @synthesize desc;
 - (BOOL) hasMessageHash {
-  return !!hasMessageHash_;
+    return !!hasMessageHash_;
 }
 - (void) setHasMessageHash:(BOOL) value {
-  hasMessageHash_ = !!value;
+    hasMessageHash_ = !!value;
 }
 @synthesize messageHash;
 - (BOOL) hasDate {
-  return !!hasDate_;
+    return !!hasDate_;
 }
 - (void) setHasDate:(BOOL) value {
-  hasDate_ = !!value;
+    hasDate_ = !!value;
 }
 @synthesize date;
 - (void) dealloc {
-  self.desc = nil;
-  self.messageHash = nil;
-  [super dealloc];
+    self.desc = nil;
+    self.messageHash = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.status = 0;
-    self.desc = @"";
-    self.messageHash = @"";
-    self.date = 0L;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.status = 0;
+        self.desc = @"";
+        self.messageHash = @"";
+        self.date = 0L;
+    }
+    return self;
 }
 static Message_WhoAmIResponse* defaultMessage_WhoAmIResponseInstance = nil;
 + (void) initialize {
-  if (self == [Message_WhoAmIResponse class]) {
-    defaultMessage_WhoAmIResponseInstance = [[Message_WhoAmIResponse alloc] init];
-  }
+    if (self == [Message_WhoAmIResponse class]) {
+        defaultMessage_WhoAmIResponseInstance = [[Message_WhoAmIResponse alloc] init];
+    }
 }
 + (Message_WhoAmIResponse*) defaultInstance {
-  return defaultMessage_WhoAmIResponseInstance;
+    return defaultMessage_WhoAmIResponseInstance;
 }
 - (Message_WhoAmIResponse*) defaultInstance {
-  return defaultMessage_WhoAmIResponseInstance;
+    return defaultMessage_WhoAmIResponseInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasStatus) {
-    return NO;
-  }
-  if (!self.hasDesc) {
-    return NO;
-  }
-  if (!self.hasMessageHash) {
-    return NO;
-  }
-  if (!self.hasDate) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasStatus) {
-    [output writeInt32:1 value:self.status];
-  }
-  if (self.hasDesc) {
-    [output writeString:2 value:self.desc];
-  }
-  if (self.hasMessageHash) {
-    [output writeString:3 value:self.messageHash];
-  }
-  if (self.hasDate) {
-    [output writeInt64:4 value:self.date];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasStatus) {
+        [output writeInt32:1 value:self.status];
+    }
+    if (self.hasDesc) {
+        [output writeString:2 value:self.desc];
+    }
+    if (self.hasMessageHash) {
+        [output writeString:3 value:self.messageHash];
+    }
+    if (self.hasDate) {
+        [output writeInt64:4 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasStatus) {
+        size += computeInt32Size(1, self.status);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(2, self.desc);
+    }
+    if (self.hasMessageHash) {
+        size += computeStringSize(3, self.messageHash);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(4, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasStatus) {
-    size += computeInt32Size(1, self.status);
-  }
-  if (self.hasDesc) {
-    size += computeStringSize(2, self.desc);
-  }
-  if (self.hasMessageHash) {
-    size += computeStringSize(3, self.messageHash);
-  }
-  if (self.hasDate) {
-    size += computeInt64Size(4, self.date);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_WhoAmIResponse*) parseFromData:(NSData*) data {
-  return (Message_WhoAmIResponse*)[[[Message_WhoAmIResponse builder] mergeFromData:data] build];
+    return (Message_WhoAmIResponse*)[[[Message_WhoAmIResponse builder] mergeFromData:data] build];
 }
 + (Message_WhoAmIResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_WhoAmIResponse*)[[[Message_WhoAmIResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_WhoAmIResponse*)[[[Message_WhoAmIResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_WhoAmIResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_WhoAmIResponse*)[[[Message_WhoAmIResponse builder] mergeFromInputStream:input] build];
+    return (Message_WhoAmIResponse*)[[[Message_WhoAmIResponse builder] mergeFromInputStream:input] build];
 }
 + (Message_WhoAmIResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_WhoAmIResponse*)[[[Message_WhoAmIResponse builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_WhoAmIResponse*)[[[Message_WhoAmIResponse builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_WhoAmIResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_WhoAmIResponse*)[[[Message_WhoAmIResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_WhoAmIResponse*)[[[Message_WhoAmIResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_WhoAmIResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_WhoAmIResponse*)[[[Message_WhoAmIResponse builder] mergeFromCodedInputStream:input] build];
+    return (Message_WhoAmIResponse*)[[[Message_WhoAmIResponse builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_WhoAmIResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_WhoAmIResponse*)[[[Message_WhoAmIResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_WhoAmIResponse*)[[[Message_WhoAmIResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_WhoAmIResponse_Builder*) builder {
-  return [[[Message_WhoAmIResponse_Builder alloc] init] autorelease];
+    return [[[Message_WhoAmIResponse_Builder alloc] init] autorelease];
 }
 + (Message_WhoAmIResponse_Builder*) builderWithPrototype:(Message_WhoAmIResponse*) prototype {
-  return [[Message_WhoAmIResponse builder] mergeFrom:prototype];
+    return [[Message_WhoAmIResponse builder] mergeFrom:prototype];
 }
 - (Message_WhoAmIResponse_Builder*) builder {
-  return [Message_WhoAmIResponse builder];
+    return [Message_WhoAmIResponse builder];
 }
 @end
 
@@ -3549,156 +3633,156 @@ static Message_WhoAmIResponse* defaultMessage_WhoAmIResponseInstance = nil;
 @implementation Message_WhoAmIResponse_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_WhoAmIResponse alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_WhoAmIResponse alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_WhoAmIResponse_Builder*) clear {
-  self.result = [[[Message_WhoAmIResponse alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_WhoAmIResponse alloc] init] autorelease];
+    return self;
 }
 - (Message_WhoAmIResponse_Builder*) clone {
-  return [Message_WhoAmIResponse builderWithPrototype:result];
+    return [Message_WhoAmIResponse builderWithPrototype:result];
 }
 - (Message_WhoAmIResponse*) defaultInstance {
-  return [Message_WhoAmIResponse defaultInstance];
+    return [Message_WhoAmIResponse defaultInstance];
 }
 - (Message_WhoAmIResponse*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_WhoAmIResponse*) buildPartial {
-  Message_WhoAmIResponse* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_WhoAmIResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_WhoAmIResponse_Builder*) mergeFrom:(Message_WhoAmIResponse*) other {
-  if (other == [Message_WhoAmIResponse defaultInstance]) {
+    if (other == [Message_WhoAmIResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasStatus) {
-    [self setStatus:other.status];
-  }
-  if (other.hasDesc) {
-    [self setDesc:other.desc];
-  }
-  if (other.hasMessageHash) {
-    [self setMessageHash:other.messageHash];
-  }
-  if (other.hasDate) {
-    [self setDate:other.date];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_WhoAmIResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_WhoAmIResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 18: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 32: {
+                [self setDate:[input readInt64]];
+                break;
+            }
         }
-        break;
-      }
-      case 8: {
-        [self setStatus:[input readInt32]];
-        break;
-      }
-      case 18: {
-        [self setDesc:[input readString]];
-        break;
-      }
-      case 26: {
-        [self setMessageHash:[input readString]];
-        break;
-      }
-      case 32: {
-        [self setDate:[input readInt64]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasStatus {
-  return result.hasStatus;
+    return result.hasStatus;
 }
 - (int32_t) status {
-  return result.status;
+    return result.status;
 }
 - (Message_WhoAmIResponse_Builder*) setStatus:(int32_t) value {
-  result.hasStatus = YES;
-  result.status = value;
-  return self;
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
 }
 - (Message_WhoAmIResponse_Builder*) clearStatus {
-  result.hasStatus = NO;
-  result.status = 0;
-  return self;
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
 }
 - (BOOL) hasDesc {
-  return result.hasDesc;
+    return result.hasDesc;
 }
 - (NSString*) desc {
-  return result.desc;
+    return result.desc;
 }
 - (Message_WhoAmIResponse_Builder*) setDesc:(NSString*) value {
-  result.hasDesc = YES;
-  result.desc = value;
-  return self;
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
 }
 - (Message_WhoAmIResponse_Builder*) clearDesc {
-  result.hasDesc = NO;
-  result.desc = @"";
-  return self;
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
 }
 - (BOOL) hasMessageHash {
-  return result.hasMessageHash;
+    return result.hasMessageHash;
 }
 - (NSString*) messageHash {
-  return result.messageHash;
+    return result.messageHash;
 }
 - (Message_WhoAmIResponse_Builder*) setMessageHash:(NSString*) value {
-  result.hasMessageHash = YES;
-  result.messageHash = value;
-  return self;
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
 }
 - (Message_WhoAmIResponse_Builder*) clearMessageHash {
-  result.hasMessageHash = NO;
-  result.messageHash = @"";
-  return self;
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
 }
 - (BOOL) hasDate {
-  return result.hasDate;
+    return result.hasDate;
 }
 - (int64_t) date {
-  return result.date;
+    return result.date;
 }
 - (Message_WhoAmIResponse_Builder*) setDate:(int64_t) value {
-  result.hasDate = YES;
-  result.date = value;
-  return self;
+    result.hasDate = YES;
+    result.date = value;
+    return self;
 }
 - (Message_WhoAmIResponse_Builder*) clearDate {
-  result.hasDate = NO;
-  result.date = 0L;
-  return self;
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
 }
 @end
 
@@ -3713,160 +3797,160 @@ static Message_WhoAmIResponse* defaultMessage_WhoAmIResponseInstance = nil;
 @implementation Message_TextChatMessageRequest
 
 - (BOOL) hasUserId {
-  return !!hasUserId_;
+    return !!hasUserId_;
 }
 - (void) setHasUserId:(BOOL) value {
-  hasUserId_ = !!value;
+    hasUserId_ = !!value;
 }
 @synthesize userId;
 - (BOOL) hasText {
-  return !!hasText_;
+    return !!hasText_;
 }
 - (void) setHasText:(BOOL) value {
-  hasText_ = !!value;
+    hasText_ = !!value;
 }
 @synthesize text;
 - (BOOL) hasToUserId {
-  return !!hasToUserId_;
+    return !!hasToUserId_;
 }
 - (void) setHasToUserId:(BOOL) value {
-  hasToUserId_ = !!value;
+    hasToUserId_ = !!value;
 }
 @synthesize toUserId;
 - (BOOL) hasMessageHash {
-  return !!hasMessageHash_;
+    return !!hasMessageHash_;
 }
 - (void) setHasMessageHash:(BOOL) value {
-  hasMessageHash_ = !!value;
+    hasMessageHash_ = !!value;
 }
 @synthesize messageHash;
 - (BOOL) hasDate {
-  return !!hasDate_;
+    return !!hasDate_;
 }
 - (void) setHasDate:(BOOL) value {
-  hasDate_ = !!value;
+    hasDate_ = !!value;
 }
 @synthesize date;
 - (void) dealloc {
-  self.userId = nil;
-  self.text = nil;
-  self.toUserId = nil;
-  self.messageHash = nil;
-  [super dealloc];
+    self.userId = nil;
+    self.text = nil;
+    self.toUserId = nil;
+    self.messageHash = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.userId = @"";
-    self.text = @"";
-    self.toUserId = @"";
-    self.messageHash = @"";
-    self.date = 0L;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.userId = @"";
+        self.text = @"";
+        self.toUserId = @"";
+        self.messageHash = @"";
+        self.date = 0L;
+    }
+    return self;
 }
 static Message_TextChatMessageRequest* defaultMessage_TextChatMessageRequestInstance = nil;
 + (void) initialize {
-  if (self == [Message_TextChatMessageRequest class]) {
-    defaultMessage_TextChatMessageRequestInstance = [[Message_TextChatMessageRequest alloc] init];
-  }
+    if (self == [Message_TextChatMessageRequest class]) {
+        defaultMessage_TextChatMessageRequestInstance = [[Message_TextChatMessageRequest alloc] init];
+    }
 }
 + (Message_TextChatMessageRequest*) defaultInstance {
-  return defaultMessage_TextChatMessageRequestInstance;
+    return defaultMessage_TextChatMessageRequestInstance;
 }
 - (Message_TextChatMessageRequest*) defaultInstance {
-  return defaultMessage_TextChatMessageRequestInstance;
+    return defaultMessage_TextChatMessageRequestInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasUserId) {
-    return NO;
-  }
-  if (!self.hasText) {
-    return NO;
-  }
-  if (!self.hasToUserId) {
-    return NO;
-  }
-  if (!self.hasMessageHash) {
-    return NO;
-  }
-  if (!self.hasDate) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasUserId) {
+        return NO;
+    }
+    if (!self.hasText) {
+        return NO;
+    }
+    if (!self.hasToUserId) {
+        return NO;
+    }
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasUserId) {
-    [output writeString:1 value:self.userId];
-  }
-  if (self.hasText) {
-    [output writeString:2 value:self.text];
-  }
-  if (self.hasToUserId) {
-    [output writeString:3 value:self.toUserId];
-  }
-  if (self.hasMessageHash) {
-    [output writeString:4 value:self.messageHash];
-  }
-  if (self.hasDate) {
-    [output writeInt64:5 value:self.date];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasUserId) {
+        [output writeString:1 value:self.userId];
+    }
+    if (self.hasText) {
+        [output writeString:2 value:self.text];
+    }
+    if (self.hasToUserId) {
+        [output writeString:3 value:self.toUserId];
+    }
+    if (self.hasMessageHash) {
+        [output writeString:4 value:self.messageHash];
+    }
+    if (self.hasDate) {
+        [output writeInt64:5 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasUserId) {
+        size += computeStringSize(1, self.userId);
+    }
+    if (self.hasText) {
+        size += computeStringSize(2, self.text);
+    }
+    if (self.hasToUserId) {
+        size += computeStringSize(3, self.toUserId);
+    }
+    if (self.hasMessageHash) {
+        size += computeStringSize(4, self.messageHash);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(5, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasUserId) {
-    size += computeStringSize(1, self.userId);
-  }
-  if (self.hasText) {
-    size += computeStringSize(2, self.text);
-  }
-  if (self.hasToUserId) {
-    size += computeStringSize(3, self.toUserId);
-  }
-  if (self.hasMessageHash) {
-    size += computeStringSize(4, self.messageHash);
-  }
-  if (self.hasDate) {
-    size += computeInt64Size(5, self.date);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_TextChatMessageRequest*) parseFromData:(NSData*) data {
-  return (Message_TextChatMessageRequest*)[[[Message_TextChatMessageRequest builder] mergeFromData:data] build];
+    return (Message_TextChatMessageRequest*)[[[Message_TextChatMessageRequest builder] mergeFromData:data] build];
 }
 + (Message_TextChatMessageRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_TextChatMessageRequest*)[[[Message_TextChatMessageRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_TextChatMessageRequest*)[[[Message_TextChatMessageRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_TextChatMessageRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_TextChatMessageRequest*)[[[Message_TextChatMessageRequest builder] mergeFromInputStream:input] build];
+    return (Message_TextChatMessageRequest*)[[[Message_TextChatMessageRequest builder] mergeFromInputStream:input] build];
 }
 + (Message_TextChatMessageRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_TextChatMessageRequest*)[[[Message_TextChatMessageRequest builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_TextChatMessageRequest*)[[[Message_TextChatMessageRequest builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_TextChatMessageRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_TextChatMessageRequest*)[[[Message_TextChatMessageRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_TextChatMessageRequest*)[[[Message_TextChatMessageRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_TextChatMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_TextChatMessageRequest*)[[[Message_TextChatMessageRequest builder] mergeFromCodedInputStream:input] build];
+    return (Message_TextChatMessageRequest*)[[[Message_TextChatMessageRequest builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_TextChatMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_TextChatMessageRequest*)[[[Message_TextChatMessageRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_TextChatMessageRequest*)[[[Message_TextChatMessageRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_TextChatMessageRequest_Builder*) builder {
-  return [[[Message_TextChatMessageRequest_Builder alloc] init] autorelease];
+    return [[[Message_TextChatMessageRequest_Builder alloc] init] autorelease];
 }
 + (Message_TextChatMessageRequest_Builder*) builderWithPrototype:(Message_TextChatMessageRequest*) prototype {
-  return [[Message_TextChatMessageRequest builder] mergeFrom:prototype];
+    return [[Message_TextChatMessageRequest builder] mergeFrom:prototype];
 }
 - (Message_TextChatMessageRequest_Builder*) builder {
-  return [Message_TextChatMessageRequest builder];
+    return [Message_TextChatMessageRequest builder];
 }
 @end
 
@@ -3877,179 +3961,179 @@ static Message_TextChatMessageRequest* defaultMessage_TextChatMessageRequestInst
 @implementation Message_TextChatMessageRequest_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_TextChatMessageRequest alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_TextChatMessageRequest alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_TextChatMessageRequest_Builder*) clear {
-  self.result = [[[Message_TextChatMessageRequest alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_TextChatMessageRequest alloc] init] autorelease];
+    return self;
 }
 - (Message_TextChatMessageRequest_Builder*) clone {
-  return [Message_TextChatMessageRequest builderWithPrototype:result];
+    return [Message_TextChatMessageRequest builderWithPrototype:result];
 }
 - (Message_TextChatMessageRequest*) defaultInstance {
-  return [Message_TextChatMessageRequest defaultInstance];
+    return [Message_TextChatMessageRequest defaultInstance];
 }
 - (Message_TextChatMessageRequest*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_TextChatMessageRequest*) buildPartial {
-  Message_TextChatMessageRequest* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_TextChatMessageRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_TextChatMessageRequest_Builder*) mergeFrom:(Message_TextChatMessageRequest*) other {
-  if (other == [Message_TextChatMessageRequest defaultInstance]) {
+    if (other == [Message_TextChatMessageRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasUserId) {
+        [self setUserId:other.userId];
+    }
+    if (other.hasText) {
+        [self setText:other.text];
+    }
+    if (other.hasToUserId) {
+        [self setToUserId:other.toUserId];
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasUserId) {
-    [self setUserId:other.userId];
-  }
-  if (other.hasText) {
-    [self setText:other.text];
-  }
-  if (other.hasToUserId) {
-    [self setToUserId:other.toUserId];
-  }
-  if (other.hasMessageHash) {
-    [self setMessageHash:other.messageHash];
-  }
-  if (other.hasDate) {
-    [self setDate:other.date];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_TextChatMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_TextChatMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setUserId:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setText:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setToUserId:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 40: {
+                [self setDate:[input readInt64]];
+                break;
+            }
         }
-        break;
-      }
-      case 10: {
-        [self setUserId:[input readString]];
-        break;
-      }
-      case 18: {
-        [self setText:[input readString]];
-        break;
-      }
-      case 26: {
-        [self setToUserId:[input readString]];
-        break;
-      }
-      case 34: {
-        [self setMessageHash:[input readString]];
-        break;
-      }
-      case 40: {
-        [self setDate:[input readInt64]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+    return result.hasUserId;
 }
 - (NSString*) userId {
-  return result.userId;
+    return result.userId;
 }
 - (Message_TextChatMessageRequest_Builder*) setUserId:(NSString*) value {
-  result.hasUserId = YES;
-  result.userId = value;
-  return self;
+    result.hasUserId = YES;
+    result.userId = value;
+    return self;
 }
 - (Message_TextChatMessageRequest_Builder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = @"";
-  return self;
+    result.hasUserId = NO;
+    result.userId = @"";
+    return self;
 }
 - (BOOL) hasText {
-  return result.hasText;
+    return result.hasText;
 }
 - (NSString*) text {
-  return result.text;
+    return result.text;
 }
 - (Message_TextChatMessageRequest_Builder*) setText:(NSString*) value {
-  result.hasText = YES;
-  result.text = value;
-  return self;
+    result.hasText = YES;
+    result.text = value;
+    return self;
 }
 - (Message_TextChatMessageRequest_Builder*) clearText {
-  result.hasText = NO;
-  result.text = @"";
-  return self;
+    result.hasText = NO;
+    result.text = @"";
+    return self;
 }
 - (BOOL) hasToUserId {
-  return result.hasToUserId;
+    return result.hasToUserId;
 }
 - (NSString*) toUserId {
-  return result.toUserId;
+    return result.toUserId;
 }
 - (Message_TextChatMessageRequest_Builder*) setToUserId:(NSString*) value {
-  result.hasToUserId = YES;
-  result.toUserId = value;
-  return self;
+    result.hasToUserId = YES;
+    result.toUserId = value;
+    return self;
 }
 - (Message_TextChatMessageRequest_Builder*) clearToUserId {
-  result.hasToUserId = NO;
-  result.toUserId = @"";
-  return self;
+    result.hasToUserId = NO;
+    result.toUserId = @"";
+    return self;
 }
 - (BOOL) hasMessageHash {
-  return result.hasMessageHash;
+    return result.hasMessageHash;
 }
 - (NSString*) messageHash {
-  return result.messageHash;
+    return result.messageHash;
 }
 - (Message_TextChatMessageRequest_Builder*) setMessageHash:(NSString*) value {
-  result.hasMessageHash = YES;
-  result.messageHash = value;
-  return self;
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
 }
 - (Message_TextChatMessageRequest_Builder*) clearMessageHash {
-  result.hasMessageHash = NO;
-  result.messageHash = @"";
-  return self;
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
 }
 - (BOOL) hasDate {
-  return result.hasDate;
+    return result.hasDate;
 }
 - (int64_t) date {
-  return result.date;
+    return result.date;
 }
 - (Message_TextChatMessageRequest_Builder*) setDate:(int64_t) value {
-  result.hasDate = YES;
-  result.date = value;
-  return self;
+    result.hasDate = YES;
+    result.date = value;
+    return self;
 }
 - (Message_TextChatMessageRequest_Builder*) clearDate {
-  result.hasDate = NO;
-  result.date = 0L;
-  return self;
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
 }
 @end
 
@@ -4065,177 +4149,177 @@ static Message_TextChatMessageRequest* defaultMessage_TextChatMessageRequestInst
 @implementation Message_TextChatMessageResponse
 
 - (BOOL) hasUserId {
-  return !!hasUserId_;
+    return !!hasUserId_;
 }
 - (void) setHasUserId:(BOOL) value {
-  hasUserId_ = !!value;
+    hasUserId_ = !!value;
 }
 @synthesize userId;
 - (BOOL) hasStatus {
-  return !!hasStatus_;
+    return !!hasStatus_;
 }
 - (void) setHasStatus:(BOOL) value {
-  hasStatus_ = !!value;
+    hasStatus_ = !!value;
 }
 @synthesize status;
 - (BOOL) hasDesc {
-  return !!hasDesc_;
+    return !!hasDesc_;
 }
 - (void) setHasDesc:(BOOL) value {
-  hasDesc_ = !!value;
+    hasDesc_ = !!value;
 }
 @synthesize desc;
 - (BOOL) hasToUserId {
-  return !!hasToUserId_;
+    return !!hasToUserId_;
 }
 - (void) setHasToUserId:(BOOL) value {
-  hasToUserId_ = !!value;
+    hasToUserId_ = !!value;
 }
 @synthesize toUserId;
 - (BOOL) hasMessageHash {
-  return !!hasMessageHash_;
+    return !!hasMessageHash_;
 }
 - (void) setHasMessageHash:(BOOL) value {
-  hasMessageHash_ = !!value;
+    hasMessageHash_ = !!value;
 }
 @synthesize messageHash;
 - (BOOL) hasDate {
-  return !!hasDate_;
+    return !!hasDate_;
 }
 - (void) setHasDate:(BOOL) value {
-  hasDate_ = !!value;
+    hasDate_ = !!value;
 }
 @synthesize date;
 - (void) dealloc {
-  self.userId = nil;
-  self.desc = nil;
-  self.toUserId = nil;
-  self.messageHash = nil;
-  [super dealloc];
+    self.userId = nil;
+    self.desc = nil;
+    self.toUserId = nil;
+    self.messageHash = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.userId = @"";
-    self.status = 0;
-    self.desc = @"";
-    self.toUserId = @"";
-    self.messageHash = @"";
-    self.date = 0L;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.userId = @"";
+        self.status = 0;
+        self.desc = @"";
+        self.toUserId = @"";
+        self.messageHash = @"";
+        self.date = 0L;
+    }
+    return self;
 }
 static Message_TextChatMessageResponse* defaultMessage_TextChatMessageResponseInstance = nil;
 + (void) initialize {
-  if (self == [Message_TextChatMessageResponse class]) {
-    defaultMessage_TextChatMessageResponseInstance = [[Message_TextChatMessageResponse alloc] init];
-  }
+    if (self == [Message_TextChatMessageResponse class]) {
+        defaultMessage_TextChatMessageResponseInstance = [[Message_TextChatMessageResponse alloc] init];
+    }
 }
 + (Message_TextChatMessageResponse*) defaultInstance {
-  return defaultMessage_TextChatMessageResponseInstance;
+    return defaultMessage_TextChatMessageResponseInstance;
 }
 - (Message_TextChatMessageResponse*) defaultInstance {
-  return defaultMessage_TextChatMessageResponseInstance;
+    return defaultMessage_TextChatMessageResponseInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasUserId) {
-    return NO;
-  }
-  if (!self.hasStatus) {
-    return NO;
-  }
-  if (!self.hasDesc) {
-    return NO;
-  }
-  if (!self.hasToUserId) {
-    return NO;
-  }
-  if (!self.hasMessageHash) {
-    return NO;
-  }
-  if (!self.hasDate) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasUserId) {
+        return NO;
+    }
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    if (!self.hasToUserId) {
+        return NO;
+    }
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasUserId) {
-    [output writeString:1 value:self.userId];
-  }
-  if (self.hasStatus) {
-    [output writeInt32:2 value:self.status];
-  }
-  if (self.hasDesc) {
-    [output writeString:3 value:self.desc];
-  }
-  if (self.hasToUserId) {
-    [output writeString:4 value:self.toUserId];
-  }
-  if (self.hasMessageHash) {
-    [output writeString:5 value:self.messageHash];
-  }
-  if (self.hasDate) {
-    [output writeInt64:6 value:self.date];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasUserId) {
+        [output writeString:1 value:self.userId];
+    }
+    if (self.hasStatus) {
+        [output writeInt32:2 value:self.status];
+    }
+    if (self.hasDesc) {
+        [output writeString:3 value:self.desc];
+    }
+    if (self.hasToUserId) {
+        [output writeString:4 value:self.toUserId];
+    }
+    if (self.hasMessageHash) {
+        [output writeString:5 value:self.messageHash];
+    }
+    if (self.hasDate) {
+        [output writeInt64:6 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasUserId) {
+        size += computeStringSize(1, self.userId);
+    }
+    if (self.hasStatus) {
+        size += computeInt32Size(2, self.status);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(3, self.desc);
+    }
+    if (self.hasToUserId) {
+        size += computeStringSize(4, self.toUserId);
+    }
+    if (self.hasMessageHash) {
+        size += computeStringSize(5, self.messageHash);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(6, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasUserId) {
-    size += computeStringSize(1, self.userId);
-  }
-  if (self.hasStatus) {
-    size += computeInt32Size(2, self.status);
-  }
-  if (self.hasDesc) {
-    size += computeStringSize(3, self.desc);
-  }
-  if (self.hasToUserId) {
-    size += computeStringSize(4, self.toUserId);
-  }
-  if (self.hasMessageHash) {
-    size += computeStringSize(5, self.messageHash);
-  }
-  if (self.hasDate) {
-    size += computeInt64Size(6, self.date);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_TextChatMessageResponse*) parseFromData:(NSData*) data {
-  return (Message_TextChatMessageResponse*)[[[Message_TextChatMessageResponse builder] mergeFromData:data] build];
+    return (Message_TextChatMessageResponse*)[[[Message_TextChatMessageResponse builder] mergeFromData:data] build];
 }
 + (Message_TextChatMessageResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_TextChatMessageResponse*)[[[Message_TextChatMessageResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_TextChatMessageResponse*)[[[Message_TextChatMessageResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_TextChatMessageResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_TextChatMessageResponse*)[[[Message_TextChatMessageResponse builder] mergeFromInputStream:input] build];
+    return (Message_TextChatMessageResponse*)[[[Message_TextChatMessageResponse builder] mergeFromInputStream:input] build];
 }
 + (Message_TextChatMessageResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_TextChatMessageResponse*)[[[Message_TextChatMessageResponse builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_TextChatMessageResponse*)[[[Message_TextChatMessageResponse builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_TextChatMessageResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_TextChatMessageResponse*)[[[Message_TextChatMessageResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_TextChatMessageResponse*)[[[Message_TextChatMessageResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_TextChatMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_TextChatMessageResponse*)[[[Message_TextChatMessageResponse builder] mergeFromCodedInputStream:input] build];
+    return (Message_TextChatMessageResponse*)[[[Message_TextChatMessageResponse builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_TextChatMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_TextChatMessageResponse*)[[[Message_TextChatMessageResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_TextChatMessageResponse*)[[[Message_TextChatMessageResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_TextChatMessageResponse_Builder*) builder {
-  return [[[Message_TextChatMessageResponse_Builder alloc] init] autorelease];
+    return [[[Message_TextChatMessageResponse_Builder alloc] init] autorelease];
 }
 + (Message_TextChatMessageResponse_Builder*) builderWithPrototype:(Message_TextChatMessageResponse*) prototype {
-  return [[Message_TextChatMessageResponse builder] mergeFrom:prototype];
+    return [[Message_TextChatMessageResponse builder] mergeFrom:prototype];
 }
 - (Message_TextChatMessageResponse_Builder*) builder {
-  return [Message_TextChatMessageResponse builder];
+    return [Message_TextChatMessageResponse builder];
 }
 @end
 
@@ -4246,202 +4330,202 @@ static Message_TextChatMessageResponse* defaultMessage_TextChatMessageResponseIn
 @implementation Message_TextChatMessageResponse_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_TextChatMessageResponse alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_TextChatMessageResponse alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_TextChatMessageResponse_Builder*) clear {
-  self.result = [[[Message_TextChatMessageResponse alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_TextChatMessageResponse alloc] init] autorelease];
+    return self;
 }
 - (Message_TextChatMessageResponse_Builder*) clone {
-  return [Message_TextChatMessageResponse builderWithPrototype:result];
+    return [Message_TextChatMessageResponse builderWithPrototype:result];
 }
 - (Message_TextChatMessageResponse*) defaultInstance {
-  return [Message_TextChatMessageResponse defaultInstance];
+    return [Message_TextChatMessageResponse defaultInstance];
 }
 - (Message_TextChatMessageResponse*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_TextChatMessageResponse*) buildPartial {
-  Message_TextChatMessageResponse* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_TextChatMessageResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_TextChatMessageResponse_Builder*) mergeFrom:(Message_TextChatMessageResponse*) other {
-  if (other == [Message_TextChatMessageResponse defaultInstance]) {
+    if (other == [Message_TextChatMessageResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasUserId) {
+        [self setUserId:other.userId];
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.hasToUserId) {
+        [self setToUserId:other.toUserId];
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasUserId) {
-    [self setUserId:other.userId];
-  }
-  if (other.hasStatus) {
-    [self setStatus:other.status];
-  }
-  if (other.hasDesc) {
-    [self setDesc:other.desc];
-  }
-  if (other.hasToUserId) {
-    [self setToUserId:other.toUserId];
-  }
-  if (other.hasMessageHash) {
-    [self setMessageHash:other.messageHash];
-  }
-  if (other.hasDate) {
-    [self setDate:other.date];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_TextChatMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_TextChatMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setUserId:[input readString]];
+                break;
+            }
+            case 16: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 26: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setToUserId:[input readString]];
+                break;
+            }
+            case 42: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 48: {
+                [self setDate:[input readInt64]];
+                break;
+            }
         }
-        break;
-      }
-      case 10: {
-        [self setUserId:[input readString]];
-        break;
-      }
-      case 16: {
-        [self setStatus:[input readInt32]];
-        break;
-      }
-      case 26: {
-        [self setDesc:[input readString]];
-        break;
-      }
-      case 34: {
-        [self setToUserId:[input readString]];
-        break;
-      }
-      case 42: {
-        [self setMessageHash:[input readString]];
-        break;
-      }
-      case 48: {
-        [self setDate:[input readInt64]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+    return result.hasUserId;
 }
 - (NSString*) userId {
-  return result.userId;
+    return result.userId;
 }
 - (Message_TextChatMessageResponse_Builder*) setUserId:(NSString*) value {
-  result.hasUserId = YES;
-  result.userId = value;
-  return self;
+    result.hasUserId = YES;
+    result.userId = value;
+    return self;
 }
 - (Message_TextChatMessageResponse_Builder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = @"";
-  return self;
+    result.hasUserId = NO;
+    result.userId = @"";
+    return self;
 }
 - (BOOL) hasStatus {
-  return result.hasStatus;
+    return result.hasStatus;
 }
 - (int32_t) status {
-  return result.status;
+    return result.status;
 }
 - (Message_TextChatMessageResponse_Builder*) setStatus:(int32_t) value {
-  result.hasStatus = YES;
-  result.status = value;
-  return self;
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
 }
 - (Message_TextChatMessageResponse_Builder*) clearStatus {
-  result.hasStatus = NO;
-  result.status = 0;
-  return self;
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
 }
 - (BOOL) hasDesc {
-  return result.hasDesc;
+    return result.hasDesc;
 }
 - (NSString*) desc {
-  return result.desc;
+    return result.desc;
 }
 - (Message_TextChatMessageResponse_Builder*) setDesc:(NSString*) value {
-  result.hasDesc = YES;
-  result.desc = value;
-  return self;
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
 }
 - (Message_TextChatMessageResponse_Builder*) clearDesc {
-  result.hasDesc = NO;
-  result.desc = @"";
-  return self;
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
 }
 - (BOOL) hasToUserId {
-  return result.hasToUserId;
+    return result.hasToUserId;
 }
 - (NSString*) toUserId {
-  return result.toUserId;
+    return result.toUserId;
 }
 - (Message_TextChatMessageResponse_Builder*) setToUserId:(NSString*) value {
-  result.hasToUserId = YES;
-  result.toUserId = value;
-  return self;
+    result.hasToUserId = YES;
+    result.toUserId = value;
+    return self;
 }
 - (Message_TextChatMessageResponse_Builder*) clearToUserId {
-  result.hasToUserId = NO;
-  result.toUserId = @"";
-  return self;
+    result.hasToUserId = NO;
+    result.toUserId = @"";
+    return self;
 }
 - (BOOL) hasMessageHash {
-  return result.hasMessageHash;
+    return result.hasMessageHash;
 }
 - (NSString*) messageHash {
-  return result.messageHash;
+    return result.messageHash;
 }
 - (Message_TextChatMessageResponse_Builder*) setMessageHash:(NSString*) value {
-  result.hasMessageHash = YES;
-  result.messageHash = value;
-  return self;
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
 }
 - (Message_TextChatMessageResponse_Builder*) clearMessageHash {
-  result.hasMessageHash = NO;
-  result.messageHash = @"";
-  return self;
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
 }
 - (BOOL) hasDate {
-  return result.hasDate;
+    return result.hasDate;
 }
 - (int64_t) date {
-  return result.date;
+    return result.date;
 }
 - (Message_TextChatMessageResponse_Builder*) setDate:(int64_t) value {
-  result.hasDate = YES;
-  result.date = value;
-  return self;
+    result.hasDate = YES;
+    result.date = value;
+    return self;
 }
 - (Message_TextChatMessageResponse_Builder*) clearDate {
-  result.hasDate = NO;
-  result.date = 0L;
-  return self;
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
 }
 @end
 
@@ -4457,178 +4541,178 @@ static Message_TextChatMessageResponse* defaultMessage_TextChatMessageResponseIn
 @implementation Message_PictureChatMessageRequest
 
 - (BOOL) hasUserId {
-  return !!hasUserId_;
+    return !!hasUserId_;
 }
 - (void) setHasUserId:(BOOL) value {
-  hasUserId_ = !!value;
+    hasUserId_ = !!value;
 }
 @synthesize userId;
 - (BOOL) hasPictureUuid {
-  return !!hasPictureUuid_;
+    return !!hasPictureUuid_;
 }
 - (void) setHasPictureUuid:(BOOL) value {
-  hasPictureUuid_ = !!value;
+    hasPictureUuid_ = !!value;
 }
 @synthesize pictureUuid;
 - (BOOL) hasDesc {
-  return !!hasDesc_;
+    return !!hasDesc_;
 }
 - (void) setHasDesc:(BOOL) value {
-  hasDesc_ = !!value;
+    hasDesc_ = !!value;
 }
 @synthesize desc;
 - (BOOL) hasToUserId {
-  return !!hasToUserId_;
+    return !!hasToUserId_;
 }
 - (void) setHasToUserId:(BOOL) value {
-  hasToUserId_ = !!value;
+    hasToUserId_ = !!value;
 }
 @synthesize toUserId;
 - (BOOL) hasMessageHash {
-  return !!hasMessageHash_;
+    return !!hasMessageHash_;
 }
 - (void) setHasMessageHash:(BOOL) value {
-  hasMessageHash_ = !!value;
+    hasMessageHash_ = !!value;
 }
 @synthesize messageHash;
 - (BOOL) hasDate {
-  return !!hasDate_;
+    return !!hasDate_;
 }
 - (void) setHasDate:(BOOL) value {
-  hasDate_ = !!value;
+    hasDate_ = !!value;
 }
 @synthesize date;
 - (void) dealloc {
-  self.userId = nil;
-  self.pictureUuid = nil;
-  self.desc = nil;
-  self.toUserId = nil;
-  self.messageHash = nil;
-  [super dealloc];
+    self.userId = nil;
+    self.pictureUuid = nil;
+    self.desc = nil;
+    self.toUserId = nil;
+    self.messageHash = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.userId = @"";
-    self.pictureUuid = @"";
-    self.desc = @"";
-    self.toUserId = @"";
-    self.messageHash = @"";
-    self.date = 0L;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.userId = @"";
+        self.pictureUuid = @"";
+        self.desc = @"";
+        self.toUserId = @"";
+        self.messageHash = @"";
+        self.date = 0L;
+    }
+    return self;
 }
 static Message_PictureChatMessageRequest* defaultMessage_PictureChatMessageRequestInstance = nil;
 + (void) initialize {
-  if (self == [Message_PictureChatMessageRequest class]) {
-    defaultMessage_PictureChatMessageRequestInstance = [[Message_PictureChatMessageRequest alloc] init];
-  }
+    if (self == [Message_PictureChatMessageRequest class]) {
+        defaultMessage_PictureChatMessageRequestInstance = [[Message_PictureChatMessageRequest alloc] init];
+    }
 }
 + (Message_PictureChatMessageRequest*) defaultInstance {
-  return defaultMessage_PictureChatMessageRequestInstance;
+    return defaultMessage_PictureChatMessageRequestInstance;
 }
 - (Message_PictureChatMessageRequest*) defaultInstance {
-  return defaultMessage_PictureChatMessageRequestInstance;
+    return defaultMessage_PictureChatMessageRequestInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasUserId) {
-    return NO;
-  }
-  if (!self.hasPictureUuid) {
-    return NO;
-  }
-  if (!self.hasDesc) {
-    return NO;
-  }
-  if (!self.hasToUserId) {
-    return NO;
-  }
-  if (!self.hasMessageHash) {
-    return NO;
-  }
-  if (!self.hasDate) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasUserId) {
+        return NO;
+    }
+    if (!self.hasPictureUuid) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    if (!self.hasToUserId) {
+        return NO;
+    }
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasUserId) {
-    [output writeString:1 value:self.userId];
-  }
-  if (self.hasPictureUuid) {
-    [output writeString:2 value:self.pictureUuid];
-  }
-  if (self.hasDesc) {
-    [output writeString:3 value:self.desc];
-  }
-  if (self.hasToUserId) {
-    [output writeString:4 value:self.toUserId];
-  }
-  if (self.hasMessageHash) {
-    [output writeString:5 value:self.messageHash];
-  }
-  if (self.hasDate) {
-    [output writeInt64:6 value:self.date];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasUserId) {
+        [output writeString:1 value:self.userId];
+    }
+    if (self.hasPictureUuid) {
+        [output writeString:2 value:self.pictureUuid];
+    }
+    if (self.hasDesc) {
+        [output writeString:3 value:self.desc];
+    }
+    if (self.hasToUserId) {
+        [output writeString:4 value:self.toUserId];
+    }
+    if (self.hasMessageHash) {
+        [output writeString:5 value:self.messageHash];
+    }
+    if (self.hasDate) {
+        [output writeInt64:6 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasUserId) {
+        size += computeStringSize(1, self.userId);
+    }
+    if (self.hasPictureUuid) {
+        size += computeStringSize(2, self.pictureUuid);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(3, self.desc);
+    }
+    if (self.hasToUserId) {
+        size += computeStringSize(4, self.toUserId);
+    }
+    if (self.hasMessageHash) {
+        size += computeStringSize(5, self.messageHash);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(6, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasUserId) {
-    size += computeStringSize(1, self.userId);
-  }
-  if (self.hasPictureUuid) {
-    size += computeStringSize(2, self.pictureUuid);
-  }
-  if (self.hasDesc) {
-    size += computeStringSize(3, self.desc);
-  }
-  if (self.hasToUserId) {
-    size += computeStringSize(4, self.toUserId);
-  }
-  if (self.hasMessageHash) {
-    size += computeStringSize(5, self.messageHash);
-  }
-  if (self.hasDate) {
-    size += computeInt64Size(6, self.date);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_PictureChatMessageRequest*) parseFromData:(NSData*) data {
-  return (Message_PictureChatMessageRequest*)[[[Message_PictureChatMessageRequest builder] mergeFromData:data] build];
+    return (Message_PictureChatMessageRequest*)[[[Message_PictureChatMessageRequest builder] mergeFromData:data] build];
 }
 + (Message_PictureChatMessageRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_PictureChatMessageRequest*)[[[Message_PictureChatMessageRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_PictureChatMessageRequest*)[[[Message_PictureChatMessageRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_PictureChatMessageRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_PictureChatMessageRequest*)[[[Message_PictureChatMessageRequest builder] mergeFromInputStream:input] build];
+    return (Message_PictureChatMessageRequest*)[[[Message_PictureChatMessageRequest builder] mergeFromInputStream:input] build];
 }
 + (Message_PictureChatMessageRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_PictureChatMessageRequest*)[[[Message_PictureChatMessageRequest builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_PictureChatMessageRequest*)[[[Message_PictureChatMessageRequest builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_PictureChatMessageRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_PictureChatMessageRequest*)[[[Message_PictureChatMessageRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_PictureChatMessageRequest*)[[[Message_PictureChatMessageRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_PictureChatMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_PictureChatMessageRequest*)[[[Message_PictureChatMessageRequest builder] mergeFromCodedInputStream:input] build];
+    return (Message_PictureChatMessageRequest*)[[[Message_PictureChatMessageRequest builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_PictureChatMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_PictureChatMessageRequest*)[[[Message_PictureChatMessageRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_PictureChatMessageRequest*)[[[Message_PictureChatMessageRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_PictureChatMessageRequest_Builder*) builder {
-  return [[[Message_PictureChatMessageRequest_Builder alloc] init] autorelease];
+    return [[[Message_PictureChatMessageRequest_Builder alloc] init] autorelease];
 }
 + (Message_PictureChatMessageRequest_Builder*) builderWithPrototype:(Message_PictureChatMessageRequest*) prototype {
-  return [[Message_PictureChatMessageRequest builder] mergeFrom:prototype];
+    return [[Message_PictureChatMessageRequest builder] mergeFrom:prototype];
 }
 - (Message_PictureChatMessageRequest_Builder*) builder {
-  return [Message_PictureChatMessageRequest builder];
+    return [Message_PictureChatMessageRequest builder];
 }
 @end
 
@@ -4639,202 +4723,202 @@ static Message_PictureChatMessageRequest* defaultMessage_PictureChatMessageReque
 @implementation Message_PictureChatMessageRequest_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_PictureChatMessageRequest alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_PictureChatMessageRequest alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_PictureChatMessageRequest_Builder*) clear {
-  self.result = [[[Message_PictureChatMessageRequest alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_PictureChatMessageRequest alloc] init] autorelease];
+    return self;
 }
 - (Message_PictureChatMessageRequest_Builder*) clone {
-  return [Message_PictureChatMessageRequest builderWithPrototype:result];
+    return [Message_PictureChatMessageRequest builderWithPrototype:result];
 }
 - (Message_PictureChatMessageRequest*) defaultInstance {
-  return [Message_PictureChatMessageRequest defaultInstance];
+    return [Message_PictureChatMessageRequest defaultInstance];
 }
 - (Message_PictureChatMessageRequest*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_PictureChatMessageRequest*) buildPartial {
-  Message_PictureChatMessageRequest* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_PictureChatMessageRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_PictureChatMessageRequest_Builder*) mergeFrom:(Message_PictureChatMessageRequest*) other {
-  if (other == [Message_PictureChatMessageRequest defaultInstance]) {
+    if (other == [Message_PictureChatMessageRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasUserId) {
+        [self setUserId:other.userId];
+    }
+    if (other.hasPictureUuid) {
+        [self setPictureUuid:other.pictureUuid];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.hasToUserId) {
+        [self setToUserId:other.toUserId];
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasUserId) {
-    [self setUserId:other.userId];
-  }
-  if (other.hasPictureUuid) {
-    [self setPictureUuid:other.pictureUuid];
-  }
-  if (other.hasDesc) {
-    [self setDesc:other.desc];
-  }
-  if (other.hasToUserId) {
-    [self setToUserId:other.toUserId];
-  }
-  if (other.hasMessageHash) {
-    [self setMessageHash:other.messageHash];
-  }
-  if (other.hasDate) {
-    [self setDate:other.date];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_PictureChatMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_PictureChatMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setUserId:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setPictureUuid:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setToUserId:[input readString]];
+                break;
+            }
+            case 42: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 48: {
+                [self setDate:[input readInt64]];
+                break;
+            }
         }
-        break;
-      }
-      case 10: {
-        [self setUserId:[input readString]];
-        break;
-      }
-      case 18: {
-        [self setPictureUuid:[input readString]];
-        break;
-      }
-      case 26: {
-        [self setDesc:[input readString]];
-        break;
-      }
-      case 34: {
-        [self setToUserId:[input readString]];
-        break;
-      }
-      case 42: {
-        [self setMessageHash:[input readString]];
-        break;
-      }
-      case 48: {
-        [self setDate:[input readInt64]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+    return result.hasUserId;
 }
 - (NSString*) userId {
-  return result.userId;
+    return result.userId;
 }
 - (Message_PictureChatMessageRequest_Builder*) setUserId:(NSString*) value {
-  result.hasUserId = YES;
-  result.userId = value;
-  return self;
+    result.hasUserId = YES;
+    result.userId = value;
+    return self;
 }
 - (Message_PictureChatMessageRequest_Builder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = @"";
-  return self;
+    result.hasUserId = NO;
+    result.userId = @"";
+    return self;
 }
 - (BOOL) hasPictureUuid {
-  return result.hasPictureUuid;
+    return result.hasPictureUuid;
 }
 - (NSString*) pictureUuid {
-  return result.pictureUuid;
+    return result.pictureUuid;
 }
 - (Message_PictureChatMessageRequest_Builder*) setPictureUuid:(NSString*) value {
-  result.hasPictureUuid = YES;
-  result.pictureUuid = value;
-  return self;
+    result.hasPictureUuid = YES;
+    result.pictureUuid = value;
+    return self;
 }
 - (Message_PictureChatMessageRequest_Builder*) clearPictureUuid {
-  result.hasPictureUuid = NO;
-  result.pictureUuid = @"";
-  return self;
+    result.hasPictureUuid = NO;
+    result.pictureUuid = @"";
+    return self;
 }
 - (BOOL) hasDesc {
-  return result.hasDesc;
+    return result.hasDesc;
 }
 - (NSString*) desc {
-  return result.desc;
+    return result.desc;
 }
 - (Message_PictureChatMessageRequest_Builder*) setDesc:(NSString*) value {
-  result.hasDesc = YES;
-  result.desc = value;
-  return self;
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
 }
 - (Message_PictureChatMessageRequest_Builder*) clearDesc {
-  result.hasDesc = NO;
-  result.desc = @"";
-  return self;
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
 }
 - (BOOL) hasToUserId {
-  return result.hasToUserId;
+    return result.hasToUserId;
 }
 - (NSString*) toUserId {
-  return result.toUserId;
+    return result.toUserId;
 }
 - (Message_PictureChatMessageRequest_Builder*) setToUserId:(NSString*) value {
-  result.hasToUserId = YES;
-  result.toUserId = value;
-  return self;
+    result.hasToUserId = YES;
+    result.toUserId = value;
+    return self;
 }
 - (Message_PictureChatMessageRequest_Builder*) clearToUserId {
-  result.hasToUserId = NO;
-  result.toUserId = @"";
-  return self;
+    result.hasToUserId = NO;
+    result.toUserId = @"";
+    return self;
 }
 - (BOOL) hasMessageHash {
-  return result.hasMessageHash;
+    return result.hasMessageHash;
 }
 - (NSString*) messageHash {
-  return result.messageHash;
+    return result.messageHash;
 }
 - (Message_PictureChatMessageRequest_Builder*) setMessageHash:(NSString*) value {
-  result.hasMessageHash = YES;
-  result.messageHash = value;
-  return self;
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
 }
 - (Message_PictureChatMessageRequest_Builder*) clearMessageHash {
-  result.hasMessageHash = NO;
-  result.messageHash = @"";
-  return self;
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
 }
 - (BOOL) hasDate {
-  return result.hasDate;
+    return result.hasDate;
 }
 - (int64_t) date {
-  return result.date;
+    return result.date;
 }
 - (Message_PictureChatMessageRequest_Builder*) setDate:(int64_t) value {
-  result.hasDate = YES;
-  result.date = value;
-  return self;
+    result.hasDate = YES;
+    result.date = value;
+    return self;
 }
 - (Message_PictureChatMessageRequest_Builder*) clearDate {
-  result.hasDate = NO;
-  result.date = 0L;
-  return self;
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
 }
 @end
 
@@ -4850,177 +4934,177 @@ static Message_PictureChatMessageRequest* defaultMessage_PictureChatMessageReque
 @implementation Message_PictureChatMessageResponse
 
 - (BOOL) hasUserId {
-  return !!hasUserId_;
+    return !!hasUserId_;
 }
 - (void) setHasUserId:(BOOL) value {
-  hasUserId_ = !!value;
+    hasUserId_ = !!value;
 }
 @synthesize userId;
 - (BOOL) hasStatus {
-  return !!hasStatus_;
+    return !!hasStatus_;
 }
 - (void) setHasStatus:(BOOL) value {
-  hasStatus_ = !!value;
+    hasStatus_ = !!value;
 }
 @synthesize status;
 - (BOOL) hasDesc {
-  return !!hasDesc_;
+    return !!hasDesc_;
 }
 - (void) setHasDesc:(BOOL) value {
-  hasDesc_ = !!value;
+    hasDesc_ = !!value;
 }
 @synthesize desc;
 - (BOOL) hasToUserId {
-  return !!hasToUserId_;
+    return !!hasToUserId_;
 }
 - (void) setHasToUserId:(BOOL) value {
-  hasToUserId_ = !!value;
+    hasToUserId_ = !!value;
 }
 @synthesize toUserId;
 - (BOOL) hasMessageHash {
-  return !!hasMessageHash_;
+    return !!hasMessageHash_;
 }
 - (void) setHasMessageHash:(BOOL) value {
-  hasMessageHash_ = !!value;
+    hasMessageHash_ = !!value;
 }
 @synthesize messageHash;
 - (BOOL) hasDate {
-  return !!hasDate_;
+    return !!hasDate_;
 }
 - (void) setHasDate:(BOOL) value {
-  hasDate_ = !!value;
+    hasDate_ = !!value;
 }
 @synthesize date;
 - (void) dealloc {
-  self.userId = nil;
-  self.desc = nil;
-  self.toUserId = nil;
-  self.messageHash = nil;
-  [super dealloc];
+    self.userId = nil;
+    self.desc = nil;
+    self.toUserId = nil;
+    self.messageHash = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.userId = @"";
-    self.status = 0;
-    self.desc = @"";
-    self.toUserId = @"";
-    self.messageHash = @"";
-    self.date = 0L;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.userId = @"";
+        self.status = 0;
+        self.desc = @"";
+        self.toUserId = @"";
+        self.messageHash = @"";
+        self.date = 0L;
+    }
+    return self;
 }
 static Message_PictureChatMessageResponse* defaultMessage_PictureChatMessageResponseInstance = nil;
 + (void) initialize {
-  if (self == [Message_PictureChatMessageResponse class]) {
-    defaultMessage_PictureChatMessageResponseInstance = [[Message_PictureChatMessageResponse alloc] init];
-  }
+    if (self == [Message_PictureChatMessageResponse class]) {
+        defaultMessage_PictureChatMessageResponseInstance = [[Message_PictureChatMessageResponse alloc] init];
+    }
 }
 + (Message_PictureChatMessageResponse*) defaultInstance {
-  return defaultMessage_PictureChatMessageResponseInstance;
+    return defaultMessage_PictureChatMessageResponseInstance;
 }
 - (Message_PictureChatMessageResponse*) defaultInstance {
-  return defaultMessage_PictureChatMessageResponseInstance;
+    return defaultMessage_PictureChatMessageResponseInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasUserId) {
-    return NO;
-  }
-  if (!self.hasStatus) {
-    return NO;
-  }
-  if (!self.hasDesc) {
-    return NO;
-  }
-  if (!self.hasToUserId) {
-    return NO;
-  }
-  if (!self.hasMessageHash) {
-    return NO;
-  }
-  if (!self.hasDate) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasUserId) {
+        return NO;
+    }
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    if (!self.hasToUserId) {
+        return NO;
+    }
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasUserId) {
-    [output writeString:1 value:self.userId];
-  }
-  if (self.hasStatus) {
-    [output writeInt32:2 value:self.status];
-  }
-  if (self.hasDesc) {
-    [output writeString:3 value:self.desc];
-  }
-  if (self.hasToUserId) {
-    [output writeString:4 value:self.toUserId];
-  }
-  if (self.hasMessageHash) {
-    [output writeString:5 value:self.messageHash];
-  }
-  if (self.hasDate) {
-    [output writeInt64:6 value:self.date];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasUserId) {
+        [output writeString:1 value:self.userId];
+    }
+    if (self.hasStatus) {
+        [output writeInt32:2 value:self.status];
+    }
+    if (self.hasDesc) {
+        [output writeString:3 value:self.desc];
+    }
+    if (self.hasToUserId) {
+        [output writeString:4 value:self.toUserId];
+    }
+    if (self.hasMessageHash) {
+        [output writeString:5 value:self.messageHash];
+    }
+    if (self.hasDate) {
+        [output writeInt64:6 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasUserId) {
+        size += computeStringSize(1, self.userId);
+    }
+    if (self.hasStatus) {
+        size += computeInt32Size(2, self.status);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(3, self.desc);
+    }
+    if (self.hasToUserId) {
+        size += computeStringSize(4, self.toUserId);
+    }
+    if (self.hasMessageHash) {
+        size += computeStringSize(5, self.messageHash);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(6, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasUserId) {
-    size += computeStringSize(1, self.userId);
-  }
-  if (self.hasStatus) {
-    size += computeInt32Size(2, self.status);
-  }
-  if (self.hasDesc) {
-    size += computeStringSize(3, self.desc);
-  }
-  if (self.hasToUserId) {
-    size += computeStringSize(4, self.toUserId);
-  }
-  if (self.hasMessageHash) {
-    size += computeStringSize(5, self.messageHash);
-  }
-  if (self.hasDate) {
-    size += computeInt64Size(6, self.date);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_PictureChatMessageResponse*) parseFromData:(NSData*) data {
-  return (Message_PictureChatMessageResponse*)[[[Message_PictureChatMessageResponse builder] mergeFromData:data] build];
+    return (Message_PictureChatMessageResponse*)[[[Message_PictureChatMessageResponse builder] mergeFromData:data] build];
 }
 + (Message_PictureChatMessageResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_PictureChatMessageResponse*)[[[Message_PictureChatMessageResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_PictureChatMessageResponse*)[[[Message_PictureChatMessageResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_PictureChatMessageResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_PictureChatMessageResponse*)[[[Message_PictureChatMessageResponse builder] mergeFromInputStream:input] build];
+    return (Message_PictureChatMessageResponse*)[[[Message_PictureChatMessageResponse builder] mergeFromInputStream:input] build];
 }
 + (Message_PictureChatMessageResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_PictureChatMessageResponse*)[[[Message_PictureChatMessageResponse builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_PictureChatMessageResponse*)[[[Message_PictureChatMessageResponse builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_PictureChatMessageResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_PictureChatMessageResponse*)[[[Message_PictureChatMessageResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_PictureChatMessageResponse*)[[[Message_PictureChatMessageResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_PictureChatMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_PictureChatMessageResponse*)[[[Message_PictureChatMessageResponse builder] mergeFromCodedInputStream:input] build];
+    return (Message_PictureChatMessageResponse*)[[[Message_PictureChatMessageResponse builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_PictureChatMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_PictureChatMessageResponse*)[[[Message_PictureChatMessageResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_PictureChatMessageResponse*)[[[Message_PictureChatMessageResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_PictureChatMessageResponse_Builder*) builder {
-  return [[[Message_PictureChatMessageResponse_Builder alloc] init] autorelease];
+    return [[[Message_PictureChatMessageResponse_Builder alloc] init] autorelease];
 }
 + (Message_PictureChatMessageResponse_Builder*) builderWithPrototype:(Message_PictureChatMessageResponse*) prototype {
-  return [[Message_PictureChatMessageResponse builder] mergeFrom:prototype];
+    return [[Message_PictureChatMessageResponse builder] mergeFrom:prototype];
 }
 - (Message_PictureChatMessageResponse_Builder*) builder {
-  return [Message_PictureChatMessageResponse builder];
+    return [Message_PictureChatMessageResponse builder];
 }
 @end
 
@@ -5031,202 +5115,202 @@ static Message_PictureChatMessageResponse* defaultMessage_PictureChatMessageResp
 @implementation Message_PictureChatMessageResponse_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_PictureChatMessageResponse alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_PictureChatMessageResponse alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_PictureChatMessageResponse_Builder*) clear {
-  self.result = [[[Message_PictureChatMessageResponse alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_PictureChatMessageResponse alloc] init] autorelease];
+    return self;
 }
 - (Message_PictureChatMessageResponse_Builder*) clone {
-  return [Message_PictureChatMessageResponse builderWithPrototype:result];
+    return [Message_PictureChatMessageResponse builderWithPrototype:result];
 }
 - (Message_PictureChatMessageResponse*) defaultInstance {
-  return [Message_PictureChatMessageResponse defaultInstance];
+    return [Message_PictureChatMessageResponse defaultInstance];
 }
 - (Message_PictureChatMessageResponse*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_PictureChatMessageResponse*) buildPartial {
-  Message_PictureChatMessageResponse* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_PictureChatMessageResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_PictureChatMessageResponse_Builder*) mergeFrom:(Message_PictureChatMessageResponse*) other {
-  if (other == [Message_PictureChatMessageResponse defaultInstance]) {
+    if (other == [Message_PictureChatMessageResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasUserId) {
+        [self setUserId:other.userId];
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.hasToUserId) {
+        [self setToUserId:other.toUserId];
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasUserId) {
-    [self setUserId:other.userId];
-  }
-  if (other.hasStatus) {
-    [self setStatus:other.status];
-  }
-  if (other.hasDesc) {
-    [self setDesc:other.desc];
-  }
-  if (other.hasToUserId) {
-    [self setToUserId:other.toUserId];
-  }
-  if (other.hasMessageHash) {
-    [self setMessageHash:other.messageHash];
-  }
-  if (other.hasDate) {
-    [self setDate:other.date];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_PictureChatMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_PictureChatMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setUserId:[input readString]];
+                break;
+            }
+            case 16: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 26: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setToUserId:[input readString]];
+                break;
+            }
+            case 42: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 48: {
+                [self setDate:[input readInt64]];
+                break;
+            }
         }
-        break;
-      }
-      case 10: {
-        [self setUserId:[input readString]];
-        break;
-      }
-      case 16: {
-        [self setStatus:[input readInt32]];
-        break;
-      }
-      case 26: {
-        [self setDesc:[input readString]];
-        break;
-      }
-      case 34: {
-        [self setToUserId:[input readString]];
-        break;
-      }
-      case 42: {
-        [self setMessageHash:[input readString]];
-        break;
-      }
-      case 48: {
-        [self setDate:[input readInt64]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+    return result.hasUserId;
 }
 - (NSString*) userId {
-  return result.userId;
+    return result.userId;
 }
 - (Message_PictureChatMessageResponse_Builder*) setUserId:(NSString*) value {
-  result.hasUserId = YES;
-  result.userId = value;
-  return self;
+    result.hasUserId = YES;
+    result.userId = value;
+    return self;
 }
 - (Message_PictureChatMessageResponse_Builder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = @"";
-  return self;
+    result.hasUserId = NO;
+    result.userId = @"";
+    return self;
 }
 - (BOOL) hasStatus {
-  return result.hasStatus;
+    return result.hasStatus;
 }
 - (int32_t) status {
-  return result.status;
+    return result.status;
 }
 - (Message_PictureChatMessageResponse_Builder*) setStatus:(int32_t) value {
-  result.hasStatus = YES;
-  result.status = value;
-  return self;
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
 }
 - (Message_PictureChatMessageResponse_Builder*) clearStatus {
-  result.hasStatus = NO;
-  result.status = 0;
-  return self;
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
 }
 - (BOOL) hasDesc {
-  return result.hasDesc;
+    return result.hasDesc;
 }
 - (NSString*) desc {
-  return result.desc;
+    return result.desc;
 }
 - (Message_PictureChatMessageResponse_Builder*) setDesc:(NSString*) value {
-  result.hasDesc = YES;
-  result.desc = value;
-  return self;
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
 }
 - (Message_PictureChatMessageResponse_Builder*) clearDesc {
-  result.hasDesc = NO;
-  result.desc = @"";
-  return self;
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
 }
 - (BOOL) hasToUserId {
-  return result.hasToUserId;
+    return result.hasToUserId;
 }
 - (NSString*) toUserId {
-  return result.toUserId;
+    return result.toUserId;
 }
 - (Message_PictureChatMessageResponse_Builder*) setToUserId:(NSString*) value {
-  result.hasToUserId = YES;
-  result.toUserId = value;
-  return self;
+    result.hasToUserId = YES;
+    result.toUserId = value;
+    return self;
 }
 - (Message_PictureChatMessageResponse_Builder*) clearToUserId {
-  result.hasToUserId = NO;
-  result.toUserId = @"";
-  return self;
+    result.hasToUserId = NO;
+    result.toUserId = @"";
+    return self;
 }
 - (BOOL) hasMessageHash {
-  return result.hasMessageHash;
+    return result.hasMessageHash;
 }
 - (NSString*) messageHash {
-  return result.messageHash;
+    return result.messageHash;
 }
 - (Message_PictureChatMessageResponse_Builder*) setMessageHash:(NSString*) value {
-  result.hasMessageHash = YES;
-  result.messageHash = value;
-  return self;
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
 }
 - (Message_PictureChatMessageResponse_Builder*) clearMessageHash {
-  result.hasMessageHash = NO;
-  result.messageHash = @"";
-  return self;
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
 }
 - (BOOL) hasDate {
-  return result.hasDate;
+    return result.hasDate;
 }
 - (int64_t) date {
-  return result.date;
+    return result.date;
 }
 - (Message_PictureChatMessageResponse_Builder*) setDate:(int64_t) value {
-  result.hasDate = YES;
-  result.date = value;
-  return self;
+    result.hasDate = YES;
+    result.date = value;
+    return self;
 }
 - (Message_PictureChatMessageResponse_Builder*) clearDate {
-  result.hasDate = NO;
-  result.date = 0L;
-  return self;
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
 }
 @end
 
@@ -5242,178 +5326,178 @@ static Message_PictureChatMessageResponse* defaultMessage_PictureChatMessageResp
 @implementation Message_VoiceChatMessageRequest
 
 - (BOOL) hasUserId {
-  return !!hasUserId_;
+    return !!hasUserId_;
 }
 - (void) setHasUserId:(BOOL) value {
-  hasUserId_ = !!value;
+    hasUserId_ = !!value;
 }
 @synthesize userId;
 - (BOOL) hasVoiceUuid {
-  return !!hasVoiceUuid_;
+    return !!hasVoiceUuid_;
 }
 - (void) setHasVoiceUuid:(BOOL) value {
-  hasVoiceUuid_ = !!value;
+    hasVoiceUuid_ = !!value;
 }
 @synthesize voiceUuid;
 - (BOOL) hasDesc {
-  return !!hasDesc_;
+    return !!hasDesc_;
 }
 - (void) setHasDesc:(BOOL) value {
-  hasDesc_ = !!value;
+    hasDesc_ = !!value;
 }
 @synthesize desc;
 - (BOOL) hasToUserId {
-  return !!hasToUserId_;
+    return !!hasToUserId_;
 }
 - (void) setHasToUserId:(BOOL) value {
-  hasToUserId_ = !!value;
+    hasToUserId_ = !!value;
 }
 @synthesize toUserId;
 - (BOOL) hasMessageHash {
-  return !!hasMessageHash_;
+    return !!hasMessageHash_;
 }
 - (void) setHasMessageHash:(BOOL) value {
-  hasMessageHash_ = !!value;
+    hasMessageHash_ = !!value;
 }
 @synthesize messageHash;
 - (BOOL) hasDate {
-  return !!hasDate_;
+    return !!hasDate_;
 }
 - (void) setHasDate:(BOOL) value {
-  hasDate_ = !!value;
+    hasDate_ = !!value;
 }
 @synthesize date;
 - (void) dealloc {
-  self.userId = nil;
-  self.voiceUuid = nil;
-  self.desc = nil;
-  self.toUserId = nil;
-  self.messageHash = nil;
-  [super dealloc];
+    self.userId = nil;
+    self.voiceUuid = nil;
+    self.desc = nil;
+    self.toUserId = nil;
+    self.messageHash = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.userId = @"";
-    self.voiceUuid = @"";
-    self.desc = @"";
-    self.toUserId = @"";
-    self.messageHash = @"";
-    self.date = 0L;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.userId = @"";
+        self.voiceUuid = @"";
+        self.desc = @"";
+        self.toUserId = @"";
+        self.messageHash = @"";
+        self.date = 0L;
+    }
+    return self;
 }
 static Message_VoiceChatMessageRequest* defaultMessage_VoiceChatMessageRequestInstance = nil;
 + (void) initialize {
-  if (self == [Message_VoiceChatMessageRequest class]) {
-    defaultMessage_VoiceChatMessageRequestInstance = [[Message_VoiceChatMessageRequest alloc] init];
-  }
+    if (self == [Message_VoiceChatMessageRequest class]) {
+        defaultMessage_VoiceChatMessageRequestInstance = [[Message_VoiceChatMessageRequest alloc] init];
+    }
 }
 + (Message_VoiceChatMessageRequest*) defaultInstance {
-  return defaultMessage_VoiceChatMessageRequestInstance;
+    return defaultMessage_VoiceChatMessageRequestInstance;
 }
 - (Message_VoiceChatMessageRequest*) defaultInstance {
-  return defaultMessage_VoiceChatMessageRequestInstance;
+    return defaultMessage_VoiceChatMessageRequestInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasUserId) {
-    return NO;
-  }
-  if (!self.hasVoiceUuid) {
-    return NO;
-  }
-  if (!self.hasDesc) {
-    return NO;
-  }
-  if (!self.hasToUserId) {
-    return NO;
-  }
-  if (!self.hasMessageHash) {
-    return NO;
-  }
-  if (!self.hasDate) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasUserId) {
+        return NO;
+    }
+    if (!self.hasVoiceUuid) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    if (!self.hasToUserId) {
+        return NO;
+    }
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasUserId) {
-    [output writeString:1 value:self.userId];
-  }
-  if (self.hasVoiceUuid) {
-    [output writeString:2 value:self.voiceUuid];
-  }
-  if (self.hasDesc) {
-    [output writeString:3 value:self.desc];
-  }
-  if (self.hasToUserId) {
-    [output writeString:4 value:self.toUserId];
-  }
-  if (self.hasMessageHash) {
-    [output writeString:5 value:self.messageHash];
-  }
-  if (self.hasDate) {
-    [output writeInt64:6 value:self.date];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasUserId) {
+        [output writeString:1 value:self.userId];
+    }
+    if (self.hasVoiceUuid) {
+        [output writeString:2 value:self.voiceUuid];
+    }
+    if (self.hasDesc) {
+        [output writeString:3 value:self.desc];
+    }
+    if (self.hasToUserId) {
+        [output writeString:4 value:self.toUserId];
+    }
+    if (self.hasMessageHash) {
+        [output writeString:5 value:self.messageHash];
+    }
+    if (self.hasDate) {
+        [output writeInt64:6 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasUserId) {
+        size += computeStringSize(1, self.userId);
+    }
+    if (self.hasVoiceUuid) {
+        size += computeStringSize(2, self.voiceUuid);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(3, self.desc);
+    }
+    if (self.hasToUserId) {
+        size += computeStringSize(4, self.toUserId);
+    }
+    if (self.hasMessageHash) {
+        size += computeStringSize(5, self.messageHash);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(6, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasUserId) {
-    size += computeStringSize(1, self.userId);
-  }
-  if (self.hasVoiceUuid) {
-    size += computeStringSize(2, self.voiceUuid);
-  }
-  if (self.hasDesc) {
-    size += computeStringSize(3, self.desc);
-  }
-  if (self.hasToUserId) {
-    size += computeStringSize(4, self.toUserId);
-  }
-  if (self.hasMessageHash) {
-    size += computeStringSize(5, self.messageHash);
-  }
-  if (self.hasDate) {
-    size += computeInt64Size(6, self.date);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_VoiceChatMessageRequest*) parseFromData:(NSData*) data {
-  return (Message_VoiceChatMessageRequest*)[[[Message_VoiceChatMessageRequest builder] mergeFromData:data] build];
+    return (Message_VoiceChatMessageRequest*)[[[Message_VoiceChatMessageRequest builder] mergeFromData:data] build];
 }
 + (Message_VoiceChatMessageRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_VoiceChatMessageRequest*)[[[Message_VoiceChatMessageRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_VoiceChatMessageRequest*)[[[Message_VoiceChatMessageRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_VoiceChatMessageRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_VoiceChatMessageRequest*)[[[Message_VoiceChatMessageRequest builder] mergeFromInputStream:input] build];
+    return (Message_VoiceChatMessageRequest*)[[[Message_VoiceChatMessageRequest builder] mergeFromInputStream:input] build];
 }
 + (Message_VoiceChatMessageRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_VoiceChatMessageRequest*)[[[Message_VoiceChatMessageRequest builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_VoiceChatMessageRequest*)[[[Message_VoiceChatMessageRequest builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_VoiceChatMessageRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_VoiceChatMessageRequest*)[[[Message_VoiceChatMessageRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_VoiceChatMessageRequest*)[[[Message_VoiceChatMessageRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_VoiceChatMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_VoiceChatMessageRequest*)[[[Message_VoiceChatMessageRequest builder] mergeFromCodedInputStream:input] build];
+    return (Message_VoiceChatMessageRequest*)[[[Message_VoiceChatMessageRequest builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_VoiceChatMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_VoiceChatMessageRequest*)[[[Message_VoiceChatMessageRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_VoiceChatMessageRequest*)[[[Message_VoiceChatMessageRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_VoiceChatMessageRequest_Builder*) builder {
-  return [[[Message_VoiceChatMessageRequest_Builder alloc] init] autorelease];
+    return [[[Message_VoiceChatMessageRequest_Builder alloc] init] autorelease];
 }
 + (Message_VoiceChatMessageRequest_Builder*) builderWithPrototype:(Message_VoiceChatMessageRequest*) prototype {
-  return [[Message_VoiceChatMessageRequest builder] mergeFrom:prototype];
+    return [[Message_VoiceChatMessageRequest builder] mergeFrom:prototype];
 }
 - (Message_VoiceChatMessageRequest_Builder*) builder {
-  return [Message_VoiceChatMessageRequest builder];
+    return [Message_VoiceChatMessageRequest builder];
 }
 @end
 
@@ -5424,202 +5508,202 @@ static Message_VoiceChatMessageRequest* defaultMessage_VoiceChatMessageRequestIn
 @implementation Message_VoiceChatMessageRequest_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_VoiceChatMessageRequest alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_VoiceChatMessageRequest alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_VoiceChatMessageRequest_Builder*) clear {
-  self.result = [[[Message_VoiceChatMessageRequest alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_VoiceChatMessageRequest alloc] init] autorelease];
+    return self;
 }
 - (Message_VoiceChatMessageRequest_Builder*) clone {
-  return [Message_VoiceChatMessageRequest builderWithPrototype:result];
+    return [Message_VoiceChatMessageRequest builderWithPrototype:result];
 }
 - (Message_VoiceChatMessageRequest*) defaultInstance {
-  return [Message_VoiceChatMessageRequest defaultInstance];
+    return [Message_VoiceChatMessageRequest defaultInstance];
 }
 - (Message_VoiceChatMessageRequest*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_VoiceChatMessageRequest*) buildPartial {
-  Message_VoiceChatMessageRequest* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_VoiceChatMessageRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_VoiceChatMessageRequest_Builder*) mergeFrom:(Message_VoiceChatMessageRequest*) other {
-  if (other == [Message_VoiceChatMessageRequest defaultInstance]) {
+    if (other == [Message_VoiceChatMessageRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasUserId) {
+        [self setUserId:other.userId];
+    }
+    if (other.hasVoiceUuid) {
+        [self setVoiceUuid:other.voiceUuid];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.hasToUserId) {
+        [self setToUserId:other.toUserId];
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasUserId) {
-    [self setUserId:other.userId];
-  }
-  if (other.hasVoiceUuid) {
-    [self setVoiceUuid:other.voiceUuid];
-  }
-  if (other.hasDesc) {
-    [self setDesc:other.desc];
-  }
-  if (other.hasToUserId) {
-    [self setToUserId:other.toUserId];
-  }
-  if (other.hasMessageHash) {
-    [self setMessageHash:other.messageHash];
-  }
-  if (other.hasDate) {
-    [self setDate:other.date];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_VoiceChatMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_VoiceChatMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setUserId:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setVoiceUuid:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setToUserId:[input readString]];
+                break;
+            }
+            case 42: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 48: {
+                [self setDate:[input readInt64]];
+                break;
+            }
         }
-        break;
-      }
-      case 10: {
-        [self setUserId:[input readString]];
-        break;
-      }
-      case 18: {
-        [self setVoiceUuid:[input readString]];
-        break;
-      }
-      case 26: {
-        [self setDesc:[input readString]];
-        break;
-      }
-      case 34: {
-        [self setToUserId:[input readString]];
-        break;
-      }
-      case 42: {
-        [self setMessageHash:[input readString]];
-        break;
-      }
-      case 48: {
-        [self setDate:[input readInt64]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+    return result.hasUserId;
 }
 - (NSString*) userId {
-  return result.userId;
+    return result.userId;
 }
 - (Message_VoiceChatMessageRequest_Builder*) setUserId:(NSString*) value {
-  result.hasUserId = YES;
-  result.userId = value;
-  return self;
+    result.hasUserId = YES;
+    result.userId = value;
+    return self;
 }
 - (Message_VoiceChatMessageRequest_Builder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = @"";
-  return self;
+    result.hasUserId = NO;
+    result.userId = @"";
+    return self;
 }
 - (BOOL) hasVoiceUuid {
-  return result.hasVoiceUuid;
+    return result.hasVoiceUuid;
 }
 - (NSString*) voiceUuid {
-  return result.voiceUuid;
+    return result.voiceUuid;
 }
 - (Message_VoiceChatMessageRequest_Builder*) setVoiceUuid:(NSString*) value {
-  result.hasVoiceUuid = YES;
-  result.voiceUuid = value;
-  return self;
+    result.hasVoiceUuid = YES;
+    result.voiceUuid = value;
+    return self;
 }
 - (Message_VoiceChatMessageRequest_Builder*) clearVoiceUuid {
-  result.hasVoiceUuid = NO;
-  result.voiceUuid = @"";
-  return self;
+    result.hasVoiceUuid = NO;
+    result.voiceUuid = @"";
+    return self;
 }
 - (BOOL) hasDesc {
-  return result.hasDesc;
+    return result.hasDesc;
 }
 - (NSString*) desc {
-  return result.desc;
+    return result.desc;
 }
 - (Message_VoiceChatMessageRequest_Builder*) setDesc:(NSString*) value {
-  result.hasDesc = YES;
-  result.desc = value;
-  return self;
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
 }
 - (Message_VoiceChatMessageRequest_Builder*) clearDesc {
-  result.hasDesc = NO;
-  result.desc = @"";
-  return self;
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
 }
 - (BOOL) hasToUserId {
-  return result.hasToUserId;
+    return result.hasToUserId;
 }
 - (NSString*) toUserId {
-  return result.toUserId;
+    return result.toUserId;
 }
 - (Message_VoiceChatMessageRequest_Builder*) setToUserId:(NSString*) value {
-  result.hasToUserId = YES;
-  result.toUserId = value;
-  return self;
+    result.hasToUserId = YES;
+    result.toUserId = value;
+    return self;
 }
 - (Message_VoiceChatMessageRequest_Builder*) clearToUserId {
-  result.hasToUserId = NO;
-  result.toUserId = @"";
-  return self;
+    result.hasToUserId = NO;
+    result.toUserId = @"";
+    return self;
 }
 - (BOOL) hasMessageHash {
-  return result.hasMessageHash;
+    return result.hasMessageHash;
 }
 - (NSString*) messageHash {
-  return result.messageHash;
+    return result.messageHash;
 }
 - (Message_VoiceChatMessageRequest_Builder*) setMessageHash:(NSString*) value {
-  result.hasMessageHash = YES;
-  result.messageHash = value;
-  return self;
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
 }
 - (Message_VoiceChatMessageRequest_Builder*) clearMessageHash {
-  result.hasMessageHash = NO;
-  result.messageHash = @"";
-  return self;
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
 }
 - (BOOL) hasDate {
-  return result.hasDate;
+    return result.hasDate;
 }
 - (int64_t) date {
-  return result.date;
+    return result.date;
 }
 - (Message_VoiceChatMessageRequest_Builder*) setDate:(int64_t) value {
-  result.hasDate = YES;
-  result.date = value;
-  return self;
+    result.hasDate = YES;
+    result.date = value;
+    return self;
 }
 - (Message_VoiceChatMessageRequest_Builder*) clearDate {
-  result.hasDate = NO;
-  result.date = 0L;
-  return self;
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
 }
 @end
 
@@ -5635,177 +5719,177 @@ static Message_VoiceChatMessageRequest* defaultMessage_VoiceChatMessageRequestIn
 @implementation Message_VoiceChatMessageResponse
 
 - (BOOL) hasUserId {
-  return !!hasUserId_;
+    return !!hasUserId_;
 }
 - (void) setHasUserId:(BOOL) value {
-  hasUserId_ = !!value;
+    hasUserId_ = !!value;
 }
 @synthesize userId;
 - (BOOL) hasStatus {
-  return !!hasStatus_;
+    return !!hasStatus_;
 }
 - (void) setHasStatus:(BOOL) value {
-  hasStatus_ = !!value;
+    hasStatus_ = !!value;
 }
 @synthesize status;
 - (BOOL) hasDesc {
-  return !!hasDesc_;
+    return !!hasDesc_;
 }
 - (void) setHasDesc:(BOOL) value {
-  hasDesc_ = !!value;
+    hasDesc_ = !!value;
 }
 @synthesize desc;
 - (BOOL) hasToUserId {
-  return !!hasToUserId_;
+    return !!hasToUserId_;
 }
 - (void) setHasToUserId:(BOOL) value {
-  hasToUserId_ = !!value;
+    hasToUserId_ = !!value;
 }
 @synthesize toUserId;
 - (BOOL) hasMessageHash {
-  return !!hasMessageHash_;
+    return !!hasMessageHash_;
 }
 - (void) setHasMessageHash:(BOOL) value {
-  hasMessageHash_ = !!value;
+    hasMessageHash_ = !!value;
 }
 @synthesize messageHash;
 - (BOOL) hasDate {
-  return !!hasDate_;
+    return !!hasDate_;
 }
 - (void) setHasDate:(BOOL) value {
-  hasDate_ = !!value;
+    hasDate_ = !!value;
 }
 @synthesize date;
 - (void) dealloc {
-  self.userId = nil;
-  self.desc = nil;
-  self.toUserId = nil;
-  self.messageHash = nil;
-  [super dealloc];
+    self.userId = nil;
+    self.desc = nil;
+    self.toUserId = nil;
+    self.messageHash = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.userId = @"";
-    self.status = 0;
-    self.desc = @"";
-    self.toUserId = @"";
-    self.messageHash = @"";
-    self.date = 0L;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.userId = @"";
+        self.status = 0;
+        self.desc = @"";
+        self.toUserId = @"";
+        self.messageHash = @"";
+        self.date = 0L;
+    }
+    return self;
 }
 static Message_VoiceChatMessageResponse* defaultMessage_VoiceChatMessageResponseInstance = nil;
 + (void) initialize {
-  if (self == [Message_VoiceChatMessageResponse class]) {
-    defaultMessage_VoiceChatMessageResponseInstance = [[Message_VoiceChatMessageResponse alloc] init];
-  }
+    if (self == [Message_VoiceChatMessageResponse class]) {
+        defaultMessage_VoiceChatMessageResponseInstance = [[Message_VoiceChatMessageResponse alloc] init];
+    }
 }
 + (Message_VoiceChatMessageResponse*) defaultInstance {
-  return defaultMessage_VoiceChatMessageResponseInstance;
+    return defaultMessage_VoiceChatMessageResponseInstance;
 }
 - (Message_VoiceChatMessageResponse*) defaultInstance {
-  return defaultMessage_VoiceChatMessageResponseInstance;
+    return defaultMessage_VoiceChatMessageResponseInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasUserId) {
-    return NO;
-  }
-  if (!self.hasStatus) {
-    return NO;
-  }
-  if (!self.hasDesc) {
-    return NO;
-  }
-  if (!self.hasToUserId) {
-    return NO;
-  }
-  if (!self.hasMessageHash) {
-    return NO;
-  }
-  if (!self.hasDate) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasUserId) {
+        return NO;
+    }
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    if (!self.hasToUserId) {
+        return NO;
+    }
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasUserId) {
-    [output writeString:1 value:self.userId];
-  }
-  if (self.hasStatus) {
-    [output writeInt32:2 value:self.status];
-  }
-  if (self.hasDesc) {
-    [output writeString:3 value:self.desc];
-  }
-  if (self.hasToUserId) {
-    [output writeString:4 value:self.toUserId];
-  }
-  if (self.hasMessageHash) {
-    [output writeString:5 value:self.messageHash];
-  }
-  if (self.hasDate) {
-    [output writeInt64:6 value:self.date];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasUserId) {
+        [output writeString:1 value:self.userId];
+    }
+    if (self.hasStatus) {
+        [output writeInt32:2 value:self.status];
+    }
+    if (self.hasDesc) {
+        [output writeString:3 value:self.desc];
+    }
+    if (self.hasToUserId) {
+        [output writeString:4 value:self.toUserId];
+    }
+    if (self.hasMessageHash) {
+        [output writeString:5 value:self.messageHash];
+    }
+    if (self.hasDate) {
+        [output writeInt64:6 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasUserId) {
+        size += computeStringSize(1, self.userId);
+    }
+    if (self.hasStatus) {
+        size += computeInt32Size(2, self.status);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(3, self.desc);
+    }
+    if (self.hasToUserId) {
+        size += computeStringSize(4, self.toUserId);
+    }
+    if (self.hasMessageHash) {
+        size += computeStringSize(5, self.messageHash);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(6, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasUserId) {
-    size += computeStringSize(1, self.userId);
-  }
-  if (self.hasStatus) {
-    size += computeInt32Size(2, self.status);
-  }
-  if (self.hasDesc) {
-    size += computeStringSize(3, self.desc);
-  }
-  if (self.hasToUserId) {
-    size += computeStringSize(4, self.toUserId);
-  }
-  if (self.hasMessageHash) {
-    size += computeStringSize(5, self.messageHash);
-  }
-  if (self.hasDate) {
-    size += computeInt64Size(6, self.date);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_VoiceChatMessageResponse*) parseFromData:(NSData*) data {
-  return (Message_VoiceChatMessageResponse*)[[[Message_VoiceChatMessageResponse builder] mergeFromData:data] build];
+    return (Message_VoiceChatMessageResponse*)[[[Message_VoiceChatMessageResponse builder] mergeFromData:data] build];
 }
 + (Message_VoiceChatMessageResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_VoiceChatMessageResponse*)[[[Message_VoiceChatMessageResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_VoiceChatMessageResponse*)[[[Message_VoiceChatMessageResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_VoiceChatMessageResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_VoiceChatMessageResponse*)[[[Message_VoiceChatMessageResponse builder] mergeFromInputStream:input] build];
+    return (Message_VoiceChatMessageResponse*)[[[Message_VoiceChatMessageResponse builder] mergeFromInputStream:input] build];
 }
 + (Message_VoiceChatMessageResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_VoiceChatMessageResponse*)[[[Message_VoiceChatMessageResponse builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_VoiceChatMessageResponse*)[[[Message_VoiceChatMessageResponse builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_VoiceChatMessageResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_VoiceChatMessageResponse*)[[[Message_VoiceChatMessageResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_VoiceChatMessageResponse*)[[[Message_VoiceChatMessageResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_VoiceChatMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_VoiceChatMessageResponse*)[[[Message_VoiceChatMessageResponse builder] mergeFromCodedInputStream:input] build];
+    return (Message_VoiceChatMessageResponse*)[[[Message_VoiceChatMessageResponse builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_VoiceChatMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_VoiceChatMessageResponse*)[[[Message_VoiceChatMessageResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_VoiceChatMessageResponse*)[[[Message_VoiceChatMessageResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_VoiceChatMessageResponse_Builder*) builder {
-  return [[[Message_VoiceChatMessageResponse_Builder alloc] init] autorelease];
+    return [[[Message_VoiceChatMessageResponse_Builder alloc] init] autorelease];
 }
 + (Message_VoiceChatMessageResponse_Builder*) builderWithPrototype:(Message_VoiceChatMessageResponse*) prototype {
-  return [[Message_VoiceChatMessageResponse builder] mergeFrom:prototype];
+    return [[Message_VoiceChatMessageResponse builder] mergeFrom:prototype];
 }
 - (Message_VoiceChatMessageResponse_Builder*) builder {
-  return [Message_VoiceChatMessageResponse builder];
+    return [Message_VoiceChatMessageResponse builder];
 }
 @end
 
@@ -5816,202 +5900,202 @@ static Message_VoiceChatMessageResponse* defaultMessage_VoiceChatMessageResponse
 @implementation Message_VoiceChatMessageResponse_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_VoiceChatMessageResponse alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_VoiceChatMessageResponse alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_VoiceChatMessageResponse_Builder*) clear {
-  self.result = [[[Message_VoiceChatMessageResponse alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_VoiceChatMessageResponse alloc] init] autorelease];
+    return self;
 }
 - (Message_VoiceChatMessageResponse_Builder*) clone {
-  return [Message_VoiceChatMessageResponse builderWithPrototype:result];
+    return [Message_VoiceChatMessageResponse builderWithPrototype:result];
 }
 - (Message_VoiceChatMessageResponse*) defaultInstance {
-  return [Message_VoiceChatMessageResponse defaultInstance];
+    return [Message_VoiceChatMessageResponse defaultInstance];
 }
 - (Message_VoiceChatMessageResponse*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_VoiceChatMessageResponse*) buildPartial {
-  Message_VoiceChatMessageResponse* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_VoiceChatMessageResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_VoiceChatMessageResponse_Builder*) mergeFrom:(Message_VoiceChatMessageResponse*) other {
-  if (other == [Message_VoiceChatMessageResponse defaultInstance]) {
+    if (other == [Message_VoiceChatMessageResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasUserId) {
+        [self setUserId:other.userId];
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.hasToUserId) {
+        [self setToUserId:other.toUserId];
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasUserId) {
-    [self setUserId:other.userId];
-  }
-  if (other.hasStatus) {
-    [self setStatus:other.status];
-  }
-  if (other.hasDesc) {
-    [self setDesc:other.desc];
-  }
-  if (other.hasToUserId) {
-    [self setToUserId:other.toUserId];
-  }
-  if (other.hasMessageHash) {
-    [self setMessageHash:other.messageHash];
-  }
-  if (other.hasDate) {
-    [self setDate:other.date];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_VoiceChatMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_VoiceChatMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setUserId:[input readString]];
+                break;
+            }
+            case 16: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 26: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setToUserId:[input readString]];
+                break;
+            }
+            case 42: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 48: {
+                [self setDate:[input readInt64]];
+                break;
+            }
         }
-        break;
-      }
-      case 10: {
-        [self setUserId:[input readString]];
-        break;
-      }
-      case 16: {
-        [self setStatus:[input readInt32]];
-        break;
-      }
-      case 26: {
-        [self setDesc:[input readString]];
-        break;
-      }
-      case 34: {
-        [self setToUserId:[input readString]];
-        break;
-      }
-      case 42: {
-        [self setMessageHash:[input readString]];
-        break;
-      }
-      case 48: {
-        [self setDate:[input readInt64]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+    return result.hasUserId;
 }
 - (NSString*) userId {
-  return result.userId;
+    return result.userId;
 }
 - (Message_VoiceChatMessageResponse_Builder*) setUserId:(NSString*) value {
-  result.hasUserId = YES;
-  result.userId = value;
-  return self;
+    result.hasUserId = YES;
+    result.userId = value;
+    return self;
 }
 - (Message_VoiceChatMessageResponse_Builder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = @"";
-  return self;
+    result.hasUserId = NO;
+    result.userId = @"";
+    return self;
 }
 - (BOOL) hasStatus {
-  return result.hasStatus;
+    return result.hasStatus;
 }
 - (int32_t) status {
-  return result.status;
+    return result.status;
 }
 - (Message_VoiceChatMessageResponse_Builder*) setStatus:(int32_t) value {
-  result.hasStatus = YES;
-  result.status = value;
-  return self;
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
 }
 - (Message_VoiceChatMessageResponse_Builder*) clearStatus {
-  result.hasStatus = NO;
-  result.status = 0;
-  return self;
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
 }
 - (BOOL) hasDesc {
-  return result.hasDesc;
+    return result.hasDesc;
 }
 - (NSString*) desc {
-  return result.desc;
+    return result.desc;
 }
 - (Message_VoiceChatMessageResponse_Builder*) setDesc:(NSString*) value {
-  result.hasDesc = YES;
-  result.desc = value;
-  return self;
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
 }
 - (Message_VoiceChatMessageResponse_Builder*) clearDesc {
-  result.hasDesc = NO;
-  result.desc = @"";
-  return self;
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
 }
 - (BOOL) hasToUserId {
-  return result.hasToUserId;
+    return result.hasToUserId;
 }
 - (NSString*) toUserId {
-  return result.toUserId;
+    return result.toUserId;
 }
 - (Message_VoiceChatMessageResponse_Builder*) setToUserId:(NSString*) value {
-  result.hasToUserId = YES;
-  result.toUserId = value;
-  return self;
+    result.hasToUserId = YES;
+    result.toUserId = value;
+    return self;
 }
 - (Message_VoiceChatMessageResponse_Builder*) clearToUserId {
-  result.hasToUserId = NO;
-  result.toUserId = @"";
-  return self;
+    result.hasToUserId = NO;
+    result.toUserId = @"";
+    return self;
 }
 - (BOOL) hasMessageHash {
-  return result.hasMessageHash;
+    return result.hasMessageHash;
 }
 - (NSString*) messageHash {
-  return result.messageHash;
+    return result.messageHash;
 }
 - (Message_VoiceChatMessageResponse_Builder*) setMessageHash:(NSString*) value {
-  result.hasMessageHash = YES;
-  result.messageHash = value;
-  return self;
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
 }
 - (Message_VoiceChatMessageResponse_Builder*) clearMessageHash {
-  result.hasMessageHash = NO;
-  result.messageHash = @"";
-  return self;
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
 }
 - (BOOL) hasDate {
-  return result.hasDate;
+    return result.hasDate;
 }
 - (int64_t) date {
-  return result.date;
+    return result.date;
 }
 - (Message_VoiceChatMessageResponse_Builder*) setDate:(int64_t) value {
-  result.hasDate = YES;
-  result.date = value;
-  return self;
+    result.hasDate = YES;
+    result.date = value;
+    return self;
 }
 - (Message_VoiceChatMessageResponse_Builder*) clearDate {
-  result.hasDate = NO;
-  result.date = 0L;
-  return self;
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
 }
 @end
 
@@ -6027,178 +6111,178 @@ static Message_VoiceChatMessageResponse* defaultMessage_VoiceChatMessageResponse
 @implementation Message_VideoChatMessageRequest
 
 - (BOOL) hasUserId {
-  return !!hasUserId_;
+    return !!hasUserId_;
 }
 - (void) setHasUserId:(BOOL) value {
-  hasUserId_ = !!value;
+    hasUserId_ = !!value;
 }
 @synthesize userId;
 - (BOOL) hasVideoUuid {
-  return !!hasVideoUuid_;
+    return !!hasVideoUuid_;
 }
 - (void) setHasVideoUuid:(BOOL) value {
-  hasVideoUuid_ = !!value;
+    hasVideoUuid_ = !!value;
 }
 @synthesize videoUuid;
 - (BOOL) hasDesc {
-  return !!hasDesc_;
+    return !!hasDesc_;
 }
 - (void) setHasDesc:(BOOL) value {
-  hasDesc_ = !!value;
+    hasDesc_ = !!value;
 }
 @synthesize desc;
 - (BOOL) hasToUserId {
-  return !!hasToUserId_;
+    return !!hasToUserId_;
 }
 - (void) setHasToUserId:(BOOL) value {
-  hasToUserId_ = !!value;
+    hasToUserId_ = !!value;
 }
 @synthesize toUserId;
 - (BOOL) hasMessageHash {
-  return !!hasMessageHash_;
+    return !!hasMessageHash_;
 }
 - (void) setHasMessageHash:(BOOL) value {
-  hasMessageHash_ = !!value;
+    hasMessageHash_ = !!value;
 }
 @synthesize messageHash;
 - (BOOL) hasDate {
-  return !!hasDate_;
+    return !!hasDate_;
 }
 - (void) setHasDate:(BOOL) value {
-  hasDate_ = !!value;
+    hasDate_ = !!value;
 }
 @synthesize date;
 - (void) dealloc {
-  self.userId = nil;
-  self.videoUuid = nil;
-  self.desc = nil;
-  self.toUserId = nil;
-  self.messageHash = nil;
-  [super dealloc];
+    self.userId = nil;
+    self.videoUuid = nil;
+    self.desc = nil;
+    self.toUserId = nil;
+    self.messageHash = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.userId = @"";
-    self.videoUuid = @"";
-    self.desc = @"";
-    self.toUserId = @"";
-    self.messageHash = @"";
-    self.date = 0L;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.userId = @"";
+        self.videoUuid = @"";
+        self.desc = @"";
+        self.toUserId = @"";
+        self.messageHash = @"";
+        self.date = 0L;
+    }
+    return self;
 }
 static Message_VideoChatMessageRequest* defaultMessage_VideoChatMessageRequestInstance = nil;
 + (void) initialize {
-  if (self == [Message_VideoChatMessageRequest class]) {
-    defaultMessage_VideoChatMessageRequestInstance = [[Message_VideoChatMessageRequest alloc] init];
-  }
+    if (self == [Message_VideoChatMessageRequest class]) {
+        defaultMessage_VideoChatMessageRequestInstance = [[Message_VideoChatMessageRequest alloc] init];
+    }
 }
 + (Message_VideoChatMessageRequest*) defaultInstance {
-  return defaultMessage_VideoChatMessageRequestInstance;
+    return defaultMessage_VideoChatMessageRequestInstance;
 }
 - (Message_VideoChatMessageRequest*) defaultInstance {
-  return defaultMessage_VideoChatMessageRequestInstance;
+    return defaultMessage_VideoChatMessageRequestInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasUserId) {
-    return NO;
-  }
-  if (!self.hasVideoUuid) {
-    return NO;
-  }
-  if (!self.hasDesc) {
-    return NO;
-  }
-  if (!self.hasToUserId) {
-    return NO;
-  }
-  if (!self.hasMessageHash) {
-    return NO;
-  }
-  if (!self.hasDate) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasUserId) {
+        return NO;
+    }
+    if (!self.hasVideoUuid) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    if (!self.hasToUserId) {
+        return NO;
+    }
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasUserId) {
-    [output writeString:1 value:self.userId];
-  }
-  if (self.hasVideoUuid) {
-    [output writeString:2 value:self.videoUuid];
-  }
-  if (self.hasDesc) {
-    [output writeString:3 value:self.desc];
-  }
-  if (self.hasToUserId) {
-    [output writeString:4 value:self.toUserId];
-  }
-  if (self.hasMessageHash) {
-    [output writeString:5 value:self.messageHash];
-  }
-  if (self.hasDate) {
-    [output writeInt64:6 value:self.date];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasUserId) {
+        [output writeString:1 value:self.userId];
+    }
+    if (self.hasVideoUuid) {
+        [output writeString:2 value:self.videoUuid];
+    }
+    if (self.hasDesc) {
+        [output writeString:3 value:self.desc];
+    }
+    if (self.hasToUserId) {
+        [output writeString:4 value:self.toUserId];
+    }
+    if (self.hasMessageHash) {
+        [output writeString:5 value:self.messageHash];
+    }
+    if (self.hasDate) {
+        [output writeInt64:6 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasUserId) {
+        size += computeStringSize(1, self.userId);
+    }
+    if (self.hasVideoUuid) {
+        size += computeStringSize(2, self.videoUuid);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(3, self.desc);
+    }
+    if (self.hasToUserId) {
+        size += computeStringSize(4, self.toUserId);
+    }
+    if (self.hasMessageHash) {
+        size += computeStringSize(5, self.messageHash);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(6, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasUserId) {
-    size += computeStringSize(1, self.userId);
-  }
-  if (self.hasVideoUuid) {
-    size += computeStringSize(2, self.videoUuid);
-  }
-  if (self.hasDesc) {
-    size += computeStringSize(3, self.desc);
-  }
-  if (self.hasToUserId) {
-    size += computeStringSize(4, self.toUserId);
-  }
-  if (self.hasMessageHash) {
-    size += computeStringSize(5, self.messageHash);
-  }
-  if (self.hasDate) {
-    size += computeInt64Size(6, self.date);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_VideoChatMessageRequest*) parseFromData:(NSData*) data {
-  return (Message_VideoChatMessageRequest*)[[[Message_VideoChatMessageRequest builder] mergeFromData:data] build];
+    return (Message_VideoChatMessageRequest*)[[[Message_VideoChatMessageRequest builder] mergeFromData:data] build];
 }
 + (Message_VideoChatMessageRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_VideoChatMessageRequest*)[[[Message_VideoChatMessageRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_VideoChatMessageRequest*)[[[Message_VideoChatMessageRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_VideoChatMessageRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_VideoChatMessageRequest*)[[[Message_VideoChatMessageRequest builder] mergeFromInputStream:input] build];
+    return (Message_VideoChatMessageRequest*)[[[Message_VideoChatMessageRequest builder] mergeFromInputStream:input] build];
 }
 + (Message_VideoChatMessageRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_VideoChatMessageRequest*)[[[Message_VideoChatMessageRequest builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_VideoChatMessageRequest*)[[[Message_VideoChatMessageRequest builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_VideoChatMessageRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_VideoChatMessageRequest*)[[[Message_VideoChatMessageRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_VideoChatMessageRequest*)[[[Message_VideoChatMessageRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_VideoChatMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_VideoChatMessageRequest*)[[[Message_VideoChatMessageRequest builder] mergeFromCodedInputStream:input] build];
+    return (Message_VideoChatMessageRequest*)[[[Message_VideoChatMessageRequest builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_VideoChatMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_VideoChatMessageRequest*)[[[Message_VideoChatMessageRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_VideoChatMessageRequest*)[[[Message_VideoChatMessageRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_VideoChatMessageRequest_Builder*) builder {
-  return [[[Message_VideoChatMessageRequest_Builder alloc] init] autorelease];
+    return [[[Message_VideoChatMessageRequest_Builder alloc] init] autorelease];
 }
 + (Message_VideoChatMessageRequest_Builder*) builderWithPrototype:(Message_VideoChatMessageRequest*) prototype {
-  return [[Message_VideoChatMessageRequest builder] mergeFrom:prototype];
+    return [[Message_VideoChatMessageRequest builder] mergeFrom:prototype];
 }
 - (Message_VideoChatMessageRequest_Builder*) builder {
-  return [Message_VideoChatMessageRequest builder];
+    return [Message_VideoChatMessageRequest builder];
 }
 @end
 
@@ -6209,202 +6293,202 @@ static Message_VideoChatMessageRequest* defaultMessage_VideoChatMessageRequestIn
 @implementation Message_VideoChatMessageRequest_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_VideoChatMessageRequest alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_VideoChatMessageRequest alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_VideoChatMessageRequest_Builder*) clear {
-  self.result = [[[Message_VideoChatMessageRequest alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_VideoChatMessageRequest alloc] init] autorelease];
+    return self;
 }
 - (Message_VideoChatMessageRequest_Builder*) clone {
-  return [Message_VideoChatMessageRequest builderWithPrototype:result];
+    return [Message_VideoChatMessageRequest builderWithPrototype:result];
 }
 - (Message_VideoChatMessageRequest*) defaultInstance {
-  return [Message_VideoChatMessageRequest defaultInstance];
+    return [Message_VideoChatMessageRequest defaultInstance];
 }
 - (Message_VideoChatMessageRequest*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_VideoChatMessageRequest*) buildPartial {
-  Message_VideoChatMessageRequest* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_VideoChatMessageRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_VideoChatMessageRequest_Builder*) mergeFrom:(Message_VideoChatMessageRequest*) other {
-  if (other == [Message_VideoChatMessageRequest defaultInstance]) {
+    if (other == [Message_VideoChatMessageRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasUserId) {
+        [self setUserId:other.userId];
+    }
+    if (other.hasVideoUuid) {
+        [self setVideoUuid:other.videoUuid];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.hasToUserId) {
+        [self setToUserId:other.toUserId];
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasUserId) {
-    [self setUserId:other.userId];
-  }
-  if (other.hasVideoUuid) {
-    [self setVideoUuid:other.videoUuid];
-  }
-  if (other.hasDesc) {
-    [self setDesc:other.desc];
-  }
-  if (other.hasToUserId) {
-    [self setToUserId:other.toUserId];
-  }
-  if (other.hasMessageHash) {
-    [self setMessageHash:other.messageHash];
-  }
-  if (other.hasDate) {
-    [self setDate:other.date];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_VideoChatMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_VideoChatMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setUserId:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setVideoUuid:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setToUserId:[input readString]];
+                break;
+            }
+            case 42: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 48: {
+                [self setDate:[input readInt64]];
+                break;
+            }
         }
-        break;
-      }
-      case 10: {
-        [self setUserId:[input readString]];
-        break;
-      }
-      case 18: {
-        [self setVideoUuid:[input readString]];
-        break;
-      }
-      case 26: {
-        [self setDesc:[input readString]];
-        break;
-      }
-      case 34: {
-        [self setToUserId:[input readString]];
-        break;
-      }
-      case 42: {
-        [self setMessageHash:[input readString]];
-        break;
-      }
-      case 48: {
-        [self setDate:[input readInt64]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+    return result.hasUserId;
 }
 - (NSString*) userId {
-  return result.userId;
+    return result.userId;
 }
 - (Message_VideoChatMessageRequest_Builder*) setUserId:(NSString*) value {
-  result.hasUserId = YES;
-  result.userId = value;
-  return self;
+    result.hasUserId = YES;
+    result.userId = value;
+    return self;
 }
 - (Message_VideoChatMessageRequest_Builder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = @"";
-  return self;
+    result.hasUserId = NO;
+    result.userId = @"";
+    return self;
 }
 - (BOOL) hasVideoUuid {
-  return result.hasVideoUuid;
+    return result.hasVideoUuid;
 }
 - (NSString*) videoUuid {
-  return result.videoUuid;
+    return result.videoUuid;
 }
 - (Message_VideoChatMessageRequest_Builder*) setVideoUuid:(NSString*) value {
-  result.hasVideoUuid = YES;
-  result.videoUuid = value;
-  return self;
+    result.hasVideoUuid = YES;
+    result.videoUuid = value;
+    return self;
 }
 - (Message_VideoChatMessageRequest_Builder*) clearVideoUuid {
-  result.hasVideoUuid = NO;
-  result.videoUuid = @"";
-  return self;
+    result.hasVideoUuid = NO;
+    result.videoUuid = @"";
+    return self;
 }
 - (BOOL) hasDesc {
-  return result.hasDesc;
+    return result.hasDesc;
 }
 - (NSString*) desc {
-  return result.desc;
+    return result.desc;
 }
 - (Message_VideoChatMessageRequest_Builder*) setDesc:(NSString*) value {
-  result.hasDesc = YES;
-  result.desc = value;
-  return self;
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
 }
 - (Message_VideoChatMessageRequest_Builder*) clearDesc {
-  result.hasDesc = NO;
-  result.desc = @"";
-  return self;
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
 }
 - (BOOL) hasToUserId {
-  return result.hasToUserId;
+    return result.hasToUserId;
 }
 - (NSString*) toUserId {
-  return result.toUserId;
+    return result.toUserId;
 }
 - (Message_VideoChatMessageRequest_Builder*) setToUserId:(NSString*) value {
-  result.hasToUserId = YES;
-  result.toUserId = value;
-  return self;
+    result.hasToUserId = YES;
+    result.toUserId = value;
+    return self;
 }
 - (Message_VideoChatMessageRequest_Builder*) clearToUserId {
-  result.hasToUserId = NO;
-  result.toUserId = @"";
-  return self;
+    result.hasToUserId = NO;
+    result.toUserId = @"";
+    return self;
 }
 - (BOOL) hasMessageHash {
-  return result.hasMessageHash;
+    return result.hasMessageHash;
 }
 - (NSString*) messageHash {
-  return result.messageHash;
+    return result.messageHash;
 }
 - (Message_VideoChatMessageRequest_Builder*) setMessageHash:(NSString*) value {
-  result.hasMessageHash = YES;
-  result.messageHash = value;
-  return self;
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
 }
 - (Message_VideoChatMessageRequest_Builder*) clearMessageHash {
-  result.hasMessageHash = NO;
-  result.messageHash = @"";
-  return self;
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
 }
 - (BOOL) hasDate {
-  return result.hasDate;
+    return result.hasDate;
 }
 - (int64_t) date {
-  return result.date;
+    return result.date;
 }
 - (Message_VideoChatMessageRequest_Builder*) setDate:(int64_t) value {
-  result.hasDate = YES;
-  result.date = value;
-  return self;
+    result.hasDate = YES;
+    result.date = value;
+    return self;
 }
 - (Message_VideoChatMessageRequest_Builder*) clearDate {
-  result.hasDate = NO;
-  result.date = 0L;
-  return self;
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
 }
 @end
 
@@ -6420,177 +6504,177 @@ static Message_VideoChatMessageRequest* defaultMessage_VideoChatMessageRequestIn
 @implementation Message_VideoChatMessageResponse
 
 - (BOOL) hasUserId {
-  return !!hasUserId_;
+    return !!hasUserId_;
 }
 - (void) setHasUserId:(BOOL) value {
-  hasUserId_ = !!value;
+    hasUserId_ = !!value;
 }
 @synthesize userId;
 - (BOOL) hasStatus {
-  return !!hasStatus_;
+    return !!hasStatus_;
 }
 - (void) setHasStatus:(BOOL) value {
-  hasStatus_ = !!value;
+    hasStatus_ = !!value;
 }
 @synthesize status;
 - (BOOL) hasDesc {
-  return !!hasDesc_;
+    return !!hasDesc_;
 }
 - (void) setHasDesc:(BOOL) value {
-  hasDesc_ = !!value;
+    hasDesc_ = !!value;
 }
 @synthesize desc;
 - (BOOL) hasToUserId {
-  return !!hasToUserId_;
+    return !!hasToUserId_;
 }
 - (void) setHasToUserId:(BOOL) value {
-  hasToUserId_ = !!value;
+    hasToUserId_ = !!value;
 }
 @synthesize toUserId;
 - (BOOL) hasMessageHash {
-  return !!hasMessageHash_;
+    return !!hasMessageHash_;
 }
 - (void) setHasMessageHash:(BOOL) value {
-  hasMessageHash_ = !!value;
+    hasMessageHash_ = !!value;
 }
 @synthesize messageHash;
 - (BOOL) hasDate {
-  return !!hasDate_;
+    return !!hasDate_;
 }
 - (void) setHasDate:(BOOL) value {
-  hasDate_ = !!value;
+    hasDate_ = !!value;
 }
 @synthesize date;
 - (void) dealloc {
-  self.userId = nil;
-  self.desc = nil;
-  self.toUserId = nil;
-  self.messageHash = nil;
-  [super dealloc];
+    self.userId = nil;
+    self.desc = nil;
+    self.toUserId = nil;
+    self.messageHash = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.userId = @"";
-    self.status = 0;
-    self.desc = @"";
-    self.toUserId = @"";
-    self.messageHash = @"";
-    self.date = 0L;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.userId = @"";
+        self.status = 0;
+        self.desc = @"";
+        self.toUserId = @"";
+        self.messageHash = @"";
+        self.date = 0L;
+    }
+    return self;
 }
 static Message_VideoChatMessageResponse* defaultMessage_VideoChatMessageResponseInstance = nil;
 + (void) initialize {
-  if (self == [Message_VideoChatMessageResponse class]) {
-    defaultMessage_VideoChatMessageResponseInstance = [[Message_VideoChatMessageResponse alloc] init];
-  }
+    if (self == [Message_VideoChatMessageResponse class]) {
+        defaultMessage_VideoChatMessageResponseInstance = [[Message_VideoChatMessageResponse alloc] init];
+    }
 }
 + (Message_VideoChatMessageResponse*) defaultInstance {
-  return defaultMessage_VideoChatMessageResponseInstance;
+    return defaultMessage_VideoChatMessageResponseInstance;
 }
 - (Message_VideoChatMessageResponse*) defaultInstance {
-  return defaultMessage_VideoChatMessageResponseInstance;
+    return defaultMessage_VideoChatMessageResponseInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasUserId) {
-    return NO;
-  }
-  if (!self.hasStatus) {
-    return NO;
-  }
-  if (!self.hasDesc) {
-    return NO;
-  }
-  if (!self.hasToUserId) {
-    return NO;
-  }
-  if (!self.hasMessageHash) {
-    return NO;
-  }
-  if (!self.hasDate) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasUserId) {
+        return NO;
+    }
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    if (!self.hasToUserId) {
+        return NO;
+    }
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasUserId) {
-    [output writeString:1 value:self.userId];
-  }
-  if (self.hasStatus) {
-    [output writeInt32:2 value:self.status];
-  }
-  if (self.hasDesc) {
-    [output writeString:3 value:self.desc];
-  }
-  if (self.hasToUserId) {
-    [output writeString:4 value:self.toUserId];
-  }
-  if (self.hasMessageHash) {
-    [output writeString:5 value:self.messageHash];
-  }
-  if (self.hasDate) {
-    [output writeInt64:6 value:self.date];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasUserId) {
+        [output writeString:1 value:self.userId];
+    }
+    if (self.hasStatus) {
+        [output writeInt32:2 value:self.status];
+    }
+    if (self.hasDesc) {
+        [output writeString:3 value:self.desc];
+    }
+    if (self.hasToUserId) {
+        [output writeString:4 value:self.toUserId];
+    }
+    if (self.hasMessageHash) {
+        [output writeString:5 value:self.messageHash];
+    }
+    if (self.hasDate) {
+        [output writeInt64:6 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasUserId) {
+        size += computeStringSize(1, self.userId);
+    }
+    if (self.hasStatus) {
+        size += computeInt32Size(2, self.status);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(3, self.desc);
+    }
+    if (self.hasToUserId) {
+        size += computeStringSize(4, self.toUserId);
+    }
+    if (self.hasMessageHash) {
+        size += computeStringSize(5, self.messageHash);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(6, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasUserId) {
-    size += computeStringSize(1, self.userId);
-  }
-  if (self.hasStatus) {
-    size += computeInt32Size(2, self.status);
-  }
-  if (self.hasDesc) {
-    size += computeStringSize(3, self.desc);
-  }
-  if (self.hasToUserId) {
-    size += computeStringSize(4, self.toUserId);
-  }
-  if (self.hasMessageHash) {
-    size += computeStringSize(5, self.messageHash);
-  }
-  if (self.hasDate) {
-    size += computeInt64Size(6, self.date);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_VideoChatMessageResponse*) parseFromData:(NSData*) data {
-  return (Message_VideoChatMessageResponse*)[[[Message_VideoChatMessageResponse builder] mergeFromData:data] build];
+    return (Message_VideoChatMessageResponse*)[[[Message_VideoChatMessageResponse builder] mergeFromData:data] build];
 }
 + (Message_VideoChatMessageResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_VideoChatMessageResponse*)[[[Message_VideoChatMessageResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_VideoChatMessageResponse*)[[[Message_VideoChatMessageResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_VideoChatMessageResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_VideoChatMessageResponse*)[[[Message_VideoChatMessageResponse builder] mergeFromInputStream:input] build];
+    return (Message_VideoChatMessageResponse*)[[[Message_VideoChatMessageResponse builder] mergeFromInputStream:input] build];
 }
 + (Message_VideoChatMessageResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_VideoChatMessageResponse*)[[[Message_VideoChatMessageResponse builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_VideoChatMessageResponse*)[[[Message_VideoChatMessageResponse builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_VideoChatMessageResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_VideoChatMessageResponse*)[[[Message_VideoChatMessageResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_VideoChatMessageResponse*)[[[Message_VideoChatMessageResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_VideoChatMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_VideoChatMessageResponse*)[[[Message_VideoChatMessageResponse builder] mergeFromCodedInputStream:input] build];
+    return (Message_VideoChatMessageResponse*)[[[Message_VideoChatMessageResponse builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_VideoChatMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_VideoChatMessageResponse*)[[[Message_VideoChatMessageResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_VideoChatMessageResponse*)[[[Message_VideoChatMessageResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_VideoChatMessageResponse_Builder*) builder {
-  return [[[Message_VideoChatMessageResponse_Builder alloc] init] autorelease];
+    return [[[Message_VideoChatMessageResponse_Builder alloc] init] autorelease];
 }
 + (Message_VideoChatMessageResponse_Builder*) builderWithPrototype:(Message_VideoChatMessageResponse*) prototype {
-  return [[Message_VideoChatMessageResponse builder] mergeFrom:prototype];
+    return [[Message_VideoChatMessageResponse builder] mergeFrom:prototype];
 }
 - (Message_VideoChatMessageResponse_Builder*) builder {
-  return [Message_VideoChatMessageResponse builder];
+    return [Message_VideoChatMessageResponse builder];
 }
 @end
 
@@ -6601,202 +6685,202 @@ static Message_VideoChatMessageResponse* defaultMessage_VideoChatMessageResponse
 @implementation Message_VideoChatMessageResponse_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_VideoChatMessageResponse alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_VideoChatMessageResponse alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_VideoChatMessageResponse_Builder*) clear {
-  self.result = [[[Message_VideoChatMessageResponse alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_VideoChatMessageResponse alloc] init] autorelease];
+    return self;
 }
 - (Message_VideoChatMessageResponse_Builder*) clone {
-  return [Message_VideoChatMessageResponse builderWithPrototype:result];
+    return [Message_VideoChatMessageResponse builderWithPrototype:result];
 }
 - (Message_VideoChatMessageResponse*) defaultInstance {
-  return [Message_VideoChatMessageResponse defaultInstance];
+    return [Message_VideoChatMessageResponse defaultInstance];
 }
 - (Message_VideoChatMessageResponse*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_VideoChatMessageResponse*) buildPartial {
-  Message_VideoChatMessageResponse* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_VideoChatMessageResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_VideoChatMessageResponse_Builder*) mergeFrom:(Message_VideoChatMessageResponse*) other {
-  if (other == [Message_VideoChatMessageResponse defaultInstance]) {
+    if (other == [Message_VideoChatMessageResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasUserId) {
+        [self setUserId:other.userId];
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.hasToUserId) {
+        [self setToUserId:other.toUserId];
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasUserId) {
-    [self setUserId:other.userId];
-  }
-  if (other.hasStatus) {
-    [self setStatus:other.status];
-  }
-  if (other.hasDesc) {
-    [self setDesc:other.desc];
-  }
-  if (other.hasToUserId) {
-    [self setToUserId:other.toUserId];
-  }
-  if (other.hasMessageHash) {
-    [self setMessageHash:other.messageHash];
-  }
-  if (other.hasDate) {
-    [self setDate:other.date];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_VideoChatMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_VideoChatMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setUserId:[input readString]];
+                break;
+            }
+            case 16: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 26: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setToUserId:[input readString]];
+                break;
+            }
+            case 42: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 48: {
+                [self setDate:[input readInt64]];
+                break;
+            }
         }
-        break;
-      }
-      case 10: {
-        [self setUserId:[input readString]];
-        break;
-      }
-      case 16: {
-        [self setStatus:[input readInt32]];
-        break;
-      }
-      case 26: {
-        [self setDesc:[input readString]];
-        break;
-      }
-      case 34: {
-        [self setToUserId:[input readString]];
-        break;
-      }
-      case 42: {
-        [self setMessageHash:[input readString]];
-        break;
-      }
-      case 48: {
-        [self setDate:[input readInt64]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+    return result.hasUserId;
 }
 - (NSString*) userId {
-  return result.userId;
+    return result.userId;
 }
 - (Message_VideoChatMessageResponse_Builder*) setUserId:(NSString*) value {
-  result.hasUserId = YES;
-  result.userId = value;
-  return self;
+    result.hasUserId = YES;
+    result.userId = value;
+    return self;
 }
 - (Message_VideoChatMessageResponse_Builder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = @"";
-  return self;
+    result.hasUserId = NO;
+    result.userId = @"";
+    return self;
 }
 - (BOOL) hasStatus {
-  return result.hasStatus;
+    return result.hasStatus;
 }
 - (int32_t) status {
-  return result.status;
+    return result.status;
 }
 - (Message_VideoChatMessageResponse_Builder*) setStatus:(int32_t) value {
-  result.hasStatus = YES;
-  result.status = value;
-  return self;
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
 }
 - (Message_VideoChatMessageResponse_Builder*) clearStatus {
-  result.hasStatus = NO;
-  result.status = 0;
-  return self;
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
 }
 - (BOOL) hasDesc {
-  return result.hasDesc;
+    return result.hasDesc;
 }
 - (NSString*) desc {
-  return result.desc;
+    return result.desc;
 }
 - (Message_VideoChatMessageResponse_Builder*) setDesc:(NSString*) value {
-  result.hasDesc = YES;
-  result.desc = value;
-  return self;
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
 }
 - (Message_VideoChatMessageResponse_Builder*) clearDesc {
-  result.hasDesc = NO;
-  result.desc = @"";
-  return self;
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
 }
 - (BOOL) hasToUserId {
-  return result.hasToUserId;
+    return result.hasToUserId;
 }
 - (NSString*) toUserId {
-  return result.toUserId;
+    return result.toUserId;
 }
 - (Message_VideoChatMessageResponse_Builder*) setToUserId:(NSString*) value {
-  result.hasToUserId = YES;
-  result.toUserId = value;
-  return self;
+    result.hasToUserId = YES;
+    result.toUserId = value;
+    return self;
 }
 - (Message_VideoChatMessageResponse_Builder*) clearToUserId {
-  result.hasToUserId = NO;
-  result.toUserId = @"";
-  return self;
+    result.hasToUserId = NO;
+    result.toUserId = @"";
+    return self;
 }
 - (BOOL) hasMessageHash {
-  return result.hasMessageHash;
+    return result.hasMessageHash;
 }
 - (NSString*) messageHash {
-  return result.messageHash;
+    return result.messageHash;
 }
 - (Message_VideoChatMessageResponse_Builder*) setMessageHash:(NSString*) value {
-  result.hasMessageHash = YES;
-  result.messageHash = value;
-  return self;
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
 }
 - (Message_VideoChatMessageResponse_Builder*) clearMessageHash {
-  result.hasMessageHash = NO;
-  result.messageHash = @"";
-  return self;
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
 }
 - (BOOL) hasDate {
-  return result.hasDate;
+    return result.hasDate;
 }
 - (int64_t) date {
-  return result.date;
+    return result.date;
 }
 - (Message_VideoChatMessageResponse_Builder*) setDate:(int64_t) value {
-  result.hasDate = YES;
-  result.date = value;
-  return self;
+    result.hasDate = YES;
+    result.date = value;
+    return self;
 }
 - (Message_VideoChatMessageResponse_Builder*) clearDate {
-  result.hasDate = NO;
-  result.date = 0L;
-  return self;
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
 }
 @end
 
@@ -6811,160 +6895,160 @@ static Message_VideoChatMessageResponse* defaultMessage_VideoChatMessageResponse
 @implementation Message_TextFromServerRequest
 
 - (BOOL) hasMessageHash {
-  return !!hasMessageHash_;
+    return !!hasMessageHash_;
 }
 - (void) setHasMessageHash:(BOOL) value {
-  hasMessageHash_ = !!value;
+    hasMessageHash_ = !!value;
 }
 @synthesize messageHash;
 - (BOOL) hasFromUserId {
-  return !!hasFromUserId_;
+    return !!hasFromUserId_;
 }
 - (void) setHasFromUserId:(BOOL) value {
-  hasFromUserId_ = !!value;
+    hasFromUserId_ = !!value;
 }
 @synthesize fromUserId;
 - (BOOL) hasToUserId {
-  return !!hasToUserId_;
+    return !!hasToUserId_;
 }
 - (void) setHasToUserId:(BOOL) value {
-  hasToUserId_ = !!value;
+    hasToUserId_ = !!value;
 }
 @synthesize toUserId;
 - (BOOL) hasText {
-  return !!hasText_;
+    return !!hasText_;
 }
 - (void) setHasText:(BOOL) value {
-  hasText_ = !!value;
+    hasText_ = !!value;
 }
 @synthesize text;
 - (BOOL) hasDate {
-  return !!hasDate_;
+    return !!hasDate_;
 }
 - (void) setHasDate:(BOOL) value {
-  hasDate_ = !!value;
+    hasDate_ = !!value;
 }
 @synthesize date;
 - (void) dealloc {
-  self.messageHash = nil;
-  self.fromUserId = nil;
-  self.toUserId = nil;
-  self.text = nil;
-  [super dealloc];
+    self.messageHash = nil;
+    self.fromUserId = nil;
+    self.toUserId = nil;
+    self.text = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.messageHash = @"";
-    self.fromUserId = @"";
-    self.toUserId = @"";
-    self.text = @"";
-    self.date = 0L;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.messageHash = @"";
+        self.fromUserId = @"";
+        self.toUserId = @"";
+        self.text = @"";
+        self.date = 0L;
+    }
+    return self;
 }
 static Message_TextFromServerRequest* defaultMessage_TextFromServerRequestInstance = nil;
 + (void) initialize {
-  if (self == [Message_TextFromServerRequest class]) {
-    defaultMessage_TextFromServerRequestInstance = [[Message_TextFromServerRequest alloc] init];
-  }
+    if (self == [Message_TextFromServerRequest class]) {
+        defaultMessage_TextFromServerRequestInstance = [[Message_TextFromServerRequest alloc] init];
+    }
 }
 + (Message_TextFromServerRequest*) defaultInstance {
-  return defaultMessage_TextFromServerRequestInstance;
+    return defaultMessage_TextFromServerRequestInstance;
 }
 - (Message_TextFromServerRequest*) defaultInstance {
-  return defaultMessage_TextFromServerRequestInstance;
+    return defaultMessage_TextFromServerRequestInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasMessageHash) {
-    return NO;
-  }
-  if (!self.hasFromUserId) {
-    return NO;
-  }
-  if (!self.hasToUserId) {
-    return NO;
-  }
-  if (!self.hasText) {
-    return NO;
-  }
-  if (!self.hasDate) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasFromUserId) {
+        return NO;
+    }
+    if (!self.hasToUserId) {
+        return NO;
+    }
+    if (!self.hasText) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasMessageHash) {
-    [output writeString:1 value:self.messageHash];
-  }
-  if (self.hasFromUserId) {
-    [output writeString:2 value:self.fromUserId];
-  }
-  if (self.hasToUserId) {
-    [output writeString:3 value:self.toUserId];
-  }
-  if (self.hasText) {
-    [output writeString:4 value:self.text];
-  }
-  if (self.hasDate) {
-    [output writeInt64:5 value:self.date];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasMessageHash) {
+        [output writeString:1 value:self.messageHash];
+    }
+    if (self.hasFromUserId) {
+        [output writeString:2 value:self.fromUserId];
+    }
+    if (self.hasToUserId) {
+        [output writeString:3 value:self.toUserId];
+    }
+    if (self.hasText) {
+        [output writeString:4 value:self.text];
+    }
+    if (self.hasDate) {
+        [output writeInt64:5 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasMessageHash) {
+        size += computeStringSize(1, self.messageHash);
+    }
+    if (self.hasFromUserId) {
+        size += computeStringSize(2, self.fromUserId);
+    }
+    if (self.hasToUserId) {
+        size += computeStringSize(3, self.toUserId);
+    }
+    if (self.hasText) {
+        size += computeStringSize(4, self.text);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(5, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasMessageHash) {
-    size += computeStringSize(1, self.messageHash);
-  }
-  if (self.hasFromUserId) {
-    size += computeStringSize(2, self.fromUserId);
-  }
-  if (self.hasToUserId) {
-    size += computeStringSize(3, self.toUserId);
-  }
-  if (self.hasText) {
-    size += computeStringSize(4, self.text);
-  }
-  if (self.hasDate) {
-    size += computeInt64Size(5, self.date);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_TextFromServerRequest*) parseFromData:(NSData*) data {
-  return (Message_TextFromServerRequest*)[[[Message_TextFromServerRequest builder] mergeFromData:data] build];
+    return (Message_TextFromServerRequest*)[[[Message_TextFromServerRequest builder] mergeFromData:data] build];
 }
 + (Message_TextFromServerRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_TextFromServerRequest*)[[[Message_TextFromServerRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_TextFromServerRequest*)[[[Message_TextFromServerRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_TextFromServerRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_TextFromServerRequest*)[[[Message_TextFromServerRequest builder] mergeFromInputStream:input] build];
+    return (Message_TextFromServerRequest*)[[[Message_TextFromServerRequest builder] mergeFromInputStream:input] build];
 }
 + (Message_TextFromServerRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_TextFromServerRequest*)[[[Message_TextFromServerRequest builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_TextFromServerRequest*)[[[Message_TextFromServerRequest builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_TextFromServerRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_TextFromServerRequest*)[[[Message_TextFromServerRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_TextFromServerRequest*)[[[Message_TextFromServerRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_TextFromServerRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_TextFromServerRequest*)[[[Message_TextFromServerRequest builder] mergeFromCodedInputStream:input] build];
+    return (Message_TextFromServerRequest*)[[[Message_TextFromServerRequest builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_TextFromServerRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_TextFromServerRequest*)[[[Message_TextFromServerRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_TextFromServerRequest*)[[[Message_TextFromServerRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_TextFromServerRequest_Builder*) builder {
-  return [[[Message_TextFromServerRequest_Builder alloc] init] autorelease];
+    return [[[Message_TextFromServerRequest_Builder alloc] init] autorelease];
 }
 + (Message_TextFromServerRequest_Builder*) builderWithPrototype:(Message_TextFromServerRequest*) prototype {
-  return [[Message_TextFromServerRequest builder] mergeFrom:prototype];
+    return [[Message_TextFromServerRequest builder] mergeFrom:prototype];
 }
 - (Message_TextFromServerRequest_Builder*) builder {
-  return [Message_TextFromServerRequest builder];
+    return [Message_TextFromServerRequest builder];
 }
 @end
 
@@ -6975,179 +7059,179 @@ static Message_TextFromServerRequest* defaultMessage_TextFromServerRequestInstan
 @implementation Message_TextFromServerRequest_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_TextFromServerRequest alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_TextFromServerRequest alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_TextFromServerRequest_Builder*) clear {
-  self.result = [[[Message_TextFromServerRequest alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_TextFromServerRequest alloc] init] autorelease];
+    return self;
 }
 - (Message_TextFromServerRequest_Builder*) clone {
-  return [Message_TextFromServerRequest builderWithPrototype:result];
+    return [Message_TextFromServerRequest builderWithPrototype:result];
 }
 - (Message_TextFromServerRequest*) defaultInstance {
-  return [Message_TextFromServerRequest defaultInstance];
+    return [Message_TextFromServerRequest defaultInstance];
 }
 - (Message_TextFromServerRequest*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_TextFromServerRequest*) buildPartial {
-  Message_TextFromServerRequest* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_TextFromServerRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_TextFromServerRequest_Builder*) mergeFrom:(Message_TextFromServerRequest*) other {
-  if (other == [Message_TextFromServerRequest defaultInstance]) {
+    if (other == [Message_TextFromServerRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasFromUserId) {
+        [self setFromUserId:other.fromUserId];
+    }
+    if (other.hasToUserId) {
+        [self setToUserId:other.toUserId];
+    }
+    if (other.hasText) {
+        [self setText:other.text];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasMessageHash) {
-    [self setMessageHash:other.messageHash];
-  }
-  if (other.hasFromUserId) {
-    [self setFromUserId:other.fromUserId];
-  }
-  if (other.hasToUserId) {
-    [self setToUserId:other.toUserId];
-  }
-  if (other.hasText) {
-    [self setText:other.text];
-  }
-  if (other.hasDate) {
-    [self setDate:other.date];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_TextFromServerRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_TextFromServerRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setFromUserId:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setToUserId:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setText:[input readString]];
+                break;
+            }
+            case 40: {
+                [self setDate:[input readInt64]];
+                break;
+            }
         }
-        break;
-      }
-      case 10: {
-        [self setMessageHash:[input readString]];
-        break;
-      }
-      case 18: {
-        [self setFromUserId:[input readString]];
-        break;
-      }
-      case 26: {
-        [self setToUserId:[input readString]];
-        break;
-      }
-      case 34: {
-        [self setText:[input readString]];
-        break;
-      }
-      case 40: {
-        [self setDate:[input readInt64]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasMessageHash {
-  return result.hasMessageHash;
+    return result.hasMessageHash;
 }
 - (NSString*) messageHash {
-  return result.messageHash;
+    return result.messageHash;
 }
 - (Message_TextFromServerRequest_Builder*) setMessageHash:(NSString*) value {
-  result.hasMessageHash = YES;
-  result.messageHash = value;
-  return self;
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
 }
 - (Message_TextFromServerRequest_Builder*) clearMessageHash {
-  result.hasMessageHash = NO;
-  result.messageHash = @"";
-  return self;
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
 }
 - (BOOL) hasFromUserId {
-  return result.hasFromUserId;
+    return result.hasFromUserId;
 }
 - (NSString*) fromUserId {
-  return result.fromUserId;
+    return result.fromUserId;
 }
 - (Message_TextFromServerRequest_Builder*) setFromUserId:(NSString*) value {
-  result.hasFromUserId = YES;
-  result.fromUserId = value;
-  return self;
+    result.hasFromUserId = YES;
+    result.fromUserId = value;
+    return self;
 }
 - (Message_TextFromServerRequest_Builder*) clearFromUserId {
-  result.hasFromUserId = NO;
-  result.fromUserId = @"";
-  return self;
+    result.hasFromUserId = NO;
+    result.fromUserId = @"";
+    return self;
 }
 - (BOOL) hasToUserId {
-  return result.hasToUserId;
+    return result.hasToUserId;
 }
 - (NSString*) toUserId {
-  return result.toUserId;
+    return result.toUserId;
 }
 - (Message_TextFromServerRequest_Builder*) setToUserId:(NSString*) value {
-  result.hasToUserId = YES;
-  result.toUserId = value;
-  return self;
+    result.hasToUserId = YES;
+    result.toUserId = value;
+    return self;
 }
 - (Message_TextFromServerRequest_Builder*) clearToUserId {
-  result.hasToUserId = NO;
-  result.toUserId = @"";
-  return self;
+    result.hasToUserId = NO;
+    result.toUserId = @"";
+    return self;
 }
 - (BOOL) hasText {
-  return result.hasText;
+    return result.hasText;
 }
 - (NSString*) text {
-  return result.text;
+    return result.text;
 }
 - (Message_TextFromServerRequest_Builder*) setText:(NSString*) value {
-  result.hasText = YES;
-  result.text = value;
-  return self;
+    result.hasText = YES;
+    result.text = value;
+    return self;
 }
 - (Message_TextFromServerRequest_Builder*) clearText {
-  result.hasText = NO;
-  result.text = @"";
-  return self;
+    result.hasText = NO;
+    result.text = @"";
+    return self;
 }
 - (BOOL) hasDate {
-  return result.hasDate;
+    return result.hasDate;
 }
 - (int64_t) date {
-  return result.date;
+    return result.date;
 }
 - (Message_TextFromServerRequest_Builder*) setDate:(int64_t) value {
-  result.hasDate = YES;
-  result.date = value;
-  return self;
+    result.hasDate = YES;
+    result.date = value;
+    return self;
 }
 - (Message_TextFromServerRequest_Builder*) clearDate {
-  result.hasDate = NO;
-  result.date = 0L;
-  return self;
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
 }
 @end
 
@@ -7161,141 +7245,141 @@ static Message_TextFromServerRequest* defaultMessage_TextFromServerRequestInstan
 @implementation Message_TextFromServerResponse
 
 - (BOOL) hasStatus {
-  return !!hasStatus_;
+    return !!hasStatus_;
 }
 - (void) setHasStatus:(BOOL) value {
-  hasStatus_ = !!value;
+    hasStatus_ = !!value;
 }
 @synthesize status;
 - (BOOL) hasMessageHash {
-  return !!hasMessageHash_;
+    return !!hasMessageHash_;
 }
 - (void) setHasMessageHash:(BOOL) value {
-  hasMessageHash_ = !!value;
+    hasMessageHash_ = !!value;
 }
 @synthesize messageHash;
 - (BOOL) hasDesc {
-  return !!hasDesc_;
+    return !!hasDesc_;
 }
 - (void) setHasDesc:(BOOL) value {
-  hasDesc_ = !!value;
+    hasDesc_ = !!value;
 }
 @synthesize desc;
 - (BOOL) hasDate {
-  return !!hasDate_;
+    return !!hasDate_;
 }
 - (void) setHasDate:(BOOL) value {
-  hasDate_ = !!value;
+    hasDate_ = !!value;
 }
 @synthesize date;
 - (void) dealloc {
-  self.messageHash = nil;
-  self.desc = nil;
-  [super dealloc];
+    self.messageHash = nil;
+    self.desc = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.status = 0;
-    self.messageHash = @"";
-    self.desc = @"";
-    self.date = 0L;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.status = 0;
+        self.messageHash = @"";
+        self.desc = @"";
+        self.date = 0L;
+    }
+    return self;
 }
 static Message_TextFromServerResponse* defaultMessage_TextFromServerResponseInstance = nil;
 + (void) initialize {
-  if (self == [Message_TextFromServerResponse class]) {
-    defaultMessage_TextFromServerResponseInstance = [[Message_TextFromServerResponse alloc] init];
-  }
+    if (self == [Message_TextFromServerResponse class]) {
+        defaultMessage_TextFromServerResponseInstance = [[Message_TextFromServerResponse alloc] init];
+    }
 }
 + (Message_TextFromServerResponse*) defaultInstance {
-  return defaultMessage_TextFromServerResponseInstance;
+    return defaultMessage_TextFromServerResponseInstance;
 }
 - (Message_TextFromServerResponse*) defaultInstance {
-  return defaultMessage_TextFromServerResponseInstance;
+    return defaultMessage_TextFromServerResponseInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasStatus) {
-    return NO;
-  }
-  if (!self.hasMessageHash) {
-    return NO;
-  }
-  if (!self.hasDesc) {
-    return NO;
-  }
-  if (!self.hasDate) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasStatus) {
-    [output writeInt32:1 value:self.status];
-  }
-  if (self.hasMessageHash) {
-    [output writeString:2 value:self.messageHash];
-  }
-  if (self.hasDesc) {
-    [output writeString:3 value:self.desc];
-  }
-  if (self.hasDate) {
-    [output writeInt64:4 value:self.date];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasStatus) {
+        [output writeInt32:1 value:self.status];
+    }
+    if (self.hasMessageHash) {
+        [output writeString:2 value:self.messageHash];
+    }
+    if (self.hasDesc) {
+        [output writeString:3 value:self.desc];
+    }
+    if (self.hasDate) {
+        [output writeInt64:4 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasStatus) {
+        size += computeInt32Size(1, self.status);
+    }
+    if (self.hasMessageHash) {
+        size += computeStringSize(2, self.messageHash);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(3, self.desc);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(4, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasStatus) {
-    size += computeInt32Size(1, self.status);
-  }
-  if (self.hasMessageHash) {
-    size += computeStringSize(2, self.messageHash);
-  }
-  if (self.hasDesc) {
-    size += computeStringSize(3, self.desc);
-  }
-  if (self.hasDate) {
-    size += computeInt64Size(4, self.date);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_TextFromServerResponse*) parseFromData:(NSData*) data {
-  return (Message_TextFromServerResponse*)[[[Message_TextFromServerResponse builder] mergeFromData:data] build];
+    return (Message_TextFromServerResponse*)[[[Message_TextFromServerResponse builder] mergeFromData:data] build];
 }
 + (Message_TextFromServerResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_TextFromServerResponse*)[[[Message_TextFromServerResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_TextFromServerResponse*)[[[Message_TextFromServerResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_TextFromServerResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_TextFromServerResponse*)[[[Message_TextFromServerResponse builder] mergeFromInputStream:input] build];
+    return (Message_TextFromServerResponse*)[[[Message_TextFromServerResponse builder] mergeFromInputStream:input] build];
 }
 + (Message_TextFromServerResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_TextFromServerResponse*)[[[Message_TextFromServerResponse builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_TextFromServerResponse*)[[[Message_TextFromServerResponse builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_TextFromServerResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_TextFromServerResponse*)[[[Message_TextFromServerResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_TextFromServerResponse*)[[[Message_TextFromServerResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_TextFromServerResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_TextFromServerResponse*)[[[Message_TextFromServerResponse builder] mergeFromCodedInputStream:input] build];
+    return (Message_TextFromServerResponse*)[[[Message_TextFromServerResponse builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_TextFromServerResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_TextFromServerResponse*)[[[Message_TextFromServerResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_TextFromServerResponse*)[[[Message_TextFromServerResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_TextFromServerResponse_Builder*) builder {
-  return [[[Message_TextFromServerResponse_Builder alloc] init] autorelease];
+    return [[[Message_TextFromServerResponse_Builder alloc] init] autorelease];
 }
 + (Message_TextFromServerResponse_Builder*) builderWithPrototype:(Message_TextFromServerResponse*) prototype {
-  return [[Message_TextFromServerResponse builder] mergeFrom:prototype];
+    return [[Message_TextFromServerResponse builder] mergeFrom:prototype];
 }
 - (Message_TextFromServerResponse_Builder*) builder {
-  return [Message_TextFromServerResponse builder];
+    return [Message_TextFromServerResponse builder];
 }
 @end
 
@@ -7306,156 +7390,156 @@ static Message_TextFromServerResponse* defaultMessage_TextFromServerResponseInst
 @implementation Message_TextFromServerResponse_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_TextFromServerResponse alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_TextFromServerResponse alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_TextFromServerResponse_Builder*) clear {
-  self.result = [[[Message_TextFromServerResponse alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_TextFromServerResponse alloc] init] autorelease];
+    return self;
 }
 - (Message_TextFromServerResponse_Builder*) clone {
-  return [Message_TextFromServerResponse builderWithPrototype:result];
+    return [Message_TextFromServerResponse builderWithPrototype:result];
 }
 - (Message_TextFromServerResponse*) defaultInstance {
-  return [Message_TextFromServerResponse defaultInstance];
+    return [Message_TextFromServerResponse defaultInstance];
 }
 - (Message_TextFromServerResponse*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_TextFromServerResponse*) buildPartial {
-  Message_TextFromServerResponse* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_TextFromServerResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_TextFromServerResponse_Builder*) mergeFrom:(Message_TextFromServerResponse*) other {
-  if (other == [Message_TextFromServerResponse defaultInstance]) {
+    if (other == [Message_TextFromServerResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasStatus) {
-    [self setStatus:other.status];
-  }
-  if (other.hasMessageHash) {
-    [self setMessageHash:other.messageHash];
-  }
-  if (other.hasDesc) {
-    [self setDesc:other.desc];
-  }
-  if (other.hasDate) {
-    [self setDate:other.date];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_TextFromServerResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_TextFromServerResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 18: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 32: {
+                [self setDate:[input readInt64]];
+                break;
+            }
         }
-        break;
-      }
-      case 8: {
-        [self setStatus:[input readInt32]];
-        break;
-      }
-      case 18: {
-        [self setMessageHash:[input readString]];
-        break;
-      }
-      case 26: {
-        [self setDesc:[input readString]];
-        break;
-      }
-      case 32: {
-        [self setDate:[input readInt64]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasStatus {
-  return result.hasStatus;
+    return result.hasStatus;
 }
 - (int32_t) status {
-  return result.status;
+    return result.status;
 }
 - (Message_TextFromServerResponse_Builder*) setStatus:(int32_t) value {
-  result.hasStatus = YES;
-  result.status = value;
-  return self;
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
 }
 - (Message_TextFromServerResponse_Builder*) clearStatus {
-  result.hasStatus = NO;
-  result.status = 0;
-  return self;
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
 }
 - (BOOL) hasMessageHash {
-  return result.hasMessageHash;
+    return result.hasMessageHash;
 }
 - (NSString*) messageHash {
-  return result.messageHash;
+    return result.messageHash;
 }
 - (Message_TextFromServerResponse_Builder*) setMessageHash:(NSString*) value {
-  result.hasMessageHash = YES;
-  result.messageHash = value;
-  return self;
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
 }
 - (Message_TextFromServerResponse_Builder*) clearMessageHash {
-  result.hasMessageHash = NO;
-  result.messageHash = @"";
-  return self;
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
 }
 - (BOOL) hasDesc {
-  return result.hasDesc;
+    return result.hasDesc;
 }
 - (NSString*) desc {
-  return result.desc;
+    return result.desc;
 }
 - (Message_TextFromServerResponse_Builder*) setDesc:(NSString*) value {
-  result.hasDesc = YES;
-  result.desc = value;
-  return self;
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
 }
 - (Message_TextFromServerResponse_Builder*) clearDesc {
-  result.hasDesc = NO;
-  result.desc = @"";
-  return self;
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
 }
 - (BOOL) hasDate {
-  return result.hasDate;
+    return result.hasDate;
 }
 - (int64_t) date {
-  return result.date;
+    return result.date;
 }
 - (Message_TextFromServerResponse_Builder*) setDate:(int64_t) value {
-  result.hasDate = YES;
-  result.date = value;
-  return self;
+    result.hasDate = YES;
+    result.date = value;
+    return self;
 }
 - (Message_TextFromServerResponse_Builder*) clearDate {
-  result.hasDate = NO;
-  result.date = 0L;
-  return self;
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
 }
 @end
 
@@ -7470,160 +7554,160 @@ static Message_TextFromServerResponse* defaultMessage_TextFromServerResponseInst
 @implementation Message_PictureFromServerRequest
 
 - (BOOL) hasMessageHash {
-  return !!hasMessageHash_;
+    return !!hasMessageHash_;
 }
 - (void) setHasMessageHash:(BOOL) value {
-  hasMessageHash_ = !!value;
+    hasMessageHash_ = !!value;
 }
 @synthesize messageHash;
 - (BOOL) hasFromUserId {
-  return !!hasFromUserId_;
+    return !!hasFromUserId_;
 }
 - (void) setHasFromUserId:(BOOL) value {
-  hasFromUserId_ = !!value;
+    hasFromUserId_ = !!value;
 }
 @synthesize fromUserId;
 - (BOOL) hasToUserId {
-  return !!hasToUserId_;
+    return !!hasToUserId_;
 }
 - (void) setHasToUserId:(BOOL) value {
-  hasToUserId_ = !!value;
+    hasToUserId_ = !!value;
 }
 @synthesize toUserId;
 - (BOOL) hasPictureUuid {
-  return !!hasPictureUuid_;
+    return !!hasPictureUuid_;
 }
 - (void) setHasPictureUuid:(BOOL) value {
-  hasPictureUuid_ = !!value;
+    hasPictureUuid_ = !!value;
 }
 @synthesize pictureUuid;
 - (BOOL) hasDate {
-  return !!hasDate_;
+    return !!hasDate_;
 }
 - (void) setHasDate:(BOOL) value {
-  hasDate_ = !!value;
+    hasDate_ = !!value;
 }
 @synthesize date;
 - (void) dealloc {
-  self.messageHash = nil;
-  self.fromUserId = nil;
-  self.toUserId = nil;
-  self.pictureUuid = nil;
-  [super dealloc];
+    self.messageHash = nil;
+    self.fromUserId = nil;
+    self.toUserId = nil;
+    self.pictureUuid = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.messageHash = @"";
-    self.fromUserId = @"";
-    self.toUserId = @"";
-    self.pictureUuid = @"";
-    self.date = 0L;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.messageHash = @"";
+        self.fromUserId = @"";
+        self.toUserId = @"";
+        self.pictureUuid = @"";
+        self.date = 0L;
+    }
+    return self;
 }
 static Message_PictureFromServerRequest* defaultMessage_PictureFromServerRequestInstance = nil;
 + (void) initialize {
-  if (self == [Message_PictureFromServerRequest class]) {
-    defaultMessage_PictureFromServerRequestInstance = [[Message_PictureFromServerRequest alloc] init];
-  }
+    if (self == [Message_PictureFromServerRequest class]) {
+        defaultMessage_PictureFromServerRequestInstance = [[Message_PictureFromServerRequest alloc] init];
+    }
 }
 + (Message_PictureFromServerRequest*) defaultInstance {
-  return defaultMessage_PictureFromServerRequestInstance;
+    return defaultMessage_PictureFromServerRequestInstance;
 }
 - (Message_PictureFromServerRequest*) defaultInstance {
-  return defaultMessage_PictureFromServerRequestInstance;
+    return defaultMessage_PictureFromServerRequestInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasMessageHash) {
-    return NO;
-  }
-  if (!self.hasFromUserId) {
-    return NO;
-  }
-  if (!self.hasToUserId) {
-    return NO;
-  }
-  if (!self.hasPictureUuid) {
-    return NO;
-  }
-  if (!self.hasDate) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasFromUserId) {
+        return NO;
+    }
+    if (!self.hasToUserId) {
+        return NO;
+    }
+    if (!self.hasPictureUuid) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasMessageHash) {
-    [output writeString:1 value:self.messageHash];
-  }
-  if (self.hasFromUserId) {
-    [output writeString:2 value:self.fromUserId];
-  }
-  if (self.hasToUserId) {
-    [output writeString:3 value:self.toUserId];
-  }
-  if (self.hasPictureUuid) {
-    [output writeString:4 value:self.pictureUuid];
-  }
-  if (self.hasDate) {
-    [output writeInt64:5 value:self.date];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasMessageHash) {
+        [output writeString:1 value:self.messageHash];
+    }
+    if (self.hasFromUserId) {
+        [output writeString:2 value:self.fromUserId];
+    }
+    if (self.hasToUserId) {
+        [output writeString:3 value:self.toUserId];
+    }
+    if (self.hasPictureUuid) {
+        [output writeString:4 value:self.pictureUuid];
+    }
+    if (self.hasDate) {
+        [output writeInt64:5 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasMessageHash) {
+        size += computeStringSize(1, self.messageHash);
+    }
+    if (self.hasFromUserId) {
+        size += computeStringSize(2, self.fromUserId);
+    }
+    if (self.hasToUserId) {
+        size += computeStringSize(3, self.toUserId);
+    }
+    if (self.hasPictureUuid) {
+        size += computeStringSize(4, self.pictureUuid);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(5, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasMessageHash) {
-    size += computeStringSize(1, self.messageHash);
-  }
-  if (self.hasFromUserId) {
-    size += computeStringSize(2, self.fromUserId);
-  }
-  if (self.hasToUserId) {
-    size += computeStringSize(3, self.toUserId);
-  }
-  if (self.hasPictureUuid) {
-    size += computeStringSize(4, self.pictureUuid);
-  }
-  if (self.hasDate) {
-    size += computeInt64Size(5, self.date);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_PictureFromServerRequest*) parseFromData:(NSData*) data {
-  return (Message_PictureFromServerRequest*)[[[Message_PictureFromServerRequest builder] mergeFromData:data] build];
+    return (Message_PictureFromServerRequest*)[[[Message_PictureFromServerRequest builder] mergeFromData:data] build];
 }
 + (Message_PictureFromServerRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_PictureFromServerRequest*)[[[Message_PictureFromServerRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_PictureFromServerRequest*)[[[Message_PictureFromServerRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_PictureFromServerRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_PictureFromServerRequest*)[[[Message_PictureFromServerRequest builder] mergeFromInputStream:input] build];
+    return (Message_PictureFromServerRequest*)[[[Message_PictureFromServerRequest builder] mergeFromInputStream:input] build];
 }
 + (Message_PictureFromServerRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_PictureFromServerRequest*)[[[Message_PictureFromServerRequest builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_PictureFromServerRequest*)[[[Message_PictureFromServerRequest builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_PictureFromServerRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_PictureFromServerRequest*)[[[Message_PictureFromServerRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_PictureFromServerRequest*)[[[Message_PictureFromServerRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_PictureFromServerRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_PictureFromServerRequest*)[[[Message_PictureFromServerRequest builder] mergeFromCodedInputStream:input] build];
+    return (Message_PictureFromServerRequest*)[[[Message_PictureFromServerRequest builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_PictureFromServerRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_PictureFromServerRequest*)[[[Message_PictureFromServerRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_PictureFromServerRequest*)[[[Message_PictureFromServerRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_PictureFromServerRequest_Builder*) builder {
-  return [[[Message_PictureFromServerRequest_Builder alloc] init] autorelease];
+    return [[[Message_PictureFromServerRequest_Builder alloc] init] autorelease];
 }
 + (Message_PictureFromServerRequest_Builder*) builderWithPrototype:(Message_PictureFromServerRequest*) prototype {
-  return [[Message_PictureFromServerRequest builder] mergeFrom:prototype];
+    return [[Message_PictureFromServerRequest builder] mergeFrom:prototype];
 }
 - (Message_PictureFromServerRequest_Builder*) builder {
-  return [Message_PictureFromServerRequest builder];
+    return [Message_PictureFromServerRequest builder];
 }
 @end
 
@@ -7634,179 +7718,179 @@ static Message_PictureFromServerRequest* defaultMessage_PictureFromServerRequest
 @implementation Message_PictureFromServerRequest_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_PictureFromServerRequest alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_PictureFromServerRequest alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_PictureFromServerRequest_Builder*) clear {
-  self.result = [[[Message_PictureFromServerRequest alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_PictureFromServerRequest alloc] init] autorelease];
+    return self;
 }
 - (Message_PictureFromServerRequest_Builder*) clone {
-  return [Message_PictureFromServerRequest builderWithPrototype:result];
+    return [Message_PictureFromServerRequest builderWithPrototype:result];
 }
 - (Message_PictureFromServerRequest*) defaultInstance {
-  return [Message_PictureFromServerRequest defaultInstance];
+    return [Message_PictureFromServerRequest defaultInstance];
 }
 - (Message_PictureFromServerRequest*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_PictureFromServerRequest*) buildPartial {
-  Message_PictureFromServerRequest* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_PictureFromServerRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_PictureFromServerRequest_Builder*) mergeFrom:(Message_PictureFromServerRequest*) other {
-  if (other == [Message_PictureFromServerRequest defaultInstance]) {
+    if (other == [Message_PictureFromServerRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasFromUserId) {
+        [self setFromUserId:other.fromUserId];
+    }
+    if (other.hasToUserId) {
+        [self setToUserId:other.toUserId];
+    }
+    if (other.hasPictureUuid) {
+        [self setPictureUuid:other.pictureUuid];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasMessageHash) {
-    [self setMessageHash:other.messageHash];
-  }
-  if (other.hasFromUserId) {
-    [self setFromUserId:other.fromUserId];
-  }
-  if (other.hasToUserId) {
-    [self setToUserId:other.toUserId];
-  }
-  if (other.hasPictureUuid) {
-    [self setPictureUuid:other.pictureUuid];
-  }
-  if (other.hasDate) {
-    [self setDate:other.date];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_PictureFromServerRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_PictureFromServerRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setFromUserId:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setToUserId:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setPictureUuid:[input readString]];
+                break;
+            }
+            case 40: {
+                [self setDate:[input readInt64]];
+                break;
+            }
         }
-        break;
-      }
-      case 10: {
-        [self setMessageHash:[input readString]];
-        break;
-      }
-      case 18: {
-        [self setFromUserId:[input readString]];
-        break;
-      }
-      case 26: {
-        [self setToUserId:[input readString]];
-        break;
-      }
-      case 34: {
-        [self setPictureUuid:[input readString]];
-        break;
-      }
-      case 40: {
-        [self setDate:[input readInt64]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasMessageHash {
-  return result.hasMessageHash;
+    return result.hasMessageHash;
 }
 - (NSString*) messageHash {
-  return result.messageHash;
+    return result.messageHash;
 }
 - (Message_PictureFromServerRequest_Builder*) setMessageHash:(NSString*) value {
-  result.hasMessageHash = YES;
-  result.messageHash = value;
-  return self;
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
 }
 - (Message_PictureFromServerRequest_Builder*) clearMessageHash {
-  result.hasMessageHash = NO;
-  result.messageHash = @"";
-  return self;
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
 }
 - (BOOL) hasFromUserId {
-  return result.hasFromUserId;
+    return result.hasFromUserId;
 }
 - (NSString*) fromUserId {
-  return result.fromUserId;
+    return result.fromUserId;
 }
 - (Message_PictureFromServerRequest_Builder*) setFromUserId:(NSString*) value {
-  result.hasFromUserId = YES;
-  result.fromUserId = value;
-  return self;
+    result.hasFromUserId = YES;
+    result.fromUserId = value;
+    return self;
 }
 - (Message_PictureFromServerRequest_Builder*) clearFromUserId {
-  result.hasFromUserId = NO;
-  result.fromUserId = @"";
-  return self;
+    result.hasFromUserId = NO;
+    result.fromUserId = @"";
+    return self;
 }
 - (BOOL) hasToUserId {
-  return result.hasToUserId;
+    return result.hasToUserId;
 }
 - (NSString*) toUserId {
-  return result.toUserId;
+    return result.toUserId;
 }
 - (Message_PictureFromServerRequest_Builder*) setToUserId:(NSString*) value {
-  result.hasToUserId = YES;
-  result.toUserId = value;
-  return self;
+    result.hasToUserId = YES;
+    result.toUserId = value;
+    return self;
 }
 - (Message_PictureFromServerRequest_Builder*) clearToUserId {
-  result.hasToUserId = NO;
-  result.toUserId = @"";
-  return self;
+    result.hasToUserId = NO;
+    result.toUserId = @"";
+    return self;
 }
 - (BOOL) hasPictureUuid {
-  return result.hasPictureUuid;
+    return result.hasPictureUuid;
 }
 - (NSString*) pictureUuid {
-  return result.pictureUuid;
+    return result.pictureUuid;
 }
 - (Message_PictureFromServerRequest_Builder*) setPictureUuid:(NSString*) value {
-  result.hasPictureUuid = YES;
-  result.pictureUuid = value;
-  return self;
+    result.hasPictureUuid = YES;
+    result.pictureUuid = value;
+    return self;
 }
 - (Message_PictureFromServerRequest_Builder*) clearPictureUuid {
-  result.hasPictureUuid = NO;
-  result.pictureUuid = @"";
-  return self;
+    result.hasPictureUuid = NO;
+    result.pictureUuid = @"";
+    return self;
 }
 - (BOOL) hasDate {
-  return result.hasDate;
+    return result.hasDate;
 }
 - (int64_t) date {
-  return result.date;
+    return result.date;
 }
 - (Message_PictureFromServerRequest_Builder*) setDate:(int64_t) value {
-  result.hasDate = YES;
-  result.date = value;
-  return self;
+    result.hasDate = YES;
+    result.date = value;
+    return self;
 }
 - (Message_PictureFromServerRequest_Builder*) clearDate {
-  result.hasDate = NO;
-  result.date = 0L;
-  return self;
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
 }
 @end
 
@@ -7820,141 +7904,141 @@ static Message_PictureFromServerRequest* defaultMessage_PictureFromServerRequest
 @implementation Message_PictureFromServerResponse
 
 - (BOOL) hasStatus {
-  return !!hasStatus_;
+    return !!hasStatus_;
 }
 - (void) setHasStatus:(BOOL) value {
-  hasStatus_ = !!value;
+    hasStatus_ = !!value;
 }
 @synthesize status;
 - (BOOL) hasMessageHash {
-  return !!hasMessageHash_;
+    return !!hasMessageHash_;
 }
 - (void) setHasMessageHash:(BOOL) value {
-  hasMessageHash_ = !!value;
+    hasMessageHash_ = !!value;
 }
 @synthesize messageHash;
 - (BOOL) hasDesc {
-  return !!hasDesc_;
+    return !!hasDesc_;
 }
 - (void) setHasDesc:(BOOL) value {
-  hasDesc_ = !!value;
+    hasDesc_ = !!value;
 }
 @synthesize desc;
 - (BOOL) hasDate {
-  return !!hasDate_;
+    return !!hasDate_;
 }
 - (void) setHasDate:(BOOL) value {
-  hasDate_ = !!value;
+    hasDate_ = !!value;
 }
 @synthesize date;
 - (void) dealloc {
-  self.messageHash = nil;
-  self.desc = nil;
-  [super dealloc];
+    self.messageHash = nil;
+    self.desc = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.status = 0;
-    self.messageHash = @"";
-    self.desc = @"";
-    self.date = 0L;
-  }
-  return self;
+    if ((self = [super init])) {
+        self.status = 0;
+        self.messageHash = @"";
+        self.desc = @"";
+        self.date = 0L;
+    }
+    return self;
 }
 static Message_PictureFromServerResponse* defaultMessage_PictureFromServerResponseInstance = nil;
 + (void) initialize {
-  if (self == [Message_PictureFromServerResponse class]) {
-    defaultMessage_PictureFromServerResponseInstance = [[Message_PictureFromServerResponse alloc] init];
-  }
+    if (self == [Message_PictureFromServerResponse class]) {
+        defaultMessage_PictureFromServerResponseInstance = [[Message_PictureFromServerResponse alloc] init];
+    }
 }
 + (Message_PictureFromServerResponse*) defaultInstance {
-  return defaultMessage_PictureFromServerResponseInstance;
+    return defaultMessage_PictureFromServerResponseInstance;
 }
 - (Message_PictureFromServerResponse*) defaultInstance {
-  return defaultMessage_PictureFromServerResponseInstance;
+    return defaultMessage_PictureFromServerResponseInstance;
 }
 - (BOOL) isInitialized {
-  if (!self.hasStatus) {
-    return NO;
-  }
-  if (!self.hasMessageHash) {
-    return NO;
-  }
-  if (!self.hasDesc) {
-    return NO;
-  }
-  if (!self.hasDate) {
-    return NO;
-  }
-  return YES;
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasStatus) {
-    [output writeInt32:1 value:self.status];
-  }
-  if (self.hasMessageHash) {
-    [output writeString:2 value:self.messageHash];
-  }
-  if (self.hasDesc) {
-    [output writeString:3 value:self.desc];
-  }
-  if (self.hasDate) {
-    [output writeInt64:4 value:self.date];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
+    if (self.hasStatus) {
+        [output writeInt32:1 value:self.status];
+    }
+    if (self.hasMessageHash) {
+        [output writeString:2 value:self.messageHash];
+    }
+    if (self.hasDesc) {
+        [output writeString:3 value:self.desc];
+    }
+    if (self.hasDate) {
+        [output writeInt64:4 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
 }
 - (int32_t) serializedSize {
-  int32_t size = memoizedSerializedSize;
-  if (size != -1) {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasStatus) {
+        size += computeInt32Size(1, self.status);
+    }
+    if (self.hasMessageHash) {
+        size += computeStringSize(2, self.messageHash);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(3, self.desc);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(4, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
     return size;
-  }
-
-  size = 0;
-  if (self.hasStatus) {
-    size += computeInt32Size(1, self.status);
-  }
-  if (self.hasMessageHash) {
-    size += computeStringSize(2, self.messageHash);
-  }
-  if (self.hasDesc) {
-    size += computeStringSize(3, self.desc);
-  }
-  if (self.hasDate) {
-    size += computeInt64Size(4, self.date);
-  }
-  size += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size;
-  return size;
 }
 + (Message_PictureFromServerResponse*) parseFromData:(NSData*) data {
-  return (Message_PictureFromServerResponse*)[[[Message_PictureFromServerResponse builder] mergeFromData:data] build];
+    return (Message_PictureFromServerResponse*)[[[Message_PictureFromServerResponse builder] mergeFromData:data] build];
 }
 + (Message_PictureFromServerResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_PictureFromServerResponse*)[[[Message_PictureFromServerResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+    return (Message_PictureFromServerResponse*)[[[Message_PictureFromServerResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (Message_PictureFromServerResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (Message_PictureFromServerResponse*)[[[Message_PictureFromServerResponse builder] mergeFromInputStream:input] build];
+    return (Message_PictureFromServerResponse*)[[[Message_PictureFromServerResponse builder] mergeFromInputStream:input] build];
 }
 + (Message_PictureFromServerResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
-  return (Message_PictureFromServerResponse*)[[[Message_PictureFromServerResponse builder] mergeDelimitedFromInputStream:input] build];
+    return (Message_PictureFromServerResponse*)[[[Message_PictureFromServerResponse builder] mergeDelimitedFromInputStream:input] build];
 }
 + (Message_PictureFromServerResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_PictureFromServerResponse*)[[[Message_PictureFromServerResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_PictureFromServerResponse*)[[[Message_PictureFromServerResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_PictureFromServerResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (Message_PictureFromServerResponse*)[[[Message_PictureFromServerResponse builder] mergeFromCodedInputStream:input] build];
+    return (Message_PictureFromServerResponse*)[[[Message_PictureFromServerResponse builder] mergeFromCodedInputStream:input] build];
 }
 + (Message_PictureFromServerResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (Message_PictureFromServerResponse*)[[[Message_PictureFromServerResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+    return (Message_PictureFromServerResponse*)[[[Message_PictureFromServerResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (Message_PictureFromServerResponse_Builder*) builder {
-  return [[[Message_PictureFromServerResponse_Builder alloc] init] autorelease];
+    return [[[Message_PictureFromServerResponse_Builder alloc] init] autorelease];
 }
 + (Message_PictureFromServerResponse_Builder*) builderWithPrototype:(Message_PictureFromServerResponse*) prototype {
-  return [[Message_PictureFromServerResponse builder] mergeFrom:prototype];
+    return [[Message_PictureFromServerResponse builder] mergeFrom:prototype];
 }
 - (Message_PictureFromServerResponse_Builder*) builder {
-  return [Message_PictureFromServerResponse builder];
+    return [Message_PictureFromServerResponse builder];
 }
 @end
 
@@ -7965,156 +8049,1474 @@ static Message_PictureFromServerResponse* defaultMessage_PictureFromServerRespon
 @implementation Message_PictureFromServerResponse_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message_PictureFromServerResponse alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message_PictureFromServerResponse alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_PictureFromServerResponse_Builder*) clear {
-  self.result = [[[Message_PictureFromServerResponse alloc] init] autorelease];
-  return self;
+    self.result = [[[Message_PictureFromServerResponse alloc] init] autorelease];
+    return self;
 }
 - (Message_PictureFromServerResponse_Builder*) clone {
-  return [Message_PictureFromServerResponse builderWithPrototype:result];
+    return [Message_PictureFromServerResponse builderWithPrototype:result];
 }
 - (Message_PictureFromServerResponse*) defaultInstance {
-  return [Message_PictureFromServerResponse defaultInstance];
+    return [Message_PictureFromServerResponse defaultInstance];
 }
 - (Message_PictureFromServerResponse*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message_PictureFromServerResponse*) buildPartial {
-  Message_PictureFromServerResponse* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message_PictureFromServerResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_PictureFromServerResponse_Builder*) mergeFrom:(Message_PictureFromServerResponse*) other {
-  if (other == [Message_PictureFromServerResponse defaultInstance]) {
+    if (other == [Message_PictureFromServerResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasStatus) {
-    [self setStatus:other.status];
-  }
-  if (other.hasMessageHash) {
-    [self setMessageHash:other.messageHash];
-  }
-  if (other.hasDesc) {
-    [self setDesc:other.desc];
-  }
-  if (other.hasDate) {
-    [self setDate:other.date];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_PictureFromServerResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_PictureFromServerResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 18: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 32: {
+                [self setDate:[input readInt64]];
+                break;
+            }
         }
-        break;
-      }
-      case 8: {
-        [self setStatus:[input readInt32]];
-        break;
-      }
-      case 18: {
-        [self setMessageHash:[input readString]];
-        break;
-      }
-      case 26: {
-        [self setDesc:[input readString]];
-        break;
-      }
-      case 32: {
-        [self setDate:[input readInt64]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasStatus {
-  return result.hasStatus;
+    return result.hasStatus;
 }
 - (int32_t) status {
-  return result.status;
+    return result.status;
 }
 - (Message_PictureFromServerResponse_Builder*) setStatus:(int32_t) value {
-  result.hasStatus = YES;
-  result.status = value;
-  return self;
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
 }
 - (Message_PictureFromServerResponse_Builder*) clearStatus {
-  result.hasStatus = NO;
-  result.status = 0;
-  return self;
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
 }
 - (BOOL) hasMessageHash {
-  return result.hasMessageHash;
+    return result.hasMessageHash;
 }
 - (NSString*) messageHash {
-  return result.messageHash;
+    return result.messageHash;
 }
 - (Message_PictureFromServerResponse_Builder*) setMessageHash:(NSString*) value {
-  result.hasMessageHash = YES;
-  result.messageHash = value;
-  return self;
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
 }
 - (Message_PictureFromServerResponse_Builder*) clearMessageHash {
-  result.hasMessageHash = NO;
-  result.messageHash = @"";
-  return self;
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
 }
 - (BOOL) hasDesc {
-  return result.hasDesc;
+    return result.hasDesc;
 }
 - (NSString*) desc {
-  return result.desc;
+    return result.desc;
 }
 - (Message_PictureFromServerResponse_Builder*) setDesc:(NSString*) value {
-  result.hasDesc = YES;
-  result.desc = value;
-  return self;
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
 }
 - (Message_PictureFromServerResponse_Builder*) clearDesc {
-  result.hasDesc = NO;
-  result.desc = @"";
-  return self;
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
 }
 - (BOOL) hasDate {
-  return result.hasDate;
+    return result.hasDate;
 }
 - (int64_t) date {
-  return result.date;
+    return result.date;
 }
 - (Message_PictureFromServerResponse_Builder*) setDate:(int64_t) value {
-  result.hasDate = YES;
-  result.date = value;
-  return self;
+    result.hasDate = YES;
+    result.date = value;
+    return self;
 }
 - (Message_PictureFromServerResponse_Builder*) clearDate {
-  result.hasDate = NO;
-  result.date = 0L;
-  return self;
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
+}
+@end
+
+@interface Message_VoiceFromServerRequest ()
+@property (retain) NSString* messageHash;
+@property (retain) NSString* fromUserId;
+@property (retain) NSString* toUserId;
+@property (retain) NSString* voiceUuid;
+@property int64_t date;
+@end
+
+@implementation Message_VoiceFromServerRequest
+
+- (BOOL) hasMessageHash {
+    return !!hasMessageHash_;
+}
+- (void) setHasMessageHash:(BOOL) value {
+    hasMessageHash_ = !!value;
+}
+@synthesize messageHash;
+- (BOOL) hasFromUserId {
+    return !!hasFromUserId_;
+}
+- (void) setHasFromUserId:(BOOL) value {
+    hasFromUserId_ = !!value;
+}
+@synthesize fromUserId;
+- (BOOL) hasToUserId {
+    return !!hasToUserId_;
+}
+- (void) setHasToUserId:(BOOL) value {
+    hasToUserId_ = !!value;
+}
+@synthesize toUserId;
+- (BOOL) hasVoiceUuid {
+    return !!hasVoiceUuid_;
+}
+- (void) setHasVoiceUuid:(BOOL) value {
+    hasVoiceUuid_ = !!value;
+}
+@synthesize voiceUuid;
+- (BOOL) hasDate {
+    return !!hasDate_;
+}
+- (void) setHasDate:(BOOL) value {
+    hasDate_ = !!value;
+}
+@synthesize date;
+- (void) dealloc {
+    self.messageHash = nil;
+    self.fromUserId = nil;
+    self.toUserId = nil;
+    self.voiceUuid = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.messageHash = @"";
+        self.fromUserId = @"";
+        self.toUserId = @"";
+        self.voiceUuid = @"";
+        self.date = 0L;
+    }
+    return self;
+}
+static Message_VoiceFromServerRequest* defaultMessage_VoiceFromServerRequestInstance = nil;
++ (void) initialize {
+    if (self == [Message_VoiceFromServerRequest class]) {
+        defaultMessage_VoiceFromServerRequestInstance = [[Message_VoiceFromServerRequest alloc] init];
+    }
+}
++ (Message_VoiceFromServerRequest*) defaultInstance {
+    return defaultMessage_VoiceFromServerRequestInstance;
+}
+- (Message_VoiceFromServerRequest*) defaultInstance {
+    return defaultMessage_VoiceFromServerRequestInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasFromUserId) {
+        return NO;
+    }
+    if (!self.hasToUserId) {
+        return NO;
+    }
+    if (!self.hasVoiceUuid) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasMessageHash) {
+        [output writeString:1 value:self.messageHash];
+    }
+    if (self.hasFromUserId) {
+        [output writeString:2 value:self.fromUserId];
+    }
+    if (self.hasToUserId) {
+        [output writeString:3 value:self.toUserId];
+    }
+    if (self.hasVoiceUuid) {
+        [output writeString:4 value:self.voiceUuid];
+    }
+    if (self.hasDate) {
+        [output writeInt64:5 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasMessageHash) {
+        size += computeStringSize(1, self.messageHash);
+    }
+    if (self.hasFromUserId) {
+        size += computeStringSize(2, self.fromUserId);
+    }
+    if (self.hasToUserId) {
+        size += computeStringSize(3, self.toUserId);
+    }
+    if (self.hasVoiceUuid) {
+        size += computeStringSize(4, self.voiceUuid);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(5, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_VoiceFromServerRequest*) parseFromData:(NSData*) data {
+    return (Message_VoiceFromServerRequest*)[[[Message_VoiceFromServerRequest builder] mergeFromData:data] build];
+}
++ (Message_VoiceFromServerRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_VoiceFromServerRequest*)[[[Message_VoiceFromServerRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_VoiceFromServerRequest*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_VoiceFromServerRequest*)[[[Message_VoiceFromServerRequest builder] mergeFromInputStream:input] build];
+}
++ (Message_VoiceFromServerRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_VoiceFromServerRequest*)[[[Message_VoiceFromServerRequest builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_VoiceFromServerRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_VoiceFromServerRequest*)[[[Message_VoiceFromServerRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_VoiceFromServerRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_VoiceFromServerRequest*)[[[Message_VoiceFromServerRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_VoiceFromServerRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_VoiceFromServerRequest*)[[[Message_VoiceFromServerRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_VoiceFromServerRequest_Builder*) builder {
+    return [[[Message_VoiceFromServerRequest_Builder alloc] init] autorelease];
+}
++ (Message_VoiceFromServerRequest_Builder*) builderWithPrototype:(Message_VoiceFromServerRequest*) prototype {
+    return [[Message_VoiceFromServerRequest builder] mergeFrom:prototype];
+}
+- (Message_VoiceFromServerRequest_Builder*) builder {
+    return [Message_VoiceFromServerRequest builder];
+}
+@end
+
+@interface Message_VoiceFromServerRequest_Builder()
+@property (retain) Message_VoiceFromServerRequest* result;
+@end
+
+@implementation Message_VoiceFromServerRequest_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_VoiceFromServerRequest alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_VoiceFromServerRequest_Builder*) clear {
+    self.result = [[[Message_VoiceFromServerRequest alloc] init] autorelease];
+    return self;
+}
+- (Message_VoiceFromServerRequest_Builder*) clone {
+    return [Message_VoiceFromServerRequest builderWithPrototype:result];
+}
+- (Message_VoiceFromServerRequest*) defaultInstance {
+    return [Message_VoiceFromServerRequest defaultInstance];
+}
+- (Message_VoiceFromServerRequest*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_VoiceFromServerRequest*) buildPartial {
+    Message_VoiceFromServerRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_VoiceFromServerRequest_Builder*) mergeFrom:(Message_VoiceFromServerRequest*) other {
+    if (other == [Message_VoiceFromServerRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasFromUserId) {
+        [self setFromUserId:other.fromUserId];
+    }
+    if (other.hasToUserId) {
+        [self setToUserId:other.toUserId];
+    }
+    if (other.hasVoiceUuid) {
+        [self setVoiceUuid:other.voiceUuid];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_VoiceFromServerRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_VoiceFromServerRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setFromUserId:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setToUserId:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setVoiceUuid:[input readString]];
+                break;
+            }
+            case 40: {
+                [self setDate:[input readInt64]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasMessageHash {
+    return result.hasMessageHash;
+}
+- (NSString*) messageHash {
+    return result.messageHash;
+}
+- (Message_VoiceFromServerRequest_Builder*) setMessageHash:(NSString*) value {
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
+}
+- (Message_VoiceFromServerRequest_Builder*) clearMessageHash {
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
+}
+- (BOOL) hasFromUserId {
+    return result.hasFromUserId;
+}
+- (NSString*) fromUserId {
+    return result.fromUserId;
+}
+- (Message_VoiceFromServerRequest_Builder*) setFromUserId:(NSString*) value {
+    result.hasFromUserId = YES;
+    result.fromUserId = value;
+    return self;
+}
+- (Message_VoiceFromServerRequest_Builder*) clearFromUserId {
+    result.hasFromUserId = NO;
+    result.fromUserId = @"";
+    return self;
+}
+- (BOOL) hasToUserId {
+    return result.hasToUserId;
+}
+- (NSString*) toUserId {
+    return result.toUserId;
+}
+- (Message_VoiceFromServerRequest_Builder*) setToUserId:(NSString*) value {
+    result.hasToUserId = YES;
+    result.toUserId = value;
+    return self;
+}
+- (Message_VoiceFromServerRequest_Builder*) clearToUserId {
+    result.hasToUserId = NO;
+    result.toUserId = @"";
+    return self;
+}
+- (BOOL) hasVoiceUuid {
+    return result.hasVoiceUuid;
+}
+- (NSString*) voiceUuid {
+    return result.voiceUuid;
+}
+- (Message_VoiceFromServerRequest_Builder*) setVoiceUuid:(NSString*) value {
+    result.hasVoiceUuid = YES;
+    result.voiceUuid = value;
+    return self;
+}
+- (Message_VoiceFromServerRequest_Builder*) clearVoiceUuid {
+    result.hasVoiceUuid = NO;
+    result.voiceUuid = @"";
+    return self;
+}
+- (BOOL) hasDate {
+    return result.hasDate;
+}
+- (int64_t) date {
+    return result.date;
+}
+- (Message_VoiceFromServerRequest_Builder*) setDate:(int64_t) value {
+    result.hasDate = YES;
+    result.date = value;
+    return self;
+}
+- (Message_VoiceFromServerRequest_Builder*) clearDate {
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
+}
+@end
+
+@interface Message_VoiceFromServerResponse ()
+@property int32_t status;
+@property (retain) NSString* messageHash;
+@property (retain) NSString* desc;
+@property int64_t date;
+@end
+
+@implementation Message_VoiceFromServerResponse
+
+- (BOOL) hasStatus {
+    return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+    hasStatus_ = !!value;
+}
+@synthesize status;
+- (BOOL) hasMessageHash {
+    return !!hasMessageHash_;
+}
+- (void) setHasMessageHash:(BOOL) value {
+    hasMessageHash_ = !!value;
+}
+@synthesize messageHash;
+- (BOOL) hasDesc {
+    return !!hasDesc_;
+}
+- (void) setHasDesc:(BOOL) value {
+    hasDesc_ = !!value;
+}
+@synthesize desc;
+- (BOOL) hasDate {
+    return !!hasDate_;
+}
+- (void) setHasDate:(BOOL) value {
+    hasDate_ = !!value;
+}
+@synthesize date;
+- (void) dealloc {
+    self.messageHash = nil;
+    self.desc = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.status = 0;
+        self.messageHash = @"";
+        self.desc = @"";
+        self.date = 0L;
+    }
+    return self;
+}
+static Message_VoiceFromServerResponse* defaultMessage_VoiceFromServerResponseInstance = nil;
++ (void) initialize {
+    if (self == [Message_VoiceFromServerResponse class]) {
+        defaultMessage_VoiceFromServerResponseInstance = [[Message_VoiceFromServerResponse alloc] init];
+    }
+}
++ (Message_VoiceFromServerResponse*) defaultInstance {
+    return defaultMessage_VoiceFromServerResponseInstance;
+}
+- (Message_VoiceFromServerResponse*) defaultInstance {
+    return defaultMessage_VoiceFromServerResponseInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasStatus) {
+        [output writeInt32:1 value:self.status];
+    }
+    if (self.hasMessageHash) {
+        [output writeString:2 value:self.messageHash];
+    }
+    if (self.hasDesc) {
+        [output writeString:3 value:self.desc];
+    }
+    if (self.hasDate) {
+        [output writeInt64:4 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasStatus) {
+        size += computeInt32Size(1, self.status);
+    }
+    if (self.hasMessageHash) {
+        size += computeStringSize(2, self.messageHash);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(3, self.desc);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(4, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_VoiceFromServerResponse*) parseFromData:(NSData*) data {
+    return (Message_VoiceFromServerResponse*)[[[Message_VoiceFromServerResponse builder] mergeFromData:data] build];
+}
++ (Message_VoiceFromServerResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_VoiceFromServerResponse*)[[[Message_VoiceFromServerResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_VoiceFromServerResponse*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_VoiceFromServerResponse*)[[[Message_VoiceFromServerResponse builder] mergeFromInputStream:input] build];
+}
++ (Message_VoiceFromServerResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_VoiceFromServerResponse*)[[[Message_VoiceFromServerResponse builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_VoiceFromServerResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_VoiceFromServerResponse*)[[[Message_VoiceFromServerResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_VoiceFromServerResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_VoiceFromServerResponse*)[[[Message_VoiceFromServerResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_VoiceFromServerResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_VoiceFromServerResponse*)[[[Message_VoiceFromServerResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_VoiceFromServerResponse_Builder*) builder {
+    return [[[Message_VoiceFromServerResponse_Builder alloc] init] autorelease];
+}
++ (Message_VoiceFromServerResponse_Builder*) builderWithPrototype:(Message_VoiceFromServerResponse*) prototype {
+    return [[Message_VoiceFromServerResponse builder] mergeFrom:prototype];
+}
+- (Message_VoiceFromServerResponse_Builder*) builder {
+    return [Message_VoiceFromServerResponse builder];
+}
+@end
+
+@interface Message_VoiceFromServerResponse_Builder()
+@property (retain) Message_VoiceFromServerResponse* result;
+@end
+
+@implementation Message_VoiceFromServerResponse_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_VoiceFromServerResponse alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_VoiceFromServerResponse_Builder*) clear {
+    self.result = [[[Message_VoiceFromServerResponse alloc] init] autorelease];
+    return self;
+}
+- (Message_VoiceFromServerResponse_Builder*) clone {
+    return [Message_VoiceFromServerResponse builderWithPrototype:result];
+}
+- (Message_VoiceFromServerResponse*) defaultInstance {
+    return [Message_VoiceFromServerResponse defaultInstance];
+}
+- (Message_VoiceFromServerResponse*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_VoiceFromServerResponse*) buildPartial {
+    Message_VoiceFromServerResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_VoiceFromServerResponse_Builder*) mergeFrom:(Message_VoiceFromServerResponse*) other {
+    if (other == [Message_VoiceFromServerResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_VoiceFromServerResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_VoiceFromServerResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 18: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 32: {
+                [self setDate:[input readInt64]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasStatus {
+    return result.hasStatus;
+}
+- (int32_t) status {
+    return result.status;
+}
+- (Message_VoiceFromServerResponse_Builder*) setStatus:(int32_t) value {
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
+}
+- (Message_VoiceFromServerResponse_Builder*) clearStatus {
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
+}
+- (BOOL) hasMessageHash {
+    return result.hasMessageHash;
+}
+- (NSString*) messageHash {
+    return result.messageHash;
+}
+- (Message_VoiceFromServerResponse_Builder*) setMessageHash:(NSString*) value {
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
+}
+- (Message_VoiceFromServerResponse_Builder*) clearMessageHash {
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
+}
+- (BOOL) hasDesc {
+    return result.hasDesc;
+}
+- (NSString*) desc {
+    return result.desc;
+}
+- (Message_VoiceFromServerResponse_Builder*) setDesc:(NSString*) value {
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
+}
+- (Message_VoiceFromServerResponse_Builder*) clearDesc {
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
+}
+- (BOOL) hasDate {
+    return result.hasDate;
+}
+- (int64_t) date {
+    return result.date;
+}
+- (Message_VoiceFromServerResponse_Builder*) setDate:(int64_t) value {
+    result.hasDate = YES;
+    result.date = value;
+    return self;
+}
+- (Message_VoiceFromServerResponse_Builder*) clearDate {
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
+}
+@end
+
+@interface Message_VideoFromServerRequest ()
+@property (retain) NSString* messageHash;
+@property (retain) NSString* fromUserId;
+@property (retain) NSString* toUserId;
+@property (retain) NSString* videoUuid;
+@property int64_t date;
+@end
+
+@implementation Message_VideoFromServerRequest
+
+- (BOOL) hasMessageHash {
+    return !!hasMessageHash_;
+}
+- (void) setHasMessageHash:(BOOL) value {
+    hasMessageHash_ = !!value;
+}
+@synthesize messageHash;
+- (BOOL) hasFromUserId {
+    return !!hasFromUserId_;
+}
+- (void) setHasFromUserId:(BOOL) value {
+    hasFromUserId_ = !!value;
+}
+@synthesize fromUserId;
+- (BOOL) hasToUserId {
+    return !!hasToUserId_;
+}
+- (void) setHasToUserId:(BOOL) value {
+    hasToUserId_ = !!value;
+}
+@synthesize toUserId;
+- (BOOL) hasVideoUuid {
+    return !!hasVideoUuid_;
+}
+- (void) setHasVideoUuid:(BOOL) value {
+    hasVideoUuid_ = !!value;
+}
+@synthesize videoUuid;
+- (BOOL) hasDate {
+    return !!hasDate_;
+}
+- (void) setHasDate:(BOOL) value {
+    hasDate_ = !!value;
+}
+@synthesize date;
+- (void) dealloc {
+    self.messageHash = nil;
+    self.fromUserId = nil;
+    self.toUserId = nil;
+    self.videoUuid = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.messageHash = @"";
+        self.fromUserId = @"";
+        self.toUserId = @"";
+        self.videoUuid = @"";
+        self.date = 0L;
+    }
+    return self;
+}
+static Message_VideoFromServerRequest* defaultMessage_VideoFromServerRequestInstance = nil;
++ (void) initialize {
+    if (self == [Message_VideoFromServerRequest class]) {
+        defaultMessage_VideoFromServerRequestInstance = [[Message_VideoFromServerRequest alloc] init];
+    }
+}
++ (Message_VideoFromServerRequest*) defaultInstance {
+    return defaultMessage_VideoFromServerRequestInstance;
+}
+- (Message_VideoFromServerRequest*) defaultInstance {
+    return defaultMessage_VideoFromServerRequestInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasFromUserId) {
+        return NO;
+    }
+    if (!self.hasToUserId) {
+        return NO;
+    }
+    if (!self.hasVideoUuid) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasMessageHash) {
+        [output writeString:1 value:self.messageHash];
+    }
+    if (self.hasFromUserId) {
+        [output writeString:2 value:self.fromUserId];
+    }
+    if (self.hasToUserId) {
+        [output writeString:3 value:self.toUserId];
+    }
+    if (self.hasVideoUuid) {
+        [output writeString:4 value:self.videoUuid];
+    }
+    if (self.hasDate) {
+        [output writeInt64:5 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasMessageHash) {
+        size += computeStringSize(1, self.messageHash);
+    }
+    if (self.hasFromUserId) {
+        size += computeStringSize(2, self.fromUserId);
+    }
+    if (self.hasToUserId) {
+        size += computeStringSize(3, self.toUserId);
+    }
+    if (self.hasVideoUuid) {
+        size += computeStringSize(4, self.videoUuid);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(5, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_VideoFromServerRequest*) parseFromData:(NSData*) data {
+    return (Message_VideoFromServerRequest*)[[[Message_VideoFromServerRequest builder] mergeFromData:data] build];
+}
++ (Message_VideoFromServerRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_VideoFromServerRequest*)[[[Message_VideoFromServerRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_VideoFromServerRequest*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_VideoFromServerRequest*)[[[Message_VideoFromServerRequest builder] mergeFromInputStream:input] build];
+}
++ (Message_VideoFromServerRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_VideoFromServerRequest*)[[[Message_VideoFromServerRequest builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_VideoFromServerRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_VideoFromServerRequest*)[[[Message_VideoFromServerRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_VideoFromServerRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_VideoFromServerRequest*)[[[Message_VideoFromServerRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_VideoFromServerRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_VideoFromServerRequest*)[[[Message_VideoFromServerRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_VideoFromServerRequest_Builder*) builder {
+    return [[[Message_VideoFromServerRequest_Builder alloc] init] autorelease];
+}
++ (Message_VideoFromServerRequest_Builder*) builderWithPrototype:(Message_VideoFromServerRequest*) prototype {
+    return [[Message_VideoFromServerRequest builder] mergeFrom:prototype];
+}
+- (Message_VideoFromServerRequest_Builder*) builder {
+    return [Message_VideoFromServerRequest builder];
+}
+@end
+
+@interface Message_VideoFromServerRequest_Builder()
+@property (retain) Message_VideoFromServerRequest* result;
+@end
+
+@implementation Message_VideoFromServerRequest_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_VideoFromServerRequest alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_VideoFromServerRequest_Builder*) clear {
+    self.result = [[[Message_VideoFromServerRequest alloc] init] autorelease];
+    return self;
+}
+- (Message_VideoFromServerRequest_Builder*) clone {
+    return [Message_VideoFromServerRequest builderWithPrototype:result];
+}
+- (Message_VideoFromServerRequest*) defaultInstance {
+    return [Message_VideoFromServerRequest defaultInstance];
+}
+- (Message_VideoFromServerRequest*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_VideoFromServerRequest*) buildPartial {
+    Message_VideoFromServerRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_VideoFromServerRequest_Builder*) mergeFrom:(Message_VideoFromServerRequest*) other {
+    if (other == [Message_VideoFromServerRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasFromUserId) {
+        [self setFromUserId:other.fromUserId];
+    }
+    if (other.hasToUserId) {
+        [self setToUserId:other.toUserId];
+    }
+    if (other.hasVideoUuid) {
+        [self setVideoUuid:other.videoUuid];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_VideoFromServerRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_VideoFromServerRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setFromUserId:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setToUserId:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setVideoUuid:[input readString]];
+                break;
+            }
+            case 40: {
+                [self setDate:[input readInt64]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasMessageHash {
+    return result.hasMessageHash;
+}
+- (NSString*) messageHash {
+    return result.messageHash;
+}
+- (Message_VideoFromServerRequest_Builder*) setMessageHash:(NSString*) value {
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
+}
+- (Message_VideoFromServerRequest_Builder*) clearMessageHash {
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
+}
+- (BOOL) hasFromUserId {
+    return result.hasFromUserId;
+}
+- (NSString*) fromUserId {
+    return result.fromUserId;
+}
+- (Message_VideoFromServerRequest_Builder*) setFromUserId:(NSString*) value {
+    result.hasFromUserId = YES;
+    result.fromUserId = value;
+    return self;
+}
+- (Message_VideoFromServerRequest_Builder*) clearFromUserId {
+    result.hasFromUserId = NO;
+    result.fromUserId = @"";
+    return self;
+}
+- (BOOL) hasToUserId {
+    return result.hasToUserId;
+}
+- (NSString*) toUserId {
+    return result.toUserId;
+}
+- (Message_VideoFromServerRequest_Builder*) setToUserId:(NSString*) value {
+    result.hasToUserId = YES;
+    result.toUserId = value;
+    return self;
+}
+- (Message_VideoFromServerRequest_Builder*) clearToUserId {
+    result.hasToUserId = NO;
+    result.toUserId = @"";
+    return self;
+}
+- (BOOL) hasVideoUuid {
+    return result.hasVideoUuid;
+}
+- (NSString*) videoUuid {
+    return result.videoUuid;
+}
+- (Message_VideoFromServerRequest_Builder*) setVideoUuid:(NSString*) value {
+    result.hasVideoUuid = YES;
+    result.videoUuid = value;
+    return self;
+}
+- (Message_VideoFromServerRequest_Builder*) clearVideoUuid {
+    result.hasVideoUuid = NO;
+    result.videoUuid = @"";
+    return self;
+}
+- (BOOL) hasDate {
+    return result.hasDate;
+}
+- (int64_t) date {
+    return result.date;
+}
+- (Message_VideoFromServerRequest_Builder*) setDate:(int64_t) value {
+    result.hasDate = YES;
+    result.date = value;
+    return self;
+}
+- (Message_VideoFromServerRequest_Builder*) clearDate {
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
+}
+@end
+
+@interface Message_VideoFromServerResponse ()
+@property int32_t status;
+@property (retain) NSString* messageHash;
+@property (retain) NSString* desc;
+@property int64_t date;
+@end
+
+@implementation Message_VideoFromServerResponse
+
+- (BOOL) hasStatus {
+    return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+    hasStatus_ = !!value;
+}
+@synthesize status;
+- (BOOL) hasMessageHash {
+    return !!hasMessageHash_;
+}
+- (void) setHasMessageHash:(BOOL) value {
+    hasMessageHash_ = !!value;
+}
+@synthesize messageHash;
+- (BOOL) hasDesc {
+    return !!hasDesc_;
+}
+- (void) setHasDesc:(BOOL) value {
+    hasDesc_ = !!value;
+}
+@synthesize desc;
+- (BOOL) hasDate {
+    return !!hasDate_;
+}
+- (void) setHasDate:(BOOL) value {
+    hasDate_ = !!value;
+}
+@synthesize date;
+- (void) dealloc {
+    self.messageHash = nil;
+    self.desc = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.status = 0;
+        self.messageHash = @"";
+        self.desc = @"";
+        self.date = 0L;
+    }
+    return self;
+}
+static Message_VideoFromServerResponse* defaultMessage_VideoFromServerResponseInstance = nil;
++ (void) initialize {
+    if (self == [Message_VideoFromServerResponse class]) {
+        defaultMessage_VideoFromServerResponseInstance = [[Message_VideoFromServerResponse alloc] init];
+    }
+}
++ (Message_VideoFromServerResponse*) defaultInstance {
+    return defaultMessage_VideoFromServerResponseInstance;
+}
+- (Message_VideoFromServerResponse*) defaultInstance {
+    return defaultMessage_VideoFromServerResponseInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasStatus) {
+        [output writeInt32:1 value:self.status];
+    }
+    if (self.hasMessageHash) {
+        [output writeString:2 value:self.messageHash];
+    }
+    if (self.hasDesc) {
+        [output writeString:3 value:self.desc];
+    }
+    if (self.hasDate) {
+        [output writeInt64:4 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasStatus) {
+        size += computeInt32Size(1, self.status);
+    }
+    if (self.hasMessageHash) {
+        size += computeStringSize(2, self.messageHash);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(3, self.desc);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(4, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_VideoFromServerResponse*) parseFromData:(NSData*) data {
+    return (Message_VideoFromServerResponse*)[[[Message_VideoFromServerResponse builder] mergeFromData:data] build];
+}
++ (Message_VideoFromServerResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_VideoFromServerResponse*)[[[Message_VideoFromServerResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_VideoFromServerResponse*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_VideoFromServerResponse*)[[[Message_VideoFromServerResponse builder] mergeFromInputStream:input] build];
+}
++ (Message_VideoFromServerResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_VideoFromServerResponse*)[[[Message_VideoFromServerResponse builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_VideoFromServerResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_VideoFromServerResponse*)[[[Message_VideoFromServerResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_VideoFromServerResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_VideoFromServerResponse*)[[[Message_VideoFromServerResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_VideoFromServerResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_VideoFromServerResponse*)[[[Message_VideoFromServerResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_VideoFromServerResponse_Builder*) builder {
+    return [[[Message_VideoFromServerResponse_Builder alloc] init] autorelease];
+}
++ (Message_VideoFromServerResponse_Builder*) builderWithPrototype:(Message_VideoFromServerResponse*) prototype {
+    return [[Message_VideoFromServerResponse builder] mergeFrom:prototype];
+}
+- (Message_VideoFromServerResponse_Builder*) builder {
+    return [Message_VideoFromServerResponse builder];
+}
+@end
+
+@interface Message_VideoFromServerResponse_Builder()
+@property (retain) Message_VideoFromServerResponse* result;
+@end
+
+@implementation Message_VideoFromServerResponse_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_VideoFromServerResponse alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_VideoFromServerResponse_Builder*) clear {
+    self.result = [[[Message_VideoFromServerResponse alloc] init] autorelease];
+    return self;
+}
+- (Message_VideoFromServerResponse_Builder*) clone {
+    return [Message_VideoFromServerResponse builderWithPrototype:result];
+}
+- (Message_VideoFromServerResponse*) defaultInstance {
+    return [Message_VideoFromServerResponse defaultInstance];
+}
+- (Message_VideoFromServerResponse*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_VideoFromServerResponse*) buildPartial {
+    Message_VideoFromServerResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_VideoFromServerResponse_Builder*) mergeFrom:(Message_VideoFromServerResponse*) other {
+    if (other == [Message_VideoFromServerResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_VideoFromServerResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_VideoFromServerResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 18: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 32: {
+                [self setDate:[input readInt64]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasStatus {
+    return result.hasStatus;
+}
+- (int32_t) status {
+    return result.status;
+}
+- (Message_VideoFromServerResponse_Builder*) setStatus:(int32_t) value {
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
+}
+- (Message_VideoFromServerResponse_Builder*) clearStatus {
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
+}
+- (BOOL) hasMessageHash {
+    return result.hasMessageHash;
+}
+- (NSString*) messageHash {
+    return result.messageHash;
+}
+- (Message_VideoFromServerResponse_Builder*) setMessageHash:(NSString*) value {
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
+}
+- (Message_VideoFromServerResponse_Builder*) clearMessageHash {
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
+}
+- (BOOL) hasDesc {
+    return result.hasDesc;
+}
+- (NSString*) desc {
+    return result.desc;
+}
+- (Message_VideoFromServerResponse_Builder*) setDesc:(NSString*) value {
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
+}
+- (Message_VideoFromServerResponse_Builder*) clearDesc {
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
+}
+- (BOOL) hasDate {
+    return result.hasDate;
+}
+- (int64_t) date {
+    return result.date;
+}
+- (Message_VideoFromServerResponse_Builder*) setDate:(int64_t) value {
+    result.hasDate = YES;
+    result.date = value;
+    return self;
+}
+- (Message_VideoFromServerResponse_Builder*) clearDate {
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
 }
 @end
 
@@ -8125,1016 +9527,1184 @@ static Message_PictureFromServerResponse* defaultMessage_PictureFromServerRespon
 @implementation Message_Builder
 @synthesize result;
 - (void) dealloc {
-  self.result = nil;
-  [super dealloc];
+    self.result = nil;
+    [super dealloc];
 }
 - (id) init {
-  if ((self = [super init])) {
-    self.result = [[[Message alloc] init] autorelease];
-  }
-  return self;
+    if ((self = [super init])) {
+        self.result = [[[Message alloc] init] autorelease];
+    }
+    return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+    return result;
 }
 - (Message_Builder*) clear {
-  self.result = [[[Message alloc] init] autorelease];
-  return self;
+    self.result = [[[Message alloc] init] autorelease];
+    return self;
 }
 - (Message_Builder*) clone {
-  return [Message builderWithPrototype:result];
+    return [Message builderWithPrototype:result];
 }
 - (Message*) defaultInstance {
-  return [Message defaultInstance];
+    return [Message defaultInstance];
 }
 - (Message*) build {
-  [self checkInitialized];
-  return [self buildPartial];
+    [self checkInitialized];
+    return [self buildPartial];
 }
 - (Message*) buildPartial {
-  Message* returnMe = [[result retain] autorelease];
-  self.result = nil;
-  return returnMe;
+    Message* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
 }
 - (Message_Builder*) mergeFrom:(Message*) other {
-  if (other == [Message defaultInstance]) {
+    if (other == [Message defaultInstance]) {
+        return self;
+    }
+    if (other.hasType) {
+        [self setType:other.type];
+    }
+    if (other.hasSubRequest) {
+        [self mergeSubRequest:other.subRequest];
+    }
+    if (other.hasSubResponse) {
+        [self mergeSubResponse:other.subResponse];
+    }
+    if (other.hasLoginRequest) {
+        [self mergeLoginRequest:other.loginRequest];
+    }
+    if (other.hasLoginResponse) {
+        [self mergeLoginResponse:other.loginResponse];
+    }
+    if (other.hasLogoutRequest) {
+        [self mergeLogoutRequest:other.logoutRequest];
+    }
+    if (other.hasLogoutResponse) {
+        [self mergeLogoutResponse:other.logoutResponse];
+    }
+    if (other.hasForgetPwdRequest) {
+        [self mergeForgetPwdRequest:other.forgetPwdRequest];
+    }
+    if (other.hasForgetPwdResponse) {
+        [self mergeForgetPwdResponse:other.forgetPwdResponse];
+    }
+    if (other.hasWhoAmIrequest) {
+        [self mergeWhoAmIrequest:other.whoAmIrequest];
+    }
+    if (other.hasWhoAmIresponse) {
+        [self mergeWhoAmIresponse:other.whoAmIresponse];
+    }
+    if (other.hasTextChatMessageRequest) {
+        [self mergeTextChatMessageRequest:other.textChatMessageRequest];
+    }
+    if (other.hasTextChatMessageResponse) {
+        [self mergeTextChatMessageResponse:other.textChatMessageResponse];
+    }
+    if (other.hasPictureChatMessageRequest) {
+        [self mergePictureChatMessageRequest:other.pictureChatMessageRequest];
+    }
+    if (other.hasPictureChatMessageResponse) {
+        [self mergePictureChatMessageResponse:other.pictureChatMessageResponse];
+    }
+    if (other.hasVoiceChatMessageRequest) {
+        [self mergeVoiceChatMessageRequest:other.voiceChatMessageRequest];
+    }
+    if (other.hasVoiceChatMessageResponse) {
+        [self mergeVoiceChatMessageResponse:other.voiceChatMessageResponse];
+    }
+    if (other.hasVideoChatMessageRequest) {
+        [self mergeVideoChatMessageRequest:other.videoChatMessageRequest];
+    }
+    if (other.hasVideoChatMessageResponse) {
+        [self mergeVideoChatMessageResponse:other.videoChatMessageResponse];
+    }
+    if (other.hasTextFromServerRequest) {
+        [self mergeTextFromServerRequest:other.textFromServerRequest];
+    }
+    if (other.hasTextFromServerResponse) {
+        [self mergeTextFromServerResponse:other.textFromServerResponse];
+    }
+    if (other.hasPictureFromServerRequest) {
+        [self mergePictureFromServerRequest:other.pictureFromServerRequest];
+    }
+    if (other.hasPictureFromServerResponse) {
+        [self mergePictureFromServerResponse:other.pictureFromServerResponse];
+    }
+    if (other.hasVoiceFromServerRequest) {
+        [self mergeVoiceFromServerRequest:other.voiceFromServerRequest];
+    }
+    if (other.hasVoiceFromServerResponse) {
+        [self mergeVoiceFromServerResponse:other.voiceFromServerResponse];
+    }
+    if (other.hasVideoFromServerRequest) {
+        [self mergeVideoFromServerRequest:other.videoFromServerRequest];
+    }
+    if (other.hasVideoFromServerResponse) {
+        [self mergeVideoFromServerResponse:other.videoFromServerResponse];
+    }
+    [self mergeUnknownFields:other.unknownFields];
     return self;
-  }
-  if (other.hasType) {
-    [self setType:other.type];
-  }
-  if (other.hasSubRequest) {
-    [self mergeSubRequest:other.subRequest];
-  }
-  if (other.hasSubResponse) {
-    [self mergeSubResponse:other.subResponse];
-  }
-  if (other.hasLoginRequest) {
-    [self mergeLoginRequest:other.loginRequest];
-  }
-  if (other.hasLoginResponse) {
-    [self mergeLoginResponse:other.loginResponse];
-  }
-  if (other.hasLogoutRequest) {
-    [self mergeLogoutRequest:other.logoutRequest];
-  }
-  if (other.hasLogoutResponse) {
-    [self mergeLogoutResponse:other.logoutResponse];
-  }
-  if (other.hasForgetPwdRequest) {
-    [self mergeForgetPwdRequest:other.forgetPwdRequest];
-  }
-  if (other.hasForgetPwdResponse) {
-    [self mergeForgetPwdResponse:other.forgetPwdResponse];
-  }
-  if (other.hasWhoAmIrequest) {
-    [self mergeWhoAmIrequest:other.whoAmIrequest];
-  }
-  if (other.hasWhoAmIresponse) {
-    [self mergeWhoAmIresponse:other.whoAmIresponse];
-  }
-  if (other.hasTextChatMessageRequest) {
-    [self mergeTextChatMessageRequest:other.textChatMessageRequest];
-  }
-  if (other.hasTextChatMessageResponse) {
-    [self mergeTextChatMessageResponse:other.textChatMessageResponse];
-  }
-  if (other.hasPictureChatMessageRequest) {
-    [self mergePictureChatMessageRequest:other.pictureChatMessageRequest];
-  }
-  if (other.hasPictureChatMessageResponse) {
-    [self mergePictureChatMessageResponse:other.pictureChatMessageResponse];
-  }
-  if (other.hasVoiceChatMessageRequest) {
-    [self mergeVoiceChatMessageRequest:other.voiceChatMessageRequest];
-  }
-  if (other.hasVoiceChatMessageResponse) {
-    [self mergeVoiceChatMessageResponse:other.voiceChatMessageResponse];
-  }
-  if (other.hasVideoChatMessageRequest) {
-    [self mergeVideoChatMessageRequest:other.videoChatMessageRequest];
-  }
-  if (other.hasVideoChatMessageResponse) {
-    [self mergeVideoChatMessageResponse:other.videoChatMessageResponse];
-  }
-  if (other.hasTextFromServerRequest) {
-    [self mergeTextFromServerRequest:other.textFromServerRequest];
-  }
-  if (other.hasTextFromServerResponse) {
-    [self mergeTextFromServerResponse:other.textFromServerResponse];
-  }
-  if (other.hasPictureFromServerRequest) {
-    [self mergePictureFromServerRequest:other.pictureFromServerRequest];
-  }
-  if (other.hasPictureFromServerResponse) {
-    [self mergePictureFromServerResponse:other.pictureFromServerResponse];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
 }
 - (Message_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (Message_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    int32_t tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                int32_t value = [input readEnum];
+                if (Message_MessageTypeIsValidValue(value)) {
+                    [self setType:value];
+                } else {
+                    [unknownFields mergeVarintField:1 value:value];
+                }
+                break;
+            }
+            case 18: {
+                Message_SubMessageRequest_Builder* subBuilder = [Message_SubMessageRequest builder];
+                if (self.hasSubRequest) {
+                    [subBuilder mergeFrom:self.subRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setSubRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 26: {
+                Message_SubMessageResponse_Builder* subBuilder = [Message_SubMessageResponse builder];
+                if (self.hasSubResponse) {
+                    [subBuilder mergeFrom:self.subResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setSubResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 34: {
+                Message_LoginMessageRequest_Builder* subBuilder = [Message_LoginMessageRequest builder];
+                if (self.hasLoginRequest) {
+                    [subBuilder mergeFrom:self.loginRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setLoginRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 42: {
+                Message_LoginMessageResponse_Builder* subBuilder = [Message_LoginMessageResponse builder];
+                if (self.hasLoginResponse) {
+                    [subBuilder mergeFrom:self.loginResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setLoginResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 50: {
+                Message_LogoutMessageRequest_Builder* subBuilder = [Message_LogoutMessageRequest builder];
+                if (self.hasLogoutRequest) {
+                    [subBuilder mergeFrom:self.logoutRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setLogoutRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 58: {
+                Message_LogoutMessageResponse_Builder* subBuilder = [Message_LogoutMessageResponse builder];
+                if (self.hasLogoutResponse) {
+                    [subBuilder mergeFrom:self.logoutResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setLogoutResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 66: {
+                Message_ForgetPasswordMessageRequest_Builder* subBuilder = [Message_ForgetPasswordMessageRequest builder];
+                if (self.hasForgetPwdRequest) {
+                    [subBuilder mergeFrom:self.forgetPwdRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setForgetPwdRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 74: {
+                Message_ForgetPasswordMessageResponse_Builder* subBuilder = [Message_ForgetPasswordMessageResponse builder];
+                if (self.hasForgetPwdResponse) {
+                    [subBuilder mergeFrom:self.forgetPwdResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setForgetPwdResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 82: {
+                Message_WhoAmIRequest_Builder* subBuilder = [Message_WhoAmIRequest builder];
+                if (self.hasWhoAmIrequest) {
+                    [subBuilder mergeFrom:self.whoAmIrequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setWhoAmIrequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 90: {
+                Message_WhoAmIResponse_Builder* subBuilder = [Message_WhoAmIResponse builder];
+                if (self.hasWhoAmIresponse) {
+                    [subBuilder mergeFrom:self.whoAmIresponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setWhoAmIresponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 98: {
+                Message_TextChatMessageRequest_Builder* subBuilder = [Message_TextChatMessageRequest builder];
+                if (self.hasTextChatMessageRequest) {
+                    [subBuilder mergeFrom:self.textChatMessageRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setTextChatMessageRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 106: {
+                Message_TextChatMessageResponse_Builder* subBuilder = [Message_TextChatMessageResponse builder];
+                if (self.hasTextChatMessageResponse) {
+                    [subBuilder mergeFrom:self.textChatMessageResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setTextChatMessageResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 114: {
+                Message_PictureChatMessageRequest_Builder* subBuilder = [Message_PictureChatMessageRequest builder];
+                if (self.hasPictureChatMessageRequest) {
+                    [subBuilder mergeFrom:self.pictureChatMessageRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setPictureChatMessageRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 122: {
+                Message_PictureChatMessageResponse_Builder* subBuilder = [Message_PictureChatMessageResponse builder];
+                if (self.hasPictureChatMessageResponse) {
+                    [subBuilder mergeFrom:self.pictureChatMessageResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setPictureChatMessageResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 130: {
+                Message_VoiceChatMessageRequest_Builder* subBuilder = [Message_VoiceChatMessageRequest builder];
+                if (self.hasVoiceChatMessageRequest) {
+                    [subBuilder mergeFrom:self.voiceChatMessageRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setVoiceChatMessageRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 138: {
+                Message_VoiceChatMessageResponse_Builder* subBuilder = [Message_VoiceChatMessageResponse builder];
+                if (self.hasVoiceChatMessageResponse) {
+                    [subBuilder mergeFrom:self.voiceChatMessageResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setVoiceChatMessageResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 146: {
+                Message_VideoChatMessageRequest_Builder* subBuilder = [Message_VideoChatMessageRequest builder];
+                if (self.hasVideoChatMessageRequest) {
+                    [subBuilder mergeFrom:self.videoChatMessageRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setVideoChatMessageRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 154: {
+                Message_VideoChatMessageResponse_Builder* subBuilder = [Message_VideoChatMessageResponse builder];
+                if (self.hasVideoChatMessageResponse) {
+                    [subBuilder mergeFrom:self.videoChatMessageResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setVideoChatMessageResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 162: {
+                Message_TextFromServerRequest_Builder* subBuilder = [Message_TextFromServerRequest builder];
+                if (self.hasTextFromServerRequest) {
+                    [subBuilder mergeFrom:self.textFromServerRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setTextFromServerRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 170: {
+                Message_TextFromServerResponse_Builder* subBuilder = [Message_TextFromServerResponse builder];
+                if (self.hasTextFromServerResponse) {
+                    [subBuilder mergeFrom:self.textFromServerResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setTextFromServerResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 178: {
+                Message_PictureFromServerRequest_Builder* subBuilder = [Message_PictureFromServerRequest builder];
+                if (self.hasPictureFromServerRequest) {
+                    [subBuilder mergeFrom:self.pictureFromServerRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setPictureFromServerRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 186: {
+                Message_PictureFromServerResponse_Builder* subBuilder = [Message_PictureFromServerResponse builder];
+                if (self.hasPictureFromServerResponse) {
+                    [subBuilder mergeFrom:self.pictureFromServerResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setPictureFromServerResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 194: {
+                Message_VoiceFromServerRequest_Builder* subBuilder = [Message_VoiceFromServerRequest builder];
+                if (self.hasVoiceFromServerRequest) {
+                    [subBuilder mergeFrom:self.voiceFromServerRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setVoiceFromServerRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 202: {
+                Message_VoiceFromServerResponse_Builder* subBuilder = [Message_VoiceFromServerResponse builder];
+                if (self.hasVoiceFromServerResponse) {
+                    [subBuilder mergeFrom:self.voiceFromServerResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setVoiceFromServerResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 210: {
+                Message_VideoFromServerRequest_Builder* subBuilder = [Message_VideoFromServerRequest builder];
+                if (self.hasVideoFromServerRequest) {
+                    [subBuilder mergeFrom:self.videoFromServerRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setVideoFromServerRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 218: {
+                Message_VideoFromServerResponse_Builder* subBuilder = [Message_VideoFromServerResponse builder];
+                if (self.hasVideoFromServerResponse) {
+                    [subBuilder mergeFrom:self.videoFromServerResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setVideoFromServerResponse:[subBuilder buildPartial]];
+                break;
+            }
         }
-        break;
-      }
-      case 8: {
-        int32_t value = [input readEnum];
-        if (Message_MessageTypeIsValidValue(value)) {
-          [self setType:value];
-        } else {
-          [unknownFields mergeVarintField:1 value:value];
-        }
-        break;
-      }
-      case 18: {
-        Message_SubMessageRequest_Builder* subBuilder = [Message_SubMessageRequest builder];
-        if (self.hasSubRequest) {
-          [subBuilder mergeFrom:self.subRequest];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setSubRequest:[subBuilder buildPartial]];
-        break;
-      }
-      case 26: {
-        Message_SubMessageResponse_Builder* subBuilder = [Message_SubMessageResponse builder];
-        if (self.hasSubResponse) {
-          [subBuilder mergeFrom:self.subResponse];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setSubResponse:[subBuilder buildPartial]];
-        break;
-      }
-      case 34: {
-        Message_LoginMessageRequest_Builder* subBuilder = [Message_LoginMessageRequest builder];
-        if (self.hasLoginRequest) {
-          [subBuilder mergeFrom:self.loginRequest];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setLoginRequest:[subBuilder buildPartial]];
-        break;
-      }
-      case 42: {
-        Message_LoginMessageResponse_Builder* subBuilder = [Message_LoginMessageResponse builder];
-        if (self.hasLoginResponse) {
-          [subBuilder mergeFrom:self.loginResponse];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setLoginResponse:[subBuilder buildPartial]];
-        break;
-      }
-      case 50: {
-        Message_LogoutMessageRequest_Builder* subBuilder = [Message_LogoutMessageRequest builder];
-        if (self.hasLogoutRequest) {
-          [subBuilder mergeFrom:self.logoutRequest];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setLogoutRequest:[subBuilder buildPartial]];
-        break;
-      }
-      case 58: {
-        Message_LogoutMessageResponse_Builder* subBuilder = [Message_LogoutMessageResponse builder];
-        if (self.hasLogoutResponse) {
-          [subBuilder mergeFrom:self.logoutResponse];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setLogoutResponse:[subBuilder buildPartial]];
-        break;
-      }
-      case 66: {
-        Message_ForgetPasswordMessageRequest_Builder* subBuilder = [Message_ForgetPasswordMessageRequest builder];
-        if (self.hasForgetPwdRequest) {
-          [subBuilder mergeFrom:self.forgetPwdRequest];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setForgetPwdRequest:[subBuilder buildPartial]];
-        break;
-      }
-      case 74: {
-        Message_ForgetPasswordMessageResponse_Builder* subBuilder = [Message_ForgetPasswordMessageResponse builder];
-        if (self.hasForgetPwdResponse) {
-          [subBuilder mergeFrom:self.forgetPwdResponse];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setForgetPwdResponse:[subBuilder buildPartial]];
-        break;
-      }
-      case 82: {
-        Message_WhoAmIRequest_Builder* subBuilder = [Message_WhoAmIRequest builder];
-        if (self.hasWhoAmIrequest) {
-          [subBuilder mergeFrom:self.whoAmIrequest];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setWhoAmIrequest:[subBuilder buildPartial]];
-        break;
-      }
-      case 90: {
-        Message_WhoAmIResponse_Builder* subBuilder = [Message_WhoAmIResponse builder];
-        if (self.hasWhoAmIresponse) {
-          [subBuilder mergeFrom:self.whoAmIresponse];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setWhoAmIresponse:[subBuilder buildPartial]];
-        break;
-      }
-      case 98: {
-        Message_TextChatMessageRequest_Builder* subBuilder = [Message_TextChatMessageRequest builder];
-        if (self.hasTextChatMessageRequest) {
-          [subBuilder mergeFrom:self.textChatMessageRequest];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setTextChatMessageRequest:[subBuilder buildPartial]];
-        break;
-      }
-      case 106: {
-        Message_TextChatMessageResponse_Builder* subBuilder = [Message_TextChatMessageResponse builder];
-        if (self.hasTextChatMessageResponse) {
-          [subBuilder mergeFrom:self.textChatMessageResponse];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setTextChatMessageResponse:[subBuilder buildPartial]];
-        break;
-      }
-      case 114: {
-        Message_PictureChatMessageRequest_Builder* subBuilder = [Message_PictureChatMessageRequest builder];
-        if (self.hasPictureChatMessageRequest) {
-          [subBuilder mergeFrom:self.pictureChatMessageRequest];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setPictureChatMessageRequest:[subBuilder buildPartial]];
-        break;
-      }
-      case 122: {
-        Message_PictureChatMessageResponse_Builder* subBuilder = [Message_PictureChatMessageResponse builder];
-        if (self.hasPictureChatMessageResponse) {
-          [subBuilder mergeFrom:self.pictureChatMessageResponse];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setPictureChatMessageResponse:[subBuilder buildPartial]];
-        break;
-      }
-      case 130: {
-        Message_VoiceChatMessageRequest_Builder* subBuilder = [Message_VoiceChatMessageRequest builder];
-        if (self.hasVoiceChatMessageRequest) {
-          [subBuilder mergeFrom:self.voiceChatMessageRequest];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setVoiceChatMessageRequest:[subBuilder buildPartial]];
-        break;
-      }
-      case 138: {
-        Message_VoiceChatMessageResponse_Builder* subBuilder = [Message_VoiceChatMessageResponse builder];
-        if (self.hasVoiceChatMessageResponse) {
-          [subBuilder mergeFrom:self.voiceChatMessageResponse];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setVoiceChatMessageResponse:[subBuilder buildPartial]];
-        break;
-      }
-      case 146: {
-        Message_VideoChatMessageRequest_Builder* subBuilder = [Message_VideoChatMessageRequest builder];
-        if (self.hasVideoChatMessageRequest) {
-          [subBuilder mergeFrom:self.videoChatMessageRequest];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setVideoChatMessageRequest:[subBuilder buildPartial]];
-        break;
-      }
-      case 154: {
-        Message_VideoChatMessageResponse_Builder* subBuilder = [Message_VideoChatMessageResponse builder];
-        if (self.hasVideoChatMessageResponse) {
-          [subBuilder mergeFrom:self.videoChatMessageResponse];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setVideoChatMessageResponse:[subBuilder buildPartial]];
-        break;
-      }
-      case 162: {
-        Message_TextFromServerRequest_Builder* subBuilder = [Message_TextFromServerRequest builder];
-        if (self.hasTextFromServerRequest) {
-          [subBuilder mergeFrom:self.textFromServerRequest];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setTextFromServerRequest:[subBuilder buildPartial]];
-        break;
-      }
-      case 170: {
-        Message_TextFromServerResponse_Builder* subBuilder = [Message_TextFromServerResponse builder];
-        if (self.hasTextFromServerResponse) {
-          [subBuilder mergeFrom:self.textFromServerResponse];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setTextFromServerResponse:[subBuilder buildPartial]];
-        break;
-      }
-      case 178: {
-        Message_PictureFromServerRequest_Builder* subBuilder = [Message_PictureFromServerRequest builder];
-        if (self.hasPictureFromServerRequest) {
-          [subBuilder mergeFrom:self.pictureFromServerRequest];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setPictureFromServerRequest:[subBuilder buildPartial]];
-        break;
-      }
-      case 186: {
-        Message_PictureFromServerResponse_Builder* subBuilder = [Message_PictureFromServerResponse builder];
-        if (self.hasPictureFromServerResponse) {
-          [subBuilder mergeFrom:self.pictureFromServerResponse];
-        }
-        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-        [self setPictureFromServerResponse:[subBuilder buildPartial]];
-        break;
-      }
     }
-  }
 }
 - (BOOL) hasType {
-  return result.hasType;
+    return result.hasType;
 }
 - (Message_MessageType) type {
-  return result.type;
+    return result.type;
 }
 - (Message_Builder*) setType:(Message_MessageType) value {
-  result.hasType = YES;
-  result.type = value;
-  return self;
+    result.hasType = YES;
+    result.type = value;
+    return self;
 }
 - (Message_Builder*) clearType {
-  result.hasType = NO;
-  result.type = Message_MessageTypeSubscribeReq;
-  return self;
+    result.hasType = NO;
+    result.type = Message_MessageTypeSubscribeReq;
+    return self;
 }
 - (BOOL) hasSubRequest {
-  return result.hasSubRequest;
+    return result.hasSubRequest;
 }
 - (Message_SubMessageRequest*) subRequest {
-  return result.subRequest;
+    return result.subRequest;
 }
 - (Message_Builder*) setSubRequest:(Message_SubMessageRequest*) value {
-  result.hasSubRequest = YES;
-  result.subRequest = value;
-  return self;
+    result.hasSubRequest = YES;
+    result.subRequest = value;
+    return self;
 }
 - (Message_Builder*) setSubRequestBuilder:(Message_SubMessageRequest_Builder*) builderForValue {
-  return [self setSubRequest:[builderForValue build]];
+    return [self setSubRequest:[builderForValue build]];
 }
 - (Message_Builder*) mergeSubRequest:(Message_SubMessageRequest*) value {
-  if (result.hasSubRequest &&
-      result.subRequest != [Message_SubMessageRequest defaultInstance]) {
-    result.subRequest =
-      [[[Message_SubMessageRequest builderWithPrototype:result.subRequest] mergeFrom:value] buildPartial];
-  } else {
-    result.subRequest = value;
-  }
-  result.hasSubRequest = YES;
-  return self;
+    if (result.hasSubRequest &&
+        result.subRequest != [Message_SubMessageRequest defaultInstance]) {
+        result.subRequest =
+        [[[Message_SubMessageRequest builderWithPrototype:result.subRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.subRequest = value;
+    }
+    result.hasSubRequest = YES;
+    return self;
 }
 - (Message_Builder*) clearSubRequest {
-  result.hasSubRequest = NO;
-  result.subRequest = [Message_SubMessageRequest defaultInstance];
-  return self;
+    result.hasSubRequest = NO;
+    result.subRequest = [Message_SubMessageRequest defaultInstance];
+    return self;
 }
 - (BOOL) hasSubResponse {
-  return result.hasSubResponse;
+    return result.hasSubResponse;
 }
 - (Message_SubMessageResponse*) subResponse {
-  return result.subResponse;
+    return result.subResponse;
 }
 - (Message_Builder*) setSubResponse:(Message_SubMessageResponse*) value {
-  result.hasSubResponse = YES;
-  result.subResponse = value;
-  return self;
+    result.hasSubResponse = YES;
+    result.subResponse = value;
+    return self;
 }
 - (Message_Builder*) setSubResponseBuilder:(Message_SubMessageResponse_Builder*) builderForValue {
-  return [self setSubResponse:[builderForValue build]];
+    return [self setSubResponse:[builderForValue build]];
 }
 - (Message_Builder*) mergeSubResponse:(Message_SubMessageResponse*) value {
-  if (result.hasSubResponse &&
-      result.subResponse != [Message_SubMessageResponse defaultInstance]) {
-    result.subResponse =
-      [[[Message_SubMessageResponse builderWithPrototype:result.subResponse] mergeFrom:value] buildPartial];
-  } else {
-    result.subResponse = value;
-  }
-  result.hasSubResponse = YES;
-  return self;
+    if (result.hasSubResponse &&
+        result.subResponse != [Message_SubMessageResponse defaultInstance]) {
+        result.subResponse =
+        [[[Message_SubMessageResponse builderWithPrototype:result.subResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.subResponse = value;
+    }
+    result.hasSubResponse = YES;
+    return self;
 }
 - (Message_Builder*) clearSubResponse {
-  result.hasSubResponse = NO;
-  result.subResponse = [Message_SubMessageResponse defaultInstance];
-  return self;
+    result.hasSubResponse = NO;
+    result.subResponse = [Message_SubMessageResponse defaultInstance];
+    return self;
 }
 - (BOOL) hasLoginRequest {
-  return result.hasLoginRequest;
+    return result.hasLoginRequest;
 }
 - (Message_LoginMessageRequest*) loginRequest {
-  return result.loginRequest;
+    return result.loginRequest;
 }
 - (Message_Builder*) setLoginRequest:(Message_LoginMessageRequest*) value {
-  result.hasLoginRequest = YES;
-  result.loginRequest = value;
-  return self;
+    result.hasLoginRequest = YES;
+    result.loginRequest = value;
+    return self;
 }
 - (Message_Builder*) setLoginRequestBuilder:(Message_LoginMessageRequest_Builder*) builderForValue {
-  return [self setLoginRequest:[builderForValue build]];
+    return [self setLoginRequest:[builderForValue build]];
 }
 - (Message_Builder*) mergeLoginRequest:(Message_LoginMessageRequest*) value {
-  if (result.hasLoginRequest &&
-      result.loginRequest != [Message_LoginMessageRequest defaultInstance]) {
-    result.loginRequest =
-      [[[Message_LoginMessageRequest builderWithPrototype:result.loginRequest] mergeFrom:value] buildPartial];
-  } else {
-    result.loginRequest = value;
-  }
-  result.hasLoginRequest = YES;
-  return self;
+    if (result.hasLoginRequest &&
+        result.loginRequest != [Message_LoginMessageRequest defaultInstance]) {
+        result.loginRequest =
+        [[[Message_LoginMessageRequest builderWithPrototype:result.loginRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.loginRequest = value;
+    }
+    result.hasLoginRequest = YES;
+    return self;
 }
 - (Message_Builder*) clearLoginRequest {
-  result.hasLoginRequest = NO;
-  result.loginRequest = [Message_LoginMessageRequest defaultInstance];
-  return self;
+    result.hasLoginRequest = NO;
+    result.loginRequest = [Message_LoginMessageRequest defaultInstance];
+    return self;
 }
 - (BOOL) hasLoginResponse {
-  return result.hasLoginResponse;
+    return result.hasLoginResponse;
 }
 - (Message_LoginMessageResponse*) loginResponse {
-  return result.loginResponse;
+    return result.loginResponse;
 }
 - (Message_Builder*) setLoginResponse:(Message_LoginMessageResponse*) value {
-  result.hasLoginResponse = YES;
-  result.loginResponse = value;
-  return self;
+    result.hasLoginResponse = YES;
+    result.loginResponse = value;
+    return self;
 }
 - (Message_Builder*) setLoginResponseBuilder:(Message_LoginMessageResponse_Builder*) builderForValue {
-  return [self setLoginResponse:[builderForValue build]];
+    return [self setLoginResponse:[builderForValue build]];
 }
 - (Message_Builder*) mergeLoginResponse:(Message_LoginMessageResponse*) value {
-  if (result.hasLoginResponse &&
-      result.loginResponse != [Message_LoginMessageResponse defaultInstance]) {
-    result.loginResponse =
-      [[[Message_LoginMessageResponse builderWithPrototype:result.loginResponse] mergeFrom:value] buildPartial];
-  } else {
-    result.loginResponse = value;
-  }
-  result.hasLoginResponse = YES;
-  return self;
+    if (result.hasLoginResponse &&
+        result.loginResponse != [Message_LoginMessageResponse defaultInstance]) {
+        result.loginResponse =
+        [[[Message_LoginMessageResponse builderWithPrototype:result.loginResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.loginResponse = value;
+    }
+    result.hasLoginResponse = YES;
+    return self;
 }
 - (Message_Builder*) clearLoginResponse {
-  result.hasLoginResponse = NO;
-  result.loginResponse = [Message_LoginMessageResponse defaultInstance];
-  return self;
+    result.hasLoginResponse = NO;
+    result.loginResponse = [Message_LoginMessageResponse defaultInstance];
+    return self;
 }
 - (BOOL) hasLogoutRequest {
-  return result.hasLogoutRequest;
+    return result.hasLogoutRequest;
 }
 - (Message_LogoutMessageRequest*) logoutRequest {
-  return result.logoutRequest;
+    return result.logoutRequest;
 }
 - (Message_Builder*) setLogoutRequest:(Message_LogoutMessageRequest*) value {
-  result.hasLogoutRequest = YES;
-  result.logoutRequest = value;
-  return self;
+    result.hasLogoutRequest = YES;
+    result.logoutRequest = value;
+    return self;
 }
 - (Message_Builder*) setLogoutRequestBuilder:(Message_LogoutMessageRequest_Builder*) builderForValue {
-  return [self setLogoutRequest:[builderForValue build]];
+    return [self setLogoutRequest:[builderForValue build]];
 }
 - (Message_Builder*) mergeLogoutRequest:(Message_LogoutMessageRequest*) value {
-  if (result.hasLogoutRequest &&
-      result.logoutRequest != [Message_LogoutMessageRequest defaultInstance]) {
-    result.logoutRequest =
-      [[[Message_LogoutMessageRequest builderWithPrototype:result.logoutRequest] mergeFrom:value] buildPartial];
-  } else {
-    result.logoutRequest = value;
-  }
-  result.hasLogoutRequest = YES;
-  return self;
+    if (result.hasLogoutRequest &&
+        result.logoutRequest != [Message_LogoutMessageRequest defaultInstance]) {
+        result.logoutRequest =
+        [[[Message_LogoutMessageRequest builderWithPrototype:result.logoutRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.logoutRequest = value;
+    }
+    result.hasLogoutRequest = YES;
+    return self;
 }
 - (Message_Builder*) clearLogoutRequest {
-  result.hasLogoutRequest = NO;
-  result.logoutRequest = [Message_LogoutMessageRequest defaultInstance];
-  return self;
+    result.hasLogoutRequest = NO;
+    result.logoutRequest = [Message_LogoutMessageRequest defaultInstance];
+    return self;
 }
 - (BOOL) hasLogoutResponse {
-  return result.hasLogoutResponse;
+    return result.hasLogoutResponse;
 }
 - (Message_LogoutMessageResponse*) logoutResponse {
-  return result.logoutResponse;
+    return result.logoutResponse;
 }
 - (Message_Builder*) setLogoutResponse:(Message_LogoutMessageResponse*) value {
-  result.hasLogoutResponse = YES;
-  result.logoutResponse = value;
-  return self;
+    result.hasLogoutResponse = YES;
+    result.logoutResponse = value;
+    return self;
 }
 - (Message_Builder*) setLogoutResponseBuilder:(Message_LogoutMessageResponse_Builder*) builderForValue {
-  return [self setLogoutResponse:[builderForValue build]];
+    return [self setLogoutResponse:[builderForValue build]];
 }
 - (Message_Builder*) mergeLogoutResponse:(Message_LogoutMessageResponse*) value {
-  if (result.hasLogoutResponse &&
-      result.logoutResponse != [Message_LogoutMessageResponse defaultInstance]) {
-    result.logoutResponse =
-      [[[Message_LogoutMessageResponse builderWithPrototype:result.logoutResponse] mergeFrom:value] buildPartial];
-  } else {
-    result.logoutResponse = value;
-  }
-  result.hasLogoutResponse = YES;
-  return self;
+    if (result.hasLogoutResponse &&
+        result.logoutResponse != [Message_LogoutMessageResponse defaultInstance]) {
+        result.logoutResponse =
+        [[[Message_LogoutMessageResponse builderWithPrototype:result.logoutResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.logoutResponse = value;
+    }
+    result.hasLogoutResponse = YES;
+    return self;
 }
 - (Message_Builder*) clearLogoutResponse {
-  result.hasLogoutResponse = NO;
-  result.logoutResponse = [Message_LogoutMessageResponse defaultInstance];
-  return self;
+    result.hasLogoutResponse = NO;
+    result.logoutResponse = [Message_LogoutMessageResponse defaultInstance];
+    return self;
 }
 - (BOOL) hasForgetPwdRequest {
-  return result.hasForgetPwdRequest;
+    return result.hasForgetPwdRequest;
 }
 - (Message_ForgetPasswordMessageRequest*) forgetPwdRequest {
-  return result.forgetPwdRequest;
+    return result.forgetPwdRequest;
 }
 - (Message_Builder*) setForgetPwdRequest:(Message_ForgetPasswordMessageRequest*) value {
-  result.hasForgetPwdRequest = YES;
-  result.forgetPwdRequest = value;
-  return self;
+    result.hasForgetPwdRequest = YES;
+    result.forgetPwdRequest = value;
+    return self;
 }
 - (Message_Builder*) setForgetPwdRequestBuilder:(Message_ForgetPasswordMessageRequest_Builder*) builderForValue {
-  return [self setForgetPwdRequest:[builderForValue build]];
+    return [self setForgetPwdRequest:[builderForValue build]];
 }
 - (Message_Builder*) mergeForgetPwdRequest:(Message_ForgetPasswordMessageRequest*) value {
-  if (result.hasForgetPwdRequest &&
-      result.forgetPwdRequest != [Message_ForgetPasswordMessageRequest defaultInstance]) {
-    result.forgetPwdRequest =
-      [[[Message_ForgetPasswordMessageRequest builderWithPrototype:result.forgetPwdRequest] mergeFrom:value] buildPartial];
-  } else {
-    result.forgetPwdRequest = value;
-  }
-  result.hasForgetPwdRequest = YES;
-  return self;
+    if (result.hasForgetPwdRequest &&
+        result.forgetPwdRequest != [Message_ForgetPasswordMessageRequest defaultInstance]) {
+        result.forgetPwdRequest =
+        [[[Message_ForgetPasswordMessageRequest builderWithPrototype:result.forgetPwdRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.forgetPwdRequest = value;
+    }
+    result.hasForgetPwdRequest = YES;
+    return self;
 }
 - (Message_Builder*) clearForgetPwdRequest {
-  result.hasForgetPwdRequest = NO;
-  result.forgetPwdRequest = [Message_ForgetPasswordMessageRequest defaultInstance];
-  return self;
+    result.hasForgetPwdRequest = NO;
+    result.forgetPwdRequest = [Message_ForgetPasswordMessageRequest defaultInstance];
+    return self;
 }
 - (BOOL) hasForgetPwdResponse {
-  return result.hasForgetPwdResponse;
+    return result.hasForgetPwdResponse;
 }
 - (Message_ForgetPasswordMessageResponse*) forgetPwdResponse {
-  return result.forgetPwdResponse;
+    return result.forgetPwdResponse;
 }
 - (Message_Builder*) setForgetPwdResponse:(Message_ForgetPasswordMessageResponse*) value {
-  result.hasForgetPwdResponse = YES;
-  result.forgetPwdResponse = value;
-  return self;
+    result.hasForgetPwdResponse = YES;
+    result.forgetPwdResponse = value;
+    return self;
 }
 - (Message_Builder*) setForgetPwdResponseBuilder:(Message_ForgetPasswordMessageResponse_Builder*) builderForValue {
-  return [self setForgetPwdResponse:[builderForValue build]];
+    return [self setForgetPwdResponse:[builderForValue build]];
 }
 - (Message_Builder*) mergeForgetPwdResponse:(Message_ForgetPasswordMessageResponse*) value {
-  if (result.hasForgetPwdResponse &&
-      result.forgetPwdResponse != [Message_ForgetPasswordMessageResponse defaultInstance]) {
-    result.forgetPwdResponse =
-      [[[Message_ForgetPasswordMessageResponse builderWithPrototype:result.forgetPwdResponse] mergeFrom:value] buildPartial];
-  } else {
-    result.forgetPwdResponse = value;
-  }
-  result.hasForgetPwdResponse = YES;
-  return self;
+    if (result.hasForgetPwdResponse &&
+        result.forgetPwdResponse != [Message_ForgetPasswordMessageResponse defaultInstance]) {
+        result.forgetPwdResponse =
+        [[[Message_ForgetPasswordMessageResponse builderWithPrototype:result.forgetPwdResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.forgetPwdResponse = value;
+    }
+    result.hasForgetPwdResponse = YES;
+    return self;
 }
 - (Message_Builder*) clearForgetPwdResponse {
-  result.hasForgetPwdResponse = NO;
-  result.forgetPwdResponse = [Message_ForgetPasswordMessageResponse defaultInstance];
-  return self;
+    result.hasForgetPwdResponse = NO;
+    result.forgetPwdResponse = [Message_ForgetPasswordMessageResponse defaultInstance];
+    return self;
 }
 - (BOOL) hasWhoAmIrequest {
-  return result.hasWhoAmIrequest;
+    return result.hasWhoAmIrequest;
 }
 - (Message_WhoAmIRequest*) whoAmIrequest {
-  return result.whoAmIrequest;
+    return result.whoAmIrequest;
 }
 - (Message_Builder*) setWhoAmIrequest:(Message_WhoAmIRequest*) value {
-  result.hasWhoAmIrequest = YES;
-  result.whoAmIrequest = value;
-  return self;
+    result.hasWhoAmIrequest = YES;
+    result.whoAmIrequest = value;
+    return self;
 }
 - (Message_Builder*) setWhoAmIrequestBuilder:(Message_WhoAmIRequest_Builder*) builderForValue {
-  return [self setWhoAmIrequest:[builderForValue build]];
+    return [self setWhoAmIrequest:[builderForValue build]];
 }
 - (Message_Builder*) mergeWhoAmIrequest:(Message_WhoAmIRequest*) value {
-  if (result.hasWhoAmIrequest &&
-      result.whoAmIrequest != [Message_WhoAmIRequest defaultInstance]) {
-    result.whoAmIrequest =
-      [[[Message_WhoAmIRequest builderWithPrototype:result.whoAmIrequest] mergeFrom:value] buildPartial];
-  } else {
-    result.whoAmIrequest = value;
-  }
-  result.hasWhoAmIrequest = YES;
-  return self;
+    if (result.hasWhoAmIrequest &&
+        result.whoAmIrequest != [Message_WhoAmIRequest defaultInstance]) {
+        result.whoAmIrequest =
+        [[[Message_WhoAmIRequest builderWithPrototype:result.whoAmIrequest] mergeFrom:value] buildPartial];
+    } else {
+        result.whoAmIrequest = value;
+    }
+    result.hasWhoAmIrequest = YES;
+    return self;
 }
 - (Message_Builder*) clearWhoAmIrequest {
-  result.hasWhoAmIrequest = NO;
-  result.whoAmIrequest = [Message_WhoAmIRequest defaultInstance];
-  return self;
+    result.hasWhoAmIrequest = NO;
+    result.whoAmIrequest = [Message_WhoAmIRequest defaultInstance];
+    return self;
 }
 - (BOOL) hasWhoAmIresponse {
-  return result.hasWhoAmIresponse;
+    return result.hasWhoAmIresponse;
 }
 - (Message_WhoAmIResponse*) whoAmIresponse {
-  return result.whoAmIresponse;
+    return result.whoAmIresponse;
 }
 - (Message_Builder*) setWhoAmIresponse:(Message_WhoAmIResponse*) value {
-  result.hasWhoAmIresponse = YES;
-  result.whoAmIresponse = value;
-  return self;
+    result.hasWhoAmIresponse = YES;
+    result.whoAmIresponse = value;
+    return self;
 }
 - (Message_Builder*) setWhoAmIresponseBuilder:(Message_WhoAmIResponse_Builder*) builderForValue {
-  return [self setWhoAmIresponse:[builderForValue build]];
+    return [self setWhoAmIresponse:[builderForValue build]];
 }
 - (Message_Builder*) mergeWhoAmIresponse:(Message_WhoAmIResponse*) value {
-  if (result.hasWhoAmIresponse &&
-      result.whoAmIresponse != [Message_WhoAmIResponse defaultInstance]) {
-    result.whoAmIresponse =
-      [[[Message_WhoAmIResponse builderWithPrototype:result.whoAmIresponse] mergeFrom:value] buildPartial];
-  } else {
-    result.whoAmIresponse = value;
-  }
-  result.hasWhoAmIresponse = YES;
-  return self;
+    if (result.hasWhoAmIresponse &&
+        result.whoAmIresponse != [Message_WhoAmIResponse defaultInstance]) {
+        result.whoAmIresponse =
+        [[[Message_WhoAmIResponse builderWithPrototype:result.whoAmIresponse] mergeFrom:value] buildPartial];
+    } else {
+        result.whoAmIresponse = value;
+    }
+    result.hasWhoAmIresponse = YES;
+    return self;
 }
 - (Message_Builder*) clearWhoAmIresponse {
-  result.hasWhoAmIresponse = NO;
-  result.whoAmIresponse = [Message_WhoAmIResponse defaultInstance];
-  return self;
+    result.hasWhoAmIresponse = NO;
+    result.whoAmIresponse = [Message_WhoAmIResponse defaultInstance];
+    return self;
 }
 - (BOOL) hasTextChatMessageRequest {
-  return result.hasTextChatMessageRequest;
+    return result.hasTextChatMessageRequest;
 }
 - (Message_TextChatMessageRequest*) textChatMessageRequest {
-  return result.textChatMessageRequest;
+    return result.textChatMessageRequest;
 }
 - (Message_Builder*) setTextChatMessageRequest:(Message_TextChatMessageRequest*) value {
-  result.hasTextChatMessageRequest = YES;
-  result.textChatMessageRequest = value;
-  return self;
+    result.hasTextChatMessageRequest = YES;
+    result.textChatMessageRequest = value;
+    return self;
 }
 - (Message_Builder*) setTextChatMessageRequestBuilder:(Message_TextChatMessageRequest_Builder*) builderForValue {
-  return [self setTextChatMessageRequest:[builderForValue build]];
+    return [self setTextChatMessageRequest:[builderForValue build]];
 }
 - (Message_Builder*) mergeTextChatMessageRequest:(Message_TextChatMessageRequest*) value {
-  if (result.hasTextChatMessageRequest &&
-      result.textChatMessageRequest != [Message_TextChatMessageRequest defaultInstance]) {
-    result.textChatMessageRequest =
-      [[[Message_TextChatMessageRequest builderWithPrototype:result.textChatMessageRequest] mergeFrom:value] buildPartial];
-  } else {
-    result.textChatMessageRequest = value;
-  }
-  result.hasTextChatMessageRequest = YES;
-  return self;
+    if (result.hasTextChatMessageRequest &&
+        result.textChatMessageRequest != [Message_TextChatMessageRequest defaultInstance]) {
+        result.textChatMessageRequest =
+        [[[Message_TextChatMessageRequest builderWithPrototype:result.textChatMessageRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.textChatMessageRequest = value;
+    }
+    result.hasTextChatMessageRequest = YES;
+    return self;
 }
 - (Message_Builder*) clearTextChatMessageRequest {
-  result.hasTextChatMessageRequest = NO;
-  result.textChatMessageRequest = [Message_TextChatMessageRequest defaultInstance];
-  return self;
+    result.hasTextChatMessageRequest = NO;
+    result.textChatMessageRequest = [Message_TextChatMessageRequest defaultInstance];
+    return self;
 }
 - (BOOL) hasTextChatMessageResponse {
-  return result.hasTextChatMessageResponse;
+    return result.hasTextChatMessageResponse;
 }
 - (Message_TextChatMessageResponse*) textChatMessageResponse {
-  return result.textChatMessageResponse;
+    return result.textChatMessageResponse;
 }
 - (Message_Builder*) setTextChatMessageResponse:(Message_TextChatMessageResponse*) value {
-  result.hasTextChatMessageResponse = YES;
-  result.textChatMessageResponse = value;
-  return self;
+    result.hasTextChatMessageResponse = YES;
+    result.textChatMessageResponse = value;
+    return self;
 }
 - (Message_Builder*) setTextChatMessageResponseBuilder:(Message_TextChatMessageResponse_Builder*) builderForValue {
-  return [self setTextChatMessageResponse:[builderForValue build]];
+    return [self setTextChatMessageResponse:[builderForValue build]];
 }
 - (Message_Builder*) mergeTextChatMessageResponse:(Message_TextChatMessageResponse*) value {
-  if (result.hasTextChatMessageResponse &&
-      result.textChatMessageResponse != [Message_TextChatMessageResponse defaultInstance]) {
-    result.textChatMessageResponse =
-      [[[Message_TextChatMessageResponse builderWithPrototype:result.textChatMessageResponse] mergeFrom:value] buildPartial];
-  } else {
-    result.textChatMessageResponse = value;
-  }
-  result.hasTextChatMessageResponse = YES;
-  return self;
+    if (result.hasTextChatMessageResponse &&
+        result.textChatMessageResponse != [Message_TextChatMessageResponse defaultInstance]) {
+        result.textChatMessageResponse =
+        [[[Message_TextChatMessageResponse builderWithPrototype:result.textChatMessageResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.textChatMessageResponse = value;
+    }
+    result.hasTextChatMessageResponse = YES;
+    return self;
 }
 - (Message_Builder*) clearTextChatMessageResponse {
-  result.hasTextChatMessageResponse = NO;
-  result.textChatMessageResponse = [Message_TextChatMessageResponse defaultInstance];
-  return self;
+    result.hasTextChatMessageResponse = NO;
+    result.textChatMessageResponse = [Message_TextChatMessageResponse defaultInstance];
+    return self;
 }
 - (BOOL) hasPictureChatMessageRequest {
-  return result.hasPictureChatMessageRequest;
+    return result.hasPictureChatMessageRequest;
 }
 - (Message_PictureChatMessageRequest*) pictureChatMessageRequest {
-  return result.pictureChatMessageRequest;
+    return result.pictureChatMessageRequest;
 }
 - (Message_Builder*) setPictureChatMessageRequest:(Message_PictureChatMessageRequest*) value {
-  result.hasPictureChatMessageRequest = YES;
-  result.pictureChatMessageRequest = value;
-  return self;
+    result.hasPictureChatMessageRequest = YES;
+    result.pictureChatMessageRequest = value;
+    return self;
 }
 - (Message_Builder*) setPictureChatMessageRequestBuilder:(Message_PictureChatMessageRequest_Builder*) builderForValue {
-  return [self setPictureChatMessageRequest:[builderForValue build]];
+    return [self setPictureChatMessageRequest:[builderForValue build]];
 }
 - (Message_Builder*) mergePictureChatMessageRequest:(Message_PictureChatMessageRequest*) value {
-  if (result.hasPictureChatMessageRequest &&
-      result.pictureChatMessageRequest != [Message_PictureChatMessageRequest defaultInstance]) {
-    result.pictureChatMessageRequest =
-      [[[Message_PictureChatMessageRequest builderWithPrototype:result.pictureChatMessageRequest] mergeFrom:value] buildPartial];
-  } else {
-    result.pictureChatMessageRequest = value;
-  }
-  result.hasPictureChatMessageRequest = YES;
-  return self;
+    if (result.hasPictureChatMessageRequest &&
+        result.pictureChatMessageRequest != [Message_PictureChatMessageRequest defaultInstance]) {
+        result.pictureChatMessageRequest =
+        [[[Message_PictureChatMessageRequest builderWithPrototype:result.pictureChatMessageRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.pictureChatMessageRequest = value;
+    }
+    result.hasPictureChatMessageRequest = YES;
+    return self;
 }
 - (Message_Builder*) clearPictureChatMessageRequest {
-  result.hasPictureChatMessageRequest = NO;
-  result.pictureChatMessageRequest = [Message_PictureChatMessageRequest defaultInstance];
-  return self;
+    result.hasPictureChatMessageRequest = NO;
+    result.pictureChatMessageRequest = [Message_PictureChatMessageRequest defaultInstance];
+    return self;
 }
 - (BOOL) hasPictureChatMessageResponse {
-  return result.hasPictureChatMessageResponse;
+    return result.hasPictureChatMessageResponse;
 }
 - (Message_PictureChatMessageResponse*) pictureChatMessageResponse {
-  return result.pictureChatMessageResponse;
+    return result.pictureChatMessageResponse;
 }
 - (Message_Builder*) setPictureChatMessageResponse:(Message_PictureChatMessageResponse*) value {
-  result.hasPictureChatMessageResponse = YES;
-  result.pictureChatMessageResponse = value;
-  return self;
+    result.hasPictureChatMessageResponse = YES;
+    result.pictureChatMessageResponse = value;
+    return self;
 }
 - (Message_Builder*) setPictureChatMessageResponseBuilder:(Message_PictureChatMessageResponse_Builder*) builderForValue {
-  return [self setPictureChatMessageResponse:[builderForValue build]];
+    return [self setPictureChatMessageResponse:[builderForValue build]];
 }
 - (Message_Builder*) mergePictureChatMessageResponse:(Message_PictureChatMessageResponse*) value {
-  if (result.hasPictureChatMessageResponse &&
-      result.pictureChatMessageResponse != [Message_PictureChatMessageResponse defaultInstance]) {
-    result.pictureChatMessageResponse =
-      [[[Message_PictureChatMessageResponse builderWithPrototype:result.pictureChatMessageResponse] mergeFrom:value] buildPartial];
-  } else {
-    result.pictureChatMessageResponse = value;
-  }
-  result.hasPictureChatMessageResponse = YES;
-  return self;
+    if (result.hasPictureChatMessageResponse &&
+        result.pictureChatMessageResponse != [Message_PictureChatMessageResponse defaultInstance]) {
+        result.pictureChatMessageResponse =
+        [[[Message_PictureChatMessageResponse builderWithPrototype:result.pictureChatMessageResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.pictureChatMessageResponse = value;
+    }
+    result.hasPictureChatMessageResponse = YES;
+    return self;
 }
 - (Message_Builder*) clearPictureChatMessageResponse {
-  result.hasPictureChatMessageResponse = NO;
-  result.pictureChatMessageResponse = [Message_PictureChatMessageResponse defaultInstance];
-  return self;
+    result.hasPictureChatMessageResponse = NO;
+    result.pictureChatMessageResponse = [Message_PictureChatMessageResponse defaultInstance];
+    return self;
 }
 - (BOOL) hasVoiceChatMessageRequest {
-  return result.hasVoiceChatMessageRequest;
+    return result.hasVoiceChatMessageRequest;
 }
 - (Message_VoiceChatMessageRequest*) voiceChatMessageRequest {
-  return result.voiceChatMessageRequest;
+    return result.voiceChatMessageRequest;
 }
 - (Message_Builder*) setVoiceChatMessageRequest:(Message_VoiceChatMessageRequest*) value {
-  result.hasVoiceChatMessageRequest = YES;
-  result.voiceChatMessageRequest = value;
-  return self;
+    result.hasVoiceChatMessageRequest = YES;
+    result.voiceChatMessageRequest = value;
+    return self;
 }
 - (Message_Builder*) setVoiceChatMessageRequestBuilder:(Message_VoiceChatMessageRequest_Builder*) builderForValue {
-  return [self setVoiceChatMessageRequest:[builderForValue build]];
+    return [self setVoiceChatMessageRequest:[builderForValue build]];
 }
 - (Message_Builder*) mergeVoiceChatMessageRequest:(Message_VoiceChatMessageRequest*) value {
-  if (result.hasVoiceChatMessageRequest &&
-      result.voiceChatMessageRequest != [Message_VoiceChatMessageRequest defaultInstance]) {
-    result.voiceChatMessageRequest =
-      [[[Message_VoiceChatMessageRequest builderWithPrototype:result.voiceChatMessageRequest] mergeFrom:value] buildPartial];
-  } else {
-    result.voiceChatMessageRequest = value;
-  }
-  result.hasVoiceChatMessageRequest = YES;
-  return self;
+    if (result.hasVoiceChatMessageRequest &&
+        result.voiceChatMessageRequest != [Message_VoiceChatMessageRequest defaultInstance]) {
+        result.voiceChatMessageRequest =
+        [[[Message_VoiceChatMessageRequest builderWithPrototype:result.voiceChatMessageRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.voiceChatMessageRequest = value;
+    }
+    result.hasVoiceChatMessageRequest = YES;
+    return self;
 }
 - (Message_Builder*) clearVoiceChatMessageRequest {
-  result.hasVoiceChatMessageRequest = NO;
-  result.voiceChatMessageRequest = [Message_VoiceChatMessageRequest defaultInstance];
-  return self;
+    result.hasVoiceChatMessageRequest = NO;
+    result.voiceChatMessageRequest = [Message_VoiceChatMessageRequest defaultInstance];
+    return self;
 }
 - (BOOL) hasVoiceChatMessageResponse {
-  return result.hasVoiceChatMessageResponse;
+    return result.hasVoiceChatMessageResponse;
 }
 - (Message_VoiceChatMessageResponse*) voiceChatMessageResponse {
-  return result.voiceChatMessageResponse;
+    return result.voiceChatMessageResponse;
 }
 - (Message_Builder*) setVoiceChatMessageResponse:(Message_VoiceChatMessageResponse*) value {
-  result.hasVoiceChatMessageResponse = YES;
-  result.voiceChatMessageResponse = value;
-  return self;
+    result.hasVoiceChatMessageResponse = YES;
+    result.voiceChatMessageResponse = value;
+    return self;
 }
 - (Message_Builder*) setVoiceChatMessageResponseBuilder:(Message_VoiceChatMessageResponse_Builder*) builderForValue {
-  return [self setVoiceChatMessageResponse:[builderForValue build]];
+    return [self setVoiceChatMessageResponse:[builderForValue build]];
 }
 - (Message_Builder*) mergeVoiceChatMessageResponse:(Message_VoiceChatMessageResponse*) value {
-  if (result.hasVoiceChatMessageResponse &&
-      result.voiceChatMessageResponse != [Message_VoiceChatMessageResponse defaultInstance]) {
-    result.voiceChatMessageResponse =
-      [[[Message_VoiceChatMessageResponse builderWithPrototype:result.voiceChatMessageResponse] mergeFrom:value] buildPartial];
-  } else {
-    result.voiceChatMessageResponse = value;
-  }
-  result.hasVoiceChatMessageResponse = YES;
-  return self;
+    if (result.hasVoiceChatMessageResponse &&
+        result.voiceChatMessageResponse != [Message_VoiceChatMessageResponse defaultInstance]) {
+        result.voiceChatMessageResponse =
+        [[[Message_VoiceChatMessageResponse builderWithPrototype:result.voiceChatMessageResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.voiceChatMessageResponse = value;
+    }
+    result.hasVoiceChatMessageResponse = YES;
+    return self;
 }
 - (Message_Builder*) clearVoiceChatMessageResponse {
-  result.hasVoiceChatMessageResponse = NO;
-  result.voiceChatMessageResponse = [Message_VoiceChatMessageResponse defaultInstance];
-  return self;
+    result.hasVoiceChatMessageResponse = NO;
+    result.voiceChatMessageResponse = [Message_VoiceChatMessageResponse defaultInstance];
+    return self;
 }
 - (BOOL) hasVideoChatMessageRequest {
-  return result.hasVideoChatMessageRequest;
+    return result.hasVideoChatMessageRequest;
 }
 - (Message_VideoChatMessageRequest*) videoChatMessageRequest {
-  return result.videoChatMessageRequest;
+    return result.videoChatMessageRequest;
 }
 - (Message_Builder*) setVideoChatMessageRequest:(Message_VideoChatMessageRequest*) value {
-  result.hasVideoChatMessageRequest = YES;
-  result.videoChatMessageRequest = value;
-  return self;
+    result.hasVideoChatMessageRequest = YES;
+    result.videoChatMessageRequest = value;
+    return self;
 }
 - (Message_Builder*) setVideoChatMessageRequestBuilder:(Message_VideoChatMessageRequest_Builder*) builderForValue {
-  return [self setVideoChatMessageRequest:[builderForValue build]];
+    return [self setVideoChatMessageRequest:[builderForValue build]];
 }
 - (Message_Builder*) mergeVideoChatMessageRequest:(Message_VideoChatMessageRequest*) value {
-  if (result.hasVideoChatMessageRequest &&
-      result.videoChatMessageRequest != [Message_VideoChatMessageRequest defaultInstance]) {
-    result.videoChatMessageRequest =
-      [[[Message_VideoChatMessageRequest builderWithPrototype:result.videoChatMessageRequest] mergeFrom:value] buildPartial];
-  } else {
-    result.videoChatMessageRequest = value;
-  }
-  result.hasVideoChatMessageRequest = YES;
-  return self;
+    if (result.hasVideoChatMessageRequest &&
+        result.videoChatMessageRequest != [Message_VideoChatMessageRequest defaultInstance]) {
+        result.videoChatMessageRequest =
+        [[[Message_VideoChatMessageRequest builderWithPrototype:result.videoChatMessageRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.videoChatMessageRequest = value;
+    }
+    result.hasVideoChatMessageRequest = YES;
+    return self;
 }
 - (Message_Builder*) clearVideoChatMessageRequest {
-  result.hasVideoChatMessageRequest = NO;
-  result.videoChatMessageRequest = [Message_VideoChatMessageRequest defaultInstance];
-  return self;
+    result.hasVideoChatMessageRequest = NO;
+    result.videoChatMessageRequest = [Message_VideoChatMessageRequest defaultInstance];
+    return self;
 }
 - (BOOL) hasVideoChatMessageResponse {
-  return result.hasVideoChatMessageResponse;
+    return result.hasVideoChatMessageResponse;
 }
 - (Message_VideoChatMessageResponse*) videoChatMessageResponse {
-  return result.videoChatMessageResponse;
+    return result.videoChatMessageResponse;
 }
 - (Message_Builder*) setVideoChatMessageResponse:(Message_VideoChatMessageResponse*) value {
-  result.hasVideoChatMessageResponse = YES;
-  result.videoChatMessageResponse = value;
-  return self;
+    result.hasVideoChatMessageResponse = YES;
+    result.videoChatMessageResponse = value;
+    return self;
 }
 - (Message_Builder*) setVideoChatMessageResponseBuilder:(Message_VideoChatMessageResponse_Builder*) builderForValue {
-  return [self setVideoChatMessageResponse:[builderForValue build]];
+    return [self setVideoChatMessageResponse:[builderForValue build]];
 }
 - (Message_Builder*) mergeVideoChatMessageResponse:(Message_VideoChatMessageResponse*) value {
-  if (result.hasVideoChatMessageResponse &&
-      result.videoChatMessageResponse != [Message_VideoChatMessageResponse defaultInstance]) {
-    result.videoChatMessageResponse =
-      [[[Message_VideoChatMessageResponse builderWithPrototype:result.videoChatMessageResponse] mergeFrom:value] buildPartial];
-  } else {
-    result.videoChatMessageResponse = value;
-  }
-  result.hasVideoChatMessageResponse = YES;
-  return self;
+    if (result.hasVideoChatMessageResponse &&
+        result.videoChatMessageResponse != [Message_VideoChatMessageResponse defaultInstance]) {
+        result.videoChatMessageResponse =
+        [[[Message_VideoChatMessageResponse builderWithPrototype:result.videoChatMessageResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.videoChatMessageResponse = value;
+    }
+    result.hasVideoChatMessageResponse = YES;
+    return self;
 }
 - (Message_Builder*) clearVideoChatMessageResponse {
-  result.hasVideoChatMessageResponse = NO;
-  result.videoChatMessageResponse = [Message_VideoChatMessageResponse defaultInstance];
-  return self;
+    result.hasVideoChatMessageResponse = NO;
+    result.videoChatMessageResponse = [Message_VideoChatMessageResponse defaultInstance];
+    return self;
 }
 - (BOOL) hasTextFromServerRequest {
-  return result.hasTextFromServerRequest;
+    return result.hasTextFromServerRequest;
 }
 - (Message_TextFromServerRequest*) textFromServerRequest {
-  return result.textFromServerRequest;
+    return result.textFromServerRequest;
 }
 - (Message_Builder*) setTextFromServerRequest:(Message_TextFromServerRequest*) value {
-  result.hasTextFromServerRequest = YES;
-  result.textFromServerRequest = value;
-  return self;
+    result.hasTextFromServerRequest = YES;
+    result.textFromServerRequest = value;
+    return self;
 }
 - (Message_Builder*) setTextFromServerRequestBuilder:(Message_TextFromServerRequest_Builder*) builderForValue {
-  return [self setTextFromServerRequest:[builderForValue build]];
+    return [self setTextFromServerRequest:[builderForValue build]];
 }
 - (Message_Builder*) mergeTextFromServerRequest:(Message_TextFromServerRequest*) value {
-  if (result.hasTextFromServerRequest &&
-      result.textFromServerRequest != [Message_TextFromServerRequest defaultInstance]) {
-    result.textFromServerRequest =
-      [[[Message_TextFromServerRequest builderWithPrototype:result.textFromServerRequest] mergeFrom:value] buildPartial];
-  } else {
-    result.textFromServerRequest = value;
-  }
-  result.hasTextFromServerRequest = YES;
-  return self;
+    if (result.hasTextFromServerRequest &&
+        result.textFromServerRequest != [Message_TextFromServerRequest defaultInstance]) {
+        result.textFromServerRequest =
+        [[[Message_TextFromServerRequest builderWithPrototype:result.textFromServerRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.textFromServerRequest = value;
+    }
+    result.hasTextFromServerRequest = YES;
+    return self;
 }
 - (Message_Builder*) clearTextFromServerRequest {
-  result.hasTextFromServerRequest = NO;
-  result.textFromServerRequest = [Message_TextFromServerRequest defaultInstance];
-  return self;
+    result.hasTextFromServerRequest = NO;
+    result.textFromServerRequest = [Message_TextFromServerRequest defaultInstance];
+    return self;
 }
 - (BOOL) hasTextFromServerResponse {
-  return result.hasTextFromServerResponse;
+    return result.hasTextFromServerResponse;
 }
 - (Message_TextFromServerResponse*) textFromServerResponse {
-  return result.textFromServerResponse;
+    return result.textFromServerResponse;
 }
 - (Message_Builder*) setTextFromServerResponse:(Message_TextFromServerResponse*) value {
-  result.hasTextFromServerResponse = YES;
-  result.textFromServerResponse = value;
-  return self;
+    result.hasTextFromServerResponse = YES;
+    result.textFromServerResponse = value;
+    return self;
 }
 - (Message_Builder*) setTextFromServerResponseBuilder:(Message_TextFromServerResponse_Builder*) builderForValue {
-  return [self setTextFromServerResponse:[builderForValue build]];
+    return [self setTextFromServerResponse:[builderForValue build]];
 }
 - (Message_Builder*) mergeTextFromServerResponse:(Message_TextFromServerResponse*) value {
-  if (result.hasTextFromServerResponse &&
-      result.textFromServerResponse != [Message_TextFromServerResponse defaultInstance]) {
-    result.textFromServerResponse =
-      [[[Message_TextFromServerResponse builderWithPrototype:result.textFromServerResponse] mergeFrom:value] buildPartial];
-  } else {
-    result.textFromServerResponse = value;
-  }
-  result.hasTextFromServerResponse = YES;
-  return self;
+    if (result.hasTextFromServerResponse &&
+        result.textFromServerResponse != [Message_TextFromServerResponse defaultInstance]) {
+        result.textFromServerResponse =
+        [[[Message_TextFromServerResponse builderWithPrototype:result.textFromServerResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.textFromServerResponse = value;
+    }
+    result.hasTextFromServerResponse = YES;
+    return self;
 }
 - (Message_Builder*) clearTextFromServerResponse {
-  result.hasTextFromServerResponse = NO;
-  result.textFromServerResponse = [Message_TextFromServerResponse defaultInstance];
-  return self;
+    result.hasTextFromServerResponse = NO;
+    result.textFromServerResponse = [Message_TextFromServerResponse defaultInstance];
+    return self;
 }
 - (BOOL) hasPictureFromServerRequest {
-  return result.hasPictureFromServerRequest;
+    return result.hasPictureFromServerRequest;
 }
 - (Message_PictureFromServerRequest*) pictureFromServerRequest {
-  return result.pictureFromServerRequest;
+    return result.pictureFromServerRequest;
 }
 - (Message_Builder*) setPictureFromServerRequest:(Message_PictureFromServerRequest*) value {
-  result.hasPictureFromServerRequest = YES;
-  result.pictureFromServerRequest = value;
-  return self;
+    result.hasPictureFromServerRequest = YES;
+    result.pictureFromServerRequest = value;
+    return self;
 }
 - (Message_Builder*) setPictureFromServerRequestBuilder:(Message_PictureFromServerRequest_Builder*) builderForValue {
-  return [self setPictureFromServerRequest:[builderForValue build]];
+    return [self setPictureFromServerRequest:[builderForValue build]];
 }
 - (Message_Builder*) mergePictureFromServerRequest:(Message_PictureFromServerRequest*) value {
-  if (result.hasPictureFromServerRequest &&
-      result.pictureFromServerRequest != [Message_PictureFromServerRequest defaultInstance]) {
-    result.pictureFromServerRequest =
-      [[[Message_PictureFromServerRequest builderWithPrototype:result.pictureFromServerRequest] mergeFrom:value] buildPartial];
-  } else {
-    result.pictureFromServerRequest = value;
-  }
-  result.hasPictureFromServerRequest = YES;
-  return self;
+    if (result.hasPictureFromServerRequest &&
+        result.pictureFromServerRequest != [Message_PictureFromServerRequest defaultInstance]) {
+        result.pictureFromServerRequest =
+        [[[Message_PictureFromServerRequest builderWithPrototype:result.pictureFromServerRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.pictureFromServerRequest = value;
+    }
+    result.hasPictureFromServerRequest = YES;
+    return self;
 }
 - (Message_Builder*) clearPictureFromServerRequest {
-  result.hasPictureFromServerRequest = NO;
-  result.pictureFromServerRequest = [Message_PictureFromServerRequest defaultInstance];
-  return self;
+    result.hasPictureFromServerRequest = NO;
+    result.pictureFromServerRequest = [Message_PictureFromServerRequest defaultInstance];
+    return self;
 }
 - (BOOL) hasPictureFromServerResponse {
-  return result.hasPictureFromServerResponse;
+    return result.hasPictureFromServerResponse;
 }
 - (Message_PictureFromServerResponse*) pictureFromServerResponse {
-  return result.pictureFromServerResponse;
+    return result.pictureFromServerResponse;
 }
 - (Message_Builder*) setPictureFromServerResponse:(Message_PictureFromServerResponse*) value {
-  result.hasPictureFromServerResponse = YES;
-  result.pictureFromServerResponse = value;
-  return self;
+    result.hasPictureFromServerResponse = YES;
+    result.pictureFromServerResponse = value;
+    return self;
 }
 - (Message_Builder*) setPictureFromServerResponseBuilder:(Message_PictureFromServerResponse_Builder*) builderForValue {
-  return [self setPictureFromServerResponse:[builderForValue build]];
+    return [self setPictureFromServerResponse:[builderForValue build]];
 }
 - (Message_Builder*) mergePictureFromServerResponse:(Message_PictureFromServerResponse*) value {
-  if (result.hasPictureFromServerResponse &&
-      result.pictureFromServerResponse != [Message_PictureFromServerResponse defaultInstance]) {
-    result.pictureFromServerResponse =
-      [[[Message_PictureFromServerResponse builderWithPrototype:result.pictureFromServerResponse] mergeFrom:value] buildPartial];
-  } else {
-    result.pictureFromServerResponse = value;
-  }
-  result.hasPictureFromServerResponse = YES;
-  return self;
+    if (result.hasPictureFromServerResponse &&
+        result.pictureFromServerResponse != [Message_PictureFromServerResponse defaultInstance]) {
+        result.pictureFromServerResponse =
+        [[[Message_PictureFromServerResponse builderWithPrototype:result.pictureFromServerResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.pictureFromServerResponse = value;
+    }
+    result.hasPictureFromServerResponse = YES;
+    return self;
 }
 - (Message_Builder*) clearPictureFromServerResponse {
-  result.hasPictureFromServerResponse = NO;
-  result.pictureFromServerResponse = [Message_PictureFromServerResponse defaultInstance];
-  return self;
+    result.hasPictureFromServerResponse = NO;
+    result.pictureFromServerResponse = [Message_PictureFromServerResponse defaultInstance];
+    return self;
+}
+- (BOOL) hasVoiceFromServerRequest {
+    return result.hasVoiceFromServerRequest;
+}
+- (Message_VoiceFromServerRequest*) voiceFromServerRequest {
+    return result.voiceFromServerRequest;
+}
+- (Message_Builder*) setVoiceFromServerRequest:(Message_VoiceFromServerRequest*) value {
+    result.hasVoiceFromServerRequest = YES;
+    result.voiceFromServerRequest = value;
+    return self;
+}
+- (Message_Builder*) setVoiceFromServerRequestBuilder:(Message_VoiceFromServerRequest_Builder*) builderForValue {
+    return [self setVoiceFromServerRequest:[builderForValue build]];
+}
+- (Message_Builder*) mergeVoiceFromServerRequest:(Message_VoiceFromServerRequest*) value {
+    if (result.hasVoiceFromServerRequest &&
+        result.voiceFromServerRequest != [Message_VoiceFromServerRequest defaultInstance]) {
+        result.voiceFromServerRequest =
+        [[[Message_VoiceFromServerRequest builderWithPrototype:result.voiceFromServerRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.voiceFromServerRequest = value;
+    }
+    result.hasVoiceFromServerRequest = YES;
+    return self;
+}
+- (Message_Builder*) clearVoiceFromServerRequest {
+    result.hasVoiceFromServerRequest = NO;
+    result.voiceFromServerRequest = [Message_VoiceFromServerRequest defaultInstance];
+    return self;
+}
+- (BOOL) hasVoiceFromServerResponse {
+    return result.hasVoiceFromServerResponse;
+}
+- (Message_VoiceFromServerResponse*) voiceFromServerResponse {
+    return result.voiceFromServerResponse;
+}
+- (Message_Builder*) setVoiceFromServerResponse:(Message_VoiceFromServerResponse*) value {
+    result.hasVoiceFromServerResponse = YES;
+    result.voiceFromServerResponse = value;
+    return self;
+}
+- (Message_Builder*) setVoiceFromServerResponseBuilder:(Message_VoiceFromServerResponse_Builder*) builderForValue {
+    return [self setVoiceFromServerResponse:[builderForValue build]];
+}
+- (Message_Builder*) mergeVoiceFromServerResponse:(Message_VoiceFromServerResponse*) value {
+    if (result.hasVoiceFromServerResponse &&
+        result.voiceFromServerResponse != [Message_VoiceFromServerResponse defaultInstance]) {
+        result.voiceFromServerResponse =
+        [[[Message_VoiceFromServerResponse builderWithPrototype:result.voiceFromServerResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.voiceFromServerResponse = value;
+    }
+    result.hasVoiceFromServerResponse = YES;
+    return self;
+}
+- (Message_Builder*) clearVoiceFromServerResponse {
+    result.hasVoiceFromServerResponse = NO;
+    result.voiceFromServerResponse = [Message_VoiceFromServerResponse defaultInstance];
+    return self;
+}
+- (BOOL) hasVideoFromServerRequest {
+    return result.hasVideoFromServerRequest;
+}
+- (Message_VideoFromServerRequest*) videoFromServerRequest {
+    return result.videoFromServerRequest;
+}
+- (Message_Builder*) setVideoFromServerRequest:(Message_VideoFromServerRequest*) value {
+    result.hasVideoFromServerRequest = YES;
+    result.videoFromServerRequest = value;
+    return self;
+}
+- (Message_Builder*) setVideoFromServerRequestBuilder:(Message_VideoFromServerRequest_Builder*) builderForValue {
+    return [self setVideoFromServerRequest:[builderForValue build]];
+}
+- (Message_Builder*) mergeVideoFromServerRequest:(Message_VideoFromServerRequest*) value {
+    if (result.hasVideoFromServerRequest &&
+        result.videoFromServerRequest != [Message_VideoFromServerRequest defaultInstance]) {
+        result.videoFromServerRequest =
+        [[[Message_VideoFromServerRequest builderWithPrototype:result.videoFromServerRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.videoFromServerRequest = value;
+    }
+    result.hasVideoFromServerRequest = YES;
+    return self;
+}
+- (Message_Builder*) clearVideoFromServerRequest {
+    result.hasVideoFromServerRequest = NO;
+    result.videoFromServerRequest = [Message_VideoFromServerRequest defaultInstance];
+    return self;
+}
+- (BOOL) hasVideoFromServerResponse {
+    return result.hasVideoFromServerResponse;
+}
+- (Message_VideoFromServerResponse*) videoFromServerResponse {
+    return result.videoFromServerResponse;
+}
+- (Message_Builder*) setVideoFromServerResponse:(Message_VideoFromServerResponse*) value {
+    result.hasVideoFromServerResponse = YES;
+    result.videoFromServerResponse = value;
+    return self;
+}
+- (Message_Builder*) setVideoFromServerResponseBuilder:(Message_VideoFromServerResponse_Builder*) builderForValue {
+    return [self setVideoFromServerResponse:[builderForValue build]];
+}
+- (Message_Builder*) mergeVideoFromServerResponse:(Message_VideoFromServerResponse*) value {
+    if (result.hasVideoFromServerResponse &&
+        result.videoFromServerResponse != [Message_VideoFromServerResponse defaultInstance]) {
+        result.videoFromServerResponse =
+        [[[Message_VideoFromServerResponse builderWithPrototype:result.videoFromServerResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.videoFromServerResponse = value;
+    }
+    result.hasVideoFromServerResponse = YES;
+    return self;
+}
+- (Message_Builder*) clearVideoFromServerResponse {
+    result.hasVideoFromServerResponse = NO;
+    result.videoFromServerResponse = [Message_VideoFromServerResponse defaultInstance];
+    return self;
 }
 @end
 

@@ -13,8 +13,8 @@
 @class Message_TextFromServerRequest;
 @class AppDelegate;
 @class ChatViewController;
-@class Message_VideoChatMessageRequest;
-@class Message_VoiceChatMessageRequest;
+@class Message_VideoFromServerRequest;
+@class Message_VoiceFromServerRequest;
 @class Message_PictureFromServerRequest;
 @protocol JSQChatViewControllerDelegate <NSObject>
 
@@ -47,11 +47,11 @@
 -(void) onReceiveTextMessage:(Message_TextFromServerRequest *)msg;
 
 // video message
--(void) onReceiveVideoMessage:(Message_VideoChatMessageRequest *)msg;
+-(void) onReceiveVideoMessage:(Message_VideoFromServerRequest *)msg;
 
 // photo message
 -(void) onReceivePhotoMessage:(Message_PictureFromServerRequest *)msg;
 
 // voice
--(void) onReceiveVoiceMessage:(Message_VoiceChatMessageRequest *)msg;
+-(void) onReceiveVoiceMessage:(Message_VoiceFromServerRequest *)msg;
 @end
