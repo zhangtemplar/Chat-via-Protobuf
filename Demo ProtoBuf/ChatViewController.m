@@ -14,6 +14,7 @@
 #import "NSData+NSHash.h"
 #import "SCRecorder.h"
 #import "AFNetworking.h"
+#import "SCAudioRecordViewController.h"
 
 @implementation ChatViewController
 #pragma mark - View lifecycle
@@ -177,7 +178,7 @@
     NSString *voicePath = [documentsDirectory stringByAppendingPathComponent:[msg voiceUuid]];
     requestOperation.outputStream=[NSOutputStream outputStreamToFileAtPath:voicePath append:NO];
     [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"Video received\n");
+        NSLog(@"Voice received\n");
         // add video to chat
         JSQVideoMediaItem *video=[[JSQVideoMediaItem alloc] initWithFileURL:[NSURL URLWithString:voicePath] isReadyToPlay:YES];
         JSQMessage *video_msg=[[JSQMessage alloc] initWithSenderId:[msg fromUserId] senderDisplayName:[msg fromUserId] date:[NSDate date] media:video];
@@ -340,84 +341,11 @@
         case 2:
         {
             // voice, we will use screcord
-            SCRecorder *recorder=[SCRecorder recorder];
-            recorder.delegate=self;
-            // set the audio capture session
-            SCAudioConfiguration *audio=recorder.audioConfiguration;
-            // sample rate 64kbps, single channel, AMR format
-            audio.enabled=YES;
-            audio.bitrate=64000;
-            audio.channelsCount=1;
-            audio.sampleRate=0;
-            audio.format=kAudioFormatMPEG4AAC;
-            // disable video
-            SCVideoConfiguration *video=recorder.videoConfiguration;
-            video.enabled=NO;
-            // disable image
-            SCPhotoConfiguration *photo=recorder.photoConfiguration;
-            photo.enabled=NO;
-            // check it is available;
-            if (![recorder startRunning])
-            {
-                NSLog(@"Start voice recording failed.\n");
-                UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Audio recorder failed" message:@"Sorry but the audio recorder failed and please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alert show];
-                break;
-            }
-            // create a new session
-            recorder.session=[SCRecordSession recordSession];
-            // begin recording;
-            [recorder record];
+            UIStoryboard* story_board=[app_delegate getStoryBoard];
+            SCAudioRecordViewController* audio_view=[story_board instantiateViewControllerWithIdentifier:@"voiceViewController"];
+            [audio_view setChatView:self];
+            [self presentViewController:audio_view animated:YES completion:nil];
             // save the record
-            [recorder.session mergeSegmentsUsingPreset:AVAssetExportPresetAppleM4A completionHandler:^(NSURL *url, NSError *error)
-            {
-                if (error==nil)
-                {
-                    // add this audio the message
-                    [[self chatData] addVideoMediaMessage:self.senderId name:self.senderDisplayName date:[NSDate date] video:url ready:YES];
-                    // create a file name
-                    NSString *fileUUID=[[NSString stringWithFormat:@"%@", url] MD5];
-                    NSData *fileData=[NSData dataWithContentsOfURL:url];
-                    NSString *filePath=[url absoluteString];
-                    
-                    // to do: unpload the video with the uuid
-                    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-                    manager.responseSerializer=[AFHTTPResponseSerializer serializer];
-                    NSDictionary *parameters = @{@"myfile": filePath, @"type":@"audio", @"format":@"aac", @"userId":[self senderId], @"desc":fileUUID};
-                    AFHTTPRequestOperation *op = [manager POST:@"http://54.69.29.250:8081/voices" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-                        [formData appendPartWithFileData:fileData name:filePath fileName:filePath mimeType:@"audio/aac"];} success:^(AFHTTPRequestOperation *operation, id responseObject)
-                                                  {
-                                                      NSString *fileName=[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-                                                      // uploading this message to the server and create message
-                                                      Message_VoiceChatMessageRequest_Builder *voice_msg_build=[Message_VoiceChatMessageRequest builder];
-                                                      [voice_msg_build setUserId:[self senderId]];
-                                                      [voice_msg_build setToUserId: guest_list.firstObject];
-                                                      [voice_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
-                                                      [voice_msg_build setDesc:fileName];
-                                                      [voice_msg_build setMessageHash:[fileName MD5]];
-                                                      [voice_msg_build setVoiceUuid:fileName];
-                                                      
-                                                      Message_Builder *msg_builder=[Message builder];
-                                                      [msg_builder setType:Message_MessageTypeVoiceReq];
-                                                      [msg_builder setVoiceChatMessageRequest:[voice_msg_build build]];
-                                                      
-                                                      [app_delegate sendMessage:[msg_builder build]];
-                                                      [[self collectionView] reloadData];
-                                                      NSLog(@"Voice upload success: %@\n", responseObject);
-                                                  }
-                                                       failure:^(AFHTTPRequestOperation *operation, NSError *error)
-                                                  {
-                                                      NSLog(@"Voice upload error: %@\n", error);
-                                                  }];
-                    [op start];
-                }
-                else
-                {
-                    NSLog(@"Start voice recording failed.\n");
-                    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Audio recorder failed" message:@"Sorry but the audio record can't be saved and please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                    [alert show];
-                }
-            }];
             break;
         }
         case 3:
@@ -493,7 +421,6 @@
                      [alert show];
                  }
              }];
-            break;
             break;
         }
     }
@@ -838,6 +765,61 @@
     [op start];
     
     [picker dismissViewControllerAnimated:YES completion:NULL];
+    
+}
+
+-(void)onAudioCaptured:(NSURL *)url
+{
+    if (url!=nil)
+    {
+        // add this audio the message
+        [[self chatData] addVideoMediaMessage:self.senderId name:self.senderDisplayName date:[NSDate date] video:url ready:YES];
+        // create a file name
+        NSString *fileUUID=[[NSString stringWithFormat:@"%@", url] MD5];
+        NSData *fileData=[NSData dataWithContentsOfURL:url];
+        NSString *filePath=[NSString stringWithFormat:@"%@.m4a", fileUUID];
+        
+        // to do: unpload the audio with the uuid
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer=[AFHTTPResponseSerializer serializer];
+        NSDictionary *parameters = @{@"myfile": filePath, @"type":@"audio", @"format":@"aac", @"userId":[self senderId], @"desc":fileUUID};
+        AFHTTPRequestOperation *op = [manager POST:@"http://54.69.29.250:8081/voices" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            [formData appendPartWithFileData:fileData name:filePath fileName:filePath mimeType:@"audio/aac"];} success:^(AFHTTPRequestOperation *operation, id responseObject)
+                                      {
+                                          NSString *fileName=[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+                                          // uploading this message to the server and create message
+                                          Message_VoiceChatMessageRequest_Builder *voice_msg_build=[Message_VoiceChatMessageRequest builder];
+                                          [voice_msg_build setUserId:[self senderId]];
+                                          [voice_msg_build setToUserId: guest_list.firstObject];
+                                          [voice_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+                                          [voice_msg_build setDesc:fileName];
+                                          [voice_msg_build setMessageHash:[fileName MD5]];
+                                          [voice_msg_build setVoiceUuid:fileName];
+                                          
+                                          Message_Builder *msg_builder=[Message builder];
+                                          [msg_builder setType:Message_MessageTypeVoiceReq];
+                                          [msg_builder setVoiceChatMessageRequest:[voice_msg_build build]];
+                                          
+                                          [app_delegate sendMessage:[msg_builder build]];
+                                          [[self collectionView] reloadData];
+                                          NSLog(@"Voice upload success: %@\n", responseObject);
+                                      }
+                                           failure:^(AFHTTPRequestOperation *operation, NSError *error)
+                                      {
+                                          NSLog(@"Voice upload error: %@\n", error);
+                                      }];
+        [op start];
+    }
+    else
+    {
+        NSLog(@"Start voice recording failed.\n");
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Audio recorder failed" message:@"Sorry but the audio record can't be saved and please try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+-(void)onVideoCaptured:(NSURL *)url
+{
     
 }
 @end

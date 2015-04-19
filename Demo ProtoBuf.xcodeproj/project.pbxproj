@@ -12,6 +12,8 @@
 		BEB22A7A1ACD1FBD008A03AA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB22A791ACD1FBD008A03AA /* MainViewController.m */; };
 		BEB6FEE11AC8D1E90066348C /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB6FEE01AC8D1E90066348C /* ChatViewController.m */; };
 		BEB6FEE41AC8D4B60066348C /* ChatModelData.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB6FEE31AC8D4B60066348C /* ChatModelData.m */; };
+		BEC8BDA41AE30044002406FD /* SCAudioRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC8BDA31AE30044002406FD /* SCAudioRecordViewController.m */; };
+		BEC8BDA91AE46567002406FD /* SCRecorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC8BDA81AE46567002406FD /* SCRecorderViewController.m */; };
 		BEE05E9B1AB2ADAA00D92B7D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE05E9A1AB2ADAA00D92B7D /* main.m */; };
 		BEE05E9E1AB2ADAA00D92B7D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE05E9D1AB2ADAA00D92B7D /* AppDelegate.m */; };
 		BEE05EA11AB2ADAA00D92B7D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEE05EA01AB2ADAA00D92B7D /* ViewController.m */; };
@@ -44,6 +46,10 @@
 		BEB6FEE01AC8D1E90066348C /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		BEB6FEE21AC8D4B60066348C /* ChatModelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatModelData.h; sourceTree = "<group>"; };
 		BEB6FEE31AC8D4B60066348C /* ChatModelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatModelData.m; sourceTree = "<group>"; };
+		BEC8BDA21AE30044002406FD /* SCAudioRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCAudioRecordViewController.h; sourceTree = "<group>"; };
+		BEC8BDA31AE30044002406FD /* SCAudioRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCAudioRecordViewController.m; sourceTree = "<group>"; };
+		BEC8BDA71AE46567002406FD /* SCRecorderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCRecorderViewController.h; sourceTree = "<group>"; };
+		BEC8BDA81AE46567002406FD /* SCRecorderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCRecorderViewController.m; sourceTree = "<group>"; };
 		BEE05E951AB2ADAA00D92B7D /* Demo ProtoBuf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo ProtoBuf.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEE05E991AB2ADAA00D92B7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BEE05E9A1AB2ADAA00D92B7D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -112,6 +118,10 @@
 		BEE05E971AB2ADAA00D92B7D /* Demo ProtoBuf */ = {
 			isa = PBXGroup;
 			children = (
+				BEC8BDA71AE46567002406FD /* SCRecorderViewController.h */,
+				BEC8BDA81AE46567002406FD /* SCRecorderViewController.m */,
+				BEC8BDA21AE30044002406FD /* SCAudioRecordViewController.h */,
+				BEC8BDA31AE30044002406FD /* SCAudioRecordViewController.m */,
 				BEB22A751ACD096E008A03AA /* App.pb.h */,
 				BEB22A761ACD096E008A03AA /* App.pb.m */,
 				BEE05E9C1AB2ADAA00D92B7D /* AppDelegate.h */,
@@ -303,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEC8BDA91AE46567002406FD /* SCRecorderViewController.m in Sources */,
 				BEE05EA11AB2ADAA00D92B7D /* ViewController.m in Sources */,
 				BEB6FEE11AC8D1E90066348C /* ChatViewController.m in Sources */,
 				BEFAB99C1AB6529E009F6D03 /* AppUtility.m in Sources */,
@@ -310,6 +321,7 @@
 				BEE05E9E1AB2ADAA00D92B7D /* AppDelegate.m in Sources */,
 				BEB6FEE41AC8D4B60066348C /* ChatModelData.m in Sources */,
 				BEE05E9B1AB2ADAA00D92B7D /* main.m in Sources */,
+				BEC8BDA41AE30044002406FD /* SCAudioRecordViewController.m in Sources */,
 				BEB22A771ACD096E008A03AA /* App.pb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

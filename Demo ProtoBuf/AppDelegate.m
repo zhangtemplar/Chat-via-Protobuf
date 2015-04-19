@@ -44,6 +44,22 @@
     }
     
     chat_list=[[NSMutableDictionary alloc] init];
+    
+    // create necessary directory
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *voiceDir=[documentsDirectory stringByAppendingPathComponent:@"voices"];
+    if (![[NSFileManager defaultManager] createDirectoryAtPath:voiceDir withIntermediateDirectories:YES attributes:nil error:&err])
+    {
+        NSLog(@"Failed to create directory %@: %d, %s, %@\n", voiceDir, errno, strerror(errno), err);
+    }
+
+    NSString *videoDir=[documentsDirectory stringByAppendingPathComponent:@"voices"];
+    if (![[NSFileManager defaultManager] createDirectoryAtPath:videoDir withIntermediateDirectories:YES attributes:nil error:&err])
+    {
+        NSLog(@"EFailed to create directory %@: %d, %s, %@\n", videoDir, errno, strerror(errno), err);
+    }
+    
 
     return YES;
 }
@@ -235,14 +251,10 @@
             chat_view.delegateModal=self;
             [chat_view initWithUser:[[msg_tmp textFromServerRequest]toUserId] user_name:nil guest_id: [[msg_tmp textFromServerRequest] fromUserId] guest_name:nil];
             [chat_list setObject:chat_view forKey:[[msg_tmp textFromServerRequest] fromUserId]];
-        }
-        [chat_view onReceiveTextMessage:[msg_tmp textFromServerRequest]];
-        // if current view is not present, show it
-        if (!(chat_view.isViewLoaded && chat_view.view.window))
-        {
             UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
             [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
         }
+        [chat_view onReceiveTextMessage:[msg_tmp textFromServerRequest]];
     }
     else if([msg_tmp type]==Message_MessageTypePictureFromServerReq)
     {
@@ -256,14 +268,10 @@
             chat_view.delegateModal=self;
             [chat_view initWithUser:[[msg_tmp pictureFromServerRequest]toUserId] user_name:nil guest_id: [[msg_tmp pictureFromServerRequest] fromUserId] guest_name:nil];
             [chat_list setObject:chat_view forKey:[[msg_tmp pictureFromServerRequest] fromUserId]];
-        }
-        [chat_view onReceivePhotoMessage:[msg_tmp pictureFromServerRequest]];
-        // if current view is not present, show it
-        if ((chat_view.isViewLoaded && chat_view.view.window))
-        {
             UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
             [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
         }
+        [chat_view onReceivePhotoMessage:[msg_tmp pictureFromServerRequest]];
     }
     else if([msg_tmp type]==Message_MessageTypeVideoFromServerReq)
     {
@@ -277,19 +285,15 @@
             chat_view.delegateModal=self;
             [chat_view initWithUser:[[msg_tmp videoFromServerRequest]toUserId] user_name:nil guest_id: [[msg_tmp videoFromServerRequest] fromUserId] guest_name:nil];
             [chat_list setObject:chat_view forKey:[[msg_tmp videoFromServerRequest] fromUserId]];
-        }
-        [chat_view onReceiveVideoMessage:[msg_tmp videoFromServerRequest]];
-        // if current view is not present, show it
-        if ((chat_view.isViewLoaded && chat_view.view.window))
-        {
             UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
             [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
         }
+        [chat_view onReceiveVideoMessage:[msg_tmp videoFromServerRequest]];
     }
     else if([msg_tmp type]==Message_MessageTypeVoiceFromServerReq)
     {
         // get a new picture message
-        NSLog(@"Picture message from the server\n");
+        NSLog(@"Voice message from the server\n");
         ChatViewController *chat_view=[chat_list objectForKey:[[msg_tmp voiceFromServerRequest] fromUserId]];
         if (chat_view==nil)
         {
@@ -298,14 +302,10 @@
             chat_view.delegateModal=self;
             [chat_view initWithUser:[[msg_tmp voiceFromServerRequest]toUserId] user_name:nil guest_id: [[msg_tmp voiceFromServerRequest] fromUserId] guest_name:nil];
             [chat_list setObject:chat_view forKey:[[msg_tmp voiceFromServerRequest] fromUserId]];
-        }
-        [chat_view onReceiveVoiceMessage:[msg_tmp voiceFromServerRequest]];
-        // if current view is not present, show it
-        if ((chat_view.isViewLoaded && chat_view.view.window))
-        {
             UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
             [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
         }
+        [chat_view onReceiveVoiceMessage:[msg_tmp voiceFromServerRequest]];
     }
     else if ([msg_tmp type]==Message_MessageTypeWhoAmIResp)
     {

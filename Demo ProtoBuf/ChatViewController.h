@@ -54,4 +54,8 @@
 
 // voice
 -(void) onReceiveVoiceMessage:(Message_VoiceFromServerRequest *)msg;
+
+// voice and audio
+-(void) onAudioCaptured:(NSURL *)url;
+-(void) onVideoCaptured:(NSURL *)url;
 @end
