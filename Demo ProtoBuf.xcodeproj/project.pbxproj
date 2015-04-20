@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		695834BDD481863CF5B94CF1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BC0DEDCAB9BBCAF029B385 /* libPods.a */; };
+		BE1E41DF1AE473C200E8EBEB /* capture_flip@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BE1E41DE1AE473C200E8EBEB /* capture_flip@2x.png */; };
 		BEB22A771ACD096E008A03AA /* App.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB22A761ACD096E008A03AA /* App.pb.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BEB22A7A1ACD1FBD008A03AA /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB22A791ACD1FBD008A03AA /* MainViewController.m */; };
 		BEB6FEE11AC8D1E90066348C /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEB6FEE01AC8D1E90066348C /* ChatViewController.m */; };
@@ -38,6 +39,7 @@
 		02BD932E2D4E439BD1D747AD /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		55948B729A4805925AB274D1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		62BC0DEDCAB9BBCAF029B385 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE1E41DE1AE473C200E8EBEB /* capture_flip@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "capture_flip@2x.png"; sourceTree = "<group>"; };
 		BEB22A751ACD096E008A03AA /* App.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.pb.h; sourceTree = "<group>"; };
 		BEB22A761ACD096E008A03AA /* App.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = App.pb.m; sourceTree = "<group>"; };
 		BEB22A781ACD1FBD008A03AA /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		BEE05E981AB2ADAA00D92B7D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BE1E41DE1AE473C200E8EBEB /* capture_flip@2x.png */,
 				BEE05E991AB2ADAA00D92B7D /* Info.plist */,
 				BEE05E9A1AB2ADAA00D92B7D /* main.m */,
 			);
@@ -262,6 +265,7 @@
 			files = (
 				BEE05EA41AB2ADAA00D92B7D /* Main.storyboard in Resources */,
 				BEE05EA91AB2ADAA00D92B7D /* LaunchScreen.xib in Resources */,
+				BE1E41DF1AE473C200E8EBEB /* capture_flip@2x.png in Resources */,
 				BEE05EA61AB2ADAA00D92B7D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

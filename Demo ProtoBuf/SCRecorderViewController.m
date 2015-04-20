@@ -23,8 +23,6 @@
     SCRecorder *_recorder;
     SCRecordSession *_recordSession;
 }
-
-@property (strong, nonatomic) SCRecorderToolsView *focusView;
 @end
 
 ////////////////////////////////////////////////////////////
@@ -49,7 +47,7 @@
     [super viewDidLoad];
 
     _recorder = [SCRecorder recorder];
-    _recorder.captureSessionPreset = [SCRecorderTools bestCaptureSessionPresetCompatibleWithAllDevices];
+    _recorder.captureSessionPreset = AVCaptureSessionPresetMedium;
     _recorder.maxRecordDuration = CMTimeMake(10, 1);
     
     _recorder.delegate = self;
@@ -57,13 +55,6 @@
     
     UIView *previewView = self.previewView;
     _recorder.previewView = self.previewView;
-    
-    self.focusView = [[SCRecorderToolsView alloc] initWithFrame:previewView.bounds];
-    self.focusView.recorder = _recorder;
-    [previewView addSubview:self.focusView];
-    
-    self.focusView.outsideFocusTargetImage = [UIImage imageNamed:@"capture_flip"];
-    self.focusView.insideFocusTargetImage = [UIImage imageNamed:@"capture_flip"];
 
     _recorder.initializeSessionLazily = NO;
     
@@ -126,6 +117,14 @@
 
 - (IBAction)switchCameraMode:(id)sender {
 	[_recorder switchCaptureDevices];
+    if ([_recorder device]==AVCaptureDevicePositionBack)
+    {
+        [self.reverseCamera setTitle:@"Camera: back" forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self.reverseCamera setTitle:@"Camera: front" forState:UIControlStateNormal];
+    }
 }
 
 - (IBAction)stopRecord:(id)sender {

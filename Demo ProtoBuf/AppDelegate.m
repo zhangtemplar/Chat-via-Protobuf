@@ -54,7 +54,7 @@
         NSLog(@"Failed to create directory %@: %d, %s, %@\n", voiceDir, errno, strerror(errno), err);
     }
 
-    NSString *videoDir=[documentsDirectory stringByAppendingPathComponent:@"voices"];
+    NSString *videoDir=[documentsDirectory stringByAppendingPathComponent:@"videos"];
     if (![[NSFileManager defaultManager] createDirectoryAtPath:videoDir withIntermediateDirectories:YES attributes:nil error:&err])
     {
         NSLog(@"EFailed to create directory %@: %d, %s, %@\n", videoDir, errno, strerror(errno), err);
