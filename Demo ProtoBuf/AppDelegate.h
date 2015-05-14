@@ -23,9 +23,6 @@
     char buffer[5];
     int buffer_index;
     
-    // hash table for chat view
-    NSMutableDictionary* chat_list;
-    
     MainViewController *main_view;
     
     UIStoryboard *story_board;
@@ -37,12 +34,6 @@
 
 // send messsage
 -(void)sendMessage:(Message *)msg;
-
-// get chat list
--(ChatViewController *)getChatView:(NSString *)title;
-
-// set chat list
--(void)setChatView:(NSString *)title view:(ChatViewController *)view;
 
 // get story board
 -(UIStoryboard *)getStoryBoard;

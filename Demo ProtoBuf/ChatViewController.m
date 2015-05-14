@@ -34,7 +34,6 @@
     
     // the ... button or typing indicator
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage jsq_defaultTypingIndicatorImage] style:UIBarButtonItemStyleBordered target:self action:@selector(receiveMessagePressed:)];
-    
     app_delegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
 }
 
@@ -213,8 +212,8 @@
 // close current view
 - (void)closePressed:(UIBarButtonItem *)sender
 {
-    [self dismissModalViewControllerAnimated:YES];
-    //[self.delegateModal didDismissJSQChatViewController:self];
+//    [self dismissModalViewControllerAnimated:YES];
+    [self.delegateModal didDismissJSQChatViewController:self];
 }
 
 #pragma mark - JSQMessagesViewController method overrides

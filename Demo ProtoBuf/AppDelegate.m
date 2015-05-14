@@ -43,8 +43,6 @@
         [alert show];
     }
     
-    chat_list=[[NSMutableDictionary alloc] init];
-    
     // create necessary directory
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -243,16 +241,14 @@
     {
         // on get a new message, we create a new chat view
         NSLog(@"Text message received\n");
-        ChatViewController *chat_view=[chat_list objectForKey:[[msg_tmp textFromServerRequest] fromUserId]];
+        ChatViewController *chat_view=[[self getMainView] getChatView:[[msg_tmp textFromServerRequest] fromUserId]];
         if (chat_view==nil)
         {
             // if we don't have a chat view for it, create a new one
             chat_view=[ChatViewController messagesViewController];
             chat_view.delegateModal=self;
             [chat_view initWithUser:[[msg_tmp textFromServerRequest]toUserId] user_name:nil guest_id: [[msg_tmp textFromServerRequest] fromUserId] guest_name:nil];
-            [chat_list setObject:chat_view forKey:[[msg_tmp textFromServerRequest] fromUserId]];
-            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
-            [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
+            [[self getMainView] setChatView:[[msg_tmp textFromServerRequest] fromUserId] view:chat_view];
         }
         [chat_view onReceiveTextMessage:[msg_tmp textFromServerRequest]];
     }
@@ -260,16 +256,14 @@
     {
         // get a new picture message
         NSLog(@"Picture message from the server\n");
-        ChatViewController *chat_view=[chat_list objectForKey:[[msg_tmp pictureFromServerRequest] fromUserId]];
+        ChatViewController *chat_view=[[self getMainView] getChatView:[[msg_tmp pictureFromServerRequest] fromUserId]];
         if (chat_view==nil)
         {
             // if we don't have a chat view for it, create a new one
             chat_view=[ChatViewController messagesViewController];
             chat_view.delegateModal=self;
             [chat_view initWithUser:[[msg_tmp pictureFromServerRequest]toUserId] user_name:nil guest_id: [[msg_tmp pictureFromServerRequest] fromUserId] guest_name:nil];
-            [chat_list setObject:chat_view forKey:[[msg_tmp pictureFromServerRequest] fromUserId]];
-            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
-            [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
+            [[self getMainView] setChatView:[[msg_tmp pictureFromServerRequest] fromUserId] view:chat_view];
         }
         [chat_view onReceivePhotoMessage:[msg_tmp pictureFromServerRequest]];
     }
@@ -277,16 +271,14 @@
     {
         // get a new picture message
         NSLog(@"Video message from the server\n");
-        ChatViewController *chat_view=[chat_list objectForKey:[[msg_tmp videoFromServerRequest] fromUserId]];
+        ChatViewController *chat_view=[[self getMainView] getChatView:[[msg_tmp videoFromServerRequest] fromUserId]];
         if (chat_view==nil)
         {
             // if we don't have a chat view for it, create a new one
             chat_view=[ChatViewController messagesViewController];
             chat_view.delegateModal=self;
             [chat_view initWithUser:[[msg_tmp videoFromServerRequest]toUserId] user_name:nil guest_id: [[msg_tmp videoFromServerRequest] fromUserId] guest_name:nil];
-            [chat_list setObject:chat_view forKey:[[msg_tmp videoFromServerRequest] fromUserId]];
-            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
-            [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
+            [[self getMainView] setChatView:[[msg_tmp videoFromServerRequest] fromUserId] view:chat_view];
         }
         [chat_view onReceiveVideoMessage:[msg_tmp videoFromServerRequest]];
     }
@@ -294,16 +286,14 @@
     {
         // get a new picture message
         NSLog(@"Voice message from the server\n");
-        ChatViewController *chat_view=[chat_list objectForKey:[[msg_tmp voiceFromServerRequest] fromUserId]];
+        ChatViewController *chat_view=[[self getMainView] getChatView:[[msg_tmp voiceFromServerRequest] fromUserId]];
         if (chat_view==nil)
         {
             // if we don't have a chat view for it, create a new one
             chat_view=[ChatViewController messagesViewController];
             chat_view.delegateModal=self;
             [chat_view initWithUser:[[msg_tmp voiceFromServerRequest]toUserId] user_name:nil guest_id: [[msg_tmp voiceFromServerRequest] fromUserId] guest_name:nil];
-            [chat_list setObject:chat_view forKey:[[msg_tmp voiceFromServerRequest] fromUserId]];
-            UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
-            [[[self window] rootViewController] presentViewController:nc animated:YES completion:nil];
+            [[self getMainView] setChatView:[[msg_tmp voiceFromServerRequest] fromUserId] view:chat_view];
         }
         [chat_view onReceiveVoiceMessage:[msg_tmp voiceFromServerRequest]];
     }
@@ -311,8 +301,6 @@
     {
         // on get response for who am i, we set the user id
         NSLog(@"Who am I message received\n");
-        MainViewController *main_view=[self getMainView];
-        [main_view SetWhoAmI:[msg_tmp whoAmIresponse]];
     }
     // for other message type put here
     else
@@ -336,26 +324,6 @@
     {
         [socket writeData:msg_data withTimeout:-1 tag:1];
     }
-}
-
-// get chat list
--(ChatViewController *)getChatView:(NSString *)title
-{
-    if (title==nil)
-    {
-        return nil;
-    }
-    return [chat_list objectForKey:title];
-}
-
-// set chat list
--(void)setChatView:(NSString *)title view:(ChatViewController *)view
-{
-    if (title==nil || view==nil)
-    {
-        return;
-    }
-    [chat_list setObject:view forKey:title];
 }
 
 -(UIStoryboard *)getStoryBoard

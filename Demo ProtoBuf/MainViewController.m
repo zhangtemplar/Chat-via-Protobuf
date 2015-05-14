@@ -32,7 +32,13 @@
     [msg_build setType:Message_MessageTypeWhoAmIReq];
     [msg_build setWhoAmIrequest:[who_msg_build build]];
     
+    chat_list=[[NSMutableDictionary alloc] init];
+    chat_new_message_count=[[NSMutableDictionary alloc] init];
+    
     [app_delegate sendMessage:[msg_build build]];
+    
+    [chat_table setDataSource:self];
+    [chat_table setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,26 +59,116 @@
 -(IBAction)onChat:(id)sender
 {
     NSString *guest_id=input_friend_id.text;
-    ChatViewController *chat_view=[app_delegate getChatView: guest_id];
+    ChatViewController *chat_view=[self getChatView:guest_id];
     if (chat_view==nil)
     {
         // if we don't have a chat view for it, create a new one
         chat_view=[ChatViewController messagesViewController];
         chat_view.delegateModal=self;
         [chat_view initWithUser:[login_user userId] user_name:[login_user userName] guest_id: guest_id guest_name:nil];
-        [app_delegate setChatView:guest_id view:chat_view];
+        [self setChatView:guest_id view:chat_view];
     }
     // if current view is not present, show it
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
     [self presentViewController:nc animated:YES completion:nil];
 }
+
 -(void) SetUser:(Message *)user
 {
     login_user=user;
 }
 
--(void) SetWhoAmI:(Message_WhoAmIResponse *)user
+
+// get chat list
+-(ChatViewController *)getChatView:(NSString *)title
 {
-    [input_who_am_i setText:[NSString stringWithFormat:@"Your user id is: %@",[login_user userId]]];
+    if (title==nil)
+    {
+        return nil;
+    }
+    return [chat_list objectForKey:title];
+}
+
+// set chat list
+-(void)setChatView:(NSString *)title view:(ChatViewController *)view
+{
+    if (title==nil || view==nil)
+    {
+        return;
+    }
+    [chat_list setObject:view forKey:title];
+    [chat_new_message_count setObject:[NSNumber numberWithInt:0] forKey:title];
+    [chat_table reloadData];
+}
+
+// increase new message counter
+-(void)increaseNewMessageCount:(NSString*)title
+{
+    int c=[((NSNumber *)[chat_new_message_count objectForKey:title]) intValue];
+    [chat_new_message_count setObject:[NSNumber numberWithInt:c+1] forKey:title];
+}
+
+// reset new message counter
+-(void)resetNewMessageCount:(NSString*)title
+{
+    [chat_new_message_count setObject:[NSNumber numberWithInt:0] forKey:title];
+}
+
+// get new message count
+-(int)getNewMessageCount:(NSString *)title
+{
+    return [((NSNumber *)[chat_new_message_count objectForKey:title]) intValue];
+}
+
+#pragma mark - UITableViewController
+// number of rows
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [chat_list count];
+}
+
+// number of sectiions, always 1
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+// display the cell
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.textLabel.text=[[chat_list allKeys] objectAtIndex:[indexPath indexAtPosition:1]];
+    cell.detailTextLabel.text=[NSString stringWithFormat:@"%d",[self getNewMessageCount:cell.textLabel.text]];
+}
+
+// initialize the cell
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell;
+    cell=[chat_table dequeueReusableCellWithIdentifier:@"ChatCell"];
+    if (cell==nil)
+    {
+        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"ChatCell"];
+        cell.textLabel.text=[[chat_list allKeys] objectAtIndex:[indexPath indexAtPosition:1]];
+        cell.detailTextLabel.text=[NSString stringWithFormat:@"%d",[self getNewMessageCount:cell.textLabel.text]];
+    }
+    return cell;
+}
+
+// when a cell is selected, open the chat
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell=[chat_table cellForRowAtIndexPath:indexPath];
+    ChatViewController *chat_view=[self getChatView:cell.textLabel.text];
+    [self resetNewMessageCount:cell.textLabel.text];
+    [chat_table deselectRowAtIndexPath:indexPath animated:YES];
+    if (chat_view==nil)
+    {
+        NSLog(@"The selected chat view doesn't exist\n");
+    }
+    else
+    {
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
+        [self presentViewController:nc animated:YES completion:nil];
+    }
 }
 @end
