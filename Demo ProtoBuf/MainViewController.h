@@ -10,10 +10,14 @@
 @class Message_LoginMessageResponse;
 @class AppDelegate;
 @class Message_WhoAmIResponse;
+@class Message_CreateChatRoomResponse;
+@class Message_JoinChatRoomResponse;
 
 @interface MainViewController : UIViewController <UITableViewDataSource,UITableViewDelegate>
 {
     IBOutlet UITextField* input_friend_id;
+    IBOutlet UITextField* input_room_id;
+    IBOutlet UITextField* input_room_name;
     
     Message_LoginMessageResponse* login_user;
     
@@ -30,7 +34,22 @@
     IBOutlet UITableView* chat_table;
 }
 
+// start chat
 -(IBAction)onChat:(id)sender;
+
+// create chat room
+-(IBAction)onCreate:(id)sender;
+
+// enter chat room
+-(IBAction)onEnter:(id)sender;
+
+// chat room is created
+-(void)onRoom:(Message_CreateChatRoomResponse*)msg;
+
+// chat room is joined
+-(void)onJoin:(Message_JoinChatRoomResponse*)msg;
+
+// set host user
 -(void) SetUser:(Message_LoginMessageResponse *)user;
 
 // get chat list

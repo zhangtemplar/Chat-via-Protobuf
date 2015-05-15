@@ -2,14 +2,14 @@
 
 #import "App.pb.h"
 
-@implementation AppRoot
+@implementation MessageRoot
 static PBExtensionRegistry* extensionRegistry = nil;
 + (PBExtensionRegistry*) extensionRegistry {
     return extensionRegistry;
 }
 
 + (void) initialize {
-    if (self == [AppRoot class]) {
+    if (self == [MessageRoot class]) {
         PBMutableExtensionRegistry* registry = [PBMutableExtensionRegistry registry];
         [self registerAllExtensions:registry];
         extensionRegistry = [registry retain];
@@ -47,6 +47,22 @@ static PBExtensionRegistry* extensionRegistry = nil;
 @property (retain) Message_VoiceFromServerResponse* voiceFromServerResponse;
 @property (retain) Message_VideoFromServerRequest* videoFromServerRequest;
 @property (retain) Message_VideoFromServerResponse* videoFromServerResponse;
+@property (retain) Message_CreateChatRoomRequest* createChatRoomRequest;
+@property (retain) Message_CreateChatRoomResponse* createChatRoomResponse;
+@property (retain) Message_DeleteChatRoomRequest* deleteChatRoomRequest;
+@property (retain) Message_DeleteChatRoomResponse* deleteChatRoomResponse;
+@property (retain) Message_QueryChatRoomRequest* queryChatRoomRequest;
+@property (retain) Message_QueryChatRoomResponse* queryChatRoomResponse;
+@property (retain) Message_SearchChatRoomRequest* searchChatRoomRequest;
+@property (retain) Message_SearchChatRoomResponse* searchChatRoomResponse;
+@property (retain) Message_JoinChatRoomRequest* joinChatRoomRequest;
+@property (retain) Message_JoinChatRoomResponse* joinChatRoomResponse;
+@property (retain) Message_LeaveChatRoomRequest* leaveChatRoomRequest;
+@property (retain) Message_LeaveChatRoomResponse* leaveChatRoomResponse;
+@property (retain) Message_TextChatRoomMessageRequest* textChatRoomMessageRequest;
+@property (retain) Message_TextChatRoomMessageResponse* textChatRoomMessageResponse;
+@property (retain) Message_TextFromServerChatRoomRequest* textFromServerChatRoomRequest;
+@property (retain) Message_TextFromServerChatRoomResponse* textFromServerChatRoomResponse;
 @end
 
 @implementation Message
@@ -240,6 +256,118 @@ static PBExtensionRegistry* extensionRegistry = nil;
     hasVideoFromServerResponse_ = !!value;
 }
 @synthesize videoFromServerResponse;
+- (BOOL) hasCreateChatRoomRequest {
+    return !!hasCreateChatRoomRequest_;
+}
+- (void) setHasCreateChatRoomRequest:(BOOL) value {
+    hasCreateChatRoomRequest_ = !!value;
+}
+@synthesize createChatRoomRequest;
+- (BOOL) hasCreateChatRoomResponse {
+    return !!hasCreateChatRoomResponse_;
+}
+- (void) setHasCreateChatRoomResponse:(BOOL) value {
+    hasCreateChatRoomResponse_ = !!value;
+}
+@synthesize createChatRoomResponse;
+- (BOOL) hasDeleteChatRoomRequest {
+    return !!hasDeleteChatRoomRequest_;
+}
+- (void) setHasDeleteChatRoomRequest:(BOOL) value {
+    hasDeleteChatRoomRequest_ = !!value;
+}
+@synthesize deleteChatRoomRequest;
+- (BOOL) hasDeleteChatRoomResponse {
+    return !!hasDeleteChatRoomResponse_;
+}
+- (void) setHasDeleteChatRoomResponse:(BOOL) value {
+    hasDeleteChatRoomResponse_ = !!value;
+}
+@synthesize deleteChatRoomResponse;
+- (BOOL) hasQueryChatRoomRequest {
+    return !!hasQueryChatRoomRequest_;
+}
+- (void) setHasQueryChatRoomRequest:(BOOL) value {
+    hasQueryChatRoomRequest_ = !!value;
+}
+@synthesize queryChatRoomRequest;
+- (BOOL) hasQueryChatRoomResponse {
+    return !!hasQueryChatRoomResponse_;
+}
+- (void) setHasQueryChatRoomResponse:(BOOL) value {
+    hasQueryChatRoomResponse_ = !!value;
+}
+@synthesize queryChatRoomResponse;
+- (BOOL) hasSearchChatRoomRequest {
+    return !!hasSearchChatRoomRequest_;
+}
+- (void) setHasSearchChatRoomRequest:(BOOL) value {
+    hasSearchChatRoomRequest_ = !!value;
+}
+@synthesize searchChatRoomRequest;
+- (BOOL) hasSearchChatRoomResponse {
+    return !!hasSearchChatRoomResponse_;
+}
+- (void) setHasSearchChatRoomResponse:(BOOL) value {
+    hasSearchChatRoomResponse_ = !!value;
+}
+@synthesize searchChatRoomResponse;
+- (BOOL) hasJoinChatRoomRequest {
+    return !!hasJoinChatRoomRequest_;
+}
+- (void) setHasJoinChatRoomRequest:(BOOL) value {
+    hasJoinChatRoomRequest_ = !!value;
+}
+@synthesize joinChatRoomRequest;
+- (BOOL) hasJoinChatRoomResponse {
+    return !!hasJoinChatRoomResponse_;
+}
+- (void) setHasJoinChatRoomResponse:(BOOL) value {
+    hasJoinChatRoomResponse_ = !!value;
+}
+@synthesize joinChatRoomResponse;
+- (BOOL) hasLeaveChatRoomRequest {
+    return !!hasLeaveChatRoomRequest_;
+}
+- (void) setHasLeaveChatRoomRequest:(BOOL) value {
+    hasLeaveChatRoomRequest_ = !!value;
+}
+@synthesize leaveChatRoomRequest;
+- (BOOL) hasLeaveChatRoomResponse {
+    return !!hasLeaveChatRoomResponse_;
+}
+- (void) setHasLeaveChatRoomResponse:(BOOL) value {
+    hasLeaveChatRoomResponse_ = !!value;
+}
+@synthesize leaveChatRoomResponse;
+- (BOOL) hasTextChatRoomMessageRequest {
+    return !!hasTextChatRoomMessageRequest_;
+}
+- (void) setHasTextChatRoomMessageRequest:(BOOL) value {
+    hasTextChatRoomMessageRequest_ = !!value;
+}
+@synthesize textChatRoomMessageRequest;
+- (BOOL) hasTextChatRoomMessageResponse {
+    return !!hasTextChatRoomMessageResponse_;
+}
+- (void) setHasTextChatRoomMessageResponse:(BOOL) value {
+    hasTextChatRoomMessageResponse_ = !!value;
+}
+@synthesize textChatRoomMessageResponse;
+- (BOOL) hasTextFromServerChatRoomRequest {
+    return !!hasTextFromServerChatRoomRequest_;
+}
+- (void) setHasTextFromServerChatRoomRequest:(BOOL) value {
+    hasTextFromServerChatRoomRequest_ = !!value;
+}
+@synthesize textFromServerChatRoomRequest;
+- (BOOL) hasTextFromServerChatRoomResponse {
+    return !!hasTextFromServerChatRoomResponse_;
+}
+- (void) setHasTextFromServerChatRoomResponse:(BOOL) value {
+    hasTextFromServerChatRoomResponse_ = !!value;
+}
+@synthesize textFromServerChatRoomResponse;
 - (void) dealloc {
     self.subRequest = nil;
     self.subResponse = nil;
@@ -267,6 +395,22 @@ static PBExtensionRegistry* extensionRegistry = nil;
     self.voiceFromServerResponse = nil;
     self.videoFromServerRequest = nil;
     self.videoFromServerResponse = nil;
+    self.createChatRoomRequest = nil;
+    self.createChatRoomResponse = nil;
+    self.deleteChatRoomRequest = nil;
+    self.deleteChatRoomResponse = nil;
+    self.queryChatRoomRequest = nil;
+    self.queryChatRoomResponse = nil;
+    self.searchChatRoomRequest = nil;
+    self.searchChatRoomResponse = nil;
+    self.joinChatRoomRequest = nil;
+    self.joinChatRoomResponse = nil;
+    self.leaveChatRoomRequest = nil;
+    self.leaveChatRoomResponse = nil;
+    self.textChatRoomMessageRequest = nil;
+    self.textChatRoomMessageResponse = nil;
+    self.textFromServerChatRoomRequest = nil;
+    self.textFromServerChatRoomResponse = nil;
     [super dealloc];
 }
 - (id) init {
@@ -298,6 +442,22 @@ static PBExtensionRegistry* extensionRegistry = nil;
         self.voiceFromServerResponse = [Message_VoiceFromServerResponse defaultInstance];
         self.videoFromServerRequest = [Message_VideoFromServerRequest defaultInstance];
         self.videoFromServerResponse = [Message_VideoFromServerResponse defaultInstance];
+        self.createChatRoomRequest = [Message_CreateChatRoomRequest defaultInstance];
+        self.createChatRoomResponse = [Message_CreateChatRoomResponse defaultInstance];
+        self.deleteChatRoomRequest = [Message_DeleteChatRoomRequest defaultInstance];
+        self.deleteChatRoomResponse = [Message_DeleteChatRoomResponse defaultInstance];
+        self.queryChatRoomRequest = [Message_QueryChatRoomRequest defaultInstance];
+        self.queryChatRoomResponse = [Message_QueryChatRoomResponse defaultInstance];
+        self.searchChatRoomRequest = [Message_SearchChatRoomRequest defaultInstance];
+        self.searchChatRoomResponse = [Message_SearchChatRoomResponse defaultInstance];
+        self.joinChatRoomRequest = [Message_JoinChatRoomRequest defaultInstance];
+        self.joinChatRoomResponse = [Message_JoinChatRoomResponse defaultInstance];
+        self.leaveChatRoomRequest = [Message_LeaveChatRoomRequest defaultInstance];
+        self.leaveChatRoomResponse = [Message_LeaveChatRoomResponse defaultInstance];
+        self.textChatRoomMessageRequest = [Message_TextChatRoomMessageRequest defaultInstance];
+        self.textChatRoomMessageResponse = [Message_TextChatRoomMessageResponse defaultInstance];
+        self.textFromServerChatRoomRequest = [Message_TextFromServerChatRoomRequest defaultInstance];
+        self.textFromServerChatRoomResponse = [Message_TextFromServerChatRoomResponse defaultInstance];
     }
     return self;
 }
@@ -437,6 +597,86 @@ static Message* defaultMessageInstance = nil;
             return NO;
         }
     }
+    if (self.hasCreateChatRoomRequest) {
+        if (!self.createChatRoomRequest.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasCreateChatRoomResponse) {
+        if (!self.createChatRoomResponse.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasDeleteChatRoomRequest) {
+        if (!self.deleteChatRoomRequest.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasDeleteChatRoomResponse) {
+        if (!self.deleteChatRoomResponse.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasQueryChatRoomRequest) {
+        if (!self.queryChatRoomRequest.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasQueryChatRoomResponse) {
+        if (!self.queryChatRoomResponse.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasSearchChatRoomRequest) {
+        if (!self.searchChatRoomRequest.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasSearchChatRoomResponse) {
+        if (!self.searchChatRoomResponse.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasJoinChatRoomRequest) {
+        if (!self.joinChatRoomRequest.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasJoinChatRoomResponse) {
+        if (!self.joinChatRoomResponse.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasLeaveChatRoomRequest) {
+        if (!self.leaveChatRoomRequest.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasLeaveChatRoomResponse) {
+        if (!self.leaveChatRoomResponse.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasTextChatRoomMessageRequest) {
+        if (!self.textChatRoomMessageRequest.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasTextChatRoomMessageResponse) {
+        if (!self.textChatRoomMessageResponse.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasTextFromServerChatRoomRequest) {
+        if (!self.textFromServerChatRoomRequest.isInitialized) {
+            return NO;
+        }
+    }
+    if (self.hasTextFromServerChatRoomResponse) {
+        if (!self.textFromServerChatRoomResponse.isInitialized) {
+            return NO;
+        }
+    }
     return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
@@ -520,6 +760,54 @@ static Message* defaultMessageInstance = nil;
     }
     if (self.hasVideoFromServerResponse) {
         [output writeMessage:27 value:self.videoFromServerResponse];
+    }
+    if (self.hasCreateChatRoomRequest) {
+        [output writeMessage:28 value:self.createChatRoomRequest];
+    }
+    if (self.hasCreateChatRoomResponse) {
+        [output writeMessage:29 value:self.createChatRoomResponse];
+    }
+    if (self.hasDeleteChatRoomRequest) {
+        [output writeMessage:30 value:self.deleteChatRoomRequest];
+    }
+    if (self.hasDeleteChatRoomResponse) {
+        [output writeMessage:31 value:self.deleteChatRoomResponse];
+    }
+    if (self.hasQueryChatRoomRequest) {
+        [output writeMessage:32 value:self.queryChatRoomRequest];
+    }
+    if (self.hasQueryChatRoomResponse) {
+        [output writeMessage:33 value:self.queryChatRoomResponse];
+    }
+    if (self.hasSearchChatRoomRequest) {
+        [output writeMessage:34 value:self.searchChatRoomRequest];
+    }
+    if (self.hasSearchChatRoomResponse) {
+        [output writeMessage:35 value:self.searchChatRoomResponse];
+    }
+    if (self.hasJoinChatRoomRequest) {
+        [output writeMessage:36 value:self.joinChatRoomRequest];
+    }
+    if (self.hasJoinChatRoomResponse) {
+        [output writeMessage:37 value:self.joinChatRoomResponse];
+    }
+    if (self.hasLeaveChatRoomRequest) {
+        [output writeMessage:38 value:self.leaveChatRoomRequest];
+    }
+    if (self.hasLeaveChatRoomResponse) {
+        [output writeMessage:39 value:self.leaveChatRoomResponse];
+    }
+    if (self.hasTextChatRoomMessageRequest) {
+        [output writeMessage:40 value:self.textChatRoomMessageRequest];
+    }
+    if (self.hasTextChatRoomMessageResponse) {
+        [output writeMessage:41 value:self.textChatRoomMessageResponse];
+    }
+    if (self.hasTextFromServerChatRoomRequest) {
+        [output writeMessage:42 value:self.textFromServerChatRoomRequest];
+    }
+    if (self.hasTextFromServerChatRoomResponse) {
+        [output writeMessage:43 value:self.textFromServerChatRoomResponse];
     }
     [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -611,6 +899,54 @@ static Message* defaultMessageInstance = nil;
     if (self.hasVideoFromServerResponse) {
         size += computeMessageSize(27, self.videoFromServerResponse);
     }
+    if (self.hasCreateChatRoomRequest) {
+        size += computeMessageSize(28, self.createChatRoomRequest);
+    }
+    if (self.hasCreateChatRoomResponse) {
+        size += computeMessageSize(29, self.createChatRoomResponse);
+    }
+    if (self.hasDeleteChatRoomRequest) {
+        size += computeMessageSize(30, self.deleteChatRoomRequest);
+    }
+    if (self.hasDeleteChatRoomResponse) {
+        size += computeMessageSize(31, self.deleteChatRoomResponse);
+    }
+    if (self.hasQueryChatRoomRequest) {
+        size += computeMessageSize(32, self.queryChatRoomRequest);
+    }
+    if (self.hasQueryChatRoomResponse) {
+        size += computeMessageSize(33, self.queryChatRoomResponse);
+    }
+    if (self.hasSearchChatRoomRequest) {
+        size += computeMessageSize(34, self.searchChatRoomRequest);
+    }
+    if (self.hasSearchChatRoomResponse) {
+        size += computeMessageSize(35, self.searchChatRoomResponse);
+    }
+    if (self.hasJoinChatRoomRequest) {
+        size += computeMessageSize(36, self.joinChatRoomRequest);
+    }
+    if (self.hasJoinChatRoomResponse) {
+        size += computeMessageSize(37, self.joinChatRoomResponse);
+    }
+    if (self.hasLeaveChatRoomRequest) {
+        size += computeMessageSize(38, self.leaveChatRoomRequest);
+    }
+    if (self.hasLeaveChatRoomResponse) {
+        size += computeMessageSize(39, self.leaveChatRoomResponse);
+    }
+    if (self.hasTextChatRoomMessageRequest) {
+        size += computeMessageSize(40, self.textChatRoomMessageRequest);
+    }
+    if (self.hasTextChatRoomMessageResponse) {
+        size += computeMessageSize(41, self.textChatRoomMessageResponse);
+    }
+    if (self.hasTextFromServerChatRoomRequest) {
+        size += computeMessageSize(42, self.textFromServerChatRoomRequest);
+    }
+    if (self.hasTextFromServerChatRoomResponse) {
+        size += computeMessageSize(43, self.textFromServerChatRoomResponse);
+    }
     size += self.unknownFields.serializedSize;
     memoizedSerializedSize = size;
     return size;
@@ -675,6 +1011,34 @@ BOOL Message_MessageTypeIsValidValue(Message_MessageType value) {
         case Message_MessageTypeVideoResp:
         case Message_MessageTypeVideoFromServerReq:
         case Message_MessageTypeVideoFromServerResp:
+        case Message_MessageTypeCreateChatRoomReq:
+        case Message_MessageTypeCreateChatRoomResp:
+        case Message_MessageTypeDeleteChatRoomReq:
+        case Message_MessageTypeDeleteChatRoomResp:
+        case Message_MessageTypeQueryChatRoomReq:
+        case Message_MessageTypeQueryChatRoomResp:
+        case Message_MessageTypeSearchChatRoomReq:
+        case Message_MessageTypeSearchChatRoomResp:
+        case Message_MessageTypeJoinChatRoomReq:
+        case Message_MessageTypeJoinChatRoomResp:
+        case Message_MessageTypeLeaveChatRoomReq:
+        case Message_MessageTypeLeaveChatRoomResp:
+        case Message_MessageTypeTextChatRoomReq:
+        case Message_MessageTypeTextChatRoomResp:
+        case Message_MessageTypeTextChatRoomFromServerReq:
+        case Message_MessageTypeTextChatRoomFromServerResp:
+        case Message_MessageTypePictureChatRoomReq:
+        case Message_MessageTypePictureChatRoomResp:
+        case Message_MessageTypePictureChatRoomFromServerReq:
+        case Message_MessageTypePictureChatRoomFromServerResp:
+        case Message_MessageTypeVoiceChatRoomReq:
+        case Message_MessageTypeVoiceChatRoomResp:
+        case Message_MessageTypeVoiceChatRoomFromServerReq:
+        case Message_MessageTypeVoiceChatRoomFromServerResp:
+        case Message_MessageTypeVideoChatRoomReq:
+        case Message_MessageTypeVideoChatRoomResp:
+        case Message_MessageTypeVideoChatRoomFromServerReq:
+        case Message_MessageTypeVideoChatRoomFromServerResp:
             return YES;
         default:
             return NO;
@@ -9520,6 +9884,5486 @@ static Message_VideoFromServerResponse* defaultMessage_VideoFromServerResponseIn
 }
 @end
 
+@interface Message_CreateChatRoomRequest ()
+@property (retain) NSString* userId;
+@property (retain) NSString* roomName;
+@property (retain) NSString* category;
+@property (retain) NSString* description;
+@property int64_t date;
+@end
+
+@implementation Message_CreateChatRoomRequest
+
+- (BOOL) hasUserId {
+    return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) value {
+    hasUserId_ = !!value;
+}
+@synthesize userId;
+- (BOOL) hasRoomName {
+    return !!hasRoomName_;
+}
+- (void) setHasRoomName:(BOOL) value {
+    hasRoomName_ = !!value;
+}
+@synthesize roomName;
+- (BOOL) hasCategory {
+    return !!hasCategory_;
+}
+- (void) setHasCategory:(BOOL) value {
+    hasCategory_ = !!value;
+}
+@synthesize category;
+- (BOOL) hasDescription {
+    return !!hasDescription_;
+}
+- (void) setHasDescription:(BOOL) value {
+    hasDescription_ = !!value;
+}
+@synthesize description;
+- (BOOL) hasDate {
+    return !!hasDate_;
+}
+- (void) setHasDate:(BOOL) value {
+    hasDate_ = !!value;
+}
+@synthesize date;
+- (void) dealloc {
+    self.userId = nil;
+    self.roomName = nil;
+    self.category = nil;
+    self.description = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.userId = @"";
+        self.roomName = @"";
+        self.category = @"";
+        self.description = @"";
+        self.date = 0L;
+    }
+    return self;
+}
+static Message_CreateChatRoomRequest* defaultMessage_CreateChatRoomRequestInstance = nil;
++ (void) initialize {
+    if (self == [Message_CreateChatRoomRequest class]) {
+        defaultMessage_CreateChatRoomRequestInstance = [[Message_CreateChatRoomRequest alloc] init];
+    }
+}
++ (Message_CreateChatRoomRequest*) defaultInstance {
+    return defaultMessage_CreateChatRoomRequestInstance;
+}
+- (Message_CreateChatRoomRequest*) defaultInstance {
+    return defaultMessage_CreateChatRoomRequestInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasUserId) {
+        return NO;
+    }
+    if (!self.hasRoomName) {
+        return NO;
+    }
+    if (!self.hasCategory) {
+        return NO;
+    }
+    if (!self.hasDescription) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasUserId) {
+        [output writeString:1 value:self.userId];
+    }
+    if (self.hasRoomName) {
+        [output writeString:2 value:self.roomName];
+    }
+    if (self.hasCategory) {
+        [output writeString:3 value:self.category];
+    }
+    if (self.hasDescription) {
+        [output writeString:4 value:self.description];
+    }
+    if (self.hasDate) {
+        [output writeInt64:5 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasUserId) {
+        size += computeStringSize(1, self.userId);
+    }
+    if (self.hasRoomName) {
+        size += computeStringSize(2, self.roomName);
+    }
+    if (self.hasCategory) {
+        size += computeStringSize(3, self.category);
+    }
+    if (self.hasDescription) {
+        size += computeStringSize(4, self.description);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(5, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_CreateChatRoomRequest*) parseFromData:(NSData*) data {
+    return (Message_CreateChatRoomRequest*)[[[Message_CreateChatRoomRequest builder] mergeFromData:data] build];
+}
++ (Message_CreateChatRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_CreateChatRoomRequest*)[[[Message_CreateChatRoomRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_CreateChatRoomRequest*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_CreateChatRoomRequest*)[[[Message_CreateChatRoomRequest builder] mergeFromInputStream:input] build];
+}
++ (Message_CreateChatRoomRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_CreateChatRoomRequest*)[[[Message_CreateChatRoomRequest builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_CreateChatRoomRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_CreateChatRoomRequest*)[[[Message_CreateChatRoomRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_CreateChatRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_CreateChatRoomRequest*)[[[Message_CreateChatRoomRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_CreateChatRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_CreateChatRoomRequest*)[[[Message_CreateChatRoomRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_CreateChatRoomRequest_Builder*) builder {
+    return [[[Message_CreateChatRoomRequest_Builder alloc] init] autorelease];
+}
++ (Message_CreateChatRoomRequest_Builder*) builderWithPrototype:(Message_CreateChatRoomRequest*) prototype {
+    return [[Message_CreateChatRoomRequest builder] mergeFrom:prototype];
+}
+- (Message_CreateChatRoomRequest_Builder*) builder {
+    return [Message_CreateChatRoomRequest builder];
+}
+@end
+
+@interface Message_CreateChatRoomRequest_Builder()
+@property (retain) Message_CreateChatRoomRequest* result;
+@end
+
+@implementation Message_CreateChatRoomRequest_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_CreateChatRoomRequest alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_CreateChatRoomRequest_Builder*) clear {
+    self.result = [[[Message_CreateChatRoomRequest alloc] init] autorelease];
+    return self;
+}
+- (Message_CreateChatRoomRequest_Builder*) clone {
+    return [Message_CreateChatRoomRequest builderWithPrototype:result];
+}
+- (Message_CreateChatRoomRequest*) defaultInstance {
+    return [Message_CreateChatRoomRequest defaultInstance];
+}
+- (Message_CreateChatRoomRequest*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_CreateChatRoomRequest*) buildPartial {
+    Message_CreateChatRoomRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_CreateChatRoomRequest_Builder*) mergeFrom:(Message_CreateChatRoomRequest*) other {
+    if (other == [Message_CreateChatRoomRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasUserId) {
+        [self setUserId:other.userId];
+    }
+    if (other.hasRoomName) {
+        [self setRoomName:other.roomName];
+    }
+    if (other.hasCategory) {
+        [self setCategory:other.category];
+    }
+    if (other.hasDescription) {
+        [self setDescription:other.description];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_CreateChatRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_CreateChatRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setUserId:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setRoomName:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setCategory:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setDescription:[input readString]];
+                break;
+            }
+            case 40: {
+                [self setDate:[input readInt64]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasUserId {
+    return result.hasUserId;
+}
+- (NSString*) userId {
+    return result.userId;
+}
+- (Message_CreateChatRoomRequest_Builder*) setUserId:(NSString*) value {
+    result.hasUserId = YES;
+    result.userId = value;
+    return self;
+}
+- (Message_CreateChatRoomRequest_Builder*) clearUserId {
+    result.hasUserId = NO;
+    result.userId = @"";
+    return self;
+}
+- (BOOL) hasRoomName {
+    return result.hasRoomName;
+}
+- (NSString*) roomName {
+    return result.roomName;
+}
+- (Message_CreateChatRoomRequest_Builder*) setRoomName:(NSString*) value {
+    result.hasRoomName = YES;
+    result.roomName = value;
+    return self;
+}
+- (Message_CreateChatRoomRequest_Builder*) clearRoomName {
+    result.hasRoomName = NO;
+    result.roomName = @"";
+    return self;
+}
+- (BOOL) hasCategory {
+    return result.hasCategory;
+}
+- (NSString*) category {
+    return result.category;
+}
+- (Message_CreateChatRoomRequest_Builder*) setCategory:(NSString*) value {
+    result.hasCategory = YES;
+    result.category = value;
+    return self;
+}
+- (Message_CreateChatRoomRequest_Builder*) clearCategory {
+    result.hasCategory = NO;
+    result.category = @"";
+    return self;
+}
+- (BOOL) hasDescription {
+    return result.hasDescription;
+}
+- (NSString*) description {
+    return result.description;
+}
+- (Message_CreateChatRoomRequest_Builder*) setDescription:(NSString*) value {
+    result.hasDescription = YES;
+    result.description = value;
+    return self;
+}
+- (Message_CreateChatRoomRequest_Builder*) clearDescription {
+    result.hasDescription = NO;
+    result.description = @"";
+    return self;
+}
+- (BOOL) hasDate {
+    return result.hasDate;
+}
+- (int64_t) date {
+    return result.date;
+}
+- (Message_CreateChatRoomRequest_Builder*) setDate:(int64_t) value {
+    result.hasDate = YES;
+    result.date = value;
+    return self;
+}
+- (Message_CreateChatRoomRequest_Builder*) clearDate {
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
+}
+@end
+
+@interface Message_CreateChatRoomResponse ()
+@property int32_t status;
+@property (retain) NSString* desc;
+@property (retain) NSString* chatRoomUuid;
+@end
+
+@implementation Message_CreateChatRoomResponse
+
+- (BOOL) hasStatus {
+    return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+    hasStatus_ = !!value;
+}
+@synthesize status;
+- (BOOL) hasDesc {
+    return !!hasDesc_;
+}
+- (void) setHasDesc:(BOOL) value {
+    hasDesc_ = !!value;
+}
+@synthesize desc;
+- (BOOL) hasChatRoomUuid {
+    return !!hasChatRoomUuid_;
+}
+- (void) setHasChatRoomUuid:(BOOL) value {
+    hasChatRoomUuid_ = !!value;
+}
+@synthesize chatRoomUuid;
+- (void) dealloc {
+    self.desc = nil;
+    self.chatRoomUuid = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.status = 0;
+        self.desc = @"";
+        self.chatRoomUuid = @"";
+    }
+    return self;
+}
+static Message_CreateChatRoomResponse* defaultMessage_CreateChatRoomResponseInstance = nil;
++ (void) initialize {
+    if (self == [Message_CreateChatRoomResponse class]) {
+        defaultMessage_CreateChatRoomResponseInstance = [[Message_CreateChatRoomResponse alloc] init];
+    }
+}
++ (Message_CreateChatRoomResponse*) defaultInstance {
+    return defaultMessage_CreateChatRoomResponseInstance;
+}
+- (Message_CreateChatRoomResponse*) defaultInstance {
+    return defaultMessage_CreateChatRoomResponseInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    if (!self.hasChatRoomUuid) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasStatus) {
+        [output writeInt32:1 value:self.status];
+    }
+    if (self.hasDesc) {
+        [output writeString:2 value:self.desc];
+    }
+    if (self.hasChatRoomUuid) {
+        [output writeString:3 value:self.chatRoomUuid];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasStatus) {
+        size += computeInt32Size(1, self.status);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(2, self.desc);
+    }
+    if (self.hasChatRoomUuid) {
+        size += computeStringSize(3, self.chatRoomUuid);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_CreateChatRoomResponse*) parseFromData:(NSData*) data {
+    return (Message_CreateChatRoomResponse*)[[[Message_CreateChatRoomResponse builder] mergeFromData:data] build];
+}
++ (Message_CreateChatRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_CreateChatRoomResponse*)[[[Message_CreateChatRoomResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_CreateChatRoomResponse*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_CreateChatRoomResponse*)[[[Message_CreateChatRoomResponse builder] mergeFromInputStream:input] build];
+}
++ (Message_CreateChatRoomResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_CreateChatRoomResponse*)[[[Message_CreateChatRoomResponse builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_CreateChatRoomResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_CreateChatRoomResponse*)[[[Message_CreateChatRoomResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_CreateChatRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_CreateChatRoomResponse*)[[[Message_CreateChatRoomResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_CreateChatRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_CreateChatRoomResponse*)[[[Message_CreateChatRoomResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_CreateChatRoomResponse_Builder*) builder {
+    return [[[Message_CreateChatRoomResponse_Builder alloc] init] autorelease];
+}
++ (Message_CreateChatRoomResponse_Builder*) builderWithPrototype:(Message_CreateChatRoomResponse*) prototype {
+    return [[Message_CreateChatRoomResponse builder] mergeFrom:prototype];
+}
+- (Message_CreateChatRoomResponse_Builder*) builder {
+    return [Message_CreateChatRoomResponse builder];
+}
+@end
+
+@interface Message_CreateChatRoomResponse_Builder()
+@property (retain) Message_CreateChatRoomResponse* result;
+@end
+
+@implementation Message_CreateChatRoomResponse_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_CreateChatRoomResponse alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_CreateChatRoomResponse_Builder*) clear {
+    self.result = [[[Message_CreateChatRoomResponse alloc] init] autorelease];
+    return self;
+}
+- (Message_CreateChatRoomResponse_Builder*) clone {
+    return [Message_CreateChatRoomResponse builderWithPrototype:result];
+}
+- (Message_CreateChatRoomResponse*) defaultInstance {
+    return [Message_CreateChatRoomResponse defaultInstance];
+}
+- (Message_CreateChatRoomResponse*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_CreateChatRoomResponse*) buildPartial {
+    Message_CreateChatRoomResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_CreateChatRoomResponse_Builder*) mergeFrom:(Message_CreateChatRoomResponse*) other {
+    if (other == [Message_CreateChatRoomResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.hasChatRoomUuid) {
+        [self setChatRoomUuid:other.chatRoomUuid];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_CreateChatRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_CreateChatRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 18: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setChatRoomUuid:[input readString]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasStatus {
+    return result.hasStatus;
+}
+- (int32_t) status {
+    return result.status;
+}
+- (Message_CreateChatRoomResponse_Builder*) setStatus:(int32_t) value {
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
+}
+- (Message_CreateChatRoomResponse_Builder*) clearStatus {
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
+}
+- (BOOL) hasDesc {
+    return result.hasDesc;
+}
+- (NSString*) desc {
+    return result.desc;
+}
+- (Message_CreateChatRoomResponse_Builder*) setDesc:(NSString*) value {
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
+}
+- (Message_CreateChatRoomResponse_Builder*) clearDesc {
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
+}
+- (BOOL) hasChatRoomUuid {
+    return result.hasChatRoomUuid;
+}
+- (NSString*) chatRoomUuid {
+    return result.chatRoomUuid;
+}
+- (Message_CreateChatRoomResponse_Builder*) setChatRoomUuid:(NSString*) value {
+    result.hasChatRoomUuid = YES;
+    result.chatRoomUuid = value;
+    return self;
+}
+- (Message_CreateChatRoomResponse_Builder*) clearChatRoomUuid {
+    result.hasChatRoomUuid = NO;
+    result.chatRoomUuid = @"";
+    return self;
+}
+@end
+
+@interface Message_DeleteChatRoomRequest ()
+@property (retain) NSString* userId;
+@property (retain) NSString* chatRoomUuid;
+@end
+
+@implementation Message_DeleteChatRoomRequest
+
+- (BOOL) hasUserId {
+    return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) value {
+    hasUserId_ = !!value;
+}
+@synthesize userId;
+- (BOOL) hasChatRoomUuid {
+    return !!hasChatRoomUuid_;
+}
+- (void) setHasChatRoomUuid:(BOOL) value {
+    hasChatRoomUuid_ = !!value;
+}
+@synthesize chatRoomUuid;
+- (void) dealloc {
+    self.userId = nil;
+    self.chatRoomUuid = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.userId = @"";
+        self.chatRoomUuid = @"";
+    }
+    return self;
+}
+static Message_DeleteChatRoomRequest* defaultMessage_DeleteChatRoomRequestInstance = nil;
++ (void) initialize {
+    if (self == [Message_DeleteChatRoomRequest class]) {
+        defaultMessage_DeleteChatRoomRequestInstance = [[Message_DeleteChatRoomRequest alloc] init];
+    }
+}
++ (Message_DeleteChatRoomRequest*) defaultInstance {
+    return defaultMessage_DeleteChatRoomRequestInstance;
+}
+- (Message_DeleteChatRoomRequest*) defaultInstance {
+    return defaultMessage_DeleteChatRoomRequestInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasUserId) {
+        return NO;
+    }
+    if (!self.hasChatRoomUuid) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasUserId) {
+        [output writeString:1 value:self.userId];
+    }
+    if (self.hasChatRoomUuid) {
+        [output writeString:2 value:self.chatRoomUuid];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasUserId) {
+        size += computeStringSize(1, self.userId);
+    }
+    if (self.hasChatRoomUuid) {
+        size += computeStringSize(2, self.chatRoomUuid);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_DeleteChatRoomRequest*) parseFromData:(NSData*) data {
+    return (Message_DeleteChatRoomRequest*)[[[Message_DeleteChatRoomRequest builder] mergeFromData:data] build];
+}
++ (Message_DeleteChatRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_DeleteChatRoomRequest*)[[[Message_DeleteChatRoomRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_DeleteChatRoomRequest*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_DeleteChatRoomRequest*)[[[Message_DeleteChatRoomRequest builder] mergeFromInputStream:input] build];
+}
++ (Message_DeleteChatRoomRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_DeleteChatRoomRequest*)[[[Message_DeleteChatRoomRequest builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_DeleteChatRoomRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_DeleteChatRoomRequest*)[[[Message_DeleteChatRoomRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_DeleteChatRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_DeleteChatRoomRequest*)[[[Message_DeleteChatRoomRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_DeleteChatRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_DeleteChatRoomRequest*)[[[Message_DeleteChatRoomRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_DeleteChatRoomRequest_Builder*) builder {
+    return [[[Message_DeleteChatRoomRequest_Builder alloc] init] autorelease];
+}
++ (Message_DeleteChatRoomRequest_Builder*) builderWithPrototype:(Message_DeleteChatRoomRequest*) prototype {
+    return [[Message_DeleteChatRoomRequest builder] mergeFrom:prototype];
+}
+- (Message_DeleteChatRoomRequest_Builder*) builder {
+    return [Message_DeleteChatRoomRequest builder];
+}
+@end
+
+@interface Message_DeleteChatRoomRequest_Builder()
+@property (retain) Message_DeleteChatRoomRequest* result;
+@end
+
+@implementation Message_DeleteChatRoomRequest_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_DeleteChatRoomRequest alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_DeleteChatRoomRequest_Builder*) clear {
+    self.result = [[[Message_DeleteChatRoomRequest alloc] init] autorelease];
+    return self;
+}
+- (Message_DeleteChatRoomRequest_Builder*) clone {
+    return [Message_DeleteChatRoomRequest builderWithPrototype:result];
+}
+- (Message_DeleteChatRoomRequest*) defaultInstance {
+    return [Message_DeleteChatRoomRequest defaultInstance];
+}
+- (Message_DeleteChatRoomRequest*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_DeleteChatRoomRequest*) buildPartial {
+    Message_DeleteChatRoomRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_DeleteChatRoomRequest_Builder*) mergeFrom:(Message_DeleteChatRoomRequest*) other {
+    if (other == [Message_DeleteChatRoomRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasUserId) {
+        [self setUserId:other.userId];
+    }
+    if (other.hasChatRoomUuid) {
+        [self setChatRoomUuid:other.chatRoomUuid];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_DeleteChatRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_DeleteChatRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setUserId:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setChatRoomUuid:[input readString]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasUserId {
+    return result.hasUserId;
+}
+- (NSString*) userId {
+    return result.userId;
+}
+- (Message_DeleteChatRoomRequest_Builder*) setUserId:(NSString*) value {
+    result.hasUserId = YES;
+    result.userId = value;
+    return self;
+}
+- (Message_DeleteChatRoomRequest_Builder*) clearUserId {
+    result.hasUserId = NO;
+    result.userId = @"";
+    return self;
+}
+- (BOOL) hasChatRoomUuid {
+    return result.hasChatRoomUuid;
+}
+- (NSString*) chatRoomUuid {
+    return result.chatRoomUuid;
+}
+- (Message_DeleteChatRoomRequest_Builder*) setChatRoomUuid:(NSString*) value {
+    result.hasChatRoomUuid = YES;
+    result.chatRoomUuid = value;
+    return self;
+}
+- (Message_DeleteChatRoomRequest_Builder*) clearChatRoomUuid {
+    result.hasChatRoomUuid = NO;
+    result.chatRoomUuid = @"";
+    return self;
+}
+@end
+
+@interface Message_DeleteChatRoomResponse ()
+@property int32_t status;
+@property (retain) NSString* desc;
+@end
+
+@implementation Message_DeleteChatRoomResponse
+
+- (BOOL) hasStatus {
+    return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+    hasStatus_ = !!value;
+}
+@synthesize status;
+- (BOOL) hasDesc {
+    return !!hasDesc_;
+}
+- (void) setHasDesc:(BOOL) value {
+    hasDesc_ = !!value;
+}
+@synthesize desc;
+- (void) dealloc {
+    self.desc = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.status = 0;
+        self.desc = @"";
+    }
+    return self;
+}
+static Message_DeleteChatRoomResponse* defaultMessage_DeleteChatRoomResponseInstance = nil;
++ (void) initialize {
+    if (self == [Message_DeleteChatRoomResponse class]) {
+        defaultMessage_DeleteChatRoomResponseInstance = [[Message_DeleteChatRoomResponse alloc] init];
+    }
+}
++ (Message_DeleteChatRoomResponse*) defaultInstance {
+    return defaultMessage_DeleteChatRoomResponseInstance;
+}
+- (Message_DeleteChatRoomResponse*) defaultInstance {
+    return defaultMessage_DeleteChatRoomResponseInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasStatus) {
+        [output writeInt32:1 value:self.status];
+    }
+    if (self.hasDesc) {
+        [output writeString:2 value:self.desc];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasStatus) {
+        size += computeInt32Size(1, self.status);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(2, self.desc);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_DeleteChatRoomResponse*) parseFromData:(NSData*) data {
+    return (Message_DeleteChatRoomResponse*)[[[Message_DeleteChatRoomResponse builder] mergeFromData:data] build];
+}
++ (Message_DeleteChatRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_DeleteChatRoomResponse*)[[[Message_DeleteChatRoomResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_DeleteChatRoomResponse*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_DeleteChatRoomResponse*)[[[Message_DeleteChatRoomResponse builder] mergeFromInputStream:input] build];
+}
++ (Message_DeleteChatRoomResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_DeleteChatRoomResponse*)[[[Message_DeleteChatRoomResponse builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_DeleteChatRoomResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_DeleteChatRoomResponse*)[[[Message_DeleteChatRoomResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_DeleteChatRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_DeleteChatRoomResponse*)[[[Message_DeleteChatRoomResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_DeleteChatRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_DeleteChatRoomResponse*)[[[Message_DeleteChatRoomResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_DeleteChatRoomResponse_Builder*) builder {
+    return [[[Message_DeleteChatRoomResponse_Builder alloc] init] autorelease];
+}
++ (Message_DeleteChatRoomResponse_Builder*) builderWithPrototype:(Message_DeleteChatRoomResponse*) prototype {
+    return [[Message_DeleteChatRoomResponse builder] mergeFrom:prototype];
+}
+- (Message_DeleteChatRoomResponse_Builder*) builder {
+    return [Message_DeleteChatRoomResponse builder];
+}
+@end
+
+@interface Message_DeleteChatRoomResponse_Builder()
+@property (retain) Message_DeleteChatRoomResponse* result;
+@end
+
+@implementation Message_DeleteChatRoomResponse_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_DeleteChatRoomResponse alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_DeleteChatRoomResponse_Builder*) clear {
+    self.result = [[[Message_DeleteChatRoomResponse alloc] init] autorelease];
+    return self;
+}
+- (Message_DeleteChatRoomResponse_Builder*) clone {
+    return [Message_DeleteChatRoomResponse builderWithPrototype:result];
+}
+- (Message_DeleteChatRoomResponse*) defaultInstance {
+    return [Message_DeleteChatRoomResponse defaultInstance];
+}
+- (Message_DeleteChatRoomResponse*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_DeleteChatRoomResponse*) buildPartial {
+    Message_DeleteChatRoomResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_DeleteChatRoomResponse_Builder*) mergeFrom:(Message_DeleteChatRoomResponse*) other {
+    if (other == [Message_DeleteChatRoomResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_DeleteChatRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_DeleteChatRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 18: {
+                [self setDesc:[input readString]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasStatus {
+    return result.hasStatus;
+}
+- (int32_t) status {
+    return result.status;
+}
+- (Message_DeleteChatRoomResponse_Builder*) setStatus:(int32_t) value {
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
+}
+- (Message_DeleteChatRoomResponse_Builder*) clearStatus {
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
+}
+- (BOOL) hasDesc {
+    return result.hasDesc;
+}
+- (NSString*) desc {
+    return result.desc;
+}
+- (Message_DeleteChatRoomResponse_Builder*) setDesc:(NSString*) value {
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
+}
+- (Message_DeleteChatRoomResponse_Builder*) clearDesc {
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
+}
+@end
+
+@interface Message_QueryChatRoomRequest ()
+@property (retain) NSString* chatRoomUuid;
+@end
+
+@implementation Message_QueryChatRoomRequest
+
+- (BOOL) hasChatRoomUuid {
+    return !!hasChatRoomUuid_;
+}
+- (void) setHasChatRoomUuid:(BOOL) value {
+    hasChatRoomUuid_ = !!value;
+}
+@synthesize chatRoomUuid;
+- (void) dealloc {
+    self.chatRoomUuid = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.chatRoomUuid = @"";
+    }
+    return self;
+}
+static Message_QueryChatRoomRequest* defaultMessage_QueryChatRoomRequestInstance = nil;
++ (void) initialize {
+    if (self == [Message_QueryChatRoomRequest class]) {
+        defaultMessage_QueryChatRoomRequestInstance = [[Message_QueryChatRoomRequest alloc] init];
+    }
+}
++ (Message_QueryChatRoomRequest*) defaultInstance {
+    return defaultMessage_QueryChatRoomRequestInstance;
+}
+- (Message_QueryChatRoomRequest*) defaultInstance {
+    return defaultMessage_QueryChatRoomRequestInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasChatRoomUuid) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasChatRoomUuid) {
+        [output writeString:1 value:self.chatRoomUuid];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasChatRoomUuid) {
+        size += computeStringSize(1, self.chatRoomUuid);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_QueryChatRoomRequest*) parseFromData:(NSData*) data {
+    return (Message_QueryChatRoomRequest*)[[[Message_QueryChatRoomRequest builder] mergeFromData:data] build];
+}
++ (Message_QueryChatRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_QueryChatRoomRequest*)[[[Message_QueryChatRoomRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_QueryChatRoomRequest*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_QueryChatRoomRequest*)[[[Message_QueryChatRoomRequest builder] mergeFromInputStream:input] build];
+}
++ (Message_QueryChatRoomRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_QueryChatRoomRequest*)[[[Message_QueryChatRoomRequest builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_QueryChatRoomRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_QueryChatRoomRequest*)[[[Message_QueryChatRoomRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_QueryChatRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_QueryChatRoomRequest*)[[[Message_QueryChatRoomRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_QueryChatRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_QueryChatRoomRequest*)[[[Message_QueryChatRoomRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_QueryChatRoomRequest_Builder*) builder {
+    return [[[Message_QueryChatRoomRequest_Builder alloc] init] autorelease];
+}
++ (Message_QueryChatRoomRequest_Builder*) builderWithPrototype:(Message_QueryChatRoomRequest*) prototype {
+    return [[Message_QueryChatRoomRequest builder] mergeFrom:prototype];
+}
+- (Message_QueryChatRoomRequest_Builder*) builder {
+    return [Message_QueryChatRoomRequest builder];
+}
+@end
+
+@interface Message_QueryChatRoomRequest_Builder()
+@property (retain) Message_QueryChatRoomRequest* result;
+@end
+
+@implementation Message_QueryChatRoomRequest_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_QueryChatRoomRequest alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_QueryChatRoomRequest_Builder*) clear {
+    self.result = [[[Message_QueryChatRoomRequest alloc] init] autorelease];
+    return self;
+}
+- (Message_QueryChatRoomRequest_Builder*) clone {
+    return [Message_QueryChatRoomRequest builderWithPrototype:result];
+}
+- (Message_QueryChatRoomRequest*) defaultInstance {
+    return [Message_QueryChatRoomRequest defaultInstance];
+}
+- (Message_QueryChatRoomRequest*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_QueryChatRoomRequest*) buildPartial {
+    Message_QueryChatRoomRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_QueryChatRoomRequest_Builder*) mergeFrom:(Message_QueryChatRoomRequest*) other {
+    if (other == [Message_QueryChatRoomRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasChatRoomUuid) {
+        [self setChatRoomUuid:other.chatRoomUuid];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_QueryChatRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_QueryChatRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setChatRoomUuid:[input readString]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasChatRoomUuid {
+    return result.hasChatRoomUuid;
+}
+- (NSString*) chatRoomUuid {
+    return result.chatRoomUuid;
+}
+- (Message_QueryChatRoomRequest_Builder*) setChatRoomUuid:(NSString*) value {
+    result.hasChatRoomUuid = YES;
+    result.chatRoomUuid = value;
+    return self;
+}
+- (Message_QueryChatRoomRequest_Builder*) clearChatRoomUuid {
+    result.hasChatRoomUuid = NO;
+    result.chatRoomUuid = @"";
+    return self;
+}
+@end
+
+@interface Message_Location ()
+@property (retain) NSString* latitude;
+@property (retain) NSString* longitude;
+@property (retain) NSString* name;
+@end
+
+@implementation Message_Location
+
+- (BOOL) hasLatitude {
+    return !!hasLatitude_;
+}
+- (void) setHasLatitude:(BOOL) value {
+    hasLatitude_ = !!value;
+}
+@synthesize latitude;
+- (BOOL) hasLongitude {
+    return !!hasLongitude_;
+}
+- (void) setHasLongitude:(BOOL) value {
+    hasLongitude_ = !!value;
+}
+@synthesize longitude;
+- (BOOL) hasName {
+    return !!hasName_;
+}
+- (void) setHasName:(BOOL) value {
+    hasName_ = !!value;
+}
+@synthesize name;
+- (void) dealloc {
+    self.latitude = nil;
+    self.longitude = nil;
+    self.name = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.latitude = @"";
+        self.longitude = @"";
+        self.name = @"";
+    }
+    return self;
+}
+static Message_Location* defaultMessage_LocationInstance = nil;
++ (void) initialize {
+    if (self == [Message_Location class]) {
+        defaultMessage_LocationInstance = [[Message_Location alloc] init];
+    }
+}
++ (Message_Location*) defaultInstance {
+    return defaultMessage_LocationInstance;
+}
+- (Message_Location*) defaultInstance {
+    return defaultMessage_LocationInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasLatitude) {
+        return NO;
+    }
+    if (!self.hasLongitude) {
+        return NO;
+    }
+    if (!self.hasName) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasLatitude) {
+        [output writeString:1 value:self.latitude];
+    }
+    if (self.hasLongitude) {
+        [output writeString:2 value:self.longitude];
+    }
+    if (self.hasName) {
+        [output writeString:3 value:self.name];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasLatitude) {
+        size += computeStringSize(1, self.latitude);
+    }
+    if (self.hasLongitude) {
+        size += computeStringSize(2, self.longitude);
+    }
+    if (self.hasName) {
+        size += computeStringSize(3, self.name);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_Location*) parseFromData:(NSData*) data {
+    return (Message_Location*)[[[Message_Location builder] mergeFromData:data] build];
+}
++ (Message_Location*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_Location*)[[[Message_Location builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_Location*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_Location*)[[[Message_Location builder] mergeFromInputStream:input] build];
+}
++ (Message_Location*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_Location*)[[[Message_Location builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_Location*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_Location*)[[[Message_Location builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_Location*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_Location*)[[[Message_Location builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_Location*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_Location*)[[[Message_Location builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_Location_Builder*) builder {
+    return [[[Message_Location_Builder alloc] init] autorelease];
+}
++ (Message_Location_Builder*) builderWithPrototype:(Message_Location*) prototype {
+    return [[Message_Location builder] mergeFrom:prototype];
+}
+- (Message_Location_Builder*) builder {
+    return [Message_Location builder];
+}
+@end
+
+@interface Message_Location_Builder()
+@property (retain) Message_Location* result;
+@end
+
+@implementation Message_Location_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_Location alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_Location_Builder*) clear {
+    self.result = [[[Message_Location alloc] init] autorelease];
+    return self;
+}
+- (Message_Location_Builder*) clone {
+    return [Message_Location builderWithPrototype:result];
+}
+- (Message_Location*) defaultInstance {
+    return [Message_Location defaultInstance];
+}
+- (Message_Location*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_Location*) buildPartial {
+    Message_Location* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_Location_Builder*) mergeFrom:(Message_Location*) other {
+    if (other == [Message_Location defaultInstance]) {
+        return self;
+    }
+    if (other.hasLatitude) {
+        [self setLatitude:other.latitude];
+    }
+    if (other.hasLongitude) {
+        [self setLongitude:other.longitude];
+    }
+    if (other.hasName) {
+        [self setName:other.name];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_Location_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_Location_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setLatitude:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setLongitude:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setName:[input readString]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasLatitude {
+    return result.hasLatitude;
+}
+- (NSString*) latitude {
+    return result.latitude;
+}
+- (Message_Location_Builder*) setLatitude:(NSString*) value {
+    result.hasLatitude = YES;
+    result.latitude = value;
+    return self;
+}
+- (Message_Location_Builder*) clearLatitude {
+    result.hasLatitude = NO;
+    result.latitude = @"";
+    return self;
+}
+- (BOOL) hasLongitude {
+    return result.hasLongitude;
+}
+- (NSString*) longitude {
+    return result.longitude;
+}
+- (Message_Location_Builder*) setLongitude:(NSString*) value {
+    result.hasLongitude = YES;
+    result.longitude = value;
+    return self;
+}
+- (Message_Location_Builder*) clearLongitude {
+    result.hasLongitude = NO;
+    result.longitude = @"";
+    return self;
+}
+- (BOOL) hasName {
+    return result.hasName;
+}
+- (NSString*) name {
+    return result.name;
+}
+- (Message_Location_Builder*) setName:(NSString*) value {
+    result.hasName = YES;
+    result.name = value;
+    return self;
+}
+- (Message_Location_Builder*) clearName {
+    result.hasName = NO;
+    result.name = @"";
+    return self;
+}
+@end
+
+@interface Message_UserBriefInfo ()
+@property (retain) NSString* userId;
+@property (retain) NSString* nickname;
+@property (retain) NSString* avatarPictureUuid;
+@property (retain) NSString* selfIntroduction;
+@end
+
+@implementation Message_UserBriefInfo
+
+- (BOOL) hasUserId {
+    return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) value {
+    hasUserId_ = !!value;
+}
+@synthesize userId;
+- (BOOL) hasNickname {
+    return !!hasNickname_;
+}
+- (void) setHasNickname:(BOOL) value {
+    hasNickname_ = !!value;
+}
+@synthesize nickname;
+- (BOOL) hasAvatarPictureUuid {
+    return !!hasAvatarPictureUuid_;
+}
+- (void) setHasAvatarPictureUuid:(BOOL) value {
+    hasAvatarPictureUuid_ = !!value;
+}
+@synthesize avatarPictureUuid;
+- (BOOL) hasSelfIntroduction {
+    return !!hasSelfIntroduction_;
+}
+- (void) setHasSelfIntroduction:(BOOL) value {
+    hasSelfIntroduction_ = !!value;
+}
+@synthesize selfIntroduction;
+- (void) dealloc {
+    self.userId = nil;
+    self.nickname = nil;
+    self.avatarPictureUuid = nil;
+    self.selfIntroduction = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.userId = @"";
+        self.nickname = @"";
+        self.avatarPictureUuid = @"";
+        self.selfIntroduction = @"";
+    }
+    return self;
+}
+static Message_UserBriefInfo* defaultMessage_UserBriefInfoInstance = nil;
++ (void) initialize {
+    if (self == [Message_UserBriefInfo class]) {
+        defaultMessage_UserBriefInfoInstance = [[Message_UserBriefInfo alloc] init];
+    }
+}
++ (Message_UserBriefInfo*) defaultInstance {
+    return defaultMessage_UserBriefInfoInstance;
+}
+- (Message_UserBriefInfo*) defaultInstance {
+    return defaultMessage_UserBriefInfoInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasUserId) {
+        return NO;
+    }
+    if (!self.hasNickname) {
+        return NO;
+    }
+    if (!self.hasAvatarPictureUuid) {
+        return NO;
+    }
+    if (!self.hasSelfIntroduction) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasUserId) {
+        [output writeString:1 value:self.userId];
+    }
+    if (self.hasNickname) {
+        [output writeString:2 value:self.nickname];
+    }
+    if (self.hasAvatarPictureUuid) {
+        [output writeString:3 value:self.avatarPictureUuid];
+    }
+    if (self.hasSelfIntroduction) {
+        [output writeString:4 value:self.selfIntroduction];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasUserId) {
+        size += computeStringSize(1, self.userId);
+    }
+    if (self.hasNickname) {
+        size += computeStringSize(2, self.nickname);
+    }
+    if (self.hasAvatarPictureUuid) {
+        size += computeStringSize(3, self.avatarPictureUuid);
+    }
+    if (self.hasSelfIntroduction) {
+        size += computeStringSize(4, self.selfIntroduction);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_UserBriefInfo*) parseFromData:(NSData*) data {
+    return (Message_UserBriefInfo*)[[[Message_UserBriefInfo builder] mergeFromData:data] build];
+}
++ (Message_UserBriefInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_UserBriefInfo*)[[[Message_UserBriefInfo builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_UserBriefInfo*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_UserBriefInfo*)[[[Message_UserBriefInfo builder] mergeFromInputStream:input] build];
+}
++ (Message_UserBriefInfo*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_UserBriefInfo*)[[[Message_UserBriefInfo builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_UserBriefInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_UserBriefInfo*)[[[Message_UserBriefInfo builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_UserBriefInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_UserBriefInfo*)[[[Message_UserBriefInfo builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_UserBriefInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_UserBriefInfo*)[[[Message_UserBriefInfo builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_UserBriefInfo_Builder*) builder {
+    return [[[Message_UserBriefInfo_Builder alloc] init] autorelease];
+}
++ (Message_UserBriefInfo_Builder*) builderWithPrototype:(Message_UserBriefInfo*) prototype {
+    return [[Message_UserBriefInfo builder] mergeFrom:prototype];
+}
+- (Message_UserBriefInfo_Builder*) builder {
+    return [Message_UserBriefInfo builder];
+}
+@end
+
+@interface Message_UserBriefInfo_Builder()
+@property (retain) Message_UserBriefInfo* result;
+@end
+
+@implementation Message_UserBriefInfo_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_UserBriefInfo alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_UserBriefInfo_Builder*) clear {
+    self.result = [[[Message_UserBriefInfo alloc] init] autorelease];
+    return self;
+}
+- (Message_UserBriefInfo_Builder*) clone {
+    return [Message_UserBriefInfo builderWithPrototype:result];
+}
+- (Message_UserBriefInfo*) defaultInstance {
+    return [Message_UserBriefInfo defaultInstance];
+}
+- (Message_UserBriefInfo*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_UserBriefInfo*) buildPartial {
+    Message_UserBriefInfo* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_UserBriefInfo_Builder*) mergeFrom:(Message_UserBriefInfo*) other {
+    if (other == [Message_UserBriefInfo defaultInstance]) {
+        return self;
+    }
+    if (other.hasUserId) {
+        [self setUserId:other.userId];
+    }
+    if (other.hasNickname) {
+        [self setNickname:other.nickname];
+    }
+    if (other.hasAvatarPictureUuid) {
+        [self setAvatarPictureUuid:other.avatarPictureUuid];
+    }
+    if (other.hasSelfIntroduction) {
+        [self setSelfIntroduction:other.selfIntroduction];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_UserBriefInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_UserBriefInfo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setUserId:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setNickname:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setAvatarPictureUuid:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setSelfIntroduction:[input readString]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasUserId {
+    return result.hasUserId;
+}
+- (NSString*) userId {
+    return result.userId;
+}
+- (Message_UserBriefInfo_Builder*) setUserId:(NSString*) value {
+    result.hasUserId = YES;
+    result.userId = value;
+    return self;
+}
+- (Message_UserBriefInfo_Builder*) clearUserId {
+    result.hasUserId = NO;
+    result.userId = @"";
+    return self;
+}
+- (BOOL) hasNickname {
+    return result.hasNickname;
+}
+- (NSString*) nickname {
+    return result.nickname;
+}
+- (Message_UserBriefInfo_Builder*) setNickname:(NSString*) value {
+    result.hasNickname = YES;
+    result.nickname = value;
+    return self;
+}
+- (Message_UserBriefInfo_Builder*) clearNickname {
+    result.hasNickname = NO;
+    result.nickname = @"";
+    return self;
+}
+- (BOOL) hasAvatarPictureUuid {
+    return result.hasAvatarPictureUuid;
+}
+- (NSString*) avatarPictureUuid {
+    return result.avatarPictureUuid;
+}
+- (Message_UserBriefInfo_Builder*) setAvatarPictureUuid:(NSString*) value {
+    result.hasAvatarPictureUuid = YES;
+    result.avatarPictureUuid = value;
+    return self;
+}
+- (Message_UserBriefInfo_Builder*) clearAvatarPictureUuid {
+    result.hasAvatarPictureUuid = NO;
+    result.avatarPictureUuid = @"";
+    return self;
+}
+- (BOOL) hasSelfIntroduction {
+    return result.hasSelfIntroduction;
+}
+- (NSString*) selfIntroduction {
+    return result.selfIntroduction;
+}
+- (Message_UserBriefInfo_Builder*) setSelfIntroduction:(NSString*) value {
+    result.hasSelfIntroduction = YES;
+    result.selfIntroduction = value;
+    return self;
+}
+- (Message_UserBriefInfo_Builder*) clearSelfIntroduction {
+    result.hasSelfIntroduction = NO;
+    result.selfIntroduction = @"";
+    return self;
+}
+@end
+
+@interface Message_ChatRoom ()
+@property (retain) NSString* chatRoomId;
+@property (retain) NSString* chatRoomName;
+@property (retain) NSString* roomLogoUuid;
+@property (retain) NSString* category;
+@property (retain) NSString* roomDesc;
+@property (retain) Message_Location* location;
+@property int64_t creationDate;
+@property (retain) NSMutableArray* mutableBriefUserInfoList;
+@end
+
+@implementation Message_ChatRoom
+
+- (BOOL) hasChatRoomId {
+    return !!hasChatRoomId_;
+}
+- (void) setHasChatRoomId:(BOOL) value {
+    hasChatRoomId_ = !!value;
+}
+@synthesize chatRoomId;
+- (BOOL) hasChatRoomName {
+    return !!hasChatRoomName_;
+}
+- (void) setHasChatRoomName:(BOOL) value {
+    hasChatRoomName_ = !!value;
+}
+@synthesize chatRoomName;
+- (BOOL) hasRoomLogoUuid {
+    return !!hasRoomLogoUuid_;
+}
+- (void) setHasRoomLogoUuid:(BOOL) value {
+    hasRoomLogoUuid_ = !!value;
+}
+@synthesize roomLogoUuid;
+- (BOOL) hasCategory {
+    return !!hasCategory_;
+}
+- (void) setHasCategory:(BOOL) value {
+    hasCategory_ = !!value;
+}
+@synthesize category;
+- (BOOL) hasRoomDesc {
+    return !!hasRoomDesc_;
+}
+- (void) setHasRoomDesc:(BOOL) value {
+    hasRoomDesc_ = !!value;
+}
+@synthesize roomDesc;
+- (BOOL) hasLocation {
+    return !!hasLocation_;
+}
+- (void) setHasLocation:(BOOL) value {
+    hasLocation_ = !!value;
+}
+@synthesize location;
+- (BOOL) hasCreationDate {
+    return !!hasCreationDate_;
+}
+- (void) setHasCreationDate:(BOOL) value {
+    hasCreationDate_ = !!value;
+}
+@synthesize creationDate;
+@synthesize mutableBriefUserInfoList;
+- (void) dealloc {
+    self.chatRoomId = nil;
+    self.chatRoomName = nil;
+    self.roomLogoUuid = nil;
+    self.category = nil;
+    self.roomDesc = nil;
+    self.location = nil;
+    self.mutableBriefUserInfoList = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.chatRoomId = @"";
+        self.chatRoomName = @"";
+        self.roomLogoUuid = @"";
+        self.category = @"";
+        self.roomDesc = @"";
+        self.location = [Message_Location defaultInstance];
+        self.creationDate = 0L;
+    }
+    return self;
+}
+static Message_ChatRoom* defaultMessage_ChatRoomInstance = nil;
++ (void) initialize {
+    if (self == [Message_ChatRoom class]) {
+        defaultMessage_ChatRoomInstance = [[Message_ChatRoom alloc] init];
+    }
+}
++ (Message_ChatRoom*) defaultInstance {
+    return defaultMessage_ChatRoomInstance;
+}
+- (Message_ChatRoom*) defaultInstance {
+    return defaultMessage_ChatRoomInstance;
+}
+- (NSArray*) briefUserInfoList {
+    return mutableBriefUserInfoList;
+}
+- (Message_UserBriefInfo*) briefUserInfoAtIndex:(int32_t) index {
+    id value = [mutableBriefUserInfoList objectAtIndex:index];
+    return value;
+}
+- (BOOL) isInitialized {
+    if (!self.hasChatRoomId) {
+        return NO;
+    }
+    if (!self.hasChatRoomName) {
+        return NO;
+    }
+    if (!self.hasRoomLogoUuid) {
+        return NO;
+    }
+    if (!self.hasCategory) {
+        return NO;
+    }
+    if (!self.hasRoomDesc) {
+        return NO;
+    }
+    if (!self.hasLocation) {
+        return NO;
+    }
+    if (!self.hasCreationDate) {
+        return NO;
+    }
+    if (!self.location.isInitialized) {
+        return NO;
+    }
+    for (Message_UserBriefInfo* element in self.briefUserInfoList) {
+        if (!element.isInitialized) {
+            return NO;
+        }
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasChatRoomId) {
+        [output writeString:1 value:self.chatRoomId];
+    }
+    if (self.hasChatRoomName) {
+        [output writeString:2 value:self.chatRoomName];
+    }
+    if (self.hasRoomLogoUuid) {
+        [output writeString:3 value:self.roomLogoUuid];
+    }
+    if (self.hasCategory) {
+        [output writeString:4 value:self.category];
+    }
+    if (self.hasRoomDesc) {
+        [output writeString:5 value:self.roomDesc];
+    }
+    if (self.hasLocation) {
+        [output writeMessage:6 value:self.location];
+    }
+    if (self.hasCreationDate) {
+        [output writeInt64:7 value:self.creationDate];
+    }
+    for (Message_UserBriefInfo* element in self.briefUserInfoList) {
+        [output writeMessage:8 value:element];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasChatRoomId) {
+        size += computeStringSize(1, self.chatRoomId);
+    }
+    if (self.hasChatRoomName) {
+        size += computeStringSize(2, self.chatRoomName);
+    }
+    if (self.hasRoomLogoUuid) {
+        size += computeStringSize(3, self.roomLogoUuid);
+    }
+    if (self.hasCategory) {
+        size += computeStringSize(4, self.category);
+    }
+    if (self.hasRoomDesc) {
+        size += computeStringSize(5, self.roomDesc);
+    }
+    if (self.hasLocation) {
+        size += computeMessageSize(6, self.location);
+    }
+    if (self.hasCreationDate) {
+        size += computeInt64Size(7, self.creationDate);
+    }
+    for (Message_UserBriefInfo* element in self.briefUserInfoList) {
+        size += computeMessageSize(8, element);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_ChatRoom*) parseFromData:(NSData*) data {
+    return (Message_ChatRoom*)[[[Message_ChatRoom builder] mergeFromData:data] build];
+}
++ (Message_ChatRoom*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_ChatRoom*)[[[Message_ChatRoom builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_ChatRoom*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_ChatRoom*)[[[Message_ChatRoom builder] mergeFromInputStream:input] build];
+}
++ (Message_ChatRoom*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_ChatRoom*)[[[Message_ChatRoom builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_ChatRoom*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_ChatRoom*)[[[Message_ChatRoom builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_ChatRoom*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_ChatRoom*)[[[Message_ChatRoom builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_ChatRoom*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_ChatRoom*)[[[Message_ChatRoom builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_ChatRoom_Builder*) builder {
+    return [[[Message_ChatRoom_Builder alloc] init] autorelease];
+}
++ (Message_ChatRoom_Builder*) builderWithPrototype:(Message_ChatRoom*) prototype {
+    return [[Message_ChatRoom builder] mergeFrom:prototype];
+}
+- (Message_ChatRoom_Builder*) builder {
+    return [Message_ChatRoom builder];
+}
+@end
+
+@interface Message_ChatRoom_Builder()
+@property (retain) Message_ChatRoom* result;
+@end
+
+@implementation Message_ChatRoom_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_ChatRoom alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_ChatRoom_Builder*) clear {
+    self.result = [[[Message_ChatRoom alloc] init] autorelease];
+    return self;
+}
+- (Message_ChatRoom_Builder*) clone {
+    return [Message_ChatRoom builderWithPrototype:result];
+}
+- (Message_ChatRoom*) defaultInstance {
+    return [Message_ChatRoom defaultInstance];
+}
+- (Message_ChatRoom*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_ChatRoom*) buildPartial {
+    Message_ChatRoom* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_ChatRoom_Builder*) mergeFrom:(Message_ChatRoom*) other {
+    if (other == [Message_ChatRoom defaultInstance]) {
+        return self;
+    }
+    if (other.hasChatRoomId) {
+        [self setChatRoomId:other.chatRoomId];
+    }
+    if (other.hasChatRoomName) {
+        [self setChatRoomName:other.chatRoomName];
+    }
+    if (other.hasRoomLogoUuid) {
+        [self setRoomLogoUuid:other.roomLogoUuid];
+    }
+    if (other.hasCategory) {
+        [self setCategory:other.category];
+    }
+    if (other.hasRoomDesc) {
+        [self setRoomDesc:other.roomDesc];
+    }
+    if (other.hasLocation) {
+        [self mergeLocation:other.location];
+    }
+    if (other.hasCreationDate) {
+        [self setCreationDate:other.creationDate];
+    }
+    if (other.mutableBriefUserInfoList.count > 0) {
+        if (result.mutableBriefUserInfoList == nil) {
+            result.mutableBriefUserInfoList = [NSMutableArray array];
+        }
+        [result.mutableBriefUserInfoList addObjectsFromArray:other.mutableBriefUserInfoList];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_ChatRoom_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_ChatRoom_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setChatRoomId:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setChatRoomName:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setRoomLogoUuid:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setCategory:[input readString]];
+                break;
+            }
+            case 42: {
+                [self setRoomDesc:[input readString]];
+                break;
+            }
+            case 50: {
+                Message_Location_Builder* subBuilder = [Message_Location builder];
+                if (self.hasLocation) {
+                    [subBuilder mergeFrom:self.location];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setLocation:[subBuilder buildPartial]];
+                break;
+            }
+            case 56: {
+                [self setCreationDate:[input readInt64]];
+                break;
+            }
+            case 66: {
+                Message_UserBriefInfo_Builder* subBuilder = [Message_UserBriefInfo builder];
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self addBriefUserInfo:[subBuilder buildPartial]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasChatRoomId {
+    return result.hasChatRoomId;
+}
+- (NSString*) chatRoomId {
+    return result.chatRoomId;
+}
+- (Message_ChatRoom_Builder*) setChatRoomId:(NSString*) value {
+    result.hasChatRoomId = YES;
+    result.chatRoomId = value;
+    return self;
+}
+- (Message_ChatRoom_Builder*) clearChatRoomId {
+    result.hasChatRoomId = NO;
+    result.chatRoomId = @"";
+    return self;
+}
+- (BOOL) hasChatRoomName {
+    return result.hasChatRoomName;
+}
+- (NSString*) chatRoomName {
+    return result.chatRoomName;
+}
+- (Message_ChatRoom_Builder*) setChatRoomName:(NSString*) value {
+    result.hasChatRoomName = YES;
+    result.chatRoomName = value;
+    return self;
+}
+- (Message_ChatRoom_Builder*) clearChatRoomName {
+    result.hasChatRoomName = NO;
+    result.chatRoomName = @"";
+    return self;
+}
+- (BOOL) hasRoomLogoUuid {
+    return result.hasRoomLogoUuid;
+}
+- (NSString*) roomLogoUuid {
+    return result.roomLogoUuid;
+}
+- (Message_ChatRoom_Builder*) setRoomLogoUuid:(NSString*) value {
+    result.hasRoomLogoUuid = YES;
+    result.roomLogoUuid = value;
+    return self;
+}
+- (Message_ChatRoom_Builder*) clearRoomLogoUuid {
+    result.hasRoomLogoUuid = NO;
+    result.roomLogoUuid = @"";
+    return self;
+}
+- (BOOL) hasCategory {
+    return result.hasCategory;
+}
+- (NSString*) category {
+    return result.category;
+}
+- (Message_ChatRoom_Builder*) setCategory:(NSString*) value {
+    result.hasCategory = YES;
+    result.category = value;
+    return self;
+}
+- (Message_ChatRoom_Builder*) clearCategory {
+    result.hasCategory = NO;
+    result.category = @"";
+    return self;
+}
+- (BOOL) hasRoomDesc {
+    return result.hasRoomDesc;
+}
+- (NSString*) roomDesc {
+    return result.roomDesc;
+}
+- (Message_ChatRoom_Builder*) setRoomDesc:(NSString*) value {
+    result.hasRoomDesc = YES;
+    result.roomDesc = value;
+    return self;
+}
+- (Message_ChatRoom_Builder*) clearRoomDesc {
+    result.hasRoomDesc = NO;
+    result.roomDesc = @"";
+    return self;
+}
+- (BOOL) hasLocation {
+    return result.hasLocation;
+}
+- (Message_Location*) location {
+    return result.location;
+}
+- (Message_ChatRoom_Builder*) setLocation:(Message_Location*) value {
+    result.hasLocation = YES;
+    result.location = value;
+    return self;
+}
+- (Message_ChatRoom_Builder*) setLocationBuilder:(Message_Location_Builder*) builderForValue {
+    return [self setLocation:[builderForValue build]];
+}
+- (Message_ChatRoom_Builder*) mergeLocation:(Message_Location*) value {
+    if (result.hasLocation &&
+        result.location != [Message_Location defaultInstance]) {
+        result.location =
+        [[[Message_Location builderWithPrototype:result.location] mergeFrom:value] buildPartial];
+    } else {
+        result.location = value;
+    }
+    result.hasLocation = YES;
+    return self;
+}
+- (Message_ChatRoom_Builder*) clearLocation {
+    result.hasLocation = NO;
+    result.location = [Message_Location defaultInstance];
+    return self;
+}
+- (BOOL) hasCreationDate {
+    return result.hasCreationDate;
+}
+- (int64_t) creationDate {
+    return result.creationDate;
+}
+- (Message_ChatRoom_Builder*) setCreationDate:(int64_t) value {
+    result.hasCreationDate = YES;
+    result.creationDate = value;
+    return self;
+}
+- (Message_ChatRoom_Builder*) clearCreationDate {
+    result.hasCreationDate = NO;
+    result.creationDate = 0L;
+    return self;
+}
+- (NSArray*) briefUserInfoList {
+    if (result.mutableBriefUserInfoList == nil) { return [NSArray array]; }
+    return result.mutableBriefUserInfoList;
+}
+- (Message_UserBriefInfo*) briefUserInfoAtIndex:(int32_t) index {
+    return [result briefUserInfoAtIndex:index];
+}
+- (Message_ChatRoom_Builder*) replaceBriefUserInfoAtIndex:(int32_t) index with:(Message_UserBriefInfo*) value {
+    [result.mutableBriefUserInfoList replaceObjectAtIndex:index withObject:value];
+    return self;
+}
+- (Message_ChatRoom_Builder*) addAllBriefUserInfo:(NSArray*) values {
+    if (result.mutableBriefUserInfoList == nil) {
+        result.mutableBriefUserInfoList = [NSMutableArray array];
+    }
+    [result.mutableBriefUserInfoList addObjectsFromArray:values];
+    return self;
+}
+- (Message_ChatRoom_Builder*) clearBriefUserInfoList {
+    result.mutableBriefUserInfoList = nil;
+    return self;
+}
+- (Message_ChatRoom_Builder*) addBriefUserInfo:(Message_UserBriefInfo*) value {
+    if (result.mutableBriefUserInfoList == nil) {
+        result.mutableBriefUserInfoList = [NSMutableArray array];
+    }
+    [result.mutableBriefUserInfoList addObject:value];
+    return self;
+}
+@end
+
+@interface Message_QueryChatRoomResponse ()
+@property int32_t status;
+@property (retain) NSString* desc;
+@property (retain) Message_ChatRoom* chatRoom;
+@end
+
+@implementation Message_QueryChatRoomResponse
+
+- (BOOL) hasStatus {
+    return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+    hasStatus_ = !!value;
+}
+@synthesize status;
+- (BOOL) hasDesc {
+    return !!hasDesc_;
+}
+- (void) setHasDesc:(BOOL) value {
+    hasDesc_ = !!value;
+}
+@synthesize desc;
+- (BOOL) hasChatRoom {
+    return !!hasChatRoom_;
+}
+- (void) setHasChatRoom:(BOOL) value {
+    hasChatRoom_ = !!value;
+}
+@synthesize chatRoom;
+- (void) dealloc {
+    self.desc = nil;
+    self.chatRoom = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.status = 0;
+        self.desc = @"";
+        self.chatRoom = [Message_ChatRoom defaultInstance];
+    }
+    return self;
+}
+static Message_QueryChatRoomResponse* defaultMessage_QueryChatRoomResponseInstance = nil;
++ (void) initialize {
+    if (self == [Message_QueryChatRoomResponse class]) {
+        defaultMessage_QueryChatRoomResponseInstance = [[Message_QueryChatRoomResponse alloc] init];
+    }
+}
++ (Message_QueryChatRoomResponse*) defaultInstance {
+    return defaultMessage_QueryChatRoomResponseInstance;
+}
+- (Message_QueryChatRoomResponse*) defaultInstance {
+    return defaultMessage_QueryChatRoomResponseInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    if (!self.hasChatRoom) {
+        return NO;
+    }
+    if (!self.chatRoom.isInitialized) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasStatus) {
+        [output writeInt32:1 value:self.status];
+    }
+    if (self.hasDesc) {
+        [output writeString:2 value:self.desc];
+    }
+    if (self.hasChatRoom) {
+        [output writeMessage:3 value:self.chatRoom];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasStatus) {
+        size += computeInt32Size(1, self.status);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(2, self.desc);
+    }
+    if (self.hasChatRoom) {
+        size += computeMessageSize(3, self.chatRoom);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_QueryChatRoomResponse*) parseFromData:(NSData*) data {
+    return (Message_QueryChatRoomResponse*)[[[Message_QueryChatRoomResponse builder] mergeFromData:data] build];
+}
++ (Message_QueryChatRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_QueryChatRoomResponse*)[[[Message_QueryChatRoomResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_QueryChatRoomResponse*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_QueryChatRoomResponse*)[[[Message_QueryChatRoomResponse builder] mergeFromInputStream:input] build];
+}
++ (Message_QueryChatRoomResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_QueryChatRoomResponse*)[[[Message_QueryChatRoomResponse builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_QueryChatRoomResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_QueryChatRoomResponse*)[[[Message_QueryChatRoomResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_QueryChatRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_QueryChatRoomResponse*)[[[Message_QueryChatRoomResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_QueryChatRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_QueryChatRoomResponse*)[[[Message_QueryChatRoomResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_QueryChatRoomResponse_Builder*) builder {
+    return [[[Message_QueryChatRoomResponse_Builder alloc] init] autorelease];
+}
++ (Message_QueryChatRoomResponse_Builder*) builderWithPrototype:(Message_QueryChatRoomResponse*) prototype {
+    return [[Message_QueryChatRoomResponse builder] mergeFrom:prototype];
+}
+- (Message_QueryChatRoomResponse_Builder*) builder {
+    return [Message_QueryChatRoomResponse builder];
+}
+@end
+
+@interface Message_QueryChatRoomResponse_Builder()
+@property (retain) Message_QueryChatRoomResponse* result;
+@end
+
+@implementation Message_QueryChatRoomResponse_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_QueryChatRoomResponse alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_QueryChatRoomResponse_Builder*) clear {
+    self.result = [[[Message_QueryChatRoomResponse alloc] init] autorelease];
+    return self;
+}
+- (Message_QueryChatRoomResponse_Builder*) clone {
+    return [Message_QueryChatRoomResponse builderWithPrototype:result];
+}
+- (Message_QueryChatRoomResponse*) defaultInstance {
+    return [Message_QueryChatRoomResponse defaultInstance];
+}
+- (Message_QueryChatRoomResponse*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_QueryChatRoomResponse*) buildPartial {
+    Message_QueryChatRoomResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_QueryChatRoomResponse_Builder*) mergeFrom:(Message_QueryChatRoomResponse*) other {
+    if (other == [Message_QueryChatRoomResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.hasChatRoom) {
+        [self mergeChatRoom:other.chatRoom];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_QueryChatRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_QueryChatRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 18: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 26: {
+                Message_ChatRoom_Builder* subBuilder = [Message_ChatRoom builder];
+                if (self.hasChatRoom) {
+                    [subBuilder mergeFrom:self.chatRoom];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setChatRoom:[subBuilder buildPartial]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasStatus {
+    return result.hasStatus;
+}
+- (int32_t) status {
+    return result.status;
+}
+- (Message_QueryChatRoomResponse_Builder*) setStatus:(int32_t) value {
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
+}
+- (Message_QueryChatRoomResponse_Builder*) clearStatus {
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
+}
+- (BOOL) hasDesc {
+    return result.hasDesc;
+}
+- (NSString*) desc {
+    return result.desc;
+}
+- (Message_QueryChatRoomResponse_Builder*) setDesc:(NSString*) value {
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
+}
+- (Message_QueryChatRoomResponse_Builder*) clearDesc {
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
+}
+- (BOOL) hasChatRoom {
+    return result.hasChatRoom;
+}
+- (Message_ChatRoom*) chatRoom {
+    return result.chatRoom;
+}
+- (Message_QueryChatRoomResponse_Builder*) setChatRoom:(Message_ChatRoom*) value {
+    result.hasChatRoom = YES;
+    result.chatRoom = value;
+    return self;
+}
+- (Message_QueryChatRoomResponse_Builder*) setChatRoomBuilder:(Message_ChatRoom_Builder*) builderForValue {
+    return [self setChatRoom:[builderForValue build]];
+}
+- (Message_QueryChatRoomResponse_Builder*) mergeChatRoom:(Message_ChatRoom*) value {
+    if (result.hasChatRoom &&
+        result.chatRoom != [Message_ChatRoom defaultInstance]) {
+        result.chatRoom =
+        [[[Message_ChatRoom builderWithPrototype:result.chatRoom] mergeFrom:value] buildPartial];
+    } else {
+        result.chatRoom = value;
+    }
+    result.hasChatRoom = YES;
+    return self;
+}
+- (Message_QueryChatRoomResponse_Builder*) clearChatRoom {
+    result.hasChatRoom = NO;
+    result.chatRoom = [Message_ChatRoom defaultInstance];
+    return self;
+}
+@end
+
+@interface Message_SearchChatRoomRequest ()
+@property (retain) NSString* keyword;
+@end
+
+@implementation Message_SearchChatRoomRequest
+
+- (BOOL) hasKeyword {
+    return !!hasKeyword_;
+}
+- (void) setHasKeyword:(BOOL) value {
+    hasKeyword_ = !!value;
+}
+@synthesize keyword;
+- (void) dealloc {
+    self.keyword = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.keyword = @"";
+    }
+    return self;
+}
+static Message_SearchChatRoomRequest* defaultMessage_SearchChatRoomRequestInstance = nil;
++ (void) initialize {
+    if (self == [Message_SearchChatRoomRequest class]) {
+        defaultMessage_SearchChatRoomRequestInstance = [[Message_SearchChatRoomRequest alloc] init];
+    }
+}
++ (Message_SearchChatRoomRequest*) defaultInstance {
+    return defaultMessage_SearchChatRoomRequestInstance;
+}
+- (Message_SearchChatRoomRequest*) defaultInstance {
+    return defaultMessage_SearchChatRoomRequestInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasKeyword) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasKeyword) {
+        [output writeString:1 value:self.keyword];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasKeyword) {
+        size += computeStringSize(1, self.keyword);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_SearchChatRoomRequest*) parseFromData:(NSData*) data {
+    return (Message_SearchChatRoomRequest*)[[[Message_SearchChatRoomRequest builder] mergeFromData:data] build];
+}
++ (Message_SearchChatRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_SearchChatRoomRequest*)[[[Message_SearchChatRoomRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_SearchChatRoomRequest*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_SearchChatRoomRequest*)[[[Message_SearchChatRoomRequest builder] mergeFromInputStream:input] build];
+}
++ (Message_SearchChatRoomRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_SearchChatRoomRequest*)[[[Message_SearchChatRoomRequest builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_SearchChatRoomRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_SearchChatRoomRequest*)[[[Message_SearchChatRoomRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_SearchChatRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_SearchChatRoomRequest*)[[[Message_SearchChatRoomRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_SearchChatRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_SearchChatRoomRequest*)[[[Message_SearchChatRoomRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_SearchChatRoomRequest_Builder*) builder {
+    return [[[Message_SearchChatRoomRequest_Builder alloc] init] autorelease];
+}
++ (Message_SearchChatRoomRequest_Builder*) builderWithPrototype:(Message_SearchChatRoomRequest*) prototype {
+    return [[Message_SearchChatRoomRequest builder] mergeFrom:prototype];
+}
+- (Message_SearchChatRoomRequest_Builder*) builder {
+    return [Message_SearchChatRoomRequest builder];
+}
+@end
+
+@interface Message_SearchChatRoomRequest_Builder()
+@property (retain) Message_SearchChatRoomRequest* result;
+@end
+
+@implementation Message_SearchChatRoomRequest_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_SearchChatRoomRequest alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_SearchChatRoomRequest_Builder*) clear {
+    self.result = [[[Message_SearchChatRoomRequest alloc] init] autorelease];
+    return self;
+}
+- (Message_SearchChatRoomRequest_Builder*) clone {
+    return [Message_SearchChatRoomRequest builderWithPrototype:result];
+}
+- (Message_SearchChatRoomRequest*) defaultInstance {
+    return [Message_SearchChatRoomRequest defaultInstance];
+}
+- (Message_SearchChatRoomRequest*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_SearchChatRoomRequest*) buildPartial {
+    Message_SearchChatRoomRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_SearchChatRoomRequest_Builder*) mergeFrom:(Message_SearchChatRoomRequest*) other {
+    if (other == [Message_SearchChatRoomRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasKeyword) {
+        [self setKeyword:other.keyword];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_SearchChatRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_SearchChatRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setKeyword:[input readString]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasKeyword {
+    return result.hasKeyword;
+}
+- (NSString*) keyword {
+    return result.keyword;
+}
+- (Message_SearchChatRoomRequest_Builder*) setKeyword:(NSString*) value {
+    result.hasKeyword = YES;
+    result.keyword = value;
+    return self;
+}
+- (Message_SearchChatRoomRequest_Builder*) clearKeyword {
+    result.hasKeyword = NO;
+    result.keyword = @"";
+    return self;
+}
+@end
+
+@interface Message_SearchChatRoomResponse ()
+@property int32_t status;
+@property (retain) NSString* desc;
+@property (retain) NSMutableArray* mutableChatRoomList;
+@end
+
+@implementation Message_SearchChatRoomResponse
+
+- (BOOL) hasStatus {
+    return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+    hasStatus_ = !!value;
+}
+@synthesize status;
+- (BOOL) hasDesc {
+    return !!hasDesc_;
+}
+- (void) setHasDesc:(BOOL) value {
+    hasDesc_ = !!value;
+}
+@synthesize desc;
+@synthesize mutableChatRoomList;
+- (void) dealloc {
+    self.desc = nil;
+    self.mutableChatRoomList = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.status = 0;
+        self.desc = @"";
+    }
+    return self;
+}
+static Message_SearchChatRoomResponse* defaultMessage_SearchChatRoomResponseInstance = nil;
++ (void) initialize {
+    if (self == [Message_SearchChatRoomResponse class]) {
+        defaultMessage_SearchChatRoomResponseInstance = [[Message_SearchChatRoomResponse alloc] init];
+    }
+}
++ (Message_SearchChatRoomResponse*) defaultInstance {
+    return defaultMessage_SearchChatRoomResponseInstance;
+}
+- (Message_SearchChatRoomResponse*) defaultInstance {
+    return defaultMessage_SearchChatRoomResponseInstance;
+}
+- (NSArray*) chatRoomList {
+    return mutableChatRoomList;
+}
+- (Message_ChatRoom*) chatRoomAtIndex:(int32_t) index {
+    id value = [mutableChatRoomList objectAtIndex:index];
+    return value;
+}
+- (BOOL) isInitialized {
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    for (Message_ChatRoom* element in self.chatRoomList) {
+        if (!element.isInitialized) {
+            return NO;
+        }
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasStatus) {
+        [output writeInt32:1 value:self.status];
+    }
+    if (self.hasDesc) {
+        [output writeString:2 value:self.desc];
+    }
+    for (Message_ChatRoom* element in self.chatRoomList) {
+        [output writeMessage:3 value:element];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasStatus) {
+        size += computeInt32Size(1, self.status);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(2, self.desc);
+    }
+    for (Message_ChatRoom* element in self.chatRoomList) {
+        size += computeMessageSize(3, element);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_SearchChatRoomResponse*) parseFromData:(NSData*) data {
+    return (Message_SearchChatRoomResponse*)[[[Message_SearchChatRoomResponse builder] mergeFromData:data] build];
+}
++ (Message_SearchChatRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_SearchChatRoomResponse*)[[[Message_SearchChatRoomResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_SearchChatRoomResponse*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_SearchChatRoomResponse*)[[[Message_SearchChatRoomResponse builder] mergeFromInputStream:input] build];
+}
++ (Message_SearchChatRoomResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_SearchChatRoomResponse*)[[[Message_SearchChatRoomResponse builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_SearchChatRoomResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_SearchChatRoomResponse*)[[[Message_SearchChatRoomResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_SearchChatRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_SearchChatRoomResponse*)[[[Message_SearchChatRoomResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_SearchChatRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_SearchChatRoomResponse*)[[[Message_SearchChatRoomResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_SearchChatRoomResponse_Builder*) builder {
+    return [[[Message_SearchChatRoomResponse_Builder alloc] init] autorelease];
+}
++ (Message_SearchChatRoomResponse_Builder*) builderWithPrototype:(Message_SearchChatRoomResponse*) prototype {
+    return [[Message_SearchChatRoomResponse builder] mergeFrom:prototype];
+}
+- (Message_SearchChatRoomResponse_Builder*) builder {
+    return [Message_SearchChatRoomResponse builder];
+}
+@end
+
+@interface Message_SearchChatRoomResponse_Builder()
+@property (retain) Message_SearchChatRoomResponse* result;
+@end
+
+@implementation Message_SearchChatRoomResponse_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_SearchChatRoomResponse alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_SearchChatRoomResponse_Builder*) clear {
+    self.result = [[[Message_SearchChatRoomResponse alloc] init] autorelease];
+    return self;
+}
+- (Message_SearchChatRoomResponse_Builder*) clone {
+    return [Message_SearchChatRoomResponse builderWithPrototype:result];
+}
+- (Message_SearchChatRoomResponse*) defaultInstance {
+    return [Message_SearchChatRoomResponse defaultInstance];
+}
+- (Message_SearchChatRoomResponse*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_SearchChatRoomResponse*) buildPartial {
+    Message_SearchChatRoomResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_SearchChatRoomResponse_Builder*) mergeFrom:(Message_SearchChatRoomResponse*) other {
+    if (other == [Message_SearchChatRoomResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.mutableChatRoomList.count > 0) {
+        if (result.mutableChatRoomList == nil) {
+            result.mutableChatRoomList = [NSMutableArray array];
+        }
+        [result.mutableChatRoomList addObjectsFromArray:other.mutableChatRoomList];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_SearchChatRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_SearchChatRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 18: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 26: {
+                Message_ChatRoom_Builder* subBuilder = [Message_ChatRoom builder];
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self addChatRoom:[subBuilder buildPartial]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasStatus {
+    return result.hasStatus;
+}
+- (int32_t) status {
+    return result.status;
+}
+- (Message_SearchChatRoomResponse_Builder*) setStatus:(int32_t) value {
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
+}
+- (Message_SearchChatRoomResponse_Builder*) clearStatus {
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
+}
+- (BOOL) hasDesc {
+    return result.hasDesc;
+}
+- (NSString*) desc {
+    return result.desc;
+}
+- (Message_SearchChatRoomResponse_Builder*) setDesc:(NSString*) value {
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
+}
+- (Message_SearchChatRoomResponse_Builder*) clearDesc {
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
+}
+- (NSArray*) chatRoomList {
+    if (result.mutableChatRoomList == nil) { return [NSArray array]; }
+    return result.mutableChatRoomList;
+}
+- (Message_ChatRoom*) chatRoomAtIndex:(int32_t) index {
+    return [result chatRoomAtIndex:index];
+}
+- (Message_SearchChatRoomResponse_Builder*) replaceChatRoomAtIndex:(int32_t) index with:(Message_ChatRoom*) value {
+    [result.mutableChatRoomList replaceObjectAtIndex:index withObject:value];
+    return self;
+}
+- (Message_SearchChatRoomResponse_Builder*) addAllChatRoom:(NSArray*) values {
+    if (result.mutableChatRoomList == nil) {
+        result.mutableChatRoomList = [NSMutableArray array];
+    }
+    [result.mutableChatRoomList addObjectsFromArray:values];
+    return self;
+}
+- (Message_SearchChatRoomResponse_Builder*) clearChatRoomList {
+    result.mutableChatRoomList = nil;
+    return self;
+}
+- (Message_SearchChatRoomResponse_Builder*) addChatRoom:(Message_ChatRoom*) value {
+    if (result.mutableChatRoomList == nil) {
+        result.mutableChatRoomList = [NSMutableArray array];
+    }
+    [result.mutableChatRoomList addObject:value];
+    return self;
+}
+@end
+
+@interface Message_JoinChatRoomRequest ()
+@property (retain) NSString* userId;
+@property (retain) NSString* chatRoomId;
+@end
+
+@implementation Message_JoinChatRoomRequest
+
+- (BOOL) hasUserId {
+    return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) value {
+    hasUserId_ = !!value;
+}
+@synthesize userId;
+- (BOOL) hasChatRoomId {
+    return !!hasChatRoomId_;
+}
+- (void) setHasChatRoomId:(BOOL) value {
+    hasChatRoomId_ = !!value;
+}
+@synthesize chatRoomId;
+- (void) dealloc {
+    self.userId = nil;
+    self.chatRoomId = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.userId = @"";
+        self.chatRoomId = @"";
+    }
+    return self;
+}
+static Message_JoinChatRoomRequest* defaultMessage_JoinChatRoomRequestInstance = nil;
++ (void) initialize {
+    if (self == [Message_JoinChatRoomRequest class]) {
+        defaultMessage_JoinChatRoomRequestInstance = [[Message_JoinChatRoomRequest alloc] init];
+    }
+}
++ (Message_JoinChatRoomRequest*) defaultInstance {
+    return defaultMessage_JoinChatRoomRequestInstance;
+}
+- (Message_JoinChatRoomRequest*) defaultInstance {
+    return defaultMessage_JoinChatRoomRequestInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasUserId) {
+        return NO;
+    }
+    if (!self.hasChatRoomId) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasUserId) {
+        [output writeString:1 value:self.userId];
+    }
+    if (self.hasChatRoomId) {
+        [output writeString:2 value:self.chatRoomId];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasUserId) {
+        size += computeStringSize(1, self.userId);
+    }
+    if (self.hasChatRoomId) {
+        size += computeStringSize(2, self.chatRoomId);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_JoinChatRoomRequest*) parseFromData:(NSData*) data {
+    return (Message_JoinChatRoomRequest*)[[[Message_JoinChatRoomRequest builder] mergeFromData:data] build];
+}
++ (Message_JoinChatRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_JoinChatRoomRequest*)[[[Message_JoinChatRoomRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_JoinChatRoomRequest*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_JoinChatRoomRequest*)[[[Message_JoinChatRoomRequest builder] mergeFromInputStream:input] build];
+}
++ (Message_JoinChatRoomRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_JoinChatRoomRequest*)[[[Message_JoinChatRoomRequest builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_JoinChatRoomRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_JoinChatRoomRequest*)[[[Message_JoinChatRoomRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_JoinChatRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_JoinChatRoomRequest*)[[[Message_JoinChatRoomRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_JoinChatRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_JoinChatRoomRequest*)[[[Message_JoinChatRoomRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_JoinChatRoomRequest_Builder*) builder {
+    return [[[Message_JoinChatRoomRequest_Builder alloc] init] autorelease];
+}
++ (Message_JoinChatRoomRequest_Builder*) builderWithPrototype:(Message_JoinChatRoomRequest*) prototype {
+    return [[Message_JoinChatRoomRequest builder] mergeFrom:prototype];
+}
+- (Message_JoinChatRoomRequest_Builder*) builder {
+    return [Message_JoinChatRoomRequest builder];
+}
+@end
+
+@interface Message_JoinChatRoomRequest_Builder()
+@property (retain) Message_JoinChatRoomRequest* result;
+@end
+
+@implementation Message_JoinChatRoomRequest_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_JoinChatRoomRequest alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_JoinChatRoomRequest_Builder*) clear {
+    self.result = [[[Message_JoinChatRoomRequest alloc] init] autorelease];
+    return self;
+}
+- (Message_JoinChatRoomRequest_Builder*) clone {
+    return [Message_JoinChatRoomRequest builderWithPrototype:result];
+}
+- (Message_JoinChatRoomRequest*) defaultInstance {
+    return [Message_JoinChatRoomRequest defaultInstance];
+}
+- (Message_JoinChatRoomRequest*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_JoinChatRoomRequest*) buildPartial {
+    Message_JoinChatRoomRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_JoinChatRoomRequest_Builder*) mergeFrom:(Message_JoinChatRoomRequest*) other {
+    if (other == [Message_JoinChatRoomRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasUserId) {
+        [self setUserId:other.userId];
+    }
+    if (other.hasChatRoomId) {
+        [self setChatRoomId:other.chatRoomId];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_JoinChatRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_JoinChatRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setUserId:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setChatRoomId:[input readString]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasUserId {
+    return result.hasUserId;
+}
+- (NSString*) userId {
+    return result.userId;
+}
+- (Message_JoinChatRoomRequest_Builder*) setUserId:(NSString*) value {
+    result.hasUserId = YES;
+    result.userId = value;
+    return self;
+}
+- (Message_JoinChatRoomRequest_Builder*) clearUserId {
+    result.hasUserId = NO;
+    result.userId = @"";
+    return self;
+}
+- (BOOL) hasChatRoomId {
+    return result.hasChatRoomId;
+}
+- (NSString*) chatRoomId {
+    return result.chatRoomId;
+}
+- (Message_JoinChatRoomRequest_Builder*) setChatRoomId:(NSString*) value {
+    result.hasChatRoomId = YES;
+    result.chatRoomId = value;
+    return self;
+}
+- (Message_JoinChatRoomRequest_Builder*) clearChatRoomId {
+    result.hasChatRoomId = NO;
+    result.chatRoomId = @"";
+    return self;
+}
+@end
+
+@interface Message_JoinChatRoomResponse ()
+@property int32_t status;
+@property (retain) NSString* desc;
+@property (retain) Message_ChatRoom* chatRoom;
+@end
+
+@implementation Message_JoinChatRoomResponse
+
+- (BOOL) hasStatus {
+    return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+    hasStatus_ = !!value;
+}
+@synthesize status;
+- (BOOL) hasDesc {
+    return !!hasDesc_;
+}
+- (void) setHasDesc:(BOOL) value {
+    hasDesc_ = !!value;
+}
+@synthesize desc;
+- (BOOL) hasChatRoom {
+    return !!hasChatRoom_;
+}
+- (void) setHasChatRoom:(BOOL) value {
+    hasChatRoom_ = !!value;
+}
+@synthesize chatRoom;
+- (void) dealloc {
+    self.desc = nil;
+    self.chatRoom = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.status = 0;
+        self.desc = @"";
+        self.chatRoom = [Message_ChatRoom defaultInstance];
+    }
+    return self;
+}
+static Message_JoinChatRoomResponse* defaultMessage_JoinChatRoomResponseInstance = nil;
++ (void) initialize {
+    if (self == [Message_JoinChatRoomResponse class]) {
+        defaultMessage_JoinChatRoomResponseInstance = [[Message_JoinChatRoomResponse alloc] init];
+    }
+}
++ (Message_JoinChatRoomResponse*) defaultInstance {
+    return defaultMessage_JoinChatRoomResponseInstance;
+}
+- (Message_JoinChatRoomResponse*) defaultInstance {
+    return defaultMessage_JoinChatRoomResponseInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    if (!self.hasChatRoom) {
+        return NO;
+    }
+    if (!self.chatRoom.isInitialized) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasStatus) {
+        [output writeInt32:1 value:self.status];
+    }
+    if (self.hasDesc) {
+        [output writeString:2 value:self.desc];
+    }
+    if (self.hasChatRoom) {
+        [output writeMessage:3 value:self.chatRoom];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasStatus) {
+        size += computeInt32Size(1, self.status);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(2, self.desc);
+    }
+    if (self.hasChatRoom) {
+        size += computeMessageSize(3, self.chatRoom);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_JoinChatRoomResponse*) parseFromData:(NSData*) data {
+    return (Message_JoinChatRoomResponse*)[[[Message_JoinChatRoomResponse builder] mergeFromData:data] build];
+}
++ (Message_JoinChatRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_JoinChatRoomResponse*)[[[Message_JoinChatRoomResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_JoinChatRoomResponse*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_JoinChatRoomResponse*)[[[Message_JoinChatRoomResponse builder] mergeFromInputStream:input] build];
+}
++ (Message_JoinChatRoomResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_JoinChatRoomResponse*)[[[Message_JoinChatRoomResponse builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_JoinChatRoomResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_JoinChatRoomResponse*)[[[Message_JoinChatRoomResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_JoinChatRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_JoinChatRoomResponse*)[[[Message_JoinChatRoomResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_JoinChatRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_JoinChatRoomResponse*)[[[Message_JoinChatRoomResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_JoinChatRoomResponse_Builder*) builder {
+    return [[[Message_JoinChatRoomResponse_Builder alloc] init] autorelease];
+}
++ (Message_JoinChatRoomResponse_Builder*) builderWithPrototype:(Message_JoinChatRoomResponse*) prototype {
+    return [[Message_JoinChatRoomResponse builder] mergeFrom:prototype];
+}
+- (Message_JoinChatRoomResponse_Builder*) builder {
+    return [Message_JoinChatRoomResponse builder];
+}
+@end
+
+@interface Message_JoinChatRoomResponse_Builder()
+@property (retain) Message_JoinChatRoomResponse* result;
+@end
+
+@implementation Message_JoinChatRoomResponse_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_JoinChatRoomResponse alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_JoinChatRoomResponse_Builder*) clear {
+    self.result = [[[Message_JoinChatRoomResponse alloc] init] autorelease];
+    return self;
+}
+- (Message_JoinChatRoomResponse_Builder*) clone {
+    return [Message_JoinChatRoomResponse builderWithPrototype:result];
+}
+- (Message_JoinChatRoomResponse*) defaultInstance {
+    return [Message_JoinChatRoomResponse defaultInstance];
+}
+- (Message_JoinChatRoomResponse*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_JoinChatRoomResponse*) buildPartial {
+    Message_JoinChatRoomResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_JoinChatRoomResponse_Builder*) mergeFrom:(Message_JoinChatRoomResponse*) other {
+    if (other == [Message_JoinChatRoomResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.hasChatRoom) {
+        [self mergeChatRoom:other.chatRoom];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_JoinChatRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_JoinChatRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 18: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 26: {
+                Message_ChatRoom_Builder* subBuilder = [Message_ChatRoom builder];
+                if (self.hasChatRoom) {
+                    [subBuilder mergeFrom:self.chatRoom];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setChatRoom:[subBuilder buildPartial]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasStatus {
+    return result.hasStatus;
+}
+- (int32_t) status {
+    return result.status;
+}
+- (Message_JoinChatRoomResponse_Builder*) setStatus:(int32_t) value {
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
+}
+- (Message_JoinChatRoomResponse_Builder*) clearStatus {
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
+}
+- (BOOL) hasDesc {
+    return result.hasDesc;
+}
+- (NSString*) desc {
+    return result.desc;
+}
+- (Message_JoinChatRoomResponse_Builder*) setDesc:(NSString*) value {
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
+}
+- (Message_JoinChatRoomResponse_Builder*) clearDesc {
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
+}
+- (BOOL) hasChatRoom {
+    return result.hasChatRoom;
+}
+- (Message_ChatRoom*) chatRoom {
+    return result.chatRoom;
+}
+- (Message_JoinChatRoomResponse_Builder*) setChatRoom:(Message_ChatRoom*) value {
+    result.hasChatRoom = YES;
+    result.chatRoom = value;
+    return self;
+}
+- (Message_JoinChatRoomResponse_Builder*) setChatRoomBuilder:(Message_ChatRoom_Builder*) builderForValue {
+    return [self setChatRoom:[builderForValue build]];
+}
+- (Message_JoinChatRoomResponse_Builder*) mergeChatRoom:(Message_ChatRoom*) value {
+    if (result.hasChatRoom &&
+        result.chatRoom != [Message_ChatRoom defaultInstance]) {
+        result.chatRoom =
+        [[[Message_ChatRoom builderWithPrototype:result.chatRoom] mergeFrom:value] buildPartial];
+    } else {
+        result.chatRoom = value;
+    }
+    result.hasChatRoom = YES;
+    return self;
+}
+- (Message_JoinChatRoomResponse_Builder*) clearChatRoom {
+    result.hasChatRoom = NO;
+    result.chatRoom = [Message_ChatRoom defaultInstance];
+    return self;
+}
+@end
+
+@interface Message_LeaveChatRoomRequest ()
+@property (retain) NSString* userId;
+@property (retain) NSString* chatRoomId;
+@end
+
+@implementation Message_LeaveChatRoomRequest
+
+- (BOOL) hasUserId {
+    return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) value {
+    hasUserId_ = !!value;
+}
+@synthesize userId;
+- (BOOL) hasChatRoomId {
+    return !!hasChatRoomId_;
+}
+- (void) setHasChatRoomId:(BOOL) value {
+    hasChatRoomId_ = !!value;
+}
+@synthesize chatRoomId;
+- (void) dealloc {
+    self.userId = nil;
+    self.chatRoomId = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.userId = @"";
+        self.chatRoomId = @"";
+    }
+    return self;
+}
+static Message_LeaveChatRoomRequest* defaultMessage_LeaveChatRoomRequestInstance = nil;
++ (void) initialize {
+    if (self == [Message_LeaveChatRoomRequest class]) {
+        defaultMessage_LeaveChatRoomRequestInstance = [[Message_LeaveChatRoomRequest alloc] init];
+    }
+}
++ (Message_LeaveChatRoomRequest*) defaultInstance {
+    return defaultMessage_LeaveChatRoomRequestInstance;
+}
+- (Message_LeaveChatRoomRequest*) defaultInstance {
+    return defaultMessage_LeaveChatRoomRequestInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasUserId) {
+        return NO;
+    }
+    if (!self.hasChatRoomId) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasUserId) {
+        [output writeString:1 value:self.userId];
+    }
+    if (self.hasChatRoomId) {
+        [output writeString:2 value:self.chatRoomId];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasUserId) {
+        size += computeStringSize(1, self.userId);
+    }
+    if (self.hasChatRoomId) {
+        size += computeStringSize(2, self.chatRoomId);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_LeaveChatRoomRequest*) parseFromData:(NSData*) data {
+    return (Message_LeaveChatRoomRequest*)[[[Message_LeaveChatRoomRequest builder] mergeFromData:data] build];
+}
++ (Message_LeaveChatRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_LeaveChatRoomRequest*)[[[Message_LeaveChatRoomRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_LeaveChatRoomRequest*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_LeaveChatRoomRequest*)[[[Message_LeaveChatRoomRequest builder] mergeFromInputStream:input] build];
+}
++ (Message_LeaveChatRoomRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_LeaveChatRoomRequest*)[[[Message_LeaveChatRoomRequest builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_LeaveChatRoomRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_LeaveChatRoomRequest*)[[[Message_LeaveChatRoomRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_LeaveChatRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_LeaveChatRoomRequest*)[[[Message_LeaveChatRoomRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_LeaveChatRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_LeaveChatRoomRequest*)[[[Message_LeaveChatRoomRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_LeaveChatRoomRequest_Builder*) builder {
+    return [[[Message_LeaveChatRoomRequest_Builder alloc] init] autorelease];
+}
++ (Message_LeaveChatRoomRequest_Builder*) builderWithPrototype:(Message_LeaveChatRoomRequest*) prototype {
+    return [[Message_LeaveChatRoomRequest builder] mergeFrom:prototype];
+}
+- (Message_LeaveChatRoomRequest_Builder*) builder {
+    return [Message_LeaveChatRoomRequest builder];
+}
+@end
+
+@interface Message_LeaveChatRoomRequest_Builder()
+@property (retain) Message_LeaveChatRoomRequest* result;
+@end
+
+@implementation Message_LeaveChatRoomRequest_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_LeaveChatRoomRequest alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_LeaveChatRoomRequest_Builder*) clear {
+    self.result = [[[Message_LeaveChatRoomRequest alloc] init] autorelease];
+    return self;
+}
+- (Message_LeaveChatRoomRequest_Builder*) clone {
+    return [Message_LeaveChatRoomRequest builderWithPrototype:result];
+}
+- (Message_LeaveChatRoomRequest*) defaultInstance {
+    return [Message_LeaveChatRoomRequest defaultInstance];
+}
+- (Message_LeaveChatRoomRequest*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_LeaveChatRoomRequest*) buildPartial {
+    Message_LeaveChatRoomRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_LeaveChatRoomRequest_Builder*) mergeFrom:(Message_LeaveChatRoomRequest*) other {
+    if (other == [Message_LeaveChatRoomRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasUserId) {
+        [self setUserId:other.userId];
+    }
+    if (other.hasChatRoomId) {
+        [self setChatRoomId:other.chatRoomId];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_LeaveChatRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_LeaveChatRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setUserId:[input readString]];
+                break;
+            }
+            case 18: {
+                [self setChatRoomId:[input readString]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasUserId {
+    return result.hasUserId;
+}
+- (NSString*) userId {
+    return result.userId;
+}
+- (Message_LeaveChatRoomRequest_Builder*) setUserId:(NSString*) value {
+    result.hasUserId = YES;
+    result.userId = value;
+    return self;
+}
+- (Message_LeaveChatRoomRequest_Builder*) clearUserId {
+    result.hasUserId = NO;
+    result.userId = @"";
+    return self;
+}
+- (BOOL) hasChatRoomId {
+    return result.hasChatRoomId;
+}
+- (NSString*) chatRoomId {
+    return result.chatRoomId;
+}
+- (Message_LeaveChatRoomRequest_Builder*) setChatRoomId:(NSString*) value {
+    result.hasChatRoomId = YES;
+    result.chatRoomId = value;
+    return self;
+}
+- (Message_LeaveChatRoomRequest_Builder*) clearChatRoomId {
+    result.hasChatRoomId = NO;
+    result.chatRoomId = @"";
+    return self;
+}
+@end
+
+@interface Message_LeaveChatRoomResponse ()
+@property int32_t status;
+@property (retain) NSString* desc;
+@end
+
+@implementation Message_LeaveChatRoomResponse
+
+- (BOOL) hasStatus {
+    return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+    hasStatus_ = !!value;
+}
+@synthesize status;
+- (BOOL) hasDesc {
+    return !!hasDesc_;
+}
+- (void) setHasDesc:(BOOL) value {
+    hasDesc_ = !!value;
+}
+@synthesize desc;
+- (void) dealloc {
+    self.desc = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.status = 0;
+        self.desc = @"";
+    }
+    return self;
+}
+static Message_LeaveChatRoomResponse* defaultMessage_LeaveChatRoomResponseInstance = nil;
++ (void) initialize {
+    if (self == [Message_LeaveChatRoomResponse class]) {
+        defaultMessage_LeaveChatRoomResponseInstance = [[Message_LeaveChatRoomResponse alloc] init];
+    }
+}
++ (Message_LeaveChatRoomResponse*) defaultInstance {
+    return defaultMessage_LeaveChatRoomResponseInstance;
+}
+- (Message_LeaveChatRoomResponse*) defaultInstance {
+    return defaultMessage_LeaveChatRoomResponseInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasStatus) {
+        [output writeInt32:1 value:self.status];
+    }
+    if (self.hasDesc) {
+        [output writeString:2 value:self.desc];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasStatus) {
+        size += computeInt32Size(1, self.status);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(2, self.desc);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_LeaveChatRoomResponse*) parseFromData:(NSData*) data {
+    return (Message_LeaveChatRoomResponse*)[[[Message_LeaveChatRoomResponse builder] mergeFromData:data] build];
+}
++ (Message_LeaveChatRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_LeaveChatRoomResponse*)[[[Message_LeaveChatRoomResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_LeaveChatRoomResponse*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_LeaveChatRoomResponse*)[[[Message_LeaveChatRoomResponse builder] mergeFromInputStream:input] build];
+}
++ (Message_LeaveChatRoomResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_LeaveChatRoomResponse*)[[[Message_LeaveChatRoomResponse builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_LeaveChatRoomResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_LeaveChatRoomResponse*)[[[Message_LeaveChatRoomResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_LeaveChatRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_LeaveChatRoomResponse*)[[[Message_LeaveChatRoomResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_LeaveChatRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_LeaveChatRoomResponse*)[[[Message_LeaveChatRoomResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_LeaveChatRoomResponse_Builder*) builder {
+    return [[[Message_LeaveChatRoomResponse_Builder alloc] init] autorelease];
+}
++ (Message_LeaveChatRoomResponse_Builder*) builderWithPrototype:(Message_LeaveChatRoomResponse*) prototype {
+    return [[Message_LeaveChatRoomResponse builder] mergeFrom:prototype];
+}
+- (Message_LeaveChatRoomResponse_Builder*) builder {
+    return [Message_LeaveChatRoomResponse builder];
+}
+@end
+
+@interface Message_LeaveChatRoomResponse_Builder()
+@property (retain) Message_LeaveChatRoomResponse* result;
+@end
+
+@implementation Message_LeaveChatRoomResponse_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_LeaveChatRoomResponse alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_LeaveChatRoomResponse_Builder*) clear {
+    self.result = [[[Message_LeaveChatRoomResponse alloc] init] autorelease];
+    return self;
+}
+- (Message_LeaveChatRoomResponse_Builder*) clone {
+    return [Message_LeaveChatRoomResponse builderWithPrototype:result];
+}
+- (Message_LeaveChatRoomResponse*) defaultInstance {
+    return [Message_LeaveChatRoomResponse defaultInstance];
+}
+- (Message_LeaveChatRoomResponse*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_LeaveChatRoomResponse*) buildPartial {
+    Message_LeaveChatRoomResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_LeaveChatRoomResponse_Builder*) mergeFrom:(Message_LeaveChatRoomResponse*) other {
+    if (other == [Message_LeaveChatRoomResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_LeaveChatRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_LeaveChatRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 18: {
+                [self setDesc:[input readString]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasStatus {
+    return result.hasStatus;
+}
+- (int32_t) status {
+    return result.status;
+}
+- (Message_LeaveChatRoomResponse_Builder*) setStatus:(int32_t) value {
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
+}
+- (Message_LeaveChatRoomResponse_Builder*) clearStatus {
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
+}
+- (BOOL) hasDesc {
+    return result.hasDesc;
+}
+- (NSString*) desc {
+    return result.desc;
+}
+- (Message_LeaveChatRoomResponse_Builder*) setDesc:(NSString*) value {
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
+}
+- (Message_LeaveChatRoomResponse_Builder*) clearDesc {
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
+}
+@end
+
+@interface Message_TextChatRoomMessageRequest ()
+@property (retain) Message_UserBriefInfo* userBriefInfo;
+@property (retain) NSString* text;
+@property (retain) NSString* toChatRoomId;
+@property (retain) NSString* messageHash;
+@property int64_t date;
+@end
+
+@implementation Message_TextChatRoomMessageRequest
+
+- (BOOL) hasUserBriefInfo {
+    return !!hasUserBriefInfo_;
+}
+- (void) setHasUserBriefInfo:(BOOL) value {
+    hasUserBriefInfo_ = !!value;
+}
+@synthesize userBriefInfo;
+- (BOOL) hasText {
+    return !!hasText_;
+}
+- (void) setHasText:(BOOL) value {
+    hasText_ = !!value;
+}
+@synthesize text;
+- (BOOL) hasToChatRoomId {
+    return !!hasToChatRoomId_;
+}
+- (void) setHasToChatRoomId:(BOOL) value {
+    hasToChatRoomId_ = !!value;
+}
+@synthesize toChatRoomId;
+- (BOOL) hasMessageHash {
+    return !!hasMessageHash_;
+}
+- (void) setHasMessageHash:(BOOL) value {
+    hasMessageHash_ = !!value;
+}
+@synthesize messageHash;
+- (BOOL) hasDate {
+    return !!hasDate_;
+}
+- (void) setHasDate:(BOOL) value {
+    hasDate_ = !!value;
+}
+@synthesize date;
+- (void) dealloc {
+    self.userBriefInfo = nil;
+    self.text = nil;
+    self.toChatRoomId = nil;
+    self.messageHash = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.userBriefInfo = [Message_UserBriefInfo defaultInstance];
+        self.text = @"";
+        self.toChatRoomId = @"";
+        self.messageHash = @"";
+        self.date = 0L;
+    }
+    return self;
+}
+static Message_TextChatRoomMessageRequest* defaultMessage_TextChatRoomMessageRequestInstance = nil;
++ (void) initialize {
+    if (self == [Message_TextChatRoomMessageRequest class]) {
+        defaultMessage_TextChatRoomMessageRequestInstance = [[Message_TextChatRoomMessageRequest alloc] init];
+    }
+}
++ (Message_TextChatRoomMessageRequest*) defaultInstance {
+    return defaultMessage_TextChatRoomMessageRequestInstance;
+}
+- (Message_TextChatRoomMessageRequest*) defaultInstance {
+    return defaultMessage_TextChatRoomMessageRequestInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasUserBriefInfo) {
+        return NO;
+    }
+    if (!self.hasText) {
+        return NO;
+    }
+    if (!self.hasToChatRoomId) {
+        return NO;
+    }
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    if (!self.userBriefInfo.isInitialized) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasUserBriefInfo) {
+        [output writeMessage:1 value:self.userBriefInfo];
+    }
+    if (self.hasText) {
+        [output writeString:2 value:self.text];
+    }
+    if (self.hasToChatRoomId) {
+        [output writeString:3 value:self.toChatRoomId];
+    }
+    if (self.hasMessageHash) {
+        [output writeString:4 value:self.messageHash];
+    }
+    if (self.hasDate) {
+        [output writeInt64:5 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasUserBriefInfo) {
+        size += computeMessageSize(1, self.userBriefInfo);
+    }
+    if (self.hasText) {
+        size += computeStringSize(2, self.text);
+    }
+    if (self.hasToChatRoomId) {
+        size += computeStringSize(3, self.toChatRoomId);
+    }
+    if (self.hasMessageHash) {
+        size += computeStringSize(4, self.messageHash);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(5, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_TextChatRoomMessageRequest*) parseFromData:(NSData*) data {
+    return (Message_TextChatRoomMessageRequest*)[[[Message_TextChatRoomMessageRequest builder] mergeFromData:data] build];
+}
++ (Message_TextChatRoomMessageRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_TextChatRoomMessageRequest*)[[[Message_TextChatRoomMessageRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_TextChatRoomMessageRequest*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_TextChatRoomMessageRequest*)[[[Message_TextChatRoomMessageRequest builder] mergeFromInputStream:input] build];
+}
++ (Message_TextChatRoomMessageRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_TextChatRoomMessageRequest*)[[[Message_TextChatRoomMessageRequest builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_TextChatRoomMessageRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_TextChatRoomMessageRequest*)[[[Message_TextChatRoomMessageRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_TextChatRoomMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_TextChatRoomMessageRequest*)[[[Message_TextChatRoomMessageRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_TextChatRoomMessageRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_TextChatRoomMessageRequest*)[[[Message_TextChatRoomMessageRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_TextChatRoomMessageRequest_Builder*) builder {
+    return [[[Message_TextChatRoomMessageRequest_Builder alloc] init] autorelease];
+}
++ (Message_TextChatRoomMessageRequest_Builder*) builderWithPrototype:(Message_TextChatRoomMessageRequest*) prototype {
+    return [[Message_TextChatRoomMessageRequest builder] mergeFrom:prototype];
+}
+- (Message_TextChatRoomMessageRequest_Builder*) builder {
+    return [Message_TextChatRoomMessageRequest builder];
+}
+@end
+
+@interface Message_TextChatRoomMessageRequest_Builder()
+@property (retain) Message_TextChatRoomMessageRequest* result;
+@end
+
+@implementation Message_TextChatRoomMessageRequest_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_TextChatRoomMessageRequest alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_TextChatRoomMessageRequest_Builder*) clear {
+    self.result = [[[Message_TextChatRoomMessageRequest alloc] init] autorelease];
+    return self;
+}
+- (Message_TextChatRoomMessageRequest_Builder*) clone {
+    return [Message_TextChatRoomMessageRequest builderWithPrototype:result];
+}
+- (Message_TextChatRoomMessageRequest*) defaultInstance {
+    return [Message_TextChatRoomMessageRequest defaultInstance];
+}
+- (Message_TextChatRoomMessageRequest*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_TextChatRoomMessageRequest*) buildPartial {
+    Message_TextChatRoomMessageRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_TextChatRoomMessageRequest_Builder*) mergeFrom:(Message_TextChatRoomMessageRequest*) other {
+    if (other == [Message_TextChatRoomMessageRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasUserBriefInfo) {
+        [self mergeUserBriefInfo:other.userBriefInfo];
+    }
+    if (other.hasText) {
+        [self setText:other.text];
+    }
+    if (other.hasToChatRoomId) {
+        [self setToChatRoomId:other.toChatRoomId];
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_TextChatRoomMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_TextChatRoomMessageRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                Message_UserBriefInfo_Builder* subBuilder = [Message_UserBriefInfo builder];
+                if (self.hasUserBriefInfo) {
+                    [subBuilder mergeFrom:self.userBriefInfo];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setUserBriefInfo:[subBuilder buildPartial]];
+                break;
+            }
+            case 18: {
+                [self setText:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setToChatRoomId:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 40: {
+                [self setDate:[input readInt64]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasUserBriefInfo {
+    return result.hasUserBriefInfo;
+}
+- (Message_UserBriefInfo*) userBriefInfo {
+    return result.userBriefInfo;
+}
+- (Message_TextChatRoomMessageRequest_Builder*) setUserBriefInfo:(Message_UserBriefInfo*) value {
+    result.hasUserBriefInfo = YES;
+    result.userBriefInfo = value;
+    return self;
+}
+- (Message_TextChatRoomMessageRequest_Builder*) setUserBriefInfoBuilder:(Message_UserBriefInfo_Builder*) builderForValue {
+    return [self setUserBriefInfo:[builderForValue build]];
+}
+- (Message_TextChatRoomMessageRequest_Builder*) mergeUserBriefInfo:(Message_UserBriefInfo*) value {
+    if (result.hasUserBriefInfo &&
+        result.userBriefInfo != [Message_UserBriefInfo defaultInstance]) {
+        result.userBriefInfo =
+        [[[Message_UserBriefInfo builderWithPrototype:result.userBriefInfo] mergeFrom:value] buildPartial];
+    } else {
+        result.userBriefInfo = value;
+    }
+    result.hasUserBriefInfo = YES;
+    return self;
+}
+- (Message_TextChatRoomMessageRequest_Builder*) clearUserBriefInfo {
+    result.hasUserBriefInfo = NO;
+    result.userBriefInfo = [Message_UserBriefInfo defaultInstance];
+    return self;
+}
+- (BOOL) hasText {
+    return result.hasText;
+}
+- (NSString*) text {
+    return result.text;
+}
+- (Message_TextChatRoomMessageRequest_Builder*) setText:(NSString*) value {
+    result.hasText = YES;
+    result.text = value;
+    return self;
+}
+- (Message_TextChatRoomMessageRequest_Builder*) clearText {
+    result.hasText = NO;
+    result.text = @"";
+    return self;
+}
+- (BOOL) hasToChatRoomId {
+    return result.hasToChatRoomId;
+}
+- (NSString*) toChatRoomId {
+    return result.toChatRoomId;
+}
+- (Message_TextChatRoomMessageRequest_Builder*) setToChatRoomId:(NSString*) value {
+    result.hasToChatRoomId = YES;
+    result.toChatRoomId = value;
+    return self;
+}
+- (Message_TextChatRoomMessageRequest_Builder*) clearToChatRoomId {
+    result.hasToChatRoomId = NO;
+    result.toChatRoomId = @"";
+    return self;
+}
+- (BOOL) hasMessageHash {
+    return result.hasMessageHash;
+}
+- (NSString*) messageHash {
+    return result.messageHash;
+}
+- (Message_TextChatRoomMessageRequest_Builder*) setMessageHash:(NSString*) value {
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
+}
+- (Message_TextChatRoomMessageRequest_Builder*) clearMessageHash {
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
+}
+- (BOOL) hasDate {
+    return result.hasDate;
+}
+- (int64_t) date {
+    return result.date;
+}
+- (Message_TextChatRoomMessageRequest_Builder*) setDate:(int64_t) value {
+    result.hasDate = YES;
+    result.date = value;
+    return self;
+}
+- (Message_TextChatRoomMessageRequest_Builder*) clearDate {
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
+}
+@end
+
+@interface Message_TextChatRoomMessageResponse ()
+@property int32_t status;
+@property (retain) NSString* desc;
+@property (retain) NSString* toRoomId;
+@property (retain) NSString* messageHash;
+@property int64_t date;
+@end
+
+@implementation Message_TextChatRoomMessageResponse
+
+- (BOOL) hasStatus {
+    return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+    hasStatus_ = !!value;
+}
+@synthesize status;
+- (BOOL) hasDesc {
+    return !!hasDesc_;
+}
+- (void) setHasDesc:(BOOL) value {
+    hasDesc_ = !!value;
+}
+@synthesize desc;
+- (BOOL) hasToRoomId {
+    return !!hasToRoomId_;
+}
+- (void) setHasToRoomId:(BOOL) value {
+    hasToRoomId_ = !!value;
+}
+@synthesize toRoomId;
+- (BOOL) hasMessageHash {
+    return !!hasMessageHash_;
+}
+- (void) setHasMessageHash:(BOOL) value {
+    hasMessageHash_ = !!value;
+}
+@synthesize messageHash;
+- (BOOL) hasDate {
+    return !!hasDate_;
+}
+- (void) setHasDate:(BOOL) value {
+    hasDate_ = !!value;
+}
+@synthesize date;
+- (void) dealloc {
+    self.desc = nil;
+    self.toRoomId = nil;
+    self.messageHash = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.status = 0;
+        self.desc = @"";
+        self.toRoomId = @"";
+        self.messageHash = @"";
+        self.date = 0L;
+    }
+    return self;
+}
+static Message_TextChatRoomMessageResponse* defaultMessage_TextChatRoomMessageResponseInstance = nil;
++ (void) initialize {
+    if (self == [Message_TextChatRoomMessageResponse class]) {
+        defaultMessage_TextChatRoomMessageResponseInstance = [[Message_TextChatRoomMessageResponse alloc] init];
+    }
+}
++ (Message_TextChatRoomMessageResponse*) defaultInstance {
+    return defaultMessage_TextChatRoomMessageResponseInstance;
+}
+- (Message_TextChatRoomMessageResponse*) defaultInstance {
+    return defaultMessage_TextChatRoomMessageResponseInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    if (!self.hasToRoomId) {
+        return NO;
+    }
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasStatus) {
+        [output writeInt32:1 value:self.status];
+    }
+    if (self.hasDesc) {
+        [output writeString:2 value:self.desc];
+    }
+    if (self.hasToRoomId) {
+        [output writeString:3 value:self.toRoomId];
+    }
+    if (self.hasMessageHash) {
+        [output writeString:4 value:self.messageHash];
+    }
+    if (self.hasDate) {
+        [output writeInt64:5 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasStatus) {
+        size += computeInt32Size(1, self.status);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(2, self.desc);
+    }
+    if (self.hasToRoomId) {
+        size += computeStringSize(3, self.toRoomId);
+    }
+    if (self.hasMessageHash) {
+        size += computeStringSize(4, self.messageHash);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(5, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_TextChatRoomMessageResponse*) parseFromData:(NSData*) data {
+    return (Message_TextChatRoomMessageResponse*)[[[Message_TextChatRoomMessageResponse builder] mergeFromData:data] build];
+}
++ (Message_TextChatRoomMessageResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_TextChatRoomMessageResponse*)[[[Message_TextChatRoomMessageResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_TextChatRoomMessageResponse*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_TextChatRoomMessageResponse*)[[[Message_TextChatRoomMessageResponse builder] mergeFromInputStream:input] build];
+}
++ (Message_TextChatRoomMessageResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_TextChatRoomMessageResponse*)[[[Message_TextChatRoomMessageResponse builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_TextChatRoomMessageResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_TextChatRoomMessageResponse*)[[[Message_TextChatRoomMessageResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_TextChatRoomMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_TextChatRoomMessageResponse*)[[[Message_TextChatRoomMessageResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_TextChatRoomMessageResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_TextChatRoomMessageResponse*)[[[Message_TextChatRoomMessageResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_TextChatRoomMessageResponse_Builder*) builder {
+    return [[[Message_TextChatRoomMessageResponse_Builder alloc] init] autorelease];
+}
++ (Message_TextChatRoomMessageResponse_Builder*) builderWithPrototype:(Message_TextChatRoomMessageResponse*) prototype {
+    return [[Message_TextChatRoomMessageResponse builder] mergeFrom:prototype];
+}
+- (Message_TextChatRoomMessageResponse_Builder*) builder {
+    return [Message_TextChatRoomMessageResponse builder];
+}
+@end
+
+@interface Message_TextChatRoomMessageResponse_Builder()
+@property (retain) Message_TextChatRoomMessageResponse* result;
+@end
+
+@implementation Message_TextChatRoomMessageResponse_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_TextChatRoomMessageResponse alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_TextChatRoomMessageResponse_Builder*) clear {
+    self.result = [[[Message_TextChatRoomMessageResponse alloc] init] autorelease];
+    return self;
+}
+- (Message_TextChatRoomMessageResponse_Builder*) clone {
+    return [Message_TextChatRoomMessageResponse builderWithPrototype:result];
+}
+- (Message_TextChatRoomMessageResponse*) defaultInstance {
+    return [Message_TextChatRoomMessageResponse defaultInstance];
+}
+- (Message_TextChatRoomMessageResponse*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_TextChatRoomMessageResponse*) buildPartial {
+    Message_TextChatRoomMessageResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_TextChatRoomMessageResponse_Builder*) mergeFrom:(Message_TextChatRoomMessageResponse*) other {
+    if (other == [Message_TextChatRoomMessageResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.hasToRoomId) {
+        [self setToRoomId:other.toRoomId];
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_TextChatRoomMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_TextChatRoomMessageResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 18: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setToRoomId:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 40: {
+                [self setDate:[input readInt64]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasStatus {
+    return result.hasStatus;
+}
+- (int32_t) status {
+    return result.status;
+}
+- (Message_TextChatRoomMessageResponse_Builder*) setStatus:(int32_t) value {
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
+}
+- (Message_TextChatRoomMessageResponse_Builder*) clearStatus {
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
+}
+- (BOOL) hasDesc {
+    return result.hasDesc;
+}
+- (NSString*) desc {
+    return result.desc;
+}
+- (Message_TextChatRoomMessageResponse_Builder*) setDesc:(NSString*) value {
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
+}
+- (Message_TextChatRoomMessageResponse_Builder*) clearDesc {
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
+}
+- (BOOL) hasToRoomId {
+    return result.hasToRoomId;
+}
+- (NSString*) toRoomId {
+    return result.toRoomId;
+}
+- (Message_TextChatRoomMessageResponse_Builder*) setToRoomId:(NSString*) value {
+    result.hasToRoomId = YES;
+    result.toRoomId = value;
+    return self;
+}
+- (Message_TextChatRoomMessageResponse_Builder*) clearToRoomId {
+    result.hasToRoomId = NO;
+    result.toRoomId = @"";
+    return self;
+}
+- (BOOL) hasMessageHash {
+    return result.hasMessageHash;
+}
+- (NSString*) messageHash {
+    return result.messageHash;
+}
+- (Message_TextChatRoomMessageResponse_Builder*) setMessageHash:(NSString*) value {
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
+}
+- (Message_TextChatRoomMessageResponse_Builder*) clearMessageHash {
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
+}
+- (BOOL) hasDate {
+    return result.hasDate;
+}
+- (int64_t) date {
+    return result.date;
+}
+- (Message_TextChatRoomMessageResponse_Builder*) setDate:(int64_t) value {
+    result.hasDate = YES;
+    result.date = value;
+    return self;
+}
+- (Message_TextChatRoomMessageResponse_Builder*) clearDate {
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
+}
+@end
+
+@interface Message_TextFromServerChatRoomRequest ()
+@property (retain) NSString* messageHash;
+@property (retain) Message_UserBriefInfo* fromUserBriefInfo;
+@property (retain) NSString* toRoomId;
+@property (retain) NSString* text;
+@property int64_t date;
+@end
+
+@implementation Message_TextFromServerChatRoomRequest
+
+- (BOOL) hasMessageHash {
+    return !!hasMessageHash_;
+}
+- (void) setHasMessageHash:(BOOL) value {
+    hasMessageHash_ = !!value;
+}
+@synthesize messageHash;
+- (BOOL) hasFromUserBriefInfo {
+    return !!hasFromUserBriefInfo_;
+}
+- (void) setHasFromUserBriefInfo:(BOOL) value {
+    hasFromUserBriefInfo_ = !!value;
+}
+@synthesize fromUserBriefInfo;
+- (BOOL) hasToRoomId {
+    return !!hasToRoomId_;
+}
+- (void) setHasToRoomId:(BOOL) value {
+    hasToRoomId_ = !!value;
+}
+@synthesize toRoomId;
+- (BOOL) hasText {
+    return !!hasText_;
+}
+- (void) setHasText:(BOOL) value {
+    hasText_ = !!value;
+}
+@synthesize text;
+- (BOOL) hasDate {
+    return !!hasDate_;
+}
+- (void) setHasDate:(BOOL) value {
+    hasDate_ = !!value;
+}
+@synthesize date;
+- (void) dealloc {
+    self.messageHash = nil;
+    self.fromUserBriefInfo = nil;
+    self.toRoomId = nil;
+    self.text = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.messageHash = @"";
+        self.fromUserBriefInfo = [Message_UserBriefInfo defaultInstance];
+        self.toRoomId = @"";
+        self.text = @"";
+        self.date = 0L;
+    }
+    return self;
+}
+static Message_TextFromServerChatRoomRequest* defaultMessage_TextFromServerChatRoomRequestInstance = nil;
++ (void) initialize {
+    if (self == [Message_TextFromServerChatRoomRequest class]) {
+        defaultMessage_TextFromServerChatRoomRequestInstance = [[Message_TextFromServerChatRoomRequest alloc] init];
+    }
+}
++ (Message_TextFromServerChatRoomRequest*) defaultInstance {
+    return defaultMessage_TextFromServerChatRoomRequestInstance;
+}
+- (Message_TextFromServerChatRoomRequest*) defaultInstance {
+    return defaultMessage_TextFromServerChatRoomRequestInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasFromUserBriefInfo) {
+        return NO;
+    }
+    if (!self.hasToRoomId) {
+        return NO;
+    }
+    if (!self.hasText) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    if (!self.fromUserBriefInfo.isInitialized) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasMessageHash) {
+        [output writeString:1 value:self.messageHash];
+    }
+    if (self.hasFromUserBriefInfo) {
+        [output writeMessage:2 value:self.fromUserBriefInfo];
+    }
+    if (self.hasToRoomId) {
+        [output writeString:3 value:self.toRoomId];
+    }
+    if (self.hasText) {
+        [output writeString:4 value:self.text];
+    }
+    if (self.hasDate) {
+        [output writeInt64:5 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasMessageHash) {
+        size += computeStringSize(1, self.messageHash);
+    }
+    if (self.hasFromUserBriefInfo) {
+        size += computeMessageSize(2, self.fromUserBriefInfo);
+    }
+    if (self.hasToRoomId) {
+        size += computeStringSize(3, self.toRoomId);
+    }
+    if (self.hasText) {
+        size += computeStringSize(4, self.text);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(5, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_TextFromServerChatRoomRequest*) parseFromData:(NSData*) data {
+    return (Message_TextFromServerChatRoomRequest*)[[[Message_TextFromServerChatRoomRequest builder] mergeFromData:data] build];
+}
++ (Message_TextFromServerChatRoomRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_TextFromServerChatRoomRequest*)[[[Message_TextFromServerChatRoomRequest builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_TextFromServerChatRoomRequest*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_TextFromServerChatRoomRequest*)[[[Message_TextFromServerChatRoomRequest builder] mergeFromInputStream:input] build];
+}
++ (Message_TextFromServerChatRoomRequest*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_TextFromServerChatRoomRequest*)[[[Message_TextFromServerChatRoomRequest builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_TextFromServerChatRoomRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_TextFromServerChatRoomRequest*)[[[Message_TextFromServerChatRoomRequest builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_TextFromServerChatRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_TextFromServerChatRoomRequest*)[[[Message_TextFromServerChatRoomRequest builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_TextFromServerChatRoomRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_TextFromServerChatRoomRequest*)[[[Message_TextFromServerChatRoomRequest builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_TextFromServerChatRoomRequest_Builder*) builder {
+    return [[[Message_TextFromServerChatRoomRequest_Builder alloc] init] autorelease];
+}
++ (Message_TextFromServerChatRoomRequest_Builder*) builderWithPrototype:(Message_TextFromServerChatRoomRequest*) prototype {
+    return [[Message_TextFromServerChatRoomRequest builder] mergeFrom:prototype];
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) builder {
+    return [Message_TextFromServerChatRoomRequest builder];
+}
+@end
+
+@interface Message_TextFromServerChatRoomRequest_Builder()
+@property (retain) Message_TextFromServerChatRoomRequest* result;
+@end
+
+@implementation Message_TextFromServerChatRoomRequest_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_TextFromServerChatRoomRequest alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) clear {
+    self.result = [[[Message_TextFromServerChatRoomRequest alloc] init] autorelease];
+    return self;
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) clone {
+    return [Message_TextFromServerChatRoomRequest builderWithPrototype:result];
+}
+- (Message_TextFromServerChatRoomRequest*) defaultInstance {
+    return [Message_TextFromServerChatRoomRequest defaultInstance];
+}
+- (Message_TextFromServerChatRoomRequest*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_TextFromServerChatRoomRequest*) buildPartial {
+    Message_TextFromServerChatRoomRequest* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) mergeFrom:(Message_TextFromServerChatRoomRequest*) other {
+    if (other == [Message_TextFromServerChatRoomRequest defaultInstance]) {
+        return self;
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasFromUserBriefInfo) {
+        [self mergeFromUserBriefInfo:other.fromUserBriefInfo];
+    }
+    if (other.hasToRoomId) {
+        [self setToRoomId:other.toRoomId];
+    }
+    if (other.hasText) {
+        [self setText:other.text];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 10: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 18: {
+                Message_UserBriefInfo_Builder* subBuilder = [Message_UserBriefInfo builder];
+                if (self.hasFromUserBriefInfo) {
+                    [subBuilder mergeFrom:self.fromUserBriefInfo];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setFromUserBriefInfo:[subBuilder buildPartial]];
+                break;
+            }
+            case 26: {
+                [self setToRoomId:[input readString]];
+                break;
+            }
+            case 34: {
+                [self setText:[input readString]];
+                break;
+            }
+            case 40: {
+                [self setDate:[input readInt64]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasMessageHash {
+    return result.hasMessageHash;
+}
+- (NSString*) messageHash {
+    return result.messageHash;
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) setMessageHash:(NSString*) value {
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) clearMessageHash {
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
+}
+- (BOOL) hasFromUserBriefInfo {
+    return result.hasFromUserBriefInfo;
+}
+- (Message_UserBriefInfo*) fromUserBriefInfo {
+    return result.fromUserBriefInfo;
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) setFromUserBriefInfo:(Message_UserBriefInfo*) value {
+    result.hasFromUserBriefInfo = YES;
+    result.fromUserBriefInfo = value;
+    return self;
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) setFromUserBriefInfoBuilder:(Message_UserBriefInfo_Builder*) builderForValue {
+    return [self setFromUserBriefInfo:[builderForValue build]];
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) mergeFromUserBriefInfo:(Message_UserBriefInfo*) value {
+    if (result.hasFromUserBriefInfo &&
+        result.fromUserBriefInfo != [Message_UserBriefInfo defaultInstance]) {
+        result.fromUserBriefInfo =
+        [[[Message_UserBriefInfo builderWithPrototype:result.fromUserBriefInfo] mergeFrom:value] buildPartial];
+    } else {
+        result.fromUserBriefInfo = value;
+    }
+    result.hasFromUserBriefInfo = YES;
+    return self;
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) clearFromUserBriefInfo {
+    result.hasFromUserBriefInfo = NO;
+    result.fromUserBriefInfo = [Message_UserBriefInfo defaultInstance];
+    return self;
+}
+- (BOOL) hasToRoomId {
+    return result.hasToRoomId;
+}
+- (NSString*) toRoomId {
+    return result.toRoomId;
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) setToRoomId:(NSString*) value {
+    result.hasToRoomId = YES;
+    result.toRoomId = value;
+    return self;
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) clearToRoomId {
+    result.hasToRoomId = NO;
+    result.toRoomId = @"";
+    return self;
+}
+- (BOOL) hasText {
+    return result.hasText;
+}
+- (NSString*) text {
+    return result.text;
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) setText:(NSString*) value {
+    result.hasText = YES;
+    result.text = value;
+    return self;
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) clearText {
+    result.hasText = NO;
+    result.text = @"";
+    return self;
+}
+- (BOOL) hasDate {
+    return result.hasDate;
+}
+- (int64_t) date {
+    return result.date;
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) setDate:(int64_t) value {
+    result.hasDate = YES;
+    result.date = value;
+    return self;
+}
+- (Message_TextFromServerChatRoomRequest_Builder*) clearDate {
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
+}
+@end
+
+@interface Message_TextFromServerChatRoomResponse ()
+@property int32_t status;
+@property (retain) NSString* messageHash;
+@property (retain) NSString* desc;
+@property int64_t date;
+@end
+
+@implementation Message_TextFromServerChatRoomResponse
+
+- (BOOL) hasStatus {
+    return !!hasStatus_;
+}
+- (void) setHasStatus:(BOOL) value {
+    hasStatus_ = !!value;
+}
+@synthesize status;
+- (BOOL) hasMessageHash {
+    return !!hasMessageHash_;
+}
+- (void) setHasMessageHash:(BOOL) value {
+    hasMessageHash_ = !!value;
+}
+@synthesize messageHash;
+- (BOOL) hasDesc {
+    return !!hasDesc_;
+}
+- (void) setHasDesc:(BOOL) value {
+    hasDesc_ = !!value;
+}
+@synthesize desc;
+- (BOOL) hasDate {
+    return !!hasDate_;
+}
+- (void) setHasDate:(BOOL) value {
+    hasDate_ = !!value;
+}
+@synthesize date;
+- (void) dealloc {
+    self.messageHash = nil;
+    self.desc = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.status = 0;
+        self.messageHash = @"";
+        self.desc = @"";
+        self.date = 0L;
+    }
+    return self;
+}
+static Message_TextFromServerChatRoomResponse* defaultMessage_TextFromServerChatRoomResponseInstance = nil;
++ (void) initialize {
+    if (self == [Message_TextFromServerChatRoomResponse class]) {
+        defaultMessage_TextFromServerChatRoomResponseInstance = [[Message_TextFromServerChatRoomResponse alloc] init];
+    }
+}
++ (Message_TextFromServerChatRoomResponse*) defaultInstance {
+    return defaultMessage_TextFromServerChatRoomResponseInstance;
+}
+- (Message_TextFromServerChatRoomResponse*) defaultInstance {
+    return defaultMessage_TextFromServerChatRoomResponseInstance;
+}
+- (BOOL) isInitialized {
+    if (!self.hasStatus) {
+        return NO;
+    }
+    if (!self.hasMessageHash) {
+        return NO;
+    }
+    if (!self.hasDesc) {
+        return NO;
+    }
+    if (!self.hasDate) {
+        return NO;
+    }
+    return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+    if (self.hasStatus) {
+        [output writeInt32:1 value:self.status];
+    }
+    if (self.hasMessageHash) {
+        [output writeString:2 value:self.messageHash];
+    }
+    if (self.hasDesc) {
+        [output writeString:3 value:self.desc];
+    }
+    if (self.hasDate) {
+        [output writeInt64:4 value:self.date];
+    }
+    [self.unknownFields writeToCodedOutputStream:output];
+}
+- (int32_t) serializedSize {
+    int32_t size = memoizedSerializedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    if (self.hasStatus) {
+        size += computeInt32Size(1, self.status);
+    }
+    if (self.hasMessageHash) {
+        size += computeStringSize(2, self.messageHash);
+    }
+    if (self.hasDesc) {
+        size += computeStringSize(3, self.desc);
+    }
+    if (self.hasDate) {
+        size += computeInt64Size(4, self.date);
+    }
+    size += self.unknownFields.serializedSize;
+    memoizedSerializedSize = size;
+    return size;
+}
++ (Message_TextFromServerChatRoomResponse*) parseFromData:(NSData*) data {
+    return (Message_TextFromServerChatRoomResponse*)[[[Message_TextFromServerChatRoomResponse builder] mergeFromData:data] build];
+}
++ (Message_TextFromServerChatRoomResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_TextFromServerChatRoomResponse*)[[[Message_TextFromServerChatRoomResponse builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (Message_TextFromServerChatRoomResponse*) parseFromInputStream:(NSInputStream*) input {
+    return (Message_TextFromServerChatRoomResponse*)[[[Message_TextFromServerChatRoomResponse builder] mergeFromInputStream:input] build];
+}
++ (Message_TextFromServerChatRoomResponse*) parseDelimitedFromInputStream:(NSInputStream*) input {
+    return (Message_TextFromServerChatRoomResponse*)[[[Message_TextFromServerChatRoomResponse builder] mergeDelimitedFromInputStream:input] build];
+}
++ (Message_TextFromServerChatRoomResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_TextFromServerChatRoomResponse*)[[[Message_TextFromServerChatRoomResponse builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_TextFromServerChatRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return (Message_TextFromServerChatRoomResponse*)[[[Message_TextFromServerChatRoomResponse builder] mergeFromCodedInputStream:input] build];
+}
++ (Message_TextFromServerChatRoomResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    return (Message_TextFromServerChatRoomResponse*)[[[Message_TextFromServerChatRoomResponse builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (Message_TextFromServerChatRoomResponse_Builder*) builder {
+    return [[[Message_TextFromServerChatRoomResponse_Builder alloc] init] autorelease];
+}
++ (Message_TextFromServerChatRoomResponse_Builder*) builderWithPrototype:(Message_TextFromServerChatRoomResponse*) prototype {
+    return [[Message_TextFromServerChatRoomResponse builder] mergeFrom:prototype];
+}
+- (Message_TextFromServerChatRoomResponse_Builder*) builder {
+    return [Message_TextFromServerChatRoomResponse builder];
+}
+@end
+
+@interface Message_TextFromServerChatRoomResponse_Builder()
+@property (retain) Message_TextFromServerChatRoomResponse* result;
+@end
+
+@implementation Message_TextFromServerChatRoomResponse_Builder
+@synthesize result;
+- (void) dealloc {
+    self.result = nil;
+    [super dealloc];
+}
+- (id) init {
+    if ((self = [super init])) {
+        self.result = [[[Message_TextFromServerChatRoomResponse alloc] init] autorelease];
+    }
+    return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+    return result;
+}
+- (Message_TextFromServerChatRoomResponse_Builder*) clear {
+    self.result = [[[Message_TextFromServerChatRoomResponse alloc] init] autorelease];
+    return self;
+}
+- (Message_TextFromServerChatRoomResponse_Builder*) clone {
+    return [Message_TextFromServerChatRoomResponse builderWithPrototype:result];
+}
+- (Message_TextFromServerChatRoomResponse*) defaultInstance {
+    return [Message_TextFromServerChatRoomResponse defaultInstance];
+}
+- (Message_TextFromServerChatRoomResponse*) build {
+    [self checkInitialized];
+    return [self buildPartial];
+}
+- (Message_TextFromServerChatRoomResponse*) buildPartial {
+    Message_TextFromServerChatRoomResponse* returnMe = [[result retain] autorelease];
+    self.result = nil;
+    return returnMe;
+}
+- (Message_TextFromServerChatRoomResponse_Builder*) mergeFrom:(Message_TextFromServerChatRoomResponse*) other {
+    if (other == [Message_TextFromServerChatRoomResponse defaultInstance]) {
+        return self;
+    }
+    if (other.hasStatus) {
+        [self setStatus:other.status];
+    }
+    if (other.hasMessageHash) {
+        [self setMessageHash:other.messageHash];
+    }
+    if (other.hasDesc) {
+        [self setDesc:other.desc];
+    }
+    if (other.hasDate) {
+        [self setDate:other.date];
+    }
+    [self mergeUnknownFields:other.unknownFields];
+    return self;
+}
+- (Message_TextFromServerChatRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (Message_TextFromServerChatRoomResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+    while (YES) {
+        int32_t tag = [input readTag];
+        switch (tag) {
+            case 0:
+                [self setUnknownFields:[unknownFields build]];
+                return self;
+            default: {
+                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+                    [self setUnknownFields:[unknownFields build]];
+                    return self;
+                }
+                break;
+            }
+            case 8: {
+                [self setStatus:[input readInt32]];
+                break;
+            }
+            case 18: {
+                [self setMessageHash:[input readString]];
+                break;
+            }
+            case 26: {
+                [self setDesc:[input readString]];
+                break;
+            }
+            case 32: {
+                [self setDate:[input readInt64]];
+                break;
+            }
+        }
+    }
+}
+- (BOOL) hasStatus {
+    return result.hasStatus;
+}
+- (int32_t) status {
+    return result.status;
+}
+- (Message_TextFromServerChatRoomResponse_Builder*) setStatus:(int32_t) value {
+    result.hasStatus = YES;
+    result.status = value;
+    return self;
+}
+- (Message_TextFromServerChatRoomResponse_Builder*) clearStatus {
+    result.hasStatus = NO;
+    result.status = 0;
+    return self;
+}
+- (BOOL) hasMessageHash {
+    return result.hasMessageHash;
+}
+- (NSString*) messageHash {
+    return result.messageHash;
+}
+- (Message_TextFromServerChatRoomResponse_Builder*) setMessageHash:(NSString*) value {
+    result.hasMessageHash = YES;
+    result.messageHash = value;
+    return self;
+}
+- (Message_TextFromServerChatRoomResponse_Builder*) clearMessageHash {
+    result.hasMessageHash = NO;
+    result.messageHash = @"";
+    return self;
+}
+- (BOOL) hasDesc {
+    return result.hasDesc;
+}
+- (NSString*) desc {
+    return result.desc;
+}
+- (Message_TextFromServerChatRoomResponse_Builder*) setDesc:(NSString*) value {
+    result.hasDesc = YES;
+    result.desc = value;
+    return self;
+}
+- (Message_TextFromServerChatRoomResponse_Builder*) clearDesc {
+    result.hasDesc = NO;
+    result.desc = @"";
+    return self;
+}
+- (BOOL) hasDate {
+    return result.hasDate;
+}
+- (int64_t) date {
+    return result.date;
+}
+- (Message_TextFromServerChatRoomResponse_Builder*) setDate:(int64_t) value {
+    result.hasDate = YES;
+    result.date = value;
+    return self;
+}
+- (Message_TextFromServerChatRoomResponse_Builder*) clearDate {
+    result.hasDate = NO;
+    result.date = 0L;
+    return self;
+}
+@end
+
 @interface Message_Builder()
 @property (retain) Message* result;
 @end
@@ -9642,6 +15486,54 @@ static Message_VideoFromServerResponse* defaultMessage_VideoFromServerResponseIn
     }
     if (other.hasVideoFromServerResponse) {
         [self mergeVideoFromServerResponse:other.videoFromServerResponse];
+    }
+    if (other.hasCreateChatRoomRequest) {
+        [self mergeCreateChatRoomRequest:other.createChatRoomRequest];
+    }
+    if (other.hasCreateChatRoomResponse) {
+        [self mergeCreateChatRoomResponse:other.createChatRoomResponse];
+    }
+    if (other.hasDeleteChatRoomRequest) {
+        [self mergeDeleteChatRoomRequest:other.deleteChatRoomRequest];
+    }
+    if (other.hasDeleteChatRoomResponse) {
+        [self mergeDeleteChatRoomResponse:other.deleteChatRoomResponse];
+    }
+    if (other.hasQueryChatRoomRequest) {
+        [self mergeQueryChatRoomRequest:other.queryChatRoomRequest];
+    }
+    if (other.hasQueryChatRoomResponse) {
+        [self mergeQueryChatRoomResponse:other.queryChatRoomResponse];
+    }
+    if (other.hasSearchChatRoomRequest) {
+        [self mergeSearchChatRoomRequest:other.searchChatRoomRequest];
+    }
+    if (other.hasSearchChatRoomResponse) {
+        [self mergeSearchChatRoomResponse:other.searchChatRoomResponse];
+    }
+    if (other.hasJoinChatRoomRequest) {
+        [self mergeJoinChatRoomRequest:other.joinChatRoomRequest];
+    }
+    if (other.hasJoinChatRoomResponse) {
+        [self mergeJoinChatRoomResponse:other.joinChatRoomResponse];
+    }
+    if (other.hasLeaveChatRoomRequest) {
+        [self mergeLeaveChatRoomRequest:other.leaveChatRoomRequest];
+    }
+    if (other.hasLeaveChatRoomResponse) {
+        [self mergeLeaveChatRoomResponse:other.leaveChatRoomResponse];
+    }
+    if (other.hasTextChatRoomMessageRequest) {
+        [self mergeTextChatRoomMessageRequest:other.textChatRoomMessageRequest];
+    }
+    if (other.hasTextChatRoomMessageResponse) {
+        [self mergeTextChatRoomMessageResponse:other.textChatRoomMessageResponse];
+    }
+    if (other.hasTextFromServerChatRoomRequest) {
+        [self mergeTextFromServerChatRoomRequest:other.textFromServerChatRoomRequest];
+    }
+    if (other.hasTextFromServerChatRoomResponse) {
+        [self mergeTextFromServerChatRoomResponse:other.textFromServerChatRoomResponse];
     }
     [self mergeUnknownFields:other.unknownFields];
     return self;
@@ -9905,6 +15797,150 @@ static Message_VideoFromServerResponse* defaultMessage_VideoFromServerResponseIn
                 }
                 [input readMessage:subBuilder extensionRegistry:extensionRegistry];
                 [self setVideoFromServerResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 226: {
+                Message_CreateChatRoomRequest_Builder* subBuilder = [Message_CreateChatRoomRequest builder];
+                if (self.hasCreateChatRoomRequest) {
+                    [subBuilder mergeFrom:self.createChatRoomRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setCreateChatRoomRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 234: {
+                Message_CreateChatRoomResponse_Builder* subBuilder = [Message_CreateChatRoomResponse builder];
+                if (self.hasCreateChatRoomResponse) {
+                    [subBuilder mergeFrom:self.createChatRoomResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setCreateChatRoomResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 242: {
+                Message_DeleteChatRoomRequest_Builder* subBuilder = [Message_DeleteChatRoomRequest builder];
+                if (self.hasDeleteChatRoomRequest) {
+                    [subBuilder mergeFrom:self.deleteChatRoomRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setDeleteChatRoomRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 250: {
+                Message_DeleteChatRoomResponse_Builder* subBuilder = [Message_DeleteChatRoomResponse builder];
+                if (self.hasDeleteChatRoomResponse) {
+                    [subBuilder mergeFrom:self.deleteChatRoomResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setDeleteChatRoomResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 258: {
+                Message_QueryChatRoomRequest_Builder* subBuilder = [Message_QueryChatRoomRequest builder];
+                if (self.hasQueryChatRoomRequest) {
+                    [subBuilder mergeFrom:self.queryChatRoomRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setQueryChatRoomRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 266: {
+                Message_QueryChatRoomResponse_Builder* subBuilder = [Message_QueryChatRoomResponse builder];
+                if (self.hasQueryChatRoomResponse) {
+                    [subBuilder mergeFrom:self.queryChatRoomResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setQueryChatRoomResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 274: {
+                Message_SearchChatRoomRequest_Builder* subBuilder = [Message_SearchChatRoomRequest builder];
+                if (self.hasSearchChatRoomRequest) {
+                    [subBuilder mergeFrom:self.searchChatRoomRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setSearchChatRoomRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 282: {
+                Message_SearchChatRoomResponse_Builder* subBuilder = [Message_SearchChatRoomResponse builder];
+                if (self.hasSearchChatRoomResponse) {
+                    [subBuilder mergeFrom:self.searchChatRoomResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setSearchChatRoomResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 290: {
+                Message_JoinChatRoomRequest_Builder* subBuilder = [Message_JoinChatRoomRequest builder];
+                if (self.hasJoinChatRoomRequest) {
+                    [subBuilder mergeFrom:self.joinChatRoomRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setJoinChatRoomRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 298: {
+                Message_JoinChatRoomResponse_Builder* subBuilder = [Message_JoinChatRoomResponse builder];
+                if (self.hasJoinChatRoomResponse) {
+                    [subBuilder mergeFrom:self.joinChatRoomResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setJoinChatRoomResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 306: {
+                Message_LeaveChatRoomRequest_Builder* subBuilder = [Message_LeaveChatRoomRequest builder];
+                if (self.hasLeaveChatRoomRequest) {
+                    [subBuilder mergeFrom:self.leaveChatRoomRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setLeaveChatRoomRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 314: {
+                Message_LeaveChatRoomResponse_Builder* subBuilder = [Message_LeaveChatRoomResponse builder];
+                if (self.hasLeaveChatRoomResponse) {
+                    [subBuilder mergeFrom:self.leaveChatRoomResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setLeaveChatRoomResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 322: {
+                Message_TextChatRoomMessageRequest_Builder* subBuilder = [Message_TextChatRoomMessageRequest builder];
+                if (self.hasTextChatRoomMessageRequest) {
+                    [subBuilder mergeFrom:self.textChatRoomMessageRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setTextChatRoomMessageRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 330: {
+                Message_TextChatRoomMessageResponse_Builder* subBuilder = [Message_TextChatRoomMessageResponse builder];
+                if (self.hasTextChatRoomMessageResponse) {
+                    [subBuilder mergeFrom:self.textChatRoomMessageResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setTextChatRoomMessageResponse:[subBuilder buildPartial]];
+                break;
+            }
+            case 338: {
+                Message_TextFromServerChatRoomRequest_Builder* subBuilder = [Message_TextFromServerChatRoomRequest builder];
+                if (self.hasTextFromServerChatRoomRequest) {
+                    [subBuilder mergeFrom:self.textFromServerChatRoomRequest];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setTextFromServerChatRoomRequest:[subBuilder buildPartial]];
+                break;
+            }
+            case 346: {
+                Message_TextFromServerChatRoomResponse_Builder* subBuilder = [Message_TextFromServerChatRoomResponse builder];
+                if (self.hasTextFromServerChatRoomResponse) {
+                    [subBuilder mergeFrom:self.textFromServerChatRoomResponse];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                [self setTextFromServerChatRoomResponse:[subBuilder buildPartial]];
                 break;
             }
         }
@@ -10704,6 +16740,486 @@ static Message_VideoFromServerResponse* defaultMessage_VideoFromServerResponseIn
 - (Message_Builder*) clearVideoFromServerResponse {
     result.hasVideoFromServerResponse = NO;
     result.videoFromServerResponse = [Message_VideoFromServerResponse defaultInstance];
+    return self;
+}
+- (BOOL) hasCreateChatRoomRequest {
+    return result.hasCreateChatRoomRequest;
+}
+- (Message_CreateChatRoomRequest*) createChatRoomRequest {
+    return result.createChatRoomRequest;
+}
+- (Message_Builder*) setCreateChatRoomRequest:(Message_CreateChatRoomRequest*) value {
+    result.hasCreateChatRoomRequest = YES;
+    result.createChatRoomRequest = value;
+    return self;
+}
+- (Message_Builder*) setCreateChatRoomRequestBuilder:(Message_CreateChatRoomRequest_Builder*) builderForValue {
+    return [self setCreateChatRoomRequest:[builderForValue build]];
+}
+- (Message_Builder*) mergeCreateChatRoomRequest:(Message_CreateChatRoomRequest*) value {
+    if (result.hasCreateChatRoomRequest &&
+        result.createChatRoomRequest != [Message_CreateChatRoomRequest defaultInstance]) {
+        result.createChatRoomRequest =
+        [[[Message_CreateChatRoomRequest builderWithPrototype:result.createChatRoomRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.createChatRoomRequest = value;
+    }
+    result.hasCreateChatRoomRequest = YES;
+    return self;
+}
+- (Message_Builder*) clearCreateChatRoomRequest {
+    result.hasCreateChatRoomRequest = NO;
+    result.createChatRoomRequest = [Message_CreateChatRoomRequest defaultInstance];
+    return self;
+}
+- (BOOL) hasCreateChatRoomResponse {
+    return result.hasCreateChatRoomResponse;
+}
+- (Message_CreateChatRoomResponse*) createChatRoomResponse {
+    return result.createChatRoomResponse;
+}
+- (Message_Builder*) setCreateChatRoomResponse:(Message_CreateChatRoomResponse*) value {
+    result.hasCreateChatRoomResponse = YES;
+    result.createChatRoomResponse = value;
+    return self;
+}
+- (Message_Builder*) setCreateChatRoomResponseBuilder:(Message_CreateChatRoomResponse_Builder*) builderForValue {
+    return [self setCreateChatRoomResponse:[builderForValue build]];
+}
+- (Message_Builder*) mergeCreateChatRoomResponse:(Message_CreateChatRoomResponse*) value {
+    if (result.hasCreateChatRoomResponse &&
+        result.createChatRoomResponse != [Message_CreateChatRoomResponse defaultInstance]) {
+        result.createChatRoomResponse =
+        [[[Message_CreateChatRoomResponse builderWithPrototype:result.createChatRoomResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.createChatRoomResponse = value;
+    }
+    result.hasCreateChatRoomResponse = YES;
+    return self;
+}
+- (Message_Builder*) clearCreateChatRoomResponse {
+    result.hasCreateChatRoomResponse = NO;
+    result.createChatRoomResponse = [Message_CreateChatRoomResponse defaultInstance];
+    return self;
+}
+- (BOOL) hasDeleteChatRoomRequest {
+    return result.hasDeleteChatRoomRequest;
+}
+- (Message_DeleteChatRoomRequest*) deleteChatRoomRequest {
+    return result.deleteChatRoomRequest;
+}
+- (Message_Builder*) setDeleteChatRoomRequest:(Message_DeleteChatRoomRequest*) value {
+    result.hasDeleteChatRoomRequest = YES;
+    result.deleteChatRoomRequest = value;
+    return self;
+}
+- (Message_Builder*) setDeleteChatRoomRequestBuilder:(Message_DeleteChatRoomRequest_Builder*) builderForValue {
+    return [self setDeleteChatRoomRequest:[builderForValue build]];
+}
+- (Message_Builder*) mergeDeleteChatRoomRequest:(Message_DeleteChatRoomRequest*) value {
+    if (result.hasDeleteChatRoomRequest &&
+        result.deleteChatRoomRequest != [Message_DeleteChatRoomRequest defaultInstance]) {
+        result.deleteChatRoomRequest =
+        [[[Message_DeleteChatRoomRequest builderWithPrototype:result.deleteChatRoomRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.deleteChatRoomRequest = value;
+    }
+    result.hasDeleteChatRoomRequest = YES;
+    return self;
+}
+- (Message_Builder*) clearDeleteChatRoomRequest {
+    result.hasDeleteChatRoomRequest = NO;
+    result.deleteChatRoomRequest = [Message_DeleteChatRoomRequest defaultInstance];
+    return self;
+}
+- (BOOL) hasDeleteChatRoomResponse {
+    return result.hasDeleteChatRoomResponse;
+}
+- (Message_DeleteChatRoomResponse*) deleteChatRoomResponse {
+    return result.deleteChatRoomResponse;
+}
+- (Message_Builder*) setDeleteChatRoomResponse:(Message_DeleteChatRoomResponse*) value {
+    result.hasDeleteChatRoomResponse = YES;
+    result.deleteChatRoomResponse = value;
+    return self;
+}
+- (Message_Builder*) setDeleteChatRoomResponseBuilder:(Message_DeleteChatRoomResponse_Builder*) builderForValue {
+    return [self setDeleteChatRoomResponse:[builderForValue build]];
+}
+- (Message_Builder*) mergeDeleteChatRoomResponse:(Message_DeleteChatRoomResponse*) value {
+    if (result.hasDeleteChatRoomResponse &&
+        result.deleteChatRoomResponse != [Message_DeleteChatRoomResponse defaultInstance]) {
+        result.deleteChatRoomResponse =
+        [[[Message_DeleteChatRoomResponse builderWithPrototype:result.deleteChatRoomResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.deleteChatRoomResponse = value;
+    }
+    result.hasDeleteChatRoomResponse = YES;
+    return self;
+}
+- (Message_Builder*) clearDeleteChatRoomResponse {
+    result.hasDeleteChatRoomResponse = NO;
+    result.deleteChatRoomResponse = [Message_DeleteChatRoomResponse defaultInstance];
+    return self;
+}
+- (BOOL) hasQueryChatRoomRequest {
+    return result.hasQueryChatRoomRequest;
+}
+- (Message_QueryChatRoomRequest*) queryChatRoomRequest {
+    return result.queryChatRoomRequest;
+}
+- (Message_Builder*) setQueryChatRoomRequest:(Message_QueryChatRoomRequest*) value {
+    result.hasQueryChatRoomRequest = YES;
+    result.queryChatRoomRequest = value;
+    return self;
+}
+- (Message_Builder*) setQueryChatRoomRequestBuilder:(Message_QueryChatRoomRequest_Builder*) builderForValue {
+    return [self setQueryChatRoomRequest:[builderForValue build]];
+}
+- (Message_Builder*) mergeQueryChatRoomRequest:(Message_QueryChatRoomRequest*) value {
+    if (result.hasQueryChatRoomRequest &&
+        result.queryChatRoomRequest != [Message_QueryChatRoomRequest defaultInstance]) {
+        result.queryChatRoomRequest =
+        [[[Message_QueryChatRoomRequest builderWithPrototype:result.queryChatRoomRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.queryChatRoomRequest = value;
+    }
+    result.hasQueryChatRoomRequest = YES;
+    return self;
+}
+- (Message_Builder*) clearQueryChatRoomRequest {
+    result.hasQueryChatRoomRequest = NO;
+    result.queryChatRoomRequest = [Message_QueryChatRoomRequest defaultInstance];
+    return self;
+}
+- (BOOL) hasQueryChatRoomResponse {
+    return result.hasQueryChatRoomResponse;
+}
+- (Message_QueryChatRoomResponse*) queryChatRoomResponse {
+    return result.queryChatRoomResponse;
+}
+- (Message_Builder*) setQueryChatRoomResponse:(Message_QueryChatRoomResponse*) value {
+    result.hasQueryChatRoomResponse = YES;
+    result.queryChatRoomResponse = value;
+    return self;
+}
+- (Message_Builder*) setQueryChatRoomResponseBuilder:(Message_QueryChatRoomResponse_Builder*) builderForValue {
+    return [self setQueryChatRoomResponse:[builderForValue build]];
+}
+- (Message_Builder*) mergeQueryChatRoomResponse:(Message_QueryChatRoomResponse*) value {
+    if (result.hasQueryChatRoomResponse &&
+        result.queryChatRoomResponse != [Message_QueryChatRoomResponse defaultInstance]) {
+        result.queryChatRoomResponse =
+        [[[Message_QueryChatRoomResponse builderWithPrototype:result.queryChatRoomResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.queryChatRoomResponse = value;
+    }
+    result.hasQueryChatRoomResponse = YES;
+    return self;
+}
+- (Message_Builder*) clearQueryChatRoomResponse {
+    result.hasQueryChatRoomResponse = NO;
+    result.queryChatRoomResponse = [Message_QueryChatRoomResponse defaultInstance];
+    return self;
+}
+- (BOOL) hasSearchChatRoomRequest {
+    return result.hasSearchChatRoomRequest;
+}
+- (Message_SearchChatRoomRequest*) searchChatRoomRequest {
+    return result.searchChatRoomRequest;
+}
+- (Message_Builder*) setSearchChatRoomRequest:(Message_SearchChatRoomRequest*) value {
+    result.hasSearchChatRoomRequest = YES;
+    result.searchChatRoomRequest = value;
+    return self;
+}
+- (Message_Builder*) setSearchChatRoomRequestBuilder:(Message_SearchChatRoomRequest_Builder*) builderForValue {
+    return [self setSearchChatRoomRequest:[builderForValue build]];
+}
+- (Message_Builder*) mergeSearchChatRoomRequest:(Message_SearchChatRoomRequest*) value {
+    if (result.hasSearchChatRoomRequest &&
+        result.searchChatRoomRequest != [Message_SearchChatRoomRequest defaultInstance]) {
+        result.searchChatRoomRequest =
+        [[[Message_SearchChatRoomRequest builderWithPrototype:result.searchChatRoomRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.searchChatRoomRequest = value;
+    }
+    result.hasSearchChatRoomRequest = YES;
+    return self;
+}
+- (Message_Builder*) clearSearchChatRoomRequest {
+    result.hasSearchChatRoomRequest = NO;
+    result.searchChatRoomRequest = [Message_SearchChatRoomRequest defaultInstance];
+    return self;
+}
+- (BOOL) hasSearchChatRoomResponse {
+    return result.hasSearchChatRoomResponse;
+}
+- (Message_SearchChatRoomResponse*) searchChatRoomResponse {
+    return result.searchChatRoomResponse;
+}
+- (Message_Builder*) setSearchChatRoomResponse:(Message_SearchChatRoomResponse*) value {
+    result.hasSearchChatRoomResponse = YES;
+    result.searchChatRoomResponse = value;
+    return self;
+}
+- (Message_Builder*) setSearchChatRoomResponseBuilder:(Message_SearchChatRoomResponse_Builder*) builderForValue {
+    return [self setSearchChatRoomResponse:[builderForValue build]];
+}
+- (Message_Builder*) mergeSearchChatRoomResponse:(Message_SearchChatRoomResponse*) value {
+    if (result.hasSearchChatRoomResponse &&
+        result.searchChatRoomResponse != [Message_SearchChatRoomResponse defaultInstance]) {
+        result.searchChatRoomResponse =
+        [[[Message_SearchChatRoomResponse builderWithPrototype:result.searchChatRoomResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.searchChatRoomResponse = value;
+    }
+    result.hasSearchChatRoomResponse = YES;
+    return self;
+}
+- (Message_Builder*) clearSearchChatRoomResponse {
+    result.hasSearchChatRoomResponse = NO;
+    result.searchChatRoomResponse = [Message_SearchChatRoomResponse defaultInstance];
+    return self;
+}
+- (BOOL) hasJoinChatRoomRequest {
+    return result.hasJoinChatRoomRequest;
+}
+- (Message_JoinChatRoomRequest*) joinChatRoomRequest {
+    return result.joinChatRoomRequest;
+}
+- (Message_Builder*) setJoinChatRoomRequest:(Message_JoinChatRoomRequest*) value {
+    result.hasJoinChatRoomRequest = YES;
+    result.joinChatRoomRequest = value;
+    return self;
+}
+- (Message_Builder*) setJoinChatRoomRequestBuilder:(Message_JoinChatRoomRequest_Builder*) builderForValue {
+    return [self setJoinChatRoomRequest:[builderForValue build]];
+}
+- (Message_Builder*) mergeJoinChatRoomRequest:(Message_JoinChatRoomRequest*) value {
+    if (result.hasJoinChatRoomRequest &&
+        result.joinChatRoomRequest != [Message_JoinChatRoomRequest defaultInstance]) {
+        result.joinChatRoomRequest =
+        [[[Message_JoinChatRoomRequest builderWithPrototype:result.joinChatRoomRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.joinChatRoomRequest = value;
+    }
+    result.hasJoinChatRoomRequest = YES;
+    return self;
+}
+- (Message_Builder*) clearJoinChatRoomRequest {
+    result.hasJoinChatRoomRequest = NO;
+    result.joinChatRoomRequest = [Message_JoinChatRoomRequest defaultInstance];
+    return self;
+}
+- (BOOL) hasJoinChatRoomResponse {
+    return result.hasJoinChatRoomResponse;
+}
+- (Message_JoinChatRoomResponse*) joinChatRoomResponse {
+    return result.joinChatRoomResponse;
+}
+- (Message_Builder*) setJoinChatRoomResponse:(Message_JoinChatRoomResponse*) value {
+    result.hasJoinChatRoomResponse = YES;
+    result.joinChatRoomResponse = value;
+    return self;
+}
+- (Message_Builder*) setJoinChatRoomResponseBuilder:(Message_JoinChatRoomResponse_Builder*) builderForValue {
+    return [self setJoinChatRoomResponse:[builderForValue build]];
+}
+- (Message_Builder*) mergeJoinChatRoomResponse:(Message_JoinChatRoomResponse*) value {
+    if (result.hasJoinChatRoomResponse &&
+        result.joinChatRoomResponse != [Message_JoinChatRoomResponse defaultInstance]) {
+        result.joinChatRoomResponse =
+        [[[Message_JoinChatRoomResponse builderWithPrototype:result.joinChatRoomResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.joinChatRoomResponse = value;
+    }
+    result.hasJoinChatRoomResponse = YES;
+    return self;
+}
+- (Message_Builder*) clearJoinChatRoomResponse {
+    result.hasJoinChatRoomResponse = NO;
+    result.joinChatRoomResponse = [Message_JoinChatRoomResponse defaultInstance];
+    return self;
+}
+- (BOOL) hasLeaveChatRoomRequest {
+    return result.hasLeaveChatRoomRequest;
+}
+- (Message_LeaveChatRoomRequest*) leaveChatRoomRequest {
+    return result.leaveChatRoomRequest;
+}
+- (Message_Builder*) setLeaveChatRoomRequest:(Message_LeaveChatRoomRequest*) value {
+    result.hasLeaveChatRoomRequest = YES;
+    result.leaveChatRoomRequest = value;
+    return self;
+}
+- (Message_Builder*) setLeaveChatRoomRequestBuilder:(Message_LeaveChatRoomRequest_Builder*) builderForValue {
+    return [self setLeaveChatRoomRequest:[builderForValue build]];
+}
+- (Message_Builder*) mergeLeaveChatRoomRequest:(Message_LeaveChatRoomRequest*) value {
+    if (result.hasLeaveChatRoomRequest &&
+        result.leaveChatRoomRequest != [Message_LeaveChatRoomRequest defaultInstance]) {
+        result.leaveChatRoomRequest =
+        [[[Message_LeaveChatRoomRequest builderWithPrototype:result.leaveChatRoomRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.leaveChatRoomRequest = value;
+    }
+    result.hasLeaveChatRoomRequest = YES;
+    return self;
+}
+- (Message_Builder*) clearLeaveChatRoomRequest {
+    result.hasLeaveChatRoomRequest = NO;
+    result.leaveChatRoomRequest = [Message_LeaveChatRoomRequest defaultInstance];
+    return self;
+}
+- (BOOL) hasLeaveChatRoomResponse {
+    return result.hasLeaveChatRoomResponse;
+}
+- (Message_LeaveChatRoomResponse*) leaveChatRoomResponse {
+    return result.leaveChatRoomResponse;
+}
+- (Message_Builder*) setLeaveChatRoomResponse:(Message_LeaveChatRoomResponse*) value {
+    result.hasLeaveChatRoomResponse = YES;
+    result.leaveChatRoomResponse = value;
+    return self;
+}
+- (Message_Builder*) setLeaveChatRoomResponseBuilder:(Message_LeaveChatRoomResponse_Builder*) builderForValue {
+    return [self setLeaveChatRoomResponse:[builderForValue build]];
+}
+- (Message_Builder*) mergeLeaveChatRoomResponse:(Message_LeaveChatRoomResponse*) value {
+    if (result.hasLeaveChatRoomResponse &&
+        result.leaveChatRoomResponse != [Message_LeaveChatRoomResponse defaultInstance]) {
+        result.leaveChatRoomResponse =
+        [[[Message_LeaveChatRoomResponse builderWithPrototype:result.leaveChatRoomResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.leaveChatRoomResponse = value;
+    }
+    result.hasLeaveChatRoomResponse = YES;
+    return self;
+}
+- (Message_Builder*) clearLeaveChatRoomResponse {
+    result.hasLeaveChatRoomResponse = NO;
+    result.leaveChatRoomResponse = [Message_LeaveChatRoomResponse defaultInstance];
+    return self;
+}
+- (BOOL) hasTextChatRoomMessageRequest {
+    return result.hasTextChatRoomMessageRequest;
+}
+- (Message_TextChatRoomMessageRequest*) textChatRoomMessageRequest {
+    return result.textChatRoomMessageRequest;
+}
+- (Message_Builder*) setTextChatRoomMessageRequest:(Message_TextChatRoomMessageRequest*) value {
+    result.hasTextChatRoomMessageRequest = YES;
+    result.textChatRoomMessageRequest = value;
+    return self;
+}
+- (Message_Builder*) setTextChatRoomMessageRequestBuilder:(Message_TextChatRoomMessageRequest_Builder*) builderForValue {
+    return [self setTextChatRoomMessageRequest:[builderForValue build]];
+}
+- (Message_Builder*) mergeTextChatRoomMessageRequest:(Message_TextChatRoomMessageRequest*) value {
+    if (result.hasTextChatRoomMessageRequest &&
+        result.textChatRoomMessageRequest != [Message_TextChatRoomMessageRequest defaultInstance]) {
+        result.textChatRoomMessageRequest =
+        [[[Message_TextChatRoomMessageRequest builderWithPrototype:result.textChatRoomMessageRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.textChatRoomMessageRequest = value;
+    }
+    result.hasTextChatRoomMessageRequest = YES;
+    return self;
+}
+- (Message_Builder*) clearTextChatRoomMessageRequest {
+    result.hasTextChatRoomMessageRequest = NO;
+    result.textChatRoomMessageRequest = [Message_TextChatRoomMessageRequest defaultInstance];
+    return self;
+}
+- (BOOL) hasTextChatRoomMessageResponse {
+    return result.hasTextChatRoomMessageResponse;
+}
+- (Message_TextChatRoomMessageResponse*) textChatRoomMessageResponse {
+    return result.textChatRoomMessageResponse;
+}
+- (Message_Builder*) setTextChatRoomMessageResponse:(Message_TextChatRoomMessageResponse*) value {
+    result.hasTextChatRoomMessageResponse = YES;
+    result.textChatRoomMessageResponse = value;
+    return self;
+}
+- (Message_Builder*) setTextChatRoomMessageResponseBuilder:(Message_TextChatRoomMessageResponse_Builder*) builderForValue {
+    return [self setTextChatRoomMessageResponse:[builderForValue build]];
+}
+- (Message_Builder*) mergeTextChatRoomMessageResponse:(Message_TextChatRoomMessageResponse*) value {
+    if (result.hasTextChatRoomMessageResponse &&
+        result.textChatRoomMessageResponse != [Message_TextChatRoomMessageResponse defaultInstance]) {
+        result.textChatRoomMessageResponse =
+        [[[Message_TextChatRoomMessageResponse builderWithPrototype:result.textChatRoomMessageResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.textChatRoomMessageResponse = value;
+    }
+    result.hasTextChatRoomMessageResponse = YES;
+    return self;
+}
+- (Message_Builder*) clearTextChatRoomMessageResponse {
+    result.hasTextChatRoomMessageResponse = NO;
+    result.textChatRoomMessageResponse = [Message_TextChatRoomMessageResponse defaultInstance];
+    return self;
+}
+- (BOOL) hasTextFromServerChatRoomRequest {
+    return result.hasTextFromServerChatRoomRequest;
+}
+- (Message_TextFromServerChatRoomRequest*) textFromServerChatRoomRequest {
+    return result.textFromServerChatRoomRequest;
+}
+- (Message_Builder*) setTextFromServerChatRoomRequest:(Message_TextFromServerChatRoomRequest*) value {
+    result.hasTextFromServerChatRoomRequest = YES;
+    result.textFromServerChatRoomRequest = value;
+    return self;
+}
+- (Message_Builder*) setTextFromServerChatRoomRequestBuilder:(Message_TextFromServerChatRoomRequest_Builder*) builderForValue {
+    return [self setTextFromServerChatRoomRequest:[builderForValue build]];
+}
+- (Message_Builder*) mergeTextFromServerChatRoomRequest:(Message_TextFromServerChatRoomRequest*) value {
+    if (result.hasTextFromServerChatRoomRequest &&
+        result.textFromServerChatRoomRequest != [Message_TextFromServerChatRoomRequest defaultInstance]) {
+        result.textFromServerChatRoomRequest =
+        [[[Message_TextFromServerChatRoomRequest builderWithPrototype:result.textFromServerChatRoomRequest] mergeFrom:value] buildPartial];
+    } else {
+        result.textFromServerChatRoomRequest = value;
+    }
+    result.hasTextFromServerChatRoomRequest = YES;
+    return self;
+}
+- (Message_Builder*) clearTextFromServerChatRoomRequest {
+    result.hasTextFromServerChatRoomRequest = NO;
+    result.textFromServerChatRoomRequest = [Message_TextFromServerChatRoomRequest defaultInstance];
+    return self;
+}
+- (BOOL) hasTextFromServerChatRoomResponse {
+    return result.hasTextFromServerChatRoomResponse;
+}
+- (Message_TextFromServerChatRoomResponse*) textFromServerChatRoomResponse {
+    return result.textFromServerChatRoomResponse;
+}
+- (Message_Builder*) setTextFromServerChatRoomResponse:(Message_TextFromServerChatRoomResponse*) value {
+    result.hasTextFromServerChatRoomResponse = YES;
+    result.textFromServerChatRoomResponse = value;
+    return self;
+}
+- (Message_Builder*) setTextFromServerChatRoomResponseBuilder:(Message_TextFromServerChatRoomResponse_Builder*) builderForValue {
+    return [self setTextFromServerChatRoomResponse:[builderForValue build]];
+}
+- (Message_Builder*) mergeTextFromServerChatRoomResponse:(Message_TextFromServerChatRoomResponse*) value {
+    if (result.hasTextFromServerChatRoomResponse &&
+        result.textFromServerChatRoomResponse != [Message_TextFromServerChatRoomResponse defaultInstance]) {
+        result.textFromServerChatRoomResponse =
+        [[[Message_TextFromServerChatRoomResponse builderWithPrototype:result.textFromServerChatRoomResponse] mergeFrom:value] buildPartial];
+    } else {
+        result.textFromServerChatRoomResponse = value;
+    }
+    result.hasTextFromServerChatRoomResponse = YES;
+    return self;
+}
+- (Message_Builder*) clearTextFromServerChatRoomResponse {
+    result.hasTextFromServerChatRoomResponse = NO;
+    result.textFromServerChatRoomResponse = [Message_TextFromServerChatRoomResponse defaultInstance];
     return self;
 }
 @end

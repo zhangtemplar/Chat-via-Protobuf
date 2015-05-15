@@ -154,6 +154,7 @@
                 NSLog(@"Login succeeds\n");
                 [alert initWithTitle:@"Login succeeds" message:@"You are now loggied in" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 // show the friend list
+                user_info=[[msg_tmp loginResponse] copy];
                 MainViewController* main_view_controller=[self getMainView];
                 [main_view_controller SetUser:[msg_tmp loginResponse]]; 
                 [[[self window] rootViewController] presentViewController:main_view_controller animated:YES completion:nil];
@@ -246,7 +247,7 @@
         {
             // if we don't have a chat view for it, create a new one
             chat_view=[ChatViewController messagesViewController];
-            chat_view.delegateModal=self;
+            chat_view.delegate_modal=self;
             [chat_view initWithUser:[[msg_tmp textFromServerRequest]toUserId] user_name:nil guest_id: [[msg_tmp textFromServerRequest] fromUserId] guest_name:nil];
             [[self getMainView] setChatView:[[msg_tmp textFromServerRequest] fromUserId] view:chat_view];
         }
@@ -261,7 +262,7 @@
         {
             // if we don't have a chat view for it, create a new one
             chat_view=[ChatViewController messagesViewController];
-            chat_view.delegateModal=self;
+            chat_view.delegate_modal=self;
             [chat_view initWithUser:[[msg_tmp pictureFromServerRequest]toUserId] user_name:nil guest_id: [[msg_tmp pictureFromServerRequest] fromUserId] guest_name:nil];
             [[self getMainView] setChatView:[[msg_tmp pictureFromServerRequest] fromUserId] view:chat_view];
         }
@@ -276,7 +277,7 @@
         {
             // if we don't have a chat view for it, create a new one
             chat_view=[ChatViewController messagesViewController];
-            chat_view.delegateModal=self;
+            chat_view.delegate_modal=self;
             [chat_view initWithUser:[[msg_tmp videoFromServerRequest]toUserId] user_name:nil guest_id: [[msg_tmp videoFromServerRequest] fromUserId] guest_name:nil];
             [[self getMainView] setChatView:[[msg_tmp videoFromServerRequest] fromUserId] view:chat_view];
         }
@@ -291,7 +292,7 @@
         {
             // if we don't have a chat view for it, create a new one
             chat_view=[ChatViewController messagesViewController];
-            chat_view.delegateModal=self;
+            chat_view.delegate_modal=self;
             [chat_view initWithUser:[[msg_tmp voiceFromServerRequest]toUserId] user_name:nil guest_id: [[msg_tmp voiceFromServerRequest] fromUserId] guest_name:nil];
             [[self getMainView] setChatView:[[msg_tmp voiceFromServerRequest] fromUserId] view:chat_view];
         }
@@ -301,6 +302,36 @@
     {
         // on get response for who am i, we set the user id
         NSLog(@"Who am I message received\n");
+    }
+    else if ([msg_tmp type]==Message_MessageTypeTextChatRoomResp)
+    {
+        NSLog(@"Text message for chat room is sent\n");
+    }
+    else if ([msg_tmp type]==Message_MessageTypeTextChatRoomFromServerReq)
+    {
+        NSLog(@"Text message for chat room is received\n");
+        ChatViewController *chat_view=[[self getMainView] getChatView:[[msg_tmp textFromServerChatRoomRequest] toRoomId]];
+        if (chat_view==nil)
+        {
+            // if we don't have a chat view for it, create a new one
+            chat_view=[ChatViewController messagesViewController];
+            chat_view.delegate_modal=self;
+            [chat_view initWithUser:[user_info userId] user_name:[user_info userName] guest_id: [[msg_tmp textFromServerChatRoomRequest] toRoomId] guest_name:nil];
+            [[self getMainView] setChatView:[[msg_tmp textFromServerChatRoomRequest] toRoomId] view:chat_view];
+        }
+        [chat_view onReceiveChatRoomTextMessage:[msg_tmp textFromServerChatRoomRequest]];
+    }
+    else if ([msg_tmp type]==Message_MessageTypeCreateChatRoomResp)
+    {
+        NSLog(@"Chat room is created\n");
+        MainViewController *main_view=[self getMainView];
+        [main_view onRoom:[msg_tmp createChatRoomResponse]];
+    }
+    else if ([msg_tmp type]==Message_MessageTypeJoinChatRoomResp)
+    {
+        NSLog(@"Chat room is joined\n");
+        MainViewController *main_view=[self getMainView];
+        [main_view onJoin:[msg_tmp joinChatRoomResponse]];
     }
     // for other message type put here
     else

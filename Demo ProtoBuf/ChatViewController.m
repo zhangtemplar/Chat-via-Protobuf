@@ -43,7 +43,7 @@
     [super viewWillAppear:animated];
     
     // the back button
-    if (self.delegateModal) {
+    if (self.delegate_modal) {
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(closePressed:)];
     }
 }
@@ -70,13 +70,14 @@
     [self.navigationController pushViewController:nc.topViewController animated:YES];
 }
 
+#pragma mark for two user chat
 // on receive the new message
 -(void) onReceiveTextMessage:(Message_TextFromServerRequest *)msg
 {
     // check the msg then add it
     NSDate *msg_date=[NSDate dateWithTimeIntervalSince1970:[msg date]];
     
-    [[self chatData] addTextMessage:[msg fromUserId] name:[msg fromUserId] date:msg_date text:[msg text]];
+    [[self chat_data] addTextMessage:[msg fromUserId] name:[msg fromUserId] date:msg_date text:[msg text]];
     
     [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
     [self finishReceivingMessageAnimated:YES];
@@ -111,7 +112,7 @@
         // add video to chat
         JSQVideoMediaItem *video=[[JSQVideoMediaItem alloc] initWithFileURL:[NSURL URLWithString:videoPath] isReadyToPlay:YES];
         JSQMessage *video_msg=[[JSQMessage alloc] initWithSenderId:[msg fromUserId] senderDisplayName:[msg fromUserId] date:[NSDate date] media:video];
-        [self.chatData addMessages:video_msg];
+        [self.chat_data addMessages:video_msg];
         [[self collectionView] reloadData];
         
         // reply the server that, we have got the mssage
@@ -144,7 +145,7 @@
         NSLog(@"Image received\n");
         JSQPhotoMediaItem *photo=[[JSQPhotoMediaItem alloc] initWithImage:responseObject];
         JSQMessage *photo_msg=[[JSQMessage alloc] initWithSenderId:[msg fromUserId] senderDisplayName:[msg fromUserId] date:[NSDate date] media:photo];
-        [self.chatData addMessages:photo_msg];
+        [self.chat_data addMessages:photo_msg];
         [[self collectionView] reloadData];
         
         // reply the server that, we have got the mssage
@@ -181,7 +182,7 @@
         // add video to chat
         JSQVideoMediaItem *video=[[JSQVideoMediaItem alloc] initWithFileURL:[NSURL URLWithString:voicePath] isReadyToPlay:YES];
         JSQMessage *video_msg=[[JSQMessage alloc] initWithSenderId:[msg fromUserId] senderDisplayName:[msg fromUserId] date:[NSDate date] media:video];
-        [self.chatData addMessages:video_msg];
+        [self.chat_data addMessages:video_msg];
         [[self collectionView] reloadData];
         
         // reply the server that, we have got the mssage
@@ -201,6 +202,141 @@
     }];
     [requestOperation start];
 }
+
+#pragma mark for multiple user chat
+// on receive the new message
+-(void) onReceiveChatRoomTextMessage:(Message_TextFromServerChatRoomRequest *)msg
+{
+    // check the msg then add it
+    NSDate *msg_date=[NSDate dateWithTimeIntervalSince1970:[msg date]];
+    
+    [[self chat_data] addTextMessage:[[msg fromUserBriefInfo] userId] name:[[msg fromUserBriefInfo] nickname] date:msg_date text:[msg text]];
+    
+    [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
+    [self finishReceivingMessageAnimated:YES];
+    
+    // reply the server that, we have got the mssage
+    Message_TextFromServerChatRoomResponse_Builder *text_msg_build=[Message_TextFromServerChatRoomResponse builder];
+    [text_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+    [text_msg_build setStatus:0];
+    [text_msg_build setMessageHash:@""];
+    [text_msg_build setDesc:[msg text]];
+    
+    Message_Builder *msg_build=[Message builder];
+    [msg_build setType:Message_MessageTypeTextChatRoomFromServerResp];
+    [msg_build setTextFromServerChatRoomResponse: [text_msg_build build]];
+    
+    [app_delegate sendMessage:[msg_build build]];
+}
+
+/*
+// video message
+-(void) onReceiveVideoChatRoomMessage:(Message_VideoFromServerChatRoomRequest *)msg
+{
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://54.69.29.250:8081/%@", [msg videoUuid]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    // after downloaded, change the fileurl of the video
+    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *videoPath = [documentsDirectory stringByAppendingPathComponent:[msg videoUuid]];
+    requestOperation.outputStream=[NSOutputStream outputStreamToFileAtPath:videoPath append:NO];
+    [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Voice received\n");
+        // add video to chat
+        JSQVideoMediaItem *video=[[JSQVideoMediaItem alloc] initWithFileURL:[NSURL URLWithString:videoPath] isReadyToPlay:YES];
+        JSQMessage *video_msg=[[JSQMessage alloc] initWithSenderId:[msg fromUserId] senderDisplayName:[msg fromUserId] date:[NSDate date] media:video];
+        [self.chat_data addMessages:video_msg];
+        [[self collectionView] reloadData];
+        
+        // reply the server that, we have got the mssage
+        Message_VideoFromServerResponse_Builder *video_msg_build=[Message_VideoFromServerResponse builder];
+        [video_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+        [video_msg_build setStatus:0];
+        [video_msg_build setMessageHash:@""];
+        [video_msg_build setDesc:[msg videoUuid]];
+        
+        Message_Builder *msg_build=[Message builder];
+        [msg_build setType:Message_MessageTypeVideoFromServerResp];
+        [msg_build setVideoChatMessageResponse: [video_msg_build build]];
+        
+        [app_delegate sendMessage:[msg_build build]];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Video download error: %@", error);
+    }];
+    [requestOperation start];
+}
+
+// photo message
+-(void) onReceivePhotoChatRoomMessage:(Message_PictureFromServerChatRoomRequest *)msg
+{
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://54.69.29.250:8081/%@", [msg pictureUuid]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    // after downloaded, change the fileurl of the photo
+    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
+    [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Image received\n");
+        JSQPhotoMediaItem *photo=[[JSQPhotoMediaItem alloc] initWithImage:responseObject];
+        JSQMessage *photo_msg=[[JSQMessage alloc] initWithSenderId:[msg fromUserId] senderDisplayName:[msg fromUserId] date:[NSDate date] media:photo];
+        [self.chat_data addMessages:photo_msg];
+        [[self collectionView] reloadData];
+        
+        // reply the server that, we have got the mssage
+        Message_PictureFromServerResponse_Builder *photo_msg_build=[Message_PictureFromServerResponse builder];
+        [photo_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+        [photo_msg_build setStatus:0];
+        [photo_msg_build setMessageHash:@""];
+        [photo_msg_build setDesc:[msg pictureUuid]];
+        
+        Message_Builder *msg_build=[Message builder];
+        [msg_build setType:Message_MessageTypePictureFromServerResp];
+        [msg_build setPictureChatMessageResponse: [photo_msg_build build]];
+        
+        [app_delegate sendMessage:[msg_build build]];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Image download error: %@", error);
+    }];
+    [requestOperation start];
+}
+
+// voice
+-(void) onReceiveVoiceChatRoomMessage:(Message_VoiceFromServerChatRoomRequest *)msg
+{
+    NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://54.69.29.250:8081/%@", [msg voiceUuid]]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    // after downloaded, change the fileurl of the video
+    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *voicePath = [documentsDirectory stringByAppendingPathComponent:[msg voiceUuid]];
+    requestOperation.outputStream=[NSOutputStream outputStreamToFileAtPath:voicePath append:NO];
+    [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Voice received\n");
+        // add video to chat
+        JSQVideoMediaItem *video=[[JSQVideoMediaItem alloc] initWithFileURL:[NSURL URLWithString:voicePath] isReadyToPlay:YES];
+        JSQMessage *video_msg=[[JSQMessage alloc] initWithSenderId:[msg fromUserId] senderDisplayName:[msg fromUserId] date:[NSDate date] media:video];
+        [self.chat_data addMessages:video_msg];
+        [[self collectionView] reloadData];
+        
+        // reply the server that, we have got the mssage
+        Message_VoiceFromServerResponse_Builder *voice_msg_build=[Message_VoiceFromServerResponse builder];
+        [voice_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+        [voice_msg_build setStatus:0];
+        [voice_msg_build setMessageHash:@""];
+        [voice_msg_build setDesc:[msg voiceUuid]];
+        
+        Message_Builder *msg_build=[Message builder];
+        [msg_build setType:Message_MessageTypeVoiceFromServerResp];
+        [msg_build setVoiceChatMessageResponse: [voice_msg_build build]];
+        
+        [app_delegate sendMessage:[msg_build build]];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Voice download error: %@", error);
+    }];
+    [requestOperation start];
+}
+*/
 #pragma mark - Actions
 
 // clicking the user is typing--mimicking receving a new message
@@ -213,7 +349,7 @@
 - (void)closePressed:(UIBarButtonItem *)sender
 {
 //    [self dismissModalViewControllerAnimated:YES];
-    [self.delegateModal didDismissJSQChatViewController:self];
+    [self.delegate_modal didDismissJSQChatViewController:self];
 }
 
 #pragma mark - JSQMessagesViewController method overrides
@@ -240,24 +376,50 @@
                                                           date:date
                                                           text:text];
     // add to message queue
-    [self.chatData.messages addObject:message];
+    [self.chat_data.messages addObject:message];
     
     // animation
     [self finishSendingMessageAnimated:YES];
     
     // send the message via sockets
-    Message_TextChatMessageRequest_Builder *txt_msg_builder=[Message_TextChatMessageRequest builder];
-    [txt_msg_builder setUserId:senderId];
-    [txt_msg_builder setText:text];
-    [txt_msg_builder setToUserId:[guest_list lastObject]];
-    [txt_msg_builder setDate:[[NSDate date] timeIntervalSince1970]];
-    [txt_msg_builder setMessageHash:[text MD5]];
-    
-    Message_Builder *msg_build=[Message builder];
-    [msg_build setType:Message_MessageTypeTextReq];
-    [msg_build setTextChatMessageRequest:[txt_msg_builder build]];
-    
-    [app_delegate sendMessage:[msg_build build]];
+    if ([self chat_mode])
+    {
+        // for two user chat
+        Message_TextChatMessageRequest_Builder *txt_msg_builder=[Message_TextChatMessageRequest builder];
+        [txt_msg_builder setUserId:senderId];
+        [txt_msg_builder setText:text];
+        [txt_msg_builder setToUserId:[guest_list firstObject]];
+        [txt_msg_builder setDate:[[NSDate date] timeIntervalSince1970]];
+        [txt_msg_builder setMessageHash:[text MD5]];
+        
+        Message_Builder *msg_build=[Message builder];
+        [msg_build setType:Message_MessageTypeTextReq];
+        [msg_build setTextChatMessageRequest:[txt_msg_builder build]];
+        
+        [app_delegate sendMessage:[msg_build build]];
+    }
+    else
+    {
+        // for multiple user chat
+        Message_TextChatRoomMessageRequest_Builder *txt_msg_builder=[Message_TextChatRoomMessageRequest builder];
+        Message_UserBriefInfo_Builder *user_info_builder=[Message_UserBriefInfo builder];
+        [user_info_builder setUserId:senderId];
+        [user_info_builder setNickname:senderDisplayName];
+        [user_info_builder setAvatarPictureUuid:@"0"];
+        [user_info_builder setSelfIntroduction:@"I am who am I"];
+        
+        [txt_msg_builder setUserBriefInfo:[user_info_builder build]];
+        [txt_msg_builder setText:text];
+        [txt_msg_builder setToChatRoomId:[guest_list firstObject]];
+        [txt_msg_builder setDate:[[NSDate date] timeIntervalSince1970]];
+        [txt_msg_builder setMessageHash:[text MD5]];
+        
+        Message_Builder *msg_build=[Message builder];
+        [msg_build setType:Message_MessageTypeTextChatRoomReq];
+        [msg_build setTextChatRoomMessageRequest:[txt_msg_builder build]];
+        
+        [app_delegate sendMessage:[msg_build build]];
+    }
 }
 
 // add media message
@@ -368,7 +530,7 @@
 // get message at the index
 - (id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.chatData.messages objectAtIndex:indexPath.item];
+    return [self.chat_data.messages objectAtIndex:indexPath.item];
 }
 // create message bubble for the mssage
 - (id<JSQMessageBubbleImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -380,13 +542,13 @@
      *  Otherwise, return your previously created bubble image data objects.
      */
     
-    JSQMessage *message = [self.chatData.messages objectAtIndex:indexPath.item];
+    JSQMessage *message = [self.chat_data.messages objectAtIndex:indexPath.item];
     
     if ([message.senderId isEqualToString:self.senderId]) {
-        return self.chatData.outgoingBubbleImageData;
+        return self.chat_data.outgoingBubbleImageData;
     }
     
-    return self.chatData.incomingBubbleImageData;
+    return self.chat_data.incomingBubbleImageData;
 }
 
 // get the avator for the message
@@ -412,7 +574,7 @@
      *
      *  Override the defaults in `viewDidLoad`
      */
-    JSQMessage *message = [self.chatData.messages objectAtIndex:indexPath.item];
+    JSQMessage *message = [self.chat_data.messages objectAtIndex:indexPath.item];
     
     // customize the avataor for sender or receiver
 //    if ([message.senderId isEqualToString:self.senderId]) {
@@ -427,7 +589,7 @@
 //    }
     
     // get the avator according to the sender id
-    return [self.chatData.avatars objectForKey:message.senderId];
+    return [self.chat_data.avatars objectForKey:message.senderId];
 }
 
 // some special text or separator, which is a timestamp here
@@ -440,7 +602,7 @@
      *  Show a timestamp for every 3rd message
      */
     if (indexPath.item % 3 == 0) {
-        JSQMessage *message = [self.chatData.messages objectAtIndex:indexPath.item];
+        JSQMessage *message = [self.chat_data.messages objectAtIndex:indexPath.item];
         return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:message.date];
     }
     
@@ -450,7 +612,7 @@
 // showing the sender's name
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForMessageBubbleTopLabelAtIndexPath:(NSIndexPath *)indexPath
 {
-    JSQMessage *message = [self.chatData.messages objectAtIndex:indexPath.item];
+    JSQMessage *message = [self.chat_data.messages objectAtIndex:indexPath.item];
     
     /**
      *  iOS7-style sender name labels, escape myself
@@ -461,7 +623,7 @@
     
     // if the message are from the sender of previous message, skip it
     if (indexPath.item - 1 > 0) {
-        JSQMessage *previousMessage = [self.chatData.messages objectAtIndex:indexPath.item - 1];
+        JSQMessage *previousMessage = [self.chat_data.messages objectAtIndex:indexPath.item - 1];
         if ([[previousMessage senderId] isEqualToString:message.senderId]) {
             return nil;
         }
@@ -482,7 +644,7 @@
 // get the number of message
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.chatData.messages count];
+    return [self.chat_data.messages count];
 }
 
 // appearance property of the message
@@ -507,7 +669,7 @@
      *  Instead, override the properties you want on `self.collectionView.collectionViewLayout` from `viewDidLoad`
      */
     
-    JSQMessage *msg = [self.chatData.messages objectAtIndex:indexPath.item];
+    JSQMessage *msg = [self.chat_data.messages objectAtIndex:indexPath.item];
     
     if (!msg.isMediaMessage) {
         
@@ -557,13 +719,13 @@
     /**
      *  iOS7-style sender name labels
      */
-    JSQMessage *currentMessage = [self.chatData.messages objectAtIndex:indexPath.item];
+    JSQMessage *currentMessage = [self.chat_data.messages objectAtIndex:indexPath.item];
     if ([[currentMessage senderId] isEqualToString:self.senderId]) {
         return 0.0f;
     }
     
     if (indexPath.item - 1 > 0) {
-        JSQMessage *previousMessage = [self.chatData.messages objectAtIndex:indexPath.item - 1];
+        JSQMessage *previousMessage = [self.chat_data.messages objectAtIndex:indexPath.item - 1];
         if ([[previousMessage senderId] isEqualToString:[currentMessage senderId]]) {
             return 0.0f;
         }
@@ -594,7 +756,7 @@
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapMessageBubbleAtIndexPath:(NSIndexPath *)indexPath
 {
     // play the message
-    JSQMessage *msg=[self.chatData.messages objectAtIndex:[indexPath indexAtPosition:[indexPath length]-1]];
+    JSQMessage *msg=[self.chat_data.messages objectAtIndex:[indexPath indexAtPosition:[indexPath length]-1]];
     if ([msg isMediaMessage]) {
         id media=[msg media];
         if ([media isMemberOfClass: [JSQVideoMediaItem class]])
@@ -636,20 +798,20 @@
 {
     self.senderId=user_id;
     
-    if(self.chatData==nil)
+    if(self.chat_data==nil)
     {
-        self.chatData=[[ChatModelData alloc] init];
+        self.chat_data=[[ChatModelData alloc] init];
     }
     
     if (user_name!=nil)
     {
         self.senderDisplayName=user_name;
-        [[self chatData] addUsers:user_id name:user_name avator:nil];
+        [[self chat_data] addUsers:user_id name:user_name avator:nil];
     }
     else
     {
         self.senderDisplayName=user_id;
-        [[self chatData] addUsers:user_id name:user_id avator:nil];
+        [[self chat_data] addUsers:user_id name:user_id avator:nil];
     }
     
     if (guest_list==nil)
@@ -660,11 +822,11 @@
     self.title=client_id;
     if (guest_name!=nil)
     {
-        [[self chatData] addUsers:client_id name:guest_name avator:nil];
+        [[self chat_data] addUsers:client_id name:guest_name avator:nil];
     }
     else
     {
-        [[self chatData] addUsers:client_id name:client_id avator:nil];
+        [[self chat_data] addUsers:client_id name:client_id avator:nil];
     }
 }
 
@@ -673,7 +835,7 @@
     
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     // add this image to the message
-    [[self chatData] addPhotoMediaMessage:self.senderId name:self.senderDisplayName date:[NSDate date] image:chosenImage];
+    [[self chat_data] addPhotoMediaMessage:self.senderId name:self.senderDisplayName date:[NSDate date] image:chosenImage];
     
     // save image to disk
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -690,19 +852,28 @@
     {
         NSString *fileName=[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         // uploading this message to the server and create message
-        Message_PictureChatMessageRequest_Builder *photo_msg_build=[Message_PictureChatMessageRequest builder];
-        [photo_msg_build setUserId:[self senderId]];
-        [photo_msg_build setToUserId: guest_list.firstObject];
-        [photo_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
-        [photo_msg_build setDesc:fileName];
-        [photo_msg_build setMessageHash:[fileName MD5]];
-        [photo_msg_build setPictureUuid:fileName];
-        
-        Message_Builder *msg_builder=[Message builder];
-        [msg_builder setType:Message_MessageTypePictureReq];
-        [msg_builder setPictureChatMessageRequest:[photo_msg_build build]];
-        
-        [app_delegate sendMessage:[msg_builder build]];
+        if ([self chat_mode])
+        {
+            // for two user chat
+            Message_PictureChatMessageRequest_Builder *photo_msg_build=[Message_PictureChatMessageRequest builder];
+            [photo_msg_build setUserId:[self senderId]];
+            [photo_msg_build setToUserId: guest_list.firstObject];
+            [photo_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+            [photo_msg_build setDesc:fileName];
+            [photo_msg_build setMessageHash:[fileName MD5]];
+            [photo_msg_build setPictureUuid:fileName];
+            
+            Message_Builder *msg_builder=[Message builder];
+            [msg_builder setType:Message_MessageTypePictureReq];
+            [msg_builder setPictureChatMessageRequest:[photo_msg_build build]];
+            
+            [app_delegate sendMessage:[msg_builder build]];
+        }
+        else
+        {
+            // for multiple user chat
+            NSLog(@"Picture message for chat room is not yet implemented\n");
+        }
         [[self collectionView] reloadData];
         NSLog(@"Image upload success: %@\n", responseObject);
     }
@@ -721,7 +892,7 @@
     if (url!=nil)
     {
         // add this audio the message
-        [[self chatData] addVideoMediaMessage:self.senderId name:self.senderDisplayName date:[NSDate date] video:url ready:YES];
+        [[self chat_data] addVideoMediaMessage:self.senderId name:self.senderDisplayName date:[NSDate date] video:url ready:YES];
         // create a file name
         NSString *fileUUID=[[NSString stringWithFormat:@"%@", url] MD5];
         NSData *fileData=[NSData dataWithContentsOfURL:url];
@@ -736,19 +907,28 @@
                                       {
                                           NSString *fileName=[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                                           // uploading this message to the server and create message
-                                          Message_VoiceChatMessageRequest_Builder *voice_msg_build=[Message_VoiceChatMessageRequest builder];
-                                          [voice_msg_build setUserId:[self senderId]];
-                                          [voice_msg_build setToUserId: guest_list.firstObject];
-                                          [voice_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
-                                          [voice_msg_build setDesc:fileName];
-                                          [voice_msg_build setMessageHash:[fileName MD5]];
-                                          [voice_msg_build setVoiceUuid:fileName];
-                                          
-                                          Message_Builder *msg_builder=[Message builder];
-                                          [msg_builder setType:Message_MessageTypeVoiceReq];
-                                          [msg_builder setVoiceChatMessageRequest:[voice_msg_build build]];
-                                          
-                                          [app_delegate sendMessage:[msg_builder build]];
+                                          if ([self chat_mode])
+                                          {
+                                              // for two user chat
+                                              Message_VoiceChatMessageRequest_Builder *voice_msg_build=[Message_VoiceChatMessageRequest builder];
+                                              [voice_msg_build setUserId:[self senderId]];
+                                              [voice_msg_build setToUserId: guest_list.firstObject];
+                                              [voice_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+                                              [voice_msg_build setDesc:fileName];
+                                              [voice_msg_build setMessageHash:[fileName MD5]];
+                                              [voice_msg_build setVoiceUuid:fileName];
+                                              
+                                              Message_Builder *msg_builder=[Message builder];
+                                              [msg_builder setType:Message_MessageTypeVoiceReq];
+                                              [msg_builder setVoiceChatMessageRequest:[voice_msg_build build]];
+                                              
+                                              [app_delegate sendMessage:[msg_builder build]];
+                                          }
+                                          else
+                                          {
+                                              // for multiple user chat
+                                              NSLog(@"Voice message for chat room is not yet implemented\n");
+                                          }
                                           [[self collectionView] reloadData];
                                           NSLog(@"Voice upload success: %@\n", responseObject);
                                       }
@@ -771,7 +951,7 @@
     if (url!=nil)
     {
         // add this audio the message
-        [[self chatData] addVideoMediaMessage:self.senderId name:self.senderDisplayName date:[NSDate date] video:url ready:YES];
+        [[self chat_data] addVideoMediaMessage:self.senderId name:self.senderDisplayName date:[NSDate date] video:url ready:YES];
         // create a file name
         NSString *fileUUID=[[NSString stringWithFormat:@"%@", url] MD5];
         NSData *fileData=[NSData dataWithContentsOfURL:url];
@@ -786,19 +966,28 @@
                                       {
                                           NSString *fileName=[[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
                                           // uploading this message to the server and create message
-                                          Message_VideoChatMessageRequest_Builder *video_msg_build=[Message_VideoChatMessageRequest builder];
-                                          [video_msg_build setUserId:[self senderId]];
-                                          [video_msg_build setToUserId: guest_list.firstObject];
-                                          [video_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
-                                          [video_msg_build setDesc:fileName];
-                                          [video_msg_build setMessageHash:[fileName MD5]];
-                                          [video_msg_build setVideoUuid:fileName];
-                                          
-                                          Message_Builder *msg_builder=[Message builder];
-                                          [msg_builder setType:Message_MessageTypeVideoReq];
-                                          [msg_builder setVideoChatMessageRequest:[video_msg_build build]];
-                                          
-                                          [app_delegate sendMessage:[msg_builder build]];
+                                          if ([self chat_mode])
+                                          {
+                                              // for two user chat
+                                              Message_VideoChatMessageRequest_Builder *video_msg_build=[Message_VideoChatMessageRequest builder];
+                                              [video_msg_build setUserId:[self senderId]];
+                                              [video_msg_build setToUserId: guest_list.firstObject];
+                                              [video_msg_build setDate:[[NSDate date] timeIntervalSince1970]];
+                                              [video_msg_build setDesc:fileName];
+                                              [video_msg_build setMessageHash:[fileName MD5]];
+                                              [video_msg_build setVideoUuid:fileName];
+                                              
+                                              Message_Builder *msg_builder=[Message builder];
+                                              [msg_builder setType:Message_MessageTypeVideoReq];
+                                              [msg_builder setVideoChatMessageRequest:[video_msg_build build]];
+                                              
+                                              [app_delegate sendMessage:[msg_builder build]];
+                                          }
+                                          else
+                                          {
+                                              // for multiple user chat
+                                              NSLog(@"Video message for chat room is not yet implemented\n");
+                                          }
                                           [[self collectionView] reloadData];
                                           NSLog(@"Video upload success: %@\n", responseObject);
                                       }

@@ -11,6 +11,7 @@
 @class GCDAsyncSocket;
 @class MainViewController;
 @class ChatViewController;
+@class Message_LoginMessageResponse;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
@@ -24,6 +25,9 @@
     int buffer_index;
     
     MainViewController *main_view;
+    
+    // user information
+    Message_LoginMessageResponse *user_info;
     
     UIStoryboard *story_board;
 }

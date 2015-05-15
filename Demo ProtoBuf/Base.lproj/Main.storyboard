@@ -249,7 +249,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="20" width="256" height="30"/>
+                                    <rect key="frame" x="16" y="20" width="100" height="30"/>
+                                </variation>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="chat room id" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="WxH-18-8XO">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="178" y="20" width="100" height="30"/>
                                 </variation>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t8o-Iw-myh">
@@ -259,39 +267,83 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="280" y="20" width="46" height="30"/>
+                                    <rect key="frame" x="124" y="20" width="46" height="30"/>
                                 </variation>
                                 <connections>
                                     <action selector="onChat:" destination="Gr7-Rs-pTD" eventType="touchDown" id="5se-Sg-c6h"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JZw-Y9-1Qi">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Enter">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="286" y="20" width="46" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="onEnter:" destination="Gr7-Rs-pTD" eventType="touchDown" id="Yf2-73-QpC"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HxS-dG-m8b">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="58" width="320" height="432"/>
+                                    <rect key="frame" x="16" y="96" width="320" height="394"/>
                                 </variation>
                             </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="What room you want to create?" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PGa-8l-fkr">
+                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="58" width="262" height="30"/>
+                                </variation>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7gm-aN-n8c">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Create">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="286" y="58" width="46" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="onCreate:" destination="Gr7-Rs-pTD" eventType="touchDown" id="fMG-yy-V5U"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="M4Y-T8-TR4"/>
+                                <exclude reference="WxH-18-8XO"/>
                                 <exclude reference="t8o-Iw-myh"/>
+                                <exclude reference="JZw-Y9-1Qi"/>
                                 <exclude reference="HxS-dG-m8b"/>
+                                <exclude reference="PGa-8l-fkr"/>
+                                <exclude reference="7gm-aN-n8c"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="subviews">
                                 <include reference="M4Y-T8-TR4"/>
+                                <include reference="WxH-18-8XO"/>
                                 <include reference="t8o-Iw-myh"/>
+                                <include reference="JZw-Y9-1Qi"/>
                                 <include reference="HxS-dG-m8b"/>
+                                <include reference="PGa-8l-fkr"/>
+                                <include reference="7gm-aN-n8c"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="chat_table" destination="HxS-dG-m8b" id="QBY-52-CHI"/>
                         <outlet property="input_friend_id" destination="M4Y-T8-TR4" id="LS0-Hg-O3C"/>
+                        <outlet property="input_room_id" destination="WxH-18-8XO" id="Bhg-0J-nou"/>
+                        <outlet property="input_room_name" destination="PGa-8l-fkr" id="8bG-d7-R1Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pDO-7V-adU" userLabel="First Responder" sceneMemberID="firstResponder"/>

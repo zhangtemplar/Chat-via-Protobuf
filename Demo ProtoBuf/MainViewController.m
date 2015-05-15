@@ -64,7 +64,7 @@
     {
         // if we don't have a chat view for it, create a new one
         chat_view=[ChatViewController messagesViewController];
-        chat_view.delegateModal=self;
+        chat_view.delegate_modal=self;
         [chat_view initWithUser:[login_user userId] user_name:[login_user userName] guest_id: guest_id guest_name:nil];
         [self setChatView:guest_id view:chat_view];
     }
@@ -72,6 +72,76 @@
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
     [self presentViewController:nc animated:YES completion:nil];
 }
+
+// create chat room
+-(IBAction)onCreate:(id)sender
+{
+    NSLog(@"Request to create a room\n");
+    Message_CreateChatRoomRequest_Builder *msg_create_builder=[Message_CreateChatRoomRequest builder];
+    [msg_create_builder setUserId:[login_user userId]];
+    [msg_create_builder setRoomName:[input_room_name text]];
+    [msg_create_builder setCategory:[input_room_name text]];
+    [msg_create_builder setDescription:[input_room_name text]];
+    [msg_create_builder setDate:[[NSDate date] timeIntervalSince1970]];
+    
+    Message_Builder *msg_builder=[Message builder];
+    [msg_builder setType:Message_MessageTypeCreateChatRoomReq];
+    [msg_builder setCreateChatRoomRequest:[msg_create_builder build]];
+    
+    [app_delegate sendMessage:[msg_builder build]];
+}
+
+// enter chat room
+-(IBAction)onEnter:(id)sender
+{
+    NSLog(@"Request to enter a room\n");
+    Message_JoinChatRoomRequest_Builder *msg_join_builder=[Message_JoinChatRoomRequest builder];
+    [msg_join_builder setUserId:[login_user userId]];
+    [msg_join_builder setChatRoomId:[input_room_id text]];
+    
+    Message_Builder *msg_builder=[Message builder];
+    [msg_builder setType:Message_MessageTypeJoinChatRoomReq];
+    [msg_builder setJoinChatRoomRequest:[msg_join_builder build]];
+    
+    [app_delegate sendMessage:[msg_builder build]];
+}
+
+// chat room is created
+-(void)onRoom:(Message_CreateChatRoomResponse*)msg
+{
+    NSString *guest_id=[msg chatRoomUuid];
+    ChatViewController *chat_view=[self getChatView:guest_id];
+    if (chat_view==nil)
+    {
+        // if we don't have a chat view for it, create a new one
+        chat_view=[ChatViewController messagesViewController];
+        chat_view.delegate_modal=self;
+        [chat_view initWithUser:[login_user userId] user_name:[login_user userName] guest_id: guest_id guest_name:nil];
+        [self setChatView:guest_id view:chat_view];
+    }
+    // if current view is not present, show it
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
+    [self presentViewController:nc animated:YES completion:nil];
+}
+
+// chat room is joined
+-(void)onJoin:(Message_JoinChatRoomResponse*)msg
+{
+    NSString *guest_id=[[msg chatRoom] chatRoomId];
+    ChatViewController *chat_view=[self getChatView:guest_id];
+    if (chat_view==nil)
+    {
+        // if we don't have a chat view for it, create a new one
+        chat_view=[ChatViewController messagesViewController];
+        chat_view.delegate_modal=self;
+        [chat_view initWithUser:[login_user userId] user_name:[login_user userName] guest_id: guest_id guest_name:[[msg chatRoom]chatRoomName]];
+        [self setChatView:guest_id view:chat_view];
+    }
+    // if current view is not present, show it
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:chat_view];
+    [self presentViewController:nc animated:YES completion:nil];
+}
+
 
 -(void) SetUser:(Message *)user
 {
