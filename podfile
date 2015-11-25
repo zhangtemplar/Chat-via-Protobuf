@@ -1,0 +1,19 @@
+platform :ios, "8.1"
+
+pod 'protobuf-ios'
+pod 'CocoaAsyncSocket'
+
+# for chat view
+pod 'JSQMessagesViewController'
+
+# for hash
+pod 'NSHash'
+
+# for recording and playing an audio
+pod 'SCRecorder'
+
+# for networking, e.g., downloading a picture
+pod "AFNetworking"
+
+# for uuid
+pod 'FCUUID'
